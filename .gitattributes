@@ -1,2 +1,2 @@
-* linguist-vendored
-*.cs linguist-vendored=false
+# Normalize EOL for all files that Git considers text files.
+* text=auto eol=lf
