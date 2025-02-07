@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://i3o464h0g2ao"
+path="res://.godot/imported/Phat Phrog Studio - Arcane Throne - Heir of Valor.wav-664e75704f78b8e14796766ad3be2160.sample"
+
+[deps]
+
+source_file="res://assets/Musica/Free RPG Music Collection/Phat Phrog Studio - Arcane Throne - Heir of Valor.wav"
+dest_files=["res://.godot/imported/Phat Phrog Studio - Arcane Throne - Heir of Valor.wav-664e75704f78b8e14796766ad3be2160.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
