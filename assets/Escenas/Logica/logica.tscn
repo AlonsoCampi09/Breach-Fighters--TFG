@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0xb3qpta18pr"]
+
+[ext_resource type="Script" path="res://assets/Escenas/Logica/Logica.cs" id="1_2bwpv"]
+[ext_resource type="PackedScene" uid="uid://cpy5ckaf2yf1g" path="res://assets/Escenas/Entidades/entidades.tscn" id="1_qi3x0"]
+
+[node name="Logica" type="Node2D"]
+script = ExtResource("1_2bwpv")
+
+[node name="Entidades" parent="." instance=ExtResource("1_qi3x0")]
