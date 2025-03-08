@@ -1,0 +1,40 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://i1mssgfgwv1q"]
+
+[ext_resource type="Texture2D" uid="uid://cracyxf1c6jkq" path="res://assets/IU_assets/buton.png" id="1_e6tdn"]
+[ext_resource type="Texture2D" uid="uid://d1m2g1do17pgo" path="res://assets/IU_assets/recuadro.png" id="1_xm85a"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7gne2"]
+texture = ExtResource("1_e6tdn")
+region_rect = Rect2(0, 31.9933, 32, 32.0067)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7sgco"]
+texture = ExtResource("1_e6tdn")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+region_rect = Rect2(0.0271816, 32.007, 31.9759, 32.0056)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ygq4c"]
+texture = ExtResource("1_e6tdn")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+region_rect = Rect2(0, 0, 32, 32.0124)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u04ic"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vq4yn"]
+texture = ExtResource("1_xm85a")
+texture_margin_left = 5.0
+texture_margin_top = 3.0
+texture_margin_right = 5.0
+texture_margin_bottom = 3.0
+
+[resource]
+Button/styles/focus = SubResource("StyleBoxTexture_7gne2")
+Button/styles/hover = SubResource("StyleBoxTexture_7sgco")
+Button/styles/normal = SubResource("StyleBoxTexture_ygq4c")
+Button/styles/pressed = SubResource("StyleBoxEmpty_u04ic")
+Panel/styles/panel = SubResource("StyleBoxTexture_vq4yn")

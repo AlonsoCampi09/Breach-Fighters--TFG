@@ -1,0 +1,105 @@
+[gd_scene load_steps=9 format=3 uid="uid://csalerl2y1gjb"]
+
+[ext_resource type="Texture2D" uid="uid://cfe45hway5agc" path="res://assets/Sprites/chuvakan.png" id="2_6ig5a"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_vbfm0"]
+script/source = "using Godot;
+using System;
+
+public partial class Chuvakan : CharacterBody2D
+{
+	private ChuvakanData data;
+	private AnimatedSprite2D animSprite;
+	
+	public void ready(){
+		data = new ChuvakanData();
+		data.TrueHealth = 1;
+		animSprite = GetNode<AnimatedSprite2D>(\"AnimatedSprite2D\");
+	}
+	public override void _Process(double delta)
+	{
+		if(data.TrueHealth > (int) data.Health / 4){
+			animSprite.Play(\"idle\");
+		}
+		else{
+			if(data.TrueHealth == 0){
+				animSprite.Play(\"fainted\");
+			}else{
+				animSprite.Play(\"idle_low\");
+			}
+		}
+	}
+}
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgjt3"]
+atlas = ExtResource("2_6ig5a")
+region = Rect2(360, 0, 360, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6itww"]
+atlas = ExtResource("2_6ig5a")
+region = Rect2(720, 0, 360, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kv7p7"]
+atlas = ExtResource("2_6ig5a")
+region = Rect2(1440, 0, 360, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lng8h"]
+atlas = ExtResource("2_6ig5a")
+region = Rect2(0, 0, 360, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsb4e"]
+atlas = ExtResource("2_6ig5a")
+region = Rect2(1080, 0, 360, 400)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_70bod"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgjt3")
+}],
+"loop": false,
+"name": &"acting",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6itww")
+}],
+"loop": false,
+"name": &"damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kv7p7")
+}],
+"loop": false,
+"name": &"fainted",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lng8h")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsb4e")
+}],
+"loop": false,
+"name": &"idle_low",
+"speed": 5.0
+}]
+
+[node name="chuvakan" type="CharacterBody2D"]
+motion_mode = 1
+script = SubResource("CSharpScript_vbfm0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(182, 200)
+sprite_frames = SubResource("SpriteFrames_70bod")
+animation = &"idle"

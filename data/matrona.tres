@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="MatronaData" load_steps=2 format=3 uid="uid://ckf2kqnjwjlsh"]
+
+[ext_resource type="Script" path="res://data/MatronaData.cs" id="1_wpo42"]
+
+[resource]
+script = ExtResource("1_wpo42")
+Level = 1
+Health = 1
+Defense = 1
+Attack = 1
+Mana = 1
+Speed = 1
+Turn = false
+TrueHealth = 1
+TrueDefense = 1
+TrueAttack = 1
+TrueMana = 1
+TrueSpeed = 1
