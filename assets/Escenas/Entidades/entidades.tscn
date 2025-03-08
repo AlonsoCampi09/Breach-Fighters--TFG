@@ -1,22 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpy5ckaf2yf1g"]
+[gd_scene load_steps=3 format=3 uid="uid://cpy5ckaf2yf1g"]
 
-[ext_resource type="Script" path="res://assets/Escenas/Entidades/Entidades.cs" id="1_y7vto"]
-[ext_resource type="Script" path="res://assets/Escenas/Entidades/Enemigos.cs" id="2_4gt5c"]
 [ext_resource type="Script" path="res://assets/Escenas/Entidades/SlimeInocente.cs" id="3_g45lh"]
-[ext_resource type="Script" path="res://assets/Escenas/Entidades/Aliados.cs" id="4_biadc"]
 [ext_resource type="Script" path="res://assets/Escenas/Entidades/Chuvakan.cs" id="5_41ain"]
 
 [node name="Entidades" type="Node2D"]
-script = ExtResource("1_y7vto")
 
 [node name="Enemigos" type="Node2D" parent="."]
-script = ExtResource("2_4gt5c")
 
 [node name="Slime inocente" type="Node2D" parent="Enemigos"]
 script = ExtResource("3_g45lh")
 
 [node name="Aliados" type="Node2D" parent="."]
-script = ExtResource("4_biadc")
 
 [node name="Chuvakan" type="Node2D" parent="Aliados"]
 script = ExtResource("5_41ain")

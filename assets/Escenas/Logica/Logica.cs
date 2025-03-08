@@ -7,6 +7,13 @@ using System.Linq;
 public partial class Logica : Node2D
 {
 
+    public Logica() {
+
+        listas = new Listas(new List<Entidades>(), new List<Entidades>());
+        listas.Enemigos.Add(prueba);
+
+    }
+
     public struct Listas
     {
         public List<Entidades> Enemigos;
@@ -18,7 +25,9 @@ public partial class Logica : Node2D
             this.Aliados = Ali;
         }
     }
-    Listas listas = new Listas(new List<Entidades>(), new List<Entidades>());
+    public static Listas listas = new Listas(new List<Entidades>(), new List<Entidades>());
+    public string MyProperty { get; set; } = "my c# value";
+
     //List<Entidades> Enemigos = new List<Entidades>();
     List<Entidades> Turnos = new List<Entidades>(); //cuando se llame para el turno se pasan las listas
     //List<Entidades> Aliados = new List<Entidades>();
@@ -27,10 +36,12 @@ public partial class Logica : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
-	}
+        listas = new Listas(new List<Entidades>(), new List<Entidades>());
+        listas.Enemigos.Add(prueba);
+    }
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Process(double delta)
 	{
 	}
 
@@ -60,7 +71,7 @@ public partial class Logica : Node2D
     {
         return listas.Aliados;
     }
-    public List<Entidades> getListEnemigos()
+    public static List<Entidades> getListEnemigos()
     {
         return listas.Enemigos;
     }

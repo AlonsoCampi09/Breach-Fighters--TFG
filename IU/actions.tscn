@@ -159,5 +159,21 @@ theme_override_font_sizes/font_size = 25
 text = "Mov4
 "
 
+[node name="HBoxContainer3" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="HBoxContainer3"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer3/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer3/Panel/MarginContainer"]
+layout_mode = 2
+
 [connection signal="button_down" from="HBoxContainer/Panel/MarginContainer/HBoxContainer/Attack" to="." method="_on_attack_button_down"]
 [connection signal="button_down" from="HBoxContainer/Panel/MarginContainer/HBoxContainer/Special" to="." method="_on_special_button_down"]

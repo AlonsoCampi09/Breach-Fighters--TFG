@@ -1,3 +1,4 @@
+
 extends Control
 @onready var attack: Button = $HBoxContainer/Panel/MarginContainer/HBoxContainer/Attack
 @onready var special: Button = $HBoxContainer/Panel/MarginContainer/HBoxContainer/Special
@@ -6,6 +7,16 @@ extends Control
 @onready var acting_menu: HBoxContainer = $HBoxContainer
 @onready var special_menu: HBoxContainer = $HBoxContainer2
 @onready var special_1: Button = $HBoxContainer2/Panel/MarginContainer/HBoxContainer/Special1
+@onready var enemy_menu: HBoxContainer = $HBoxContainer3
+var list_ene
+#var logic = load("res://assets/Escenas/Logica/Logica.cs")
+#var Batalla = logic.new()
+
+#var lista = Batalla.listas
+const lista = preload("res://assets/Escenas/Logica/Logica.cs")
+
+func set_listas (list: lista):
+	list_ene = list.getListEnemigos()	
 
 func change_menu(c: int):
 	match c:
@@ -26,11 +37,12 @@ func _ready() -> void:
 	attack.grab_focus()
 	acting_menu.visible=true
 	special_menu.visible=false
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_pressed("ui_battle_back"):
+	if Input.is_action_pressed("ui_cancel"):
 		change_menu(0)
 	pass
 
