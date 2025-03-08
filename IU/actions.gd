@@ -51,3 +51,30 @@ func _on_guard_button_down() -> void:
 	print("Guardia")
 
 			
+
+func _on_attack_focus_entered() -> void:
+	#Poner sonidito de espada 
+	var CorrectSound= preload("res://assets/Musica/attack_sound.mp3")
+	$AudioStreamPlayer2D.stream = CorrectSound
+	$AudioStreamPlayer2D.play()
+
+
+func _on_special_focus_entered() -> void:
+	#Poner sonidito de ataque especial 
+	var CorrectSound= preload("res://assets/Musica/magic_sound.mp3")
+	$AudioStreamPlayer2D.stream = CorrectSound
+	$AudioStreamPlayer2D.play()
+
+
+func _on_object_focus_entered() -> void:
+	#Poner sonidito de inventario
+	var CorrectSound= preload("res://assets/Musica/inventory_sound.mp3")
+	$AudioStreamPlayer2D.stream = CorrectSound
+	$AudioStreamPlayer2D.play()
+
+
+func _on_guard_focus_entered() -> void:
+	#Poner sonidito de guardia 
+	var CorrectSound= preload("res://assets/Musica/shield_sound.mp3")
+	$AudioStreamPlayer2D.stream = CorrectSound
+	$AudioStreamPlayer2D.play()

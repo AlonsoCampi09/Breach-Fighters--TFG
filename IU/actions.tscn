@@ -159,5 +159,11 @@ theme_override_font_sizes/font_size = 25
 text = "Mov4
 "
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="button_down" from="HBoxContainer/Panel/MarginContainer/HBoxContainer/Attack" to="." method="_on_attack_button_down"]
+[connection signal="focus_entered" from="HBoxContainer/Panel/MarginContainer/HBoxContainer/Attack" to="." method="_on_attack_focus_entered"]
 [connection signal="button_down" from="HBoxContainer/Panel/MarginContainer/HBoxContainer/Special" to="." method="_on_special_button_down"]
+[connection signal="focus_entered" from="HBoxContainer/Panel/MarginContainer/HBoxContainer/Special" to="." method="_on_special_focus_entered"]
+[connection signal="focus_entered" from="HBoxContainer/Panel/MarginContainer/HBoxContainer/Object" to="." method="_on_object_focus_entered"]
+[connection signal="focus_entered" from="HBoxContainer/Panel/MarginContainer/HBoxContainer/Guard" to="." method="_on_guard_focus_entered"]
