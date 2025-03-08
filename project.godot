@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="breach figthers"
-run/main_scene="res://assets/Escenas/Mundo/mundo.tscn"
+run/main_scene="res://assets/Scenes/game.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 

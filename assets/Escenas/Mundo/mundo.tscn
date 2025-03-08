@@ -10,8 +10,5 @@ position = Vector2(77, 178)
 position = Vector2(518, -478)
 texture = ExtResource("1_ldp0e")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(516, -484)
-
 [node name="Casandra" parent="." instance=ExtResource("2_0t8t6")]
 position = Vector2(378, -174)
