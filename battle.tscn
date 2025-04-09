@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://01bxomorvpdc"]
+
+[ext_resource type="PackedScene" uid="uid://mndfxhtvad5s" path="res://global/scenes/enfrentamiento_aleatorio.tscn" id="1_834as"]
+[ext_resource type="Script" path="res://Battle.cs" id="1_r43sx"]
+[ext_resource type="PackedScene" uid="uid://tfj11ryvomcs" path="res://menu_batalla.tscn" id="2_mqco1"]
+[ext_resource type="PackedScene" uid="uid://dx8tvrk4mw0rl" path="res://global/scenes/equipo_aliado.tscn" id="2_xrflp"]
+[ext_resource type="PackedScene" uid="uid://dy50wdufoe0oe" path="res://barras_vida.tscn" id="5_u7qqt"]
+
+[node name="Battle" type="Node2D"]
+script = ExtResource("1_r43sx")
+
+[node name="Menu_Batalla" parent="." instance=ExtResource("2_mqco1")]
+layout_direction = 2
+anchors_preset = 10
+anchor_bottom = 0.0
+offset_left = 575.0
+offset_top = 10.0
+offset_right = 575.0
+offset_bottom = 10.0
+grow_vertical = 1
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="EnfrentamientoAletorio" parent="." instance=ExtResource("1_834as")]
+position = Vector2(575, 263)
+
+[node name="Equipo_Aliado" parent="." instance=ExtResource("2_xrflp")]
+position = Vector2(451, 482)
+
+[node name="BarrasVida" parent="." instance=ExtResource("5_u7qqt")]
+offset_left = 541.0
+offset_top = 335.0
+offset_right = 541.0
+offset_bottom = 335.0

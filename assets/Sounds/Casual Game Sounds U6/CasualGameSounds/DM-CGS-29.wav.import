@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dfx3dfh2tod4u"
+path="res://.godot/imported/DM-CGS-29.wav-fe88a6d5cd4a2c65c62e50822fd16b66.sample"
+
+[deps]
+
+source_file="res://assets/Sounds/Casual Game Sounds U6/CasualGameSounds/DM-CGS-29.wav"
+dest_files=["res://.godot/imported/DM-CGS-29.wav-fe88a6d5cd4a2c65c62e50822fd16b66.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

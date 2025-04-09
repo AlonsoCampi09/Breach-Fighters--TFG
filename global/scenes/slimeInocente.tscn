@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://cxcmbf1txdwp7"]
+
+[ext_resource type="Script" path="res://global/scenes/FighterEnemigos.cs" id="1_la3iv"]
+[ext_resource type="Texture2D" uid="uid://b84vxfkwrd3ae" path="res://assets/sprites/Enemies/cuteone.png" id="2_72w3b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfjhs"]
+atlas = ExtResource("2_72w3b")
+region = Rect2(0, 0, 150, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cr61k"]
+atlas = ExtResource("2_72w3b")
+region = Rect2(0, 0, 150, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbx8g"]
+atlas = ExtResource("2_72w3b")
+region = Rect2(0, 0, 150, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gs4a"]
+atlas = ExtResource("2_72w3b")
+region = Rect2(0, 0, 150, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33o5s"]
+atlas = ExtResource("2_72w3b")
+region = Rect2(0, 0, 150, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_br8jf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfjhs")
+}],
+"loop": true,
+"name": &"acting",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cr61k")
+}],
+"loop": true,
+"name": &"damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbx8g")
+}],
+"loop": true,
+"name": &"fainted",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1gs4a")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33o5s")
+}],
+"loop": true,
+"name": &"idle_low",
+"speed": 5.0
+}]
+
+[node name="Blue_Slime" type="Node2D"]
+script = ExtResource("1_la3iv")
+
+[node name="Sprites" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_br8jf")
+animation = &"idle_low"

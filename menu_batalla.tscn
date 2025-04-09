@@ -1,0 +1,116 @@
+[gd_scene load_steps=4 format=3 uid="uid://tfj11ryvomcs"]
+
+[ext_resource type="Theme" uid="uid://cgp6bk35e1id3" path="res://ui_battle_theme.tres" id="1_imxdl"]
+[ext_resource type="Script" path="res://MenuBatalla.cs" id="1_x0rkq"]
+[ext_resource type="PackedScene" uid="uid://c7lqsb4bakfev" path="res://flecha.tscn" id="3_3tlbi"]
+
+[node name="Menu_Batalla" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_imxdl")
+script = ExtResource("1_x0rkq")
+
+[node name="Battle_Action" type="Panel" parent="."]
+custom_minimum_size = Vector2(1000, 100)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Battle_Action"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -142.0
+offset_right = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Battle_Action/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_constants/separation = 100
+
+[node name="Attack" type="Button" parent="Battle_Action/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Attack"
+
+[node name="Special" type="Button" parent="Battle_Action/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Special"
+
+[node name="Bag" type="Button" parent="Battle_Action/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+disabled = true
+text = "Bag"
+
+[node name="Guard" type="Button" parent="Battle_Action/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Guard"
+
+[node name="Special_Action" type="Panel" parent="."]
+custom_minimum_size = Vector2(1000, 100)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Special_Action"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -142.0
+offset_right = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Special_Action/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_constants/separation = 100
+
+[node name="Mov1" type="Button" parent="Special_Action/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Mov1
+"
+
+[node name="Mov2" type="Button" parent="Special_Action/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Mov2
+"
+
+[node name="Mov3" type="Button" parent="Special_Action/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Mov3
+"
+
+[node name="Mov4" type="Button" parent="Special_Action/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Mov4"
+
+[node name="Flecha" parent="." instance=ExtResource("3_3tlbi")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="button_down" from="Battle_Action/MarginContainer/HBoxContainer/Attack" to="." method="_on_attack_button_down"]
+[connection signal="button_down" from="Battle_Action/MarginContainer/HBoxContainer/Special" to="." method="_on_special_button_down"]
+[connection signal="button_down" from="Battle_Action/MarginContainer/HBoxContainer/Bag" to="." method="_on_bag_button_down"]
+[connection signal="button_down" from="Battle_Action/MarginContainer/HBoxContainer/Guard" to="." method="_on_guard_button_down"]

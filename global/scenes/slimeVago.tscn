@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://bt6ju645r66pw"]
+
+[ext_resource type="Script" path="res://global/scenes/FighterEnemigos.cs" id="1_ks0nf"]
+[ext_resource type="Texture2D" uid="uid://b34axpuale7di" path="res://assets/sprites/Enemies/lazyone.png" id="2_yt8yl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epk3i"]
+atlas = ExtResource("2_yt8yl")
+region = Rect2(0, 0, 150, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nga62"]
+atlas = ExtResource("2_yt8yl")
+region = Rect2(0, 0, 150, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osaqc"]
+atlas = ExtResource("2_yt8yl")
+region = Rect2(0, 0, 150, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dt3v"]
+atlas = ExtResource("2_yt8yl")
+region = Rect2(0, 0, 150, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ba44"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epk3i")
+}],
+"loop": true,
+"name": &"acting",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nga62")
+}],
+"loop": true,
+"name": &"damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_osaqc")
+}],
+"loop": true,
+"name": &"fainted",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yt8yl")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dt3v")
+}],
+"loop": true,
+"name": &"idle_low",
+"speed": 5.0
+}]
+
+[node name="Purple_Slime" type="Node2D"]
+script = ExtResource("1_ks0nf")
+
+[node name="Sprites" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_7ba44")
+animation = &"acting"

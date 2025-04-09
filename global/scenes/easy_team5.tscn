@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyd2rv12y1058"]
+
+[ext_resource type="Script" path="res://global/scenes/FighterTeam.cs" id="1_71yyu"]
+[ext_resource type="PackedScene" uid="uid://v8eo6df8pl8i" path="res://global/scenes/slimeAgresivo.tscn" id="2_fk0om"]
+
+[node name="Easy_Team" type="Node2D"]
+script = ExtResource("1_71yyu")
+
+[node name="Orange_Slime" parent="." instance=ExtResource("2_fk0om")]
+position = Vector2(-199, 0)
+
+[node name="Orange_Slime2" parent="." instance=ExtResource("2_fk0om")]
+
+[node name="Orange_Slime3" parent="." instance=ExtResource("2_fk0om")]
+position = Vector2(199, 0)

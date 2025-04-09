@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://ob0a30qycgnc"]
+
+[ext_resource type="Script" path="res://global/scenes/FighterEnemigos.cs" id="1_7u7yh"]
+[ext_resource type="Texture2D" uid="uid://ne2lj702fsno" path="res://assets/sprites/Enemies/sadone.png" id="2_df05r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqpgj"]
+atlas = ExtResource("2_df05r")
+region = Rect2(0, 0, 150, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhiiw"]
+atlas = ExtResource("2_df05r")
+region = Rect2(0, 0, 150, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbnp4"]
+atlas = ExtResource("2_df05r")
+region = Rect2(0, 0, 150, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqrwd"]
+atlas = ExtResource("2_df05r")
+region = Rect2(0, 0, 150, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpc4l"]
+atlas = ExtResource("2_df05r")
+region = Rect2(0, 0, 150, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_khk0p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqpgj")
+}],
+"loop": true,
+"name": &"acting",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhiiw")
+}],
+"loop": true,
+"name": &"damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbnp4")
+}],
+"loop": true,
+"name": &"fainted",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqrwd")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpc4l")
+}],
+"loop": true,
+"name": &"idle_low",
+"speed": 5.0
+}]
+
+[node name="Grey_Slime" type="Node2D"]
+script = ExtResource("1_7u7yh")
+
+[node name="Sprites" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_khk0p")
+animation = &"idle_low"

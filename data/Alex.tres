@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ChuvakanData" load_steps=2 format=3 uid="uid://wmmep0vjrppm"]
+
+[ext_resource type="Script" path="res://data/ChuvakanData.cs" id="1_wme0d"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_wme0d")
+Level = 1
+Health = 20
+Mana = 1
+ControlPlayer = true
+Turn = true
+TrueHealth = PackedInt32Array()
+TrueAttack = PackedInt32Array()
+TrueDefense = PackedInt32Array()
+TrueMana = PackedInt32Array()
+TrueSpeed = PackedInt32Array()

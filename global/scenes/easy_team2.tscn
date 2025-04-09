@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy52x8payneus"]
+
+[ext_resource type="Script" path="res://global/scenes/FighterTeam.cs" id="1_60vk2"]
+[ext_resource type="PackedScene" uid="uid://v8eo6df8pl8i" path="res://global/scenes/slimeAgresivo.tscn" id="2_2ae3q"]
+
+[node name="Easy_Team" type="Node2D"]
+script = ExtResource("1_60vk2")
+
+[node name="Orange_Slime" parent="." instance=ExtResource("2_2ae3q")]

@@ -1,0 +1,12 @@
+[gd_scene load_steps=7 format=3 uid="uid://mndfxhtvad5s"]
+
+[ext_resource type="Script" path="res://Enfrentamiento.cs" id="1_styb2"]
+[ext_resource type="PackedScene" uid="uid://dhauxt2jymc8q" path="res://global/scenes/easy_team1.tscn" id="2_s0kyr"]
+[ext_resource type="PackedScene" uid="uid://dy52x8payneus" path="res://global/scenes/easy_team2.tscn" id="3_kwm33"]
+[ext_resource type="PackedScene" uid="uid://b5ockwbv1s3cb" path="res://global/scenes/easy_team3.tscn" id="4_4g6cg"]
+[ext_resource type="PackedScene" uid="uid://dfxu8e5mxuj0a" path="res://global/scenes/easy_team4.tscn" id="5_35p8e"]
+[ext_resource type="PackedScene" uid="uid://dyd2rv12y1058" path="res://global/scenes/easy_team5.tscn" id="6_fyg85"]
+
+[node name="Enfrentamiento_Aleatorio" type="Node2D"]
+script = ExtResource("1_styb2")
+equipos = Array[PackedScene]([ExtResource("2_s0kyr"), ExtResource("3_kwm33"), ExtResource("4_4g6cg"), ExtResource("5_35p8e"), ExtResource("6_fyg85")])
