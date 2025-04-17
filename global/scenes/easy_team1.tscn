@@ -6,7 +6,7 @@
 [node name="Easy_Team" type="Node2D"]
 script = ExtResource("1_yqt4y")
 
-[node name="Blue_Slime" parent="." instance=ExtResource("2_lmfkp")]
+[node name="Blue_Slime1" parent="." instance=ExtResource("2_lmfkp")]
 position = Vector2(-100, 0)
 
 [node name="Blue_Slime2" parent="." instance=ExtResource("2_lmfkp")]

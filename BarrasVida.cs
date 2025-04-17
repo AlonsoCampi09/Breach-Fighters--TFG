@@ -33,22 +33,21 @@ public partial class BarrasVida : Control
         GD.Print("barras de vida set");
         for (int i = 0; i < Battle.enemieslist.Count; i++) // se crean los botones que seran los enemigos
         {
-            EnemyEntity aux = (EnemyEntity)Battle.enemieslist[i].passData();
             ProgressBar healthBar = new ProgressBar();
             healthBar.ShowPercentage = true;
             healthBar.MinValue = 0;
             
             //esta cojiendo la data de fighter y no la data de FighterEnemigos por lo que es nula, habira que pasa la data de enemigos que es distinta a la de fighter 
-            healthBar.MaxValue = aux.TrueHealth[aux.Level - 1];
+            healthBar.MaxValue = Battle.enemieslist[i].data.TrueHealth[Battle.enemieslist[i].data.Level - 1];
 
-            healthBar.Value = aux.Health;
+            healthBar.Value = Battle.enemieslist[i].data.Health;
             healthBar.Visible = true;
             // healthBar.SetSize(new Vector2(200, 200));
             healthBar.CustomMinimumSize = new Vector2(175, 0);
             healthBar.Position = Battle.enemieslist[i].GetPosition() + new Vector2(-75, 0);
             Bars bar_aux = new Bars();
             bar_aux.healtbar = healthBar;
-            bar_aux.ID = aux.ID;
+            bar_aux.ID = Battle.enemieslist[i].data.ID;
 
             bars.Add(bar_aux);
             //Enemigos_bars.AddChild(enemigos_healtbar[i]);
@@ -106,14 +105,14 @@ public partial class BarrasVida : Control
             encontrado = false;
             for (int x = 0; x < Battle.enemieslist.Count && !encontrado; x++)
             {
-                EnemyEntity DataE = (EnemyEntity)Battle.enemieslist[x].passData();
-                if (bars[i].ID == DataE.ID)
+                //EnemyEntity DataE = (EnemyEntity)Battle.enemieslist[x].passData();
+                if (bars[i].ID == Battle.enemieslist[x].data.ID)
                 {
-                    GD.Print("encontrado");
+                   // GD.Print("encontrado");
 
-                    if (DataE.Health > 0)
+                    if (Battle.enemieslist[x].data.Health > 0)
                     {
-                        bars[i].healtbar.Value = DataE.Health;
+                        bars[i].healtbar.Value = Battle.enemieslist[x].data.Health;
                     }
                     else
                     {
@@ -133,7 +132,7 @@ public partial class BarrasVida : Control
             {
                 if(bars[i].ID == Battle.allylist[x].data.ID)
                 {
-                    GD.Print("encontrado");
+                    //GD.Print("encontrado");
                     if (Battle.allylist[x].data.Health > 0)
                     {
                         bars[i].healtbar.Value = Battle.allylist[x].data.Health;

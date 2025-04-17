@@ -19,7 +19,7 @@ public partial class Enfrentamiento : Node2D
 			return;
 		}
 		// Seleccionar un equipo aleatorio
-		Random rand = new Random();
+		/*Random rand = new Random();
 		int index = rand.Next(0, equipos.Length);
 		equipoSelect = index;
 		PackedScene equipoSeleccionado = equipos[equipoSelect];
@@ -28,12 +28,25 @@ public partial class Enfrentamiento : Node2D
 		equipoInstanciado = equipoSeleccionado.Instantiate<FighterTeam>();
 		AddChild(equipoInstanciado);
 
-		GD.Print($"Equipo seleccionado: {equipoSeleccionado.ResourcePath}");
+		GD.Print($"Equipo seleccionado: {equipoSeleccionado.ResourcePath}");*/
 	}
 	
 	public List<Fighter> giveList(){
 		return equipoInstanciado.giveList();
 	}
 
+	public void giveEnfrentamiento()
+	{
+        Random rand = new Random();
+        int index = rand.Next(0, equipos.Length);
+        equipoSelect = index;
+        PackedScene equipoSeleccionado = equipos[equipoSelect];
+
+        // Instanciar el equipo en la escena
+        equipoInstanciado = equipoSeleccionado.Instantiate<FighterTeam>();
+        AddChild(equipoInstanciado);
+
+        GD.Print($"Equipo seleccionado: {equipoSeleccionado.ResourcePath}");
+    }
 	
 }

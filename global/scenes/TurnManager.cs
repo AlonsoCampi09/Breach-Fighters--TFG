@@ -38,7 +38,7 @@ public partial class TurnManager{
 
     public void updateTurns()
     {
-        GD.Print("update turns");
+        //GD.Print("update turns");
 
         bool encontrado = false;
         for (int i = 0; i < turnOrder.Count; i++)
@@ -46,25 +46,22 @@ public partial class TurnManager{
             encontrado = false;
             for (int x = 0; x < Battle.enemieslist.Count && !encontrado; x++)
             {
-                if (turnOrder[i].data == null) // es un enemigo
+                if (turnOrder[i].data.ID == Battle.enemieslist[x].data.ID)
                 {
-                    EnemyEntity DataE = (EnemyEntity)Battle.enemieslist[x].passData();
-                    EnemyEntity DataT = (EnemyEntity)turnOrder[i].passData();
-
-                    if (DataT.ID == DataE.ID)
+                    encontrado = true;
+                    if (Battle.enemieslist[x].data.Health > 0)
                     {
-                        encontrado = true;
-                        if (DataE.Health > 0)
-                        {
-                            turnOrder[i] = Battle.enemieslist[x];
-                        }
-                        else
-                        {
-                            Battle.enemieslist.RemoveAt(x);
-                            turnOrder.RemoveAt(i);
-                            GD.Print("enemigo muerto");
+                        turnOrder[i] = Battle.enemieslist[x];
+                    }
+                    else
+                    {
+                        Battle.enemieslist[x].animSprite.Visible = false;
+                        string Message = Battle.enemieslist[x].Name.ToString() + " ha sido derrotado";
+                        DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId);
+                        Battle.enemieslist.RemoveAt(x);
+                        turnOrder.RemoveAt(i);
+                        //GD.Print("enemigo muerto");
 
-                        }
                     }
                 }
             }

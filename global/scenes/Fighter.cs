@@ -12,7 +12,7 @@ public partial class Fighter : Node2D
 			this.data = new ChuvakanData(level);
 		}else if(name.Contains("Cassandra")){
 			this.data = new CassandraData(level);
-		}/*else if(name.Contains("Blue_Slime")){
+		}else if(name.Contains("Blue_Slime")){
 			this.data = new SlimeInocenteData(level);
 		}else if(name.Contains("Purple_Slime")){
 			this.data = new SlimeVagoData(level);
@@ -20,7 +20,7 @@ public partial class Fighter : Node2D
 			this.data = new SlimeAgresivoData(level);
 		}else if(name.Contains("Grey_Slime")){
 			this.data = new SlimeTristeData(level);
-		}*/else{
+		}else{
 			GD.Print("No deberia entrar aqui.");
 		}
 	}
@@ -56,7 +56,7 @@ public partial class Fighter : Node2D
 
     public virtual async System.Threading.Tasks.Task myTrun()
     {
-        await ToSignal(CustomSignals.Instance, nameof(CustomSignals.Instance.PassTurn));
+        await ToSignal(CustomSignals.Instance, nameof(CustomSignals.Instance.PassTurn1));
     }
 
     public virtual int getAtacado(int stat_ataque, int potencia, int Buf_Atq, int Deb_Atq)

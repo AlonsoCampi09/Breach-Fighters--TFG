@@ -30,8 +30,12 @@ public partial class Entity : Resource{
 	[Export] public int[] TrueDefense;
 	[Export] public int[] TrueMana;
 	[Export] public int[] TrueSpeed;
-	
-	public virtual void levelUp(){
+
+    public enum Behaviour { Aleatorio, Agresivo, Tactico, Apoyo }
+
+    [Export] public Behaviour beh_type { get; protected set; }
+
+    public virtual void levelUp(){
 		Level++;
 	}
 	

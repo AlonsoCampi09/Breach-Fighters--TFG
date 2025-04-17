@@ -1,0 +1,120 @@
+[gd_scene load_steps=8 format=3 uid="uid://bafokativ25dh"]
+
+[ext_resource type="Script" path="res://MainMenuManager.cs" id="1_embrw"]
+[ext_resource type="Script" path="res://MenuTab.cs" id="2_aa6i4"]
+[ext_resource type="Script" path="res://LoadSceneButton.cs" id="3_hh4bj"]
+[ext_resource type="Script" path="res://MenuSwapperButton.cs" id="3_rd4yo"]
+[ext_resource type="PackedScene" uid="uid://uuj5vvb3nne2" path="res://game.tscn" id="4_ht24b"]
+[ext_resource type="Script" path="res://SoundCues.cs" id="6_ucdt5"]
+[ext_resource type="Script" path="res://TextToSpeachSlider.cs" id="7_26qvd"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_embrw")
+
+[node name="MenuTab" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_aa6i4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuTab"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuTab/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "BREACH FIGHTERS"
+
+[node name="Start Game" type="Button" parent="MenuTab/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Jugar
+"
+script = ExtResource("3_hh4bj")
+sceneToSwitchTo = ExtResource("4_ht24b")
+
+[node name="OptionsButton" type="Button" parent="MenuTab/VBoxContainer" node_paths=PackedStringArray("SwitchToMenu")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Opciones
+"
+script = ExtResource("3_rd4yo")
+SwitchToMenu = NodePath("../../../MenuOpciones")
+
+[node name="QuitButton" type="Button" parent="MenuTab/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Salir del juego"
+
+[node name="MenuOpciones" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_aa6i4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuOpciones"]
+layout_mode = 2
+
+[node name="Opciones" type="Label" parent="MenuOpciones/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Opciones
+"
+
+[node name="Volumen Sound Cues" type="Label" parent="MenuOpciones/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Volumen Sound Cues"
+
+[node name="SoundCueSlider" type="HSlider" parent="MenuOpciones/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("6_ucdt5")
+bus_name = "SoundCue"
+
+[node name="Volumen text to speach" type="Label" parent="MenuOpciones/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Volumen text to speach"
+
+[node name="TextToSpeachSlider" type="HSlider" parent="MenuOpciones/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("7_26qvd")
+
+[node name="ReturnButton" type="Button" parent="MenuOpciones/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "return"
+
+[connection signal="pressed" from="MenuTab/VBoxContainer/QuitButton" to="." method="OnQuitGameButtonPressed"]
+[connection signal="value_changed" from="MenuOpciones/VBoxContainer/SoundCueSlider" to="MenuOpciones/VBoxContainer/SoundCueSlider" method="_OnValueChanged"]
+[connection signal="value_changed" from="MenuOpciones/VBoxContainer/TextToSpeachSlider" to="MenuOpciones/VBoxContainer/TextToSpeachSlider" method="_OnValueChanged"]
+[connection signal="pressed" from="MenuOpciones/VBoxContainer/ReturnButton" to="MenuOpciones" method="OnMeneReturnButtonPressed"]

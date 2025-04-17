@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 [GlobalClass]
-public partial class SlimeVagoData : EnemyEntity
+public partial class SlimeVagoData : Entity
 {
 	public SlimeVagoData(int level){
 		Level = level;

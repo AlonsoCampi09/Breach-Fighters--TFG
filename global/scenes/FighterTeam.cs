@@ -19,8 +19,12 @@ public partial class FighterTeam : Node2D
 	Random rand = new Random(); 
 	foreach (Fighter e in GetChildren()){
 		int level = e.passData().ControlPlayer==true ? 1 : rand.Next(1, 4);
-		e.prepareFighter(level);
+        e.prepareFighter(level);
+        string nodeName = e.Name;
+        nodeName = nodeName.Replace('_', ' ');
+        e.passData().Name = nodeName; 
 		fighters.Add(e);
+
 		
 		Entity entityData = e.passData();
 		if (entityData != null){
@@ -37,11 +41,18 @@ public partial class FighterTeam : Node2D
 		GD.Print($"DMG: {c.giveDMG()}");
 		GD.Print($"DEF: {c.giveDEF()}");
 		GD.Print($"SP: {c.giveSP()}");
-		GD.Print("---------------------------");
+        GD.Print($"ID: {c.ID}");
+
+        GD.Print("---------------------------");
 	}
 }
 	
 	public List<Fighter> giveList(){
 		return fighters;
 	}
+
+    public void setList(List<Fighter> aux)
+    {
+        fighters = aux;
+    }
 }

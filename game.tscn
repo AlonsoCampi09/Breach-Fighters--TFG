@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://uuj5vvb3nne2"]
+
+[ext_resource type="Script" path="res://Game.cs" id="1_ah0xl"]
+[ext_resource type="PackedScene" uid="uid://dx8tvrk4mw0rl" path="res://global/scenes/equipo_aliado.tscn" id="2_jc13i"]
+
+[node name="game" type="Node2D"]
+script = ExtResource("1_ah0xl")
+
+[node name="Equipo_Aliado" parent="." instance=ExtResource("2_jc13i")]
+position = Vector2(451, 482)

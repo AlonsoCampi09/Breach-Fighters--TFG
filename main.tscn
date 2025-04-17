@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cobraor15neto"]
+
+[ext_resource type="PackedScene" uid="uid://bafokativ25dh" path="res://main_menu.tscn" id="1_ecdps"]
+
+[node name="main" type="Node2D"]
+
+[node name="MainMenu" parent="." instance=ExtResource("1_ecdps")]
+offset_left = 581.0
+offset_top = 379.0
+offset_right = 581.0
+offset_bottom = 379.0
+size_flags_horizontal = 4
+size_flags_vertical = 4

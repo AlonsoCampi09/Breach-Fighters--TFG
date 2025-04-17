@@ -5,22 +5,42 @@ public partial class CustomSignals : Node
 {
 
     [Signal]
-    public delegate void PassTurnEventHandler();
+    public delegate void PassTurn1EventHandler();
     [Signal]
     public delegate void PassTurn2EventHandler();
     [Signal]
     public delegate void PassTurn3EventHandler();
     [Signal]
     public delegate void PassTurn4EventHandler();
+    [Signal]
+    public delegate void RememberAEventHandler();
+    [Signal]
+    public delegate void RememberEEventHandler();
+    [Signal]
+    public delegate void BattlefinishedEventHandler();
     public string[] voices = DisplayServer.TtsGetVoicesForLanguage("es");
     public string voiceId;
     public static CustomSignals Instance { get; private set; }
+
+    public static int volumenTextToSpeach { get; set; }
 
     public override void _Ready()
     {
         voiceId = voices[0];
         Instance = this;
         GD.Print("ready CustomSignals");
+        volumenTextToSpeach = 50;
     }
 
+    public override void _Process(double delta)
+    {
+        if (Input.IsActionJustPressed("RememberA")) // "RememberA" es 1
+        {
+            EmitSignal("RememberA"); // Emit the signal
+        }
+        if (Input.IsActionJustPressed("RememberE")) // "RememberA" es 2
+        {
+            EmitSignal("RememberE"); // Emit the signal
+        }
+    }
 }

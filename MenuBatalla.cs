@@ -2,6 +2,8 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
+using System.Xml.Linq;
 using static Battle;
 public partial class MenuBatalla : Control
 {
@@ -23,11 +25,13 @@ public partial class MenuBatalla : Control
 	private Flecha flecha; // Nodo de la flecha
 	private int currentTargetIndex = 0; // Índice del enemigo seleccionado
     public int ID_turno { get; set; }
-
+    AudioStreamPlayer2D audioPlayer;
 
     public override void _Ready()
 	{
-		attack = GetNode<Button>("Battle_Action/MarginContainer/HBoxContainer/Attack");
+        audioPlayer = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
+        audioPlayer.Bus = "SoundCue";
+        attack = GetNode<Button>("Battle_Action/MarginContainer/HBoxContainer/Attack");
 		special = GetNode<Button>("Battle_Action/MarginContainer/HBoxContainer/Special");
 		bag = GetNode<Button>("Battle_Action/MarginContainer/HBoxContainer/Bag");
 		guard = GetNode<Button>("Battle_Action/MarginContainer/HBoxContainer/Guard");
@@ -131,13 +135,17 @@ public partial class MenuBatalla : Control
 	private void OnGuardButtonDown()
 	{
 		GD.Print("Guardia");
-	}
+
+        CustomSignals.Instance.EmitSignal(nameof(CustomSignals.PassTurn1));
+
+        
+    }
 
     // Funciones de respuesta a enfoque en botones 
     private void _OnAttackFocusEntered()
     {
         var correctSound = GD.Load("res://assets/Sounds/attack_sound.mp3") as AudioStream;
-        var audioPlayer = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
+
         audioPlayer.Stream = correctSound;
         audioPlayer.Play();
 
@@ -146,7 +154,7 @@ public partial class MenuBatalla : Control
     private void _OnSpecialFocusEntered()
     {
         var correctSound = GD.Load("res://assets/Sounds/magic_sound.mp3") as AudioStream;
-        var audioPlayer = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
+       // var audioPlayer = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
         audioPlayer.Stream = correctSound;
         audioPlayer.Play();
     }
@@ -154,7 +162,7 @@ public partial class MenuBatalla : Control
     private void _OnObjectFocusEntered()
     {
         var correctSound = GD.Load("res://assets/Sounds/inventory_sound.mp3") as AudioStream;
-        var audioPlayer = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
+       // var audioPlayer = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
         audioPlayer.Stream = correctSound;
         audioPlayer.Play();
     }
@@ -162,7 +170,7 @@ public partial class MenuBatalla : Control
     private void _OnGuardFocusEntered()
     {
         var correctSound = GD.Load("res://assets/Sounds/shield_sound.mp3") as AudioStream;
-        var audioPlayer = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
+       // var audioPlayer = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
         audioPlayer.Stream = correctSound;
         audioPlayer.Play();
     }
@@ -206,7 +214,9 @@ public partial class MenuBatalla : Control
 		flecha.MoveArrow(selectedEnemy.GetPosition() + new Vector2(0, 100)); // Ajustar la posición
 		GD.Print("Flecha visible");
 		flecha.ShowArrow(true);
-	}
+        string Message = selectedEnemy.Name.ToString();
+        DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
+    }
 
 	private void ConfirmTarget()
 	{
@@ -216,16 +226,30 @@ public partial class MenuBatalla : Control
         selectingTarget = false;
 		flecha.ShowArrow(false);
 		ChangeMenu(0);
+		bool atacado = false;
 
-        for (int j = 0; j < Battle.allylist.Count; j++)
+        for (int j = 0; j < Battle.allylist.Count && !atacado; j++)
         {
             if (ID_turno == Battle.allylist[j].data.ID)
             {
 
                 Battle.allylist[j].attack(currentTargetIndex);
-                GD.Print("senal emitida");
+                string name = Battle.allylist[j].data.Name.ToString();
+                if (name.Contains("Chuvakan") && !atacado)
+                {
+                    GD.Print("senal PassTurn1 emitida");
+                    CustomSignals.Instance.EmitSignal(nameof(CustomSignals.PassTurn1));
+					atacado = true;
 
-                CustomSignals.Instance.EmitSignal(nameof(CustomSignals.PassTurn));
+                }
+                else if (name.Contains("Cassandra") && !atacado)
+                {
+                    GD.Print("senal PassTurn2 emitida");
+
+                    CustomSignals.Instance.EmitSignal(nameof(CustomSignals.PassTurn2));
+                    atacado = true;
+
+                }
             }
         }
     }

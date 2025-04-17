@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 [GlobalClass]
-public partial class SlimeAgresivoData : EnemyEntity
+public partial class SlimeAgresivoData : Entity
 {
 	public SlimeAgresivoData(int level){
 		Level = level;

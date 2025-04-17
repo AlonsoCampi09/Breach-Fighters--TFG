@@ -3,9 +3,9 @@ using System;
 
 public partial class FighterEnemigos : Fighter
 {
-    public EnemyEntity dataE;
+    //public EnemyEntity dataE;
 
-     public override void prepareData(int level)
+     /*public override void prepareData(int level)
      {
         // GD.Print("prepareData de enemigo");
          string name = this.Name.ToString();
@@ -29,7 +29,7 @@ public partial class FighterEnemigos : Fighter
          {
              GD.Print("No deberia entrar aqui.");
          }
-     }
+     }*/
     public override void _Ready(){
 		animSprite = GetNode<AnimatedSprite2D>("Sprites");
 		this.prepareFighter(1);
@@ -44,18 +44,18 @@ public partial class FighterEnemigos : Fighter
 		this.prepareData(level);
 	}
 	*/
-	public override EnemyEntity passData(){
+	/*public override EnemyEntity passData(){
         if (dataE == null)
         {
             GD.PrintErr("DATA NULL");
         }
         return dataE;
-	}
+	}*/
 
     public override async System.Threading.Tasks.Task myTrun()
     {
 		//GD.Print("Truno enemigo");
-        Procesar_Comportamiento((int)dataE.beh_type);
+        Procesar_Comportamiento((int)data.beh_type);
         //Timer myTimer = GetNode<Timer>("Timer");
         await ToSignal(GetTree().CreateTimer(5.0), "timeout");
       //  GD.Print("fin del timer");
@@ -112,8 +112,13 @@ public partial class FighterEnemigos : Fighter
         {
             x++;
         }
-        dano = Battle.allylist[x].getAtacado(dataE.TrueAttack[dataE.Level-1], 10, dataE.ATQBuf, dataE.ATQDeBuf); // hay que cambiar la potencia del ataque
-        string Message = this.dataE.Name.ToString() + "ha atacado a " + Battle.allylist[x].data.Name.ToString() + "y le ha quitado " + dano + "puntos de vida";
+        dano = Battle.allylist[x].getAtacado(data.TrueAttack[data.Level-1], 10, data.ATQBuf, data.ATQDeBuf); // hay que cambiar la potencia del ataque
+        double porcentaje = ((double)dano / (double)Battle.allylist[x].data.TrueHealth[Battle.allylist[x].data.Level - 1]) * 100;
+        porcentaje = Math.Round(porcentaje, 1);
+
+        string Message = this.data.Name.ToString() + "ha atacado a " + Battle.allylist[x].data.Name.ToString() + "y le ha quitado " + porcentaje + "porciento de su vida";
+        //        string Message = this.data.Name.ToString() + "ha atacado a " + Battle.allylist[x].data.Name.ToString() + "y le ha quitado " + dano + "puntos de vida";
+
         DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId);
         GD.Print("dano de enemigo a aliado = " + dano);
 
@@ -124,8 +129,8 @@ public partial class FighterEnemigos : Fighter
     public override int getAtacado(int stat_ataque, int potencia, int Buf_Atq, int Deb_Atq)
     {
         int dano;
-        dano = potencia + Math.Max(stat_ataque * (1 + (Buf_Atq - Deb_Atq) / 100) - dataE.TrueDefense[dataE.Level] * (1 + (dataE.DEFBuf - dataE.DEFDeBuf) / 100), 0);
-        this.dataE.Health = this.dataE.Health - dano;
+        dano = potencia + Math.Max(stat_ataque * (1 + (Buf_Atq - Deb_Atq) / 100) - data.TrueDefense[data.Level] * (1 + (data.DEFBuf - data.DEFDeBuf) / 100), 0);
+        this.data.Health = this.data.Health - dano;
         return dano;
     }
 }

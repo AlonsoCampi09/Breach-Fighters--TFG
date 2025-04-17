@@ -7,10 +7,10 @@
 [node name="Easy_Team" type="Node2D"]
 script = ExtResource("1_m8yuc")
 
-[node name="Grey_Slime2" parent="." instance=ExtResource("3_6chae")]
+[node name="Grey_Slime1" parent="." instance=ExtResource("3_6chae")]
 position = Vector2(-200, 0)
 
 [node name="Purple_Slime" parent="." instance=ExtResource("2_u7uyb")]
 
-[node name="Grey_Slime" parent="." instance=ExtResource("3_6chae")]
+[node name="Grey_Slime2" parent="." instance=ExtResource("3_6chae")]
 position = Vector2(200, 0)
