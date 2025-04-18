@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 public partial class Battle : Node2D
 {
@@ -59,7 +60,10 @@ public partial class Battle : Node2D
 
     public async static void Play_Batalla()
     {
-        
+
+        BeginningMessage(); 
+
+
         barras_Vida.setHealthBars();
 
         while (enemieslist.Count != 0 && allylist.Count != 0)
@@ -86,23 +90,79 @@ public partial class Battle : Node2D
         if (enemieslist.Count == 0)
         {
             GD.Print("VICTORIA!!");
+            EndMessage(true); 
+            /*
             string Message = "Batalla ganada!!";
             DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, CustomSignals.volumenTextToSpeach);
+            */
         }
         else
         {
             GD.Print("DERROTA");
-            string Message = "Batalla perdida!!";
-            DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, CustomSignals.volumenTextToSpeach);
+            EndMessage(false); 
+            /*string Message = "Batalla perdida!!";
+            DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, CustomSignals.volumenTextToSpeach);*/
+  
         }
         allies.setList(allylist);
         CustomSignals.Instance.EmitSignal(nameof(CustomSignals.Battlefinished));
 
     }
+
+
+
+
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
 	{
 	}
+
+    public static void BeginningMessage()
+    {
+        String mensaje = "";
+
+        //Descripcion del escenario
+        mensaje = "El grupo entra en la arena del coliseo, en ella, se encuentran a  " + enemieslist.Count + " enemigos .";
+        DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
+        //Obtenemos los personajes que siguen vivos
+        List<Fighter> aux=  allylist.FindAll(IsAlive);
+
+        if (aux.Count > 1) mensaje = "Empiezan la batalla "; 
+        else mensaje = "Empieza la batalla ";
+
+        //Listamos sus nombres
+        for (int i = 0; i < aux.Count; i++)
+        {
+            mensaje += allylist[i].data.Name;
+            if (i == aux.Count - 2) mensaje += "y ";
+
+            else if (i == aux.Count - 1) mensaje += ".";
+          
+            else mensaje += " , "; 
+   
+        }
+
+        DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach); 
+
+    }
+
+    public static void EndMessage(bool winner) {
+        if (winner) {
+            String mensaje = "El grupo ha ganado la batalla, de repente, se abre la puerta hacia la siguiente sala. Avanzan hacia ella.";
+            DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
+        }
+
+        else {
+            String mensaje = "El grupo ha sido derrotado, el lider del coliseo les manda al area de descanso."; 
+            DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
+        }
+    }
+
+
+    private static bool IsAlive(Fighter f) {
+        return f.data.Health > 0; 
+    }
+
 
 	public void RememberA()
 	{
