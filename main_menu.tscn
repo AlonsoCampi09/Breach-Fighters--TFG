@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bafokativ25dh"]
+[gd_scene load_steps=10 format=3 uid="uid://bafokativ25dh"]
 
 [ext_resource type="Script" path="res://MainMenuManager.cs" id="1_embrw"]
 [ext_resource type="Script" path="res://MenuTab.cs" id="2_aa6i4"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://uuj5vvb3nne2" path="res://game.tscn" id="4_ht24b"]
 [ext_resource type="Script" path="res://SoundCues.cs" id="6_ucdt5"]
 [ext_resource type="Script" path="res://TextToSpeachSlider.cs" id="7_26qvd"]
+[ext_resource type="AudioStream" uid="uid://d04rms7ccbinx" path="res://assets/Sounds/Free RPG Music Collection/Phat Phrog Studio - RPG Music Collection 2 - Basilisk's Brew.wav" id="8_6ojie"]
+[ext_resource type="Script" path="res://VolumenMusicaSlider.cs" id="8_cur47"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -95,8 +97,8 @@ text = "Volumen Sound Cues"
 
 [node name="SoundCueSlider" type="HSlider" parent="MenuOpciones/VBoxContainer"]
 layout_mode = 2
-max_value = 1.0
-step = 0.001
+max_value = 1.25
+step = 0.1
 script = ExtResource("6_ucdt5")
 bus_name = "SoundCue"
 
@@ -107,14 +109,41 @@ text = "Volumen text to speach"
 
 [node name="TextToSpeachSlider" type="HSlider" parent="MenuOpciones/VBoxContainer"]
 layout_mode = 2
+step = 10.0
 script = ExtResource("7_26qvd")
+
+[node name="Volumen musica" type="Label" parent="MenuOpciones/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Volumen de la musica"
+
+[node name="VolumenMusicaSlider" type="HSlider" parent="MenuOpciones/VBoxContainer"]
+layout_mode = 2
+max_value = 1.25
+step = 0.1
+script = ExtResource("8_cur47")
+bus_name = "Musica"
 
 [node name="ReturnButton" type="Button" parent="MenuOpciones/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "return"
+text = "volver"
 
+[node name="musicaMenu" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_6ojie")
+bus = &"Musica"
+
+[connection signal="draw" from="MenuTab" to="." method="CambioPrincipal"]
+[connection signal="focus_entered" from="MenuTab/VBoxContainer/Start Game" to="." method="_OnStartFocusEntered"]
+[connection signal="focus_entered" from="MenuTab/VBoxContainer/OptionsButton" to="." method="_OnOpcionesFocusEntered"]
+[connection signal="focus_entered" from="MenuTab/VBoxContainer/QuitButton" to="." method="_OnSalirFocusEntered"]
 [connection signal="pressed" from="MenuTab/VBoxContainer/QuitButton" to="." method="OnQuitGameButtonPressed"]
+[connection signal="draw" from="MenuOpciones" to="." method="CambioOpciones"]
+[connection signal="focus_entered" from="MenuOpciones/VBoxContainer/SoundCueSlider" to="." method="_OnSoundCuesFocusEntered"]
 [connection signal="value_changed" from="MenuOpciones/VBoxContainer/SoundCueSlider" to="MenuOpciones/VBoxContainer/SoundCueSlider" method="_OnValueChanged"]
+[connection signal="focus_entered" from="MenuOpciones/VBoxContainer/TextToSpeachSlider" to="." method="_OnTtsFocusEntered"]
 [connection signal="value_changed" from="MenuOpciones/VBoxContainer/TextToSpeachSlider" to="MenuOpciones/VBoxContainer/TextToSpeachSlider" method="_OnValueChanged"]
+[connection signal="focus_entered" from="MenuOpciones/VBoxContainer/VolumenMusicaSlider" to="." method="_OnMusicaSliderFocusEntered"]
+[connection signal="value_changed" from="MenuOpciones/VBoxContainer/VolumenMusicaSlider" to="MenuOpciones/VBoxContainer/VolumenMusicaSlider" method="_OnValueChanged"]
+[connection signal="focus_entered" from="MenuOpciones/VBoxContainer/ReturnButton" to="." method="_OnRetunrButtonFocusEntered"]
 [connection signal="pressed" from="MenuOpciones/VBoxContainer/ReturnButton" to="MenuOpciones" method="OnMeneReturnButtonPressed"]

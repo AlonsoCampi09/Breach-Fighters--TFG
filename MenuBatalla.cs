@@ -17,15 +17,25 @@ public partial class MenuBatalla : Control
 	private Button mov2;
 	private Button mov3;
 	private Button mov4;
-
+    private Panel selecting;
+    private Button inv;
+	
 	List<Fighter> allylist;
 	List<Fighter> enemieslist;
-	
-	private bool selectingTarget;
+
+    Fighter actor;
+
+    private int num_selec = 0;
+
+    private bool selectingTarget;
 	private Flecha flecha; // Nodo de la flecha
 	private int currentTargetIndex = 0; // Índice del enemigo seleccionado
     public int ID_turno { get; set; }
     AudioStreamPlayer2D audioPlayer;
+    private int all_targets_avaible = 0;
+    private bool[] indexes = { false, false, false, false, false, false, false, false };
+    Movimiento mov_actual;
+    private int target_disposition;
 
     public override void _Ready()
 	{
@@ -45,29 +55,75 @@ public partial class MenuBatalla : Control
 		mov2 = GetNode<Button>("Special_Action/MarginContainer/HBoxContainer/Mov2");
 		mov3 = GetNode<Button>("Special_Action/MarginContainer/HBoxContainer/Mov3");
 		mov4 = GetNode<Button>("Special_Action/MarginContainer/HBoxContainer/Mov4");
-		
-		flecha = GetNode<Flecha>("Flecha");
+        inv = GetNode<Button>("Selection/MarginContainer/HBoxContainer/Inv");
+        selecting = GetNode<Panel>("Selection");
+
+        flecha = GetNode<Flecha>("Flecha");
 		flecha.ShowArrow(false);
-		
+		mov1.Pressed += OnMov1ButtonDown;
+		mov2.Pressed += OnMov2ButtonDown;
+		mov3.Pressed += OnMov3ButtonDown;
+		mov4.Pressed += OnMov4ButtonDown;
+
 		attack.Pressed += OnAttackButtonDown;
 		special.Pressed += OnSpecialButtonDown;
 		bag.Pressed += OnBagButtonDown;
 		guard.Pressed += OnGuardButtonDown;
-		
-		attack.GrabFocus();
+
 		actingMenu.Visible = true;
 		specialMenu.Visible = false;
 		
 		selectingTarget = false;
 	}
+    public void makeMenuVisible(Fighter f)
+    {
+        GD.Print("MakingMenuVisible...");
+        this.prepareTitles(f);
+        this.ChangeMenu(0);
+    }
 
-	public override void _Process(double delta)
+    public void prepareTitles(Fighter f)
+    {
+        Entity dataf = f.passData();
+        attack.Text = dataf.atqBasico.giveTitulo();
+        mov1.Text = dataf.mov1.giveTitulo();
+        mov2.Text = dataf.mov2.giveTitulo();
+        if (dataf.mov3.moveIsAvailable())
+        {
+            mov3.Text = dataf.mov3.giveTitulo();
+        }
+        else
+        {
+            mov3.Text = "NIVEL 2";
+            mov3.Disabled = true;
+        }
+        if (dataf.mov4.moveIsAvailable())
+        {
+            mov4.Text = dataf.mov4.giveTitulo();
+        }
+        else
+        {
+            mov4.Text = "NIVEL 3";
+            mov4.Disabled = true;
+        }
+        if (dataf.defBasico.moveIsAvailable())
+        {
+            guard.Text = dataf.defBasico.giveTitulo();
+        }
+        else
+        {
+            mov4.Text = "BLOQUEADO";
+            mov4.Disabled = true;
+        }
+        actor = f;
+    }
+    public override void _Process(double delta)
 	{
 		if (Input.IsActionPressed("ui_cancel"))
 		{
 			ChangeMenu(0);
 		}
-		if (this.selectingTarget)
+        /*if (this.selectingTarget)
 		{
 			// Cambiar objetivo con izquierda/derecha
 			if (Input.IsActionJustPressed("ui_left"))
@@ -85,10 +141,47 @@ public partial class MenuBatalla : Control
 			{
 				this.ConfirmTarget();
 			}
-		}
-	}
+		}*/
+        if (this.selectingTarget && target_disposition != 3)
+        {
+            // Cambiar objetivo con izquierda/derecha
+            if (Input.IsActionJustPressed("ui_left"))
+            {
+                GD.Print("Flecha visible moviendose a la izq");
+                this.ChangeTarget(-1);
+            }
+            else if (Input.IsActionJustPressed("ui_right"))
+            {
+                GD.Print("Flecha visible moviendose a la der");
+                this.ChangeTarget(1);
+            }
+            else if (Input.IsActionJustPressed("ui_up"))
+            {
+                GD.Print("Flecha visible moviendose a la der");
+                this.ChangeTarget(1);
+            }
+        }
 
-	private void ChangeMenu(int c)
+        if (!DisplayServer.TtsIsSpeaking())
+        {
+            if (!actingMenu.Visible && !this.selectingTarget)
+			{
+                ChangeMenu(0);
+            }
+			if (!this.selectingTarget)
+			{
+                actingMenu.Visible = true;
+            }
+
+        }
+        else
+        {
+            actingMenu.Visible = false;
+        }
+
+    }
+
+    /*private void ChangeMenu(int c)
 	{
 		switch (c)
 		{
@@ -112,12 +205,57 @@ public partial class MenuBatalla : Control
 				this.StartTargetSelection();
 				break;
 		}
-	}
+	}*/
 
-	private void OnAttackButtonDown()
+    private void ChangeMenu(int c)
+    {
+        switch (c)
+        {
+            case 0:
+                actingMenu.Visible = true;
+                specialMenu.Visible = false;
+                selecting.Visible = false;
+                flecha.ShowArrow(false);
+                this.selectingTarget = false;
+                attack.GrabFocus();
+                actor.passData().atqBasico.erraseTarget();
+                actor.passData().mov1.erraseTarget();
+                actor.passData().mov2.erraseTarget();
+                actor.passData().mov3.erraseTarget();
+                actor.passData().mov4.erraseTarget();
+                foreach (Fighter f in enemieslist)
+                {
+                    f.DetenerParpadeo();
+                }
+                for (int i = 0; i < indexes.Length; i++)
+                {
+                    indexes[i] = false;
+                }
+                break;
+            case 1:
+                specialMenu.Visible = true;
+                actingMenu.Visible = false;
+                selecting.Visible = false;
+                flecha.ShowArrow(false);
+                this.selectingTarget = false;
+                mov1.GrabFocus();
+                break;
+            case 2:
+                actingMenu.Visible = false;
+                specialMenu.Visible = false;
+                selecting.Visible = true;
+                selecting.Modulate = new Color(1, 1, 1, 0); // Hacerlo invisible
+                inv.GrabFocus();
+                this.StartTargetSelection();
+                break;
+        }
+    }
+
+    private void OnAttackButtonDown()
 	{
 		GD.Print("Atacar");
-		ChangeMenu(2);
+        prepareVariablesForAttack(0);
+        ChangeMenu(2);
 		
 	}
 
@@ -135,10 +273,86 @@ public partial class MenuBatalla : Control
 	private void OnGuardButtonDown()
 	{
 		GD.Print("Guardia");
+        if (prepareVariablesForAttack(5) == true)
+            ChangeMenu(2);
 
-        CustomSignals.Instance.EmitSignal(nameof(CustomSignals.PassTurn1));
+    }
 
-        
+    private void OnMov1ButtonDown()
+    {
+        GD.Print("Especial1");
+        if (prepareVariablesForAttack(1) == true)
+            ChangeMenu(2);
+    }
+
+    private void OnMov2ButtonDown()
+    {
+        GD.Print("Especial2");
+        if (prepareVariablesForAttack(2) == true)
+            ChangeMenu(2);
+    }
+
+    private void OnMov3ButtonDown()
+    {
+        GD.Print("Especial3");
+        if (prepareVariablesForAttack(3) == true)
+            ChangeMenu(2);
+    }
+
+    private void OnMov4ButtonDown()
+    {
+        GD.Print("Especial4");
+        if (prepareVariablesForAttack(4) == true)
+            ChangeMenu(2);
+    }
+
+    private void OnInvButtonDown()
+    {
+        GD.Print("Target CONFIRM");
+        this.ConfirmTarget();
+    }
+
+    private bool prepareVariablesForAttack(int s)
+    {
+        switch (s)
+        {
+            case 0:
+                mov_actual = actor.passData().atqBasico;
+                break;
+            case 1:
+                mov_actual = actor.passData().mov1;
+                break;
+            case 2:
+                mov_actual = actor.passData().mov2;
+                break;
+            case 3:
+                mov_actual = actor.passData().mov3;
+                break;
+            case 4:
+                mov_actual = actor.passData().mov4;
+                break;
+            case 5:
+                mov_actual = actor.passData().defBasico;
+                break;
+        }
+        mov_actual.assingCaster(actor);
+        if (!mov_actual.enoughMana())
+            return false;
+        target_disposition = mov_actual.whoAffects();
+        if (target_disposition == 0)
+            GD.Print("target_disposition = ALLY");
+        else if (target_disposition == 1)
+            GD.Print("target_disposition = ENEMY");
+        else if (target_disposition == 2)
+            GD.Print("target_disposition = BOTH");
+        else if (target_disposition == 3)
+            GD.Print("target_disposition = SELF");
+        else
+            GD.PrintErr("target_disposition = IS WRONG!!!");
+        num_selec = mov_actual.num_objetivos;
+        if (num_selec > enemieslist.Count)
+            num_selec = enemieslist.Count;
+        return true;
     }
 
     // Funciones de respuesta a enfoque en botones 
@@ -181,46 +395,137 @@ public partial class MenuBatalla : Control
 	}
 	
 	private void StartTargetSelection(){
-		if (Battle.enemieslist.Count == 0){
-			GD.PrintErr("No hay enemigos disponibles.");
-			return;
-		}
-		else{
-			GD.Print("So far so good");
-		}
-		this.selectingTarget = true;
-		// Seleccionar el primer enemigo por defecto
-		currentTargetIndex = 0;
-		this.MoveArrowToCurrentTarget();
-	}
+        this.selectingTarget = true;
+        // Seleccionar el primer enemigo por defecto
+        currentTargetIndex = 0;
+        switch (target_disposition)
+        {
+            case 0:
+                if (this.allylist.Count == 0)
+                {
+                    GD.PrintErr("No hay enemigos disponibles.");
+                    return;
+                }
+                all_targets_avaible = this.allylist.Count;
+                break;
+            case 1:
+                if (this.enemieslist.Count == 0)
+                {
+                    GD.PrintErr("No hay enemigos disponibles.");
+                    return;
+                }
+                all_targets_avaible = this.enemieslist.Count;
+                break;
+            case 2:
+                if (this.allylist.Count == 0)
+                {
+                    GD.PrintErr("No hay enemigos disponibles.");
+                    return;
+                }
+                if (this.enemieslist.Count == 0)
+                {
+                    GD.PrintErr("No hay enemigos disponibles.");
+                    return;
+                }
+                all_targets_avaible = this.allylist.Count + this.enemieslist.Count;
+                break;
+            case 3:
+                while (this.allylist[currentTargetIndex] != actor)
+                    currentTargetIndex++;
+                GD.Print($"{this.allylist[currentTargetIndex].Name} SELF");
+                break;
+        }
+        this.MoveArrowToCurrentTarget();
+    }
 	
 	private void ChangeTarget(int direction)
 	{
-		if (Battle.enemieslist.Count == 0) return;
-
-		// Mover en el array de enemigos (circular)
-		currentTargetIndex = (currentTargetIndex + direction + Battle.enemieslist.Count) % Battle.enemieslist.Count;
+		switch(target_disposition){
+			case 0:
+				this.allylist[currentTargetIndex].DetenerParpadeo();
+				break;
+			case 1:
+				this.enemieslist[currentTargetIndex].DetenerParpadeo();
+				break;
+			case 2:
+				if(currentTargetIndex >= this.enemieslist.Count){
+					this.allylist[currentTargetIndex-this.enemieslist.Count].DetenerParpadeo();
+				}else{
+					this.enemieslist[currentTargetIndex].DetenerParpadeo();
+				}
+				break;
+			default:
+				break;
+		}
+		currentTargetIndex = (currentTargetIndex + direction + all_targets_avaible) % all_targets_avaible;
+		while(indexes[currentTargetIndex]){
+			if(direction > 0){
+				currentTargetIndex++;
+			}else{
+				currentTargetIndex--;
+			}
+			if(currentTargetIndex < 0){
+				currentTargetIndex = all_targets_avaible - 1;
+			}else if(currentTargetIndex >= all_targets_avaible){
+				currentTargetIndex = 0;
+			}
+		}
 		MoveArrowToCurrentTarget();
-        GD.Print("currentTargetIndex = " + currentTargetIndex);
 
     }
 
     private void MoveArrowToCurrentTarget()
 	{
-		if (Battle.enemieslist.Count == 0) return;
-
-		Fighter selectedEnemy = Battle.enemieslist[currentTargetIndex];
-		// Mover la flecha sobre el enemigo
-		flecha.MoveArrow(selectedEnemy.GetPosition() + new Vector2(0, 100)); // Ajustar la posición
-		GD.Print("Flecha visible");
-		flecha.ShowArrow(true);
-        string Message = selectedEnemy.Name.ToString();
-        DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
+        string Message;
+        switch (target_disposition)
+        {
+            case 0:
+            case 3:
+                if (this.enemieslist.Count == 0) return;
+                Fighter selectedAlly = this.allylist[currentTargetIndex];
+                selectedAlly.Parpadear();
+                flecha.MoveArrow(selectedAlly.GetPosition() + new Vector2(0, 100)); // Ajustar la posición
+                flecha.ShowArrow(true);
+                Message = selectedAlly.Name.ToString();
+                DisplayServer.TtsStop();
+                DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
+                break;
+            case 1:
+                if (this.enemieslist.Count == 0) return;
+                Fighter selectedEnemy = this.enemieslist[currentTargetIndex];
+                selectedEnemy.Parpadear();
+                flecha.MoveArrow(selectedEnemy.GetPosition() + new Vector2(0, 100)); // Ajustar la posición
+                flecha.ShowArrow(true);
+                Message = selectedEnemy.Name.ToString();
+                DisplayServer.TtsStop();
+                DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
+                break;
+            case 2:
+                Fighter selectedFighter;
+                if (currentTargetIndex >= this.enemieslist.Count)
+                {
+                    selectedFighter = this.allylist[currentTargetIndex - this.enemieslist.Count];
+                }
+                else
+                {
+                    selectedFighter = this.enemieslist[currentTargetIndex];
+                }
+                selectedFighter.Parpadear();
+                flecha.MoveArrow(selectedFighter.GetPosition() + new Vector2(0, 100)); // Ajustar la posición
+                flecha.ShowArrow(true);
+                Message = selectedFighter.Name.ToString();
+                DisplayServer.TtsStop();
+                DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
+                break;
+            default:
+                break;
+        }
+        
     }
 
 	private void ConfirmTarget()
 	{
-		GD.Print($"¡Enemigo {Battle.enemieslist[currentTargetIndex].Name} seleccionado!");
+        /*GD.Print($"¡Enemigo {Battle.enemieslist[currentTargetIndex].Name} seleccionado!");
         //GD.Print("currentTargetIndex = " + currentTargetIndex);
 
         selectingTarget = false;
@@ -251,7 +556,105 @@ public partial class MenuBatalla : Control
 
                 }
             }
+        }*/
+        bool atacado = false;
+
+        Fighter confirmedTarget;
+        if (currentTargetIndex >= this.enemieslist.Count && target_disposition == 2)
+        {
+            confirmedTarget = this.allylist[currentTargetIndex - this.enemieslist.Count];
         }
+        else
+        {
+            if (target_disposition == 1)
+            {
+                if (mov_actual.affectsAllTeam())
+                {
+                    foreach (Fighter f in this.enemieslist)
+                    {
+                        if (!f.passData().isDead())
+                        {
+                            confirmedTarget = f;
+                            mov_actual.addTarget(confirmedTarget);
+                        }
+                    }
+                }
+                else
+                {
+                    confirmedTarget = this.enemieslist[currentTargetIndex];
+                    mov_actual.addTarget(confirmedTarget);
+                }
+            }
+            else
+            {
+                if (mov_actual.affectsAllTeam())
+                {
+                    foreach (Fighter f in this.allylist)
+                    {
+                        if (!f.passData().isDead())
+                        {
+                            confirmedTarget = f;
+                            mov_actual.addTarget(confirmedTarget);
+                        }
+                    }
+                }
+                else
+                {
+                    confirmedTarget = this.allylist[currentTargetIndex];
+                    mov_actual.addTarget(confirmedTarget);
+                }
+            }
+        }
+        num_selec--;
+        if (num_selec == 0 || mov_actual.affectsAllTeam())
+        {
+            foreach (Fighter f in mov_actual.objetivos)
+            {
+                f.DetenerParpadeo();
+                GD.Print($"¡Enemigo {f.Name} seleccionado!");
+            }
+
+            mov_actual.efecto();
+            mov_actual.erraseTarget();
+            selectingTarget = false;
+            flecha.ShowArrow(false);
+            ChangeMenu(0);
+        }
+        else
+        {
+            indexes[currentTargetIndex] = true;
+            this.ChangeTarget(1);
+        }
+
+        string name = actor.data.Name.ToString();
+        if (name.Contains("Chuvakan") && !atacado)
+        {
+            CustomSignals.Instance.EmitSignal(nameof(CustomSignals.PassTurn1));
+            atacado = true;
+
+        }
+        else if (name.Contains("Cassandra") && !atacado)
+        {
+
+            CustomSignals.Instance.EmitSignal(nameof(CustomSignals.PassTurn2));
+            atacado = true;
+
+        }
+        else if (name.Contains("bils") && !atacado)
+        {
+            GD.Print("bils senal");
+            CustomSignals.Instance.EmitSignal(nameof(CustomSignals.PassTurn3));
+            atacado = true;
+
+        }
+        else if (name.Contains("Ishimondo") && !atacado)
+        {
+
+            CustomSignals.Instance.EmitSignal(nameof(CustomSignals.PassTurn4));
+            atacado = true;
+
+        }
+
     }
     public void SetID_turno(int ID)
     {

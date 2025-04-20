@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bt6ju645r66pw"]
+[gd_scene load_steps=9 format=3 uid="uid://bt6ju645r66pw"]
 
-[ext_resource type="Script" path="res://global/scenes/FighterEnemigos.cs" id="1_ks0nf"]
+[ext_resource type="Script" path="res://global/scenes/Fighter.cs" id="1_ks0nf"]
 [ext_resource type="Texture2D" uid="uid://b34axpuale7di" path="res://assets/sprites/Enemies/lazyone.png" id="2_yt8yl"]
+[ext_resource type="PackedScene" uid="uid://dca551kyld357" path="res://estado_display.tscn" id="3_f8kt1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_epk3i"]
 atlas = ExtResource("2_yt8yl")
@@ -69,3 +70,6 @@ script = ExtResource("1_ks0nf")
 position = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_7ba44")
 animation = &"acting"
+
+[node name="Estado_Display" parent="." instance=ExtResource("3_f8kt1")]
+position = Vector2(0, -75)

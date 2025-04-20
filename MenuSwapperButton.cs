@@ -9,7 +9,6 @@ public partial class MenuSwapperButton : Button
 	public override void _Ready()
 	{
 		Pressed += OnMenuSwapperButtonPressed;
-        GrabFocus();
 
     }
 

@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=3 uid="uid://cqb7h3jlhwbue"]
+
+[ext_resource type="Script" path="res://global/scenes/Fighter.cs" id="1_tvd4o"]
+[ext_resource type="Texture2D" uid="uid://bx4h3nldslo8y" path="res://assets/sprites/Friends/doraemon.png" id="2_nmijh"]
+[ext_resource type="PackedScene" uid="uid://dca551kyld357" path="res://global/scenes/estado_display.tscn" id="3_gwnp1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wq5ni"]
+atlas = ExtResource("2_nmijh")
+region = Rect2(360, 0, 360, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36l7p"]
+atlas = ExtResource("2_nmijh")
+region = Rect2(720, 0, 360, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34m3t"]
+atlas = ExtResource("2_nmijh")
+region = Rect2(1440, 0, 360, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1s5xi"]
+atlas = ExtResource("2_nmijh")
+region = Rect2(0, 0, 360, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fl44l"]
+atlas = ExtResource("2_nmijh")
+region = Rect2(1080, 0, 360, 400)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hn8ng"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wq5ni")
+}],
+"loop": false,
+"name": &"acting",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36l7p")
+}],
+"loop": false,
+"name": &"damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34m3t")
+}],
+"loop": false,
+"name": &"fainted",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1s5xi")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fl44l")
+}],
+"loop": false,
+"name": &"idle_low",
+"speed": 5.0
+}]
+
+[node name="Ishimondo" type="Node2D"]
+script = ExtResource("1_tvd4o")
+
+[node name="Sprites" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_hn8ng")
+animation = &"idle_low"
+
+[node name="Estado_Display" parent="." instance=ExtResource("3_gwnp1")]
+position = Vector2(60, -70)

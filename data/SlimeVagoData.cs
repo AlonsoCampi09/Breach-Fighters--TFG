@@ -2,13 +2,14 @@ using Godot;
 using System;
 
 [GlobalClass]
-public partial class SlimeVagoData : Entity
+public partial class SlimeVagoData : EnemyEntity
 {
 	public SlimeVagoData(int level){
 		Level = level;
-        ID = ID_generator;
-        ID_generator++;
-        Name = "Slime Vago";
+		
+		this.estadoManager = new EstadoManager(this);
+		
+		Name = "Slime Vago";
 		
 		Mana = 0;
 		
@@ -24,6 +25,8 @@ public partial class SlimeVagoData : Entity
 		TrueSpeed = new int[] {2,3,4,5,6,7,8,9,10,11};
 		
 		Health = TrueHealth[level-1];
+		
+		atqBasico = new SlimeSubditoMovimientoBasico(1);
 	}
 	
 }

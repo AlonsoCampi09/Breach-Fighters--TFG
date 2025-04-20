@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://ob0a30qycgnc"]
+[gd_scene load_steps=10 format=3 uid="uid://ob0a30qycgnc"]
 
-[ext_resource type="Script" path="res://global/scenes/FighterEnemigos.cs" id="1_7u7yh"]
+[ext_resource type="Script" path="res://global/scenes/Fighter.cs" id="1_7u7yh"]
 [ext_resource type="Texture2D" uid="uid://ne2lj702fsno" path="res://assets/sprites/Enemies/sadone.png" id="2_df05r"]
+[ext_resource type="PackedScene" uid="uid://dca551kyld357" path="res://estado_display.tscn" id="3_cp7hd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sqpgj"]
 atlas = ExtResource("2_df05r")
@@ -73,3 +74,6 @@ script = ExtResource("1_7u7yh")
 position = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_khk0p")
 animation = &"idle_low"
+
+[node name="Estado_Display" parent="." instance=ExtResource("3_cp7hd")]
+position = Vector2(0, -75)

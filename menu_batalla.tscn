@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://tfj11ryvomcs"]
+[gd_scene load_steps=5 format=3 uid="uid://tfj11ryvomcs"]
 
 [ext_resource type="Theme" uid="uid://cgp6bk35e1id3" path="res://ui_battle_theme.tres" id="1_imxdl"]
 [ext_resource type="Script" path="res://MenuBatalla.cs" id="1_x0rkq"]
 [ext_resource type="PackedScene" uid="uid://c7lqsb4bakfev" path="res://flecha.tscn" id="3_3tlbi"]
+[ext_resource type="AudioStream" uid="uid://i3o464h0g2ao" path="res://assets/Sounds/Free RPG Music Collection/Phat Phrog Studio - Arcane Throne - Heir of Valor.wav" id="4_whmki"]
 
 [node name="Menu_Batalla" type="Control"]
 layout_mode = 3
@@ -60,6 +61,7 @@ layout_mode = 2
 text = "Guard"
 
 [node name="Special_Action" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(1000, 100)
 layout_mode = 1
 anchors_preset = 10
@@ -108,9 +110,43 @@ text = "Mov4"
 
 [node name="Flecha" parent="." instance=ExtResource("3_3tlbi")]
 
+[node name="Selection" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(1000, 100)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Selection"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -142.0
+offset_right = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Selection/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_constants/separation = 100
+
+[node name="Inv" type="Button" parent="Selection/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Si lees esto, eres tonto :P
+"
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_whmki")
 
 [connection signal="button_down" from="Battle_Action/MarginContainer/HBoxContainer/Attack" to="." method="_on_attack_button_down"]
 [connection signal="button_down" from="Battle_Action/MarginContainer/HBoxContainer/Special" to="." method="_on_special_button_down"]
 [connection signal="button_down" from="Battle_Action/MarginContainer/HBoxContainer/Bag" to="." method="_on_bag_button_down"]
 [connection signal="button_down" from="Battle_Action/MarginContainer/HBoxContainer/Guard" to="." method="_on_guard_button_down"]
+[connection signal="pressed" from="Special_Action/MarginContainer/HBoxContainer/Mov1" to="." method="OnMov1ButtonDown"]
+[connection signal="pressed" from="Selection/MarginContainer/HBoxContainer/Inv" to="." method="OnInvButtonDown"]

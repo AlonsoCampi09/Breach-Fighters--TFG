@@ -1,13 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://dx8tvrk4mw0rl"]
+[gd_scene load_steps=6 format=3 uid="uid://dx8tvrk4mw0rl"]
 
 [ext_resource type="PackedScene" uid="uid://cfbr1rate5nxv" path="res://global/scenes/personaje_chuvakan.tscn" id="1_4kw16"]
 [ext_resource type="Script" path="res://global/scenes/FighterTeam.cs" id="1_ecq5b"]
 [ext_resource type="PackedScene" uid="uid://bvfqmqycxdc0t" path="res://global/scenes/personaje_cassandra.tscn" id="2_71rib"]
+[ext_resource type="PackedScene" uid="uid://cqb7h3jlhwbue" path="res://global/scenes/personaje_ishimondo.tscn" id="4_5g81j"]
+[ext_resource type="PackedScene" uid="uid://cgyelo6ajdld8" path="res://global/scenes/personaje_vyls.tscn" id="4_rp4wc"]
 
 [node name="Equipo_Aliado" type="Node2D"]
 script = ExtResource("1_ecq5b")
 
-[node name="Personaje_Chuvakan" parent="." instance=ExtResource("1_4kw16")]
+[node name="Chuvakan" parent="." instance=ExtResource("1_4kw16")]
+position = Vector2(-270, 0)
 
-[node name="Personaje_Cassandra" parent="." instance=ExtResource("2_71rib")]
-position = Vector2(180, 1)
+[node name="Cassandra" parent="." instance=ExtResource("2_71rib")]
+position = Vector2(-90, 1)
+
+[node name="bils" parent="." instance=ExtResource("4_rp4wc")]
+position = Vector2(90, 0)
+
+[node name="Ishimondo" parent="." instance=ExtResource("4_5g81j")]
+position = Vector2(270, 0)

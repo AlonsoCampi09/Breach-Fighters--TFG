@@ -57,8 +57,10 @@ public partial class FighterEnemigos : Fighter
 		//GD.Print("Truno enemigo");
         Procesar_Comportamiento((int)data.beh_type);
         //Timer myTimer = GetNode<Timer>("Timer");
+
         await ToSignal(GetTree().CreateTimer(5.0), "timeout");
-      //  GD.Print("fin del timer");
+        
+        //  GD.Print("fin del timer");
 
         //await ToSignal(CustomSignals.Instance, nameof(CustomSignals.Instance.PassTurn));
     }

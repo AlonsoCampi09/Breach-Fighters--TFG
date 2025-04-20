@@ -36,6 +36,8 @@ public partial class FighterAliados : Fighter
 
     public override async System.Threading.Tasks.Task myTrun()
     {
+        GD.Print("espera aliados");
+
         if (this.data.Name.Contains("Chuvakan"))
         {
             await ToSignal(CustomSignals.Instance, nameof(CustomSignals.Instance.PassTurn1));
@@ -43,6 +45,15 @@ public partial class FighterAliados : Fighter
         else if (this.data.Name.Contains("Cassandra"))
         {
             await ToSignal(CustomSignals.Instance, nameof(CustomSignals.Instance.PassTurn2));
+        }
+        else if (this.data.Name.Contains("bils"))
+        {
+            GD.Print("espera bils");
+            await ToSignal(CustomSignals.Instance, nameof(CustomSignals.Instance.PassTurn3));
+        }
+        else if (this.data.Name.Contains("Ishimondo"))
+        {
+            await ToSignal(CustomSignals.Instance, nameof(CustomSignals.Instance.PassTurn4));
         }
         // GD.Print("esperando senal");
         //GD.Print("senal recibida");

@@ -9,8 +9,9 @@ public partial class TurnManager{
 	List<Fighter> enemieslist;
 	
 	public List<Fighter> turnOrder = new List<Fighter>();
-	
-	public TurnManager(List<Fighter> ally, List<Fighter> ene){
+    int turnIndex = 0;
+
+    public TurnManager(List<Fighter> ally, List<Fighter> ene){
 		allylist = ally;
 		enemieslist = ene;
 		prepareTurnOrder();
@@ -87,6 +88,16 @@ public partial class TurnManager{
                 }
             }
         }
+    }
+    public void updateTurnOrder()
+    {
+        turnOrder = turnOrder.OrderByDescending(e =>
+        {
+            Entity data = e.passData();
+            int baseSpeed = data.TrueSpeed[data.Level - 1];
+            int buffedSpeed = baseSpeed + (baseSpeed * (data.VELBuf - data.VELDeBuf) / 100);
+            return buffedSpeed;
+        }).ToList();
     }
 }
 

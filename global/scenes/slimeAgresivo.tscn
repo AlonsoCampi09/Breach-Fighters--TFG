@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://v8eo6df8pl8i"]
+[gd_scene load_steps=10 format=3 uid="uid://v8eo6df8pl8i"]
 
-[ext_resource type="Script" path="res://global/scenes/FighterEnemigos.cs" id="1_wlgfu"]
+[ext_resource type="Script" path="res://global/scenes/Fighter.cs" id="1_wlgfu"]
 [ext_resource type="Texture2D" uid="uid://xgesaw0u6pbp" path="res://assets/sprites/Enemies/angyone.png" id="2_qccr3"]
+[ext_resource type="PackedScene" uid="uid://dca551kyld357" path="res://estado_display.tscn" id="3_ymf08"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n417n"]
 atlas = ExtResource("2_qccr3")
@@ -73,3 +74,6 @@ script = ExtResource("1_wlgfu")
 position = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_jyp6p")
 animation = &"idle_low"
+
+[node name="Estado_Display" parent="." instance=ExtResource("3_ymf08")]
+position = Vector2(0, -75)

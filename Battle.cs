@@ -74,7 +74,8 @@ public partial class Battle : Node2D
             {
                 GD.Print("Turno de = " + turnManager.turnOrder[i].data.Name);
                 DisplayServer.TtsSpeak("Turno de " + turnManager.turnOrder[i].data.Name, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
-                menu_de_pelea.SetID_turno(turnManager.turnOrder[i].data.ID);
+                //  menu_de_pelea.SetID_turno(turnManager.turnOrder[i].data.ID);
+                menu_de_pelea.prepareTitles(turnManager.turnOrder[i]);
                 await turnManager.turnOrder[i].myTrun();
                 barras_Vida.actualizar();
 
@@ -84,6 +85,11 @@ public partial class Battle : Node2D
 					turnManager.turnOrder[i].changeSprite();
                 }
 				turnManager.updateTurns();
+
+                if(i == turnManager.turnOrder.Count)
+                {
+                    turnManager.updateTurnOrder();
+                }
 			}
         }
 
@@ -119,6 +125,8 @@ public partial class Battle : Node2D
 
     public static void BeginningMessage()
     {
+        DisplayServer.TtsStop();
+
         String mensaje = "";
 
         //Descripcion del escenario
@@ -147,6 +155,8 @@ public partial class Battle : Node2D
     }
 
     public static void EndMessage(bool winner) {
+        DisplayServer.TtsStop();
+
         if (winner) {
             String mensaje = "El grupo ha ganado la batalla, de repente, se abre la puerta hacia la siguiente sala. Avanzan hacia ella.";
             DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
@@ -166,7 +176,9 @@ public partial class Battle : Node2D
 
 	public void RememberA()
 	{
-		String mensaje = "";
+        DisplayServer.TtsStop();
+
+        String mensaje = "";
 
 		for(int i = 0;  i < allylist.Count; i++)
 		{
@@ -180,6 +192,8 @@ public partial class Battle : Node2D
     }
     public void RememberE()
     {
+        DisplayServer.TtsStop();
+
         String mensaje = "";
 
         for (int i = 0; i < enemieslist.Count; i++)
