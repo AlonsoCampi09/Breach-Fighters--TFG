@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://uuj5vvb3nne2"]
+
+[ext_resource type="Script" path="res://Game.cs" id="1_ah0xl"]
+[ext_resource type="PackedScene" uid="uid://dx8tvrk4mw0rl" path="res://global/scenes/equipo_aliado.tscn" id="2_jc13i"]
+[ext_resource type="AudioStream" uid="uid://i3o464h0g2ao" path="res://assets/Sounds/Free RPG Music Collection/Phat Phrog Studio - Arcane Throne - Heir of Valor.wav" id="3_quhcv"]
+
+[node name="game" type="Node2D"]
+script = ExtResource("1_ah0xl")
+
+[node name="Equipo_Aliado" parent="." instance=ExtResource("2_jc13i")]
+position = Vector2(451, 482)
+
+[node name="musicaBatalla" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_quhcv")
+bus = &"Musica"
