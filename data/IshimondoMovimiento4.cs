@@ -4,26 +4,20 @@ using System;
 public partial class IshimondoMovimiento4 : Movimiento{
 	
 	
-	public IshimondoMovimiento4(){
+	public IshimondoMovimiento4(int l){
 		this.effectObj = Effect_Obj.Enemy;
 		this.num_objetivos = 1;
+		this.evolucion = 7;
+		assingLevel(l);
 	}
 	
 	public override void efecto(){
 		//Logica del movimiento;
-		int potencia, coste;
-		if(this.casterLevel < 5){	
-			coste = 8;
-			potencia = 9 + this.casterLevel;
-			
-		}else{
-			coste = 11;
-			potencia = 10 + (int)1.5*this.casterLevel;
-		}
 		this.origen.passData().removeMP(coste);
-		//this.hurtTargets(potencia);
-		this.objetivos[0].passData().estadoManager.AplicarEstado(Estado.Sangrado,1,0);
-		this.objetivos[0].ActualizarIconosEstado();
+		this.hurtTargets(potencia);
+		this.putEffectsOnTargets(100,Estado.Sangrado,1,0);
+		//this.objetivos[0].passData().estadoManager.AplicarEstado(Estado.Sangrado,1,0);
+		//this.objetivos[0].ActualizarIconosEstado();
 		GD.Print("Ishimondo usa Carantoña!");
 	}
 	public override int hurtTargets(int p){
@@ -44,23 +38,23 @@ public partial class IshimondoMovimiento4 : Movimiento{
 			if(objetivos[i].passData().estadoManager.TieneEstado(Estado.Marca_del_cazador)){
 				vida_robada += (int) (Math.Max(1,formula/2));
 			}
-			objetivos[i].passData().removeHP(formula);
+			objetivos[i].ReceiveDamage(formula);
 		}
 		origen.passData().restoreHP(vida_robada);
 		return formula;
 	}
 	public override string giveTitulo(){
-		if(this.casterLevel < 5){
+		if(this.casterLevel < this.evolucion){
 			return "Carantoña salvaje";
 		}else{
 			return "Golpe furri";
 		}
 	}
 	public override string giveDescripcion(){
-		if(this.casterLevel < 5){
+		if(this.casterLevel < this.evolucion){
 			return "Ishimondo usa sus garras con fiereza lo que le deja sangrando.";
 		}else{
-			return "Ishimondo usa sus garras con toda sus fuerzas lo que le deja sangrando.";
+			return "Ishimondo usa sus garras con toda sus ganas lo que le deja sangrando.";
 		}
 	}
 	public override bool affectsAllTeam(){
@@ -73,17 +67,14 @@ public partial class IshimondoMovimiento4 : Movimiento{
 			return true;
 		}
 	}
-	public override bool enoughMana(){
-		if(this.casterLevel < 6){
-			if(this.origen.passData().giveMP() >= 8){
-				return true;
-			}else
-				return false;
+	public override void assingLevel(int l){
+		this.casterLevel = l;
+		if(this.casterLevel >= this.evolucion){
+			coste = 11;
+			this.potencia = 8;
 		}else{
-			if(this.origen.passData().giveMP() >= 11){
-				return true;
-			}else
-				return false;
+			coste = 9;
+			this.potencia = 6;
 		}
 	}
 	

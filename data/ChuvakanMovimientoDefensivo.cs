@@ -4,15 +4,17 @@ using System;
 public partial class ChuvakanMovimientoDefensivo : Movimiento{
 	
 	
-	public ChuvakanMovimientoDefensivo(){
+	public ChuvakanMovimientoDefensivo(int l){
 		this.effectObj = Effect_Obj.Self;
 		this.num_objetivos = 1;
+		this.evolucion = 5;
+		assingLevel(l);
 	}
 	
 	public override void efecto(){
 		//Logica del movimiento;
 		int recuperacion_MP, def_ptg;
-		if(this.casterLevel < 5){
+		if(this.casterLevel < this.evolucion){
 			recuperacion_MP = (int) this.origen.passData().giveMAXMP()/4;
 			def_ptg = 15;
 		}else{
@@ -20,16 +22,15 @@ public partial class ChuvakanMovimientoDefensivo : Movimiento{
 			def_ptg = 25;
 		}
 		this.origen.passData().restoreMP(recuperacion_MP);
-		this.origen.passData().estadoManager.AplicarEstado(Estado.BuffDEF,2,def_ptg);
-		this.origen.ActualizarIconosEstado();
+		this.putEffectsOnTargets(100, Estado.BuffDEF, 2, def_ptg);
 		GD.Print("Alex va ha defenderse este turno!");
 	}
 	
 	public override string giveTitulo(){
-		if(this.casterLevel < 5){
-			return "Pantalla";
+		if(this.casterLevel < this.evolucion){
+			return "Escudo dibujado";
 		}else{
-			return "Reflejo";
+			return "Escudo detallado";
 		}
 	}
 	public override string giveDescripcion(){
@@ -39,9 +40,6 @@ public partial class ChuvakanMovimientoDefensivo : Movimiento{
 		return false;
 	}
 	public override bool moveIsAvailable(){
-		return true;
-	}
-	public override bool enoughMana(){
 		return true;
 	}
 	

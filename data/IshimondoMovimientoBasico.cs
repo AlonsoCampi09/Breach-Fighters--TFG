@@ -4,24 +4,19 @@ using System;
 public partial class IshimondoMovimientoBasico : Movimiento{
 	
 	
-	public IshimondoMovimientoBasico(){
+	public IshimondoMovimientoBasico(int l){
 		this.effectObj = Effect_Obj.Enemy;
 		this.num_objetivos = 1;
+		this.evolucion = 3;
+		assingLevel(l);
 	}
 	
 	public override void efecto(){
 		//Logica del movimiento;
-		int potencia;
-		if(this.casterLevel < 3)
-			potencia = 9 + this.casterLevel;
-		else
-			potencia = 11 + this.casterLevel;
-	
 		GD.Print("Ishimondo va ha hacer su ataque basico!");
 		this.hurtTargets(potencia);
-		if(this.casterLevel >= 3){
-			this.objetivos[0].passData().estadoManager.AplicarEstado(Estado.Sangrado,1,0);
-			this.objetivos[0].ActualizarIconosEstado();
+		if(this.casterLevel >= this.evolucion){
+			this.putEffectsOnTargets(100, Estado.Sangrado, 3, 50);
 		}
 	}
 	
@@ -43,20 +38,20 @@ public partial class IshimondoMovimientoBasico : Movimiento{
 			if(objetivos[i].passData().estadoManager.TieneEstado(Estado.Marca_del_cazador)){
 				vida_robada += (int) (Math.Max(1,formula/2));
 			}
-			objetivos[i].passData().removeHP(formula);
+			objetivos[i].ReceiveDamage(formula);
 		}
 		origen.passData().restoreHP(vida_robada);
 		return formula;
 	}
 	public override string giveTitulo(){
-		if(this.casterLevel < 3){
+		if(this.casterLevel < this.evolucion){
 			return "Arañazo";
 		}else{
 			return "Mordisco";
 		}
 	}
 	public override string giveDescripcion(){
-		if(this.casterLevel < 3){
+		if(this.casterLevel < this.evolucion){
 			return "Ishimondo se abalanza delante de un enemigo para arañarlo haciendole daño.";
 		}else{
 			return "Ishimondo se abalanza delante de un enemigo y le muerde fuertemente haciendo que este sangre.";
@@ -68,8 +63,15 @@ public partial class IshimondoMovimientoBasico : Movimiento{
 	public override bool moveIsAvailable(){
 		return true;
 	}
-	public override bool enoughMana(){
-		return true;
+	public override void assingLevel(int l){
+		this.casterLevel = l;
+		coste = 0;
+		if(this.casterLevel >= this.evolucion){
+			potencia = 8;
+		}else{
+			potencia = 9;
+		}
+		
 	}
 	
 }

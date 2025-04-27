@@ -4,42 +4,36 @@ using System;
 public partial class CassandraMovimiento1 : Movimiento{
 	
 	
-	public CassandraMovimiento1(){
+	public CassandraMovimiento1(int l){
 		this.effectObj = Effect_Obj.Enemy;
 		this.num_objetivos = 2;
+		this.evolucion = 4;
+		assingLevel(l);
 	}
 	
 	public override void efecto(){
 		//Logica del movimiento;
-		int potencia, coste;
-		if(this.casterLevel > 4){
-			potencia = 8 + this.casterLevel;
-			coste = 4;
-		}else{
-			potencia = 7 + this.casterLevel;
-			coste = 7;
-		}
 		this.origen.passData().removeMP(coste);
 		GD.Print("Cassandra va ha hacer su ataque especial!");
-		this.hurtTargets(potencia);
+        this.hurtTargets(potencia);
 	}
 	
 	public override string giveTitulo(){
-		if(this.casterLevel < 4){
+		if(this.casterLevel < evolucion){
 			return "Brecha umbría";
 		}else{
 			return "Ruptura";
 		}
 	}
 	public override string giveDescripcion(){
-		if(this.casterLevel < 4){
+		if(this.casterLevel < evolucion){
 			return "Ataque especial que ataca a dos enemigos haciendo daño moderado.";
 		}else{
 			return "Movimiento especial que ataca a todos enemigos haciendo daño moderado.";
 		}
 	}
 	public override bool affectsAllTeam(){
-		if(this.casterLevel < 4){
+		if(this.casterLevel < evolucion){
 			return false;
 		}else{
 			return true;
@@ -48,18 +42,14 @@ public partial class CassandraMovimiento1 : Movimiento{
 	public override bool moveIsAvailable(){
 		return true;
 	}
-	public override bool enoughMana(){
-		if(this.casterLevel < 4){
-			if(this.origen.passData().giveMP() >= 4){
-				return true;
-			}else
-				return false;
+	public override void assingLevel(int l){
+		this.casterLevel = l;
+		if(this.casterLevel >= evolucion){
+			potencia = 6;
+			coste = 7;
 		}else{
-			if(this.origen.passData().giveMP() >= 7){
-				return true;
-			}else
-				return false;
+			potencia = 5;
+			coste = 4;
 		}
 	}
-	
 }

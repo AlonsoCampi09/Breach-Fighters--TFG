@@ -1,29 +1,32 @@
 using Godot;
 using System;
 using System.Linq;
-using System.Collections.Generic;  // This is the library that includes Dictionary
+using System.Collections.Generic; 
 
 
-public abstract partial class Movimiento{
+public abstract partial class Movimiento: Node2D{
 	
 	public enum Effect_Obj {Ally, Enemy, Both, Self}
-	
 	public Effect_Obj effectObj { get; protected set; }
-	
 	public List<Fighter> objetivos = new List<Fighter>();
 	public Fighter origen;
-	
 	public int num_objetivos { get; protected set; } = 1; 
-	
 	public int casterLevel = 1;
+	
+	public int coste = 0;
+	public int potencia = 0;
+	public int evolucion = 0;
+	
+	public Dictionary<string, List<Estado>> afectados = new Dictionary<string,  List<Estado>>();
 	
 	public abstract void efecto();
 	
-	public void assingCaster(Fighter caster){
+	public void assignCaster(Fighter caster){
 		this.origen = caster;
 	}
-	public void assingLevel(int l){
-		this.casterLevel = l;
+	public bool enoughMana(){
+
+		return this.origen.passData().giveMP() >= coste;
 	}
 	public void addTarget(Fighter i){
 		objetivos.Add(i);
@@ -32,6 +35,10 @@ public abstract partial class Movimiento{
 		while (objetivos.Count > 0){
 			objetivos.RemoveAt(objetivos.Count - 1);
 		}
+		afectados.Clear();
+	}
+	public void removeAffected(string key){
+		afectados.Remove(key);
 	}
 	public int whoAffects(){
 		switch(effectObj){
@@ -46,15 +53,19 @@ public abstract partial class Movimiento{
 		}
 		return -1;
 	}
+	public bool someAffected(){
+		return afectados.Count != 0;
+	}
+	
 	public virtual int hurtTargets(int p){
 		int formula = 0, dañoBufado,  defensaBufado, ATQOrigen, DEFOrigen, f1, f2;
-		float porcentajeATQ, porcentajeDEF;
+		float porcentajeATQ, porcentajeDEF, porcentaje;
 		
 		porcentajeATQ = 1  + (origen.passData().giveDMGBuf() - origen.passData().giveDMGDeBuf()) / 100;
 		ATQOrigen = origen.passData().giveDMG();
 		dañoBufado = (int) (ATQOrigen * porcentajeATQ);
 		f1 = ATQOrigen + dañoBufado;
-		string Message = origen.data.Name.ToString() + " ha atacado a ";
+		string mensaje = "";
 
         for (int i = 0; i < objetivos.Count; i++){
 			porcentajeDEF  = 1  + (objetivos[i].passData().giveDEFBuf() - objetivos[i].passData().giveDEFDeBuf()) / 100;
@@ -62,19 +73,39 @@ public abstract partial class Movimiento{
 			defensaBufado = (int) (DEFOrigen * porcentajeDEF);
 			f2 = DEFOrigen + defensaBufado;
 			formula = Math.Max(1,p+f1-f2);
-            double porcentaje = ((double)formula / (double)objetivos[i].passData().TrueHealth[objetivos[i].passData().Level - 1]) * 100;
-            porcentaje = Math.Round(porcentaje, 1);
-            Message += objetivos[i].passData().Name.ToString() + " y le ha quitado " + porcentaje + " porciento de su vida";
-			if(i+1< objetivos.Count)
-			{
-				Message += " y a ";
-            }
-            objetivos[i].passData().removeHP(formula);
-		}
-        DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
+			objetivos[i].ReceiveDamage(formula);
+			porcentaje = formula / objetivos[i].passData().TrueHealth[objetivos[i].passData().Level] + 100;
+            mensaje += objetivos[i].Name +  " ha recibido " + (int)porcentaje + "porciento de daño ";
+
+        }
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
 
         return formula;
 	}
+	public virtual void putEffectsOnTargets(double proba, Estado e, int dur, int ptg){
+		Random rand = new Random();
+		int num_max = 100, actual_prob, random_number;
+		double aux = proba;
+		while(aux < 1){
+			aux *= 10;
+			num_max *= 10;
+		}
+		actual_prob = (int) aux;
+		for(int i = 0; i < objetivos.Count; i++){
+			random_number = rand.Next(1, num_max+1);
+			if(actual_prob + random_number > num_max){
+				this.objetivos[i].passData().estadoManager.AplicarEstado(e,dur,ptg);
+				this.objetivos[i].ActualizarIconosEstado();
+				if(!afectados.ContainsKey(objetivos[i].passData().Name))
+					afectados[objetivos[i].passData().Name] = new List<Estado>();
+				afectados[objetivos[i].passData().Name].Add(e);
+			}
+		}
+	}
+	
 	public virtual string giveTitulo(){
 		return "";
 	}
@@ -87,8 +118,8 @@ public abstract partial class Movimiento{
 	public virtual bool moveIsAvailable(){
 		return false;
 	}
-	public virtual bool enoughMana(){
-		return false;
+	public virtual void assingLevel(int l){
+		this.casterLevel = l;
 	}
 	
 }

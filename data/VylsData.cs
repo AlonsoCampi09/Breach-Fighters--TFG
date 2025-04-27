@@ -24,12 +24,12 @@ public partial class VylsData : Entity
 		Health = TrueHealth[level-1];
 		Mana = TrueMana[level-1];
 		
-		mov1 = new VylsMovimiento1();
-		mov2 = new VylsMovimiento2();
-		mov3 = new VylsMovimiento3();
-		mov4 = new VylsMovimiento4();
-		atqBasico = new VylsMovimientoBasico();
-		defBasico = new VylsMovimientoDefensivo();
+		mov1 = new VylsMovimiento1(Level);
+		mov2 = new VylsMovimiento2(Level);
+		mov3 = new VylsMovimiento3(Level);
+		mov4 = new VylsMovimiento4(Level);
+		atqBasico = new VylsMovimientoBasico(Level);
+		defBasico = new VylsMovimientoDefensivo(Level);
 	}
 	
 	public override void levelUp(){

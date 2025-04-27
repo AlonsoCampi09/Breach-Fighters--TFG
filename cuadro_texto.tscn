@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://k8udnpveppdj"]
+
+[ext_resource type="Theme" uid="uid://cgp6bk35e1id3" path="res://ui_battle_theme.tres" id="1_plkmx"]
+[ext_resource type="Script" path="res://CuadroTexto.cs" id="1_w0f7q"]
+[ext_resource type="AudioStream" uid="uid://65ydc2jwh383" path="res://assets/Sounds/Alex noises/518558__se2001__quick-blip.wav" id="3_ka1p8"]
+
+[sub_resource type="SystemFont" id="SystemFont_j0x0d"]
+subpixel_positioning = 0
+
+[node name="Dialogo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w0f7q")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(1000, 100)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme = ExtResource("1_plkmx")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_j0x0d")
+text = "dsfsdf"
+
+[node name="Button" type="Button" parent="Panel/MarginContainer/Label"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -18.5
+offset_bottom = 18.5
+grow_horizontal = 0
+grow_vertical = 2
+text = ">"
+
+[node name="TypeSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ka1p8")
+
+[connection signal="pressed" from="Panel/MarginContainer/Label/Button" to="." method="OnButtonPressed"]

@@ -17,6 +17,13 @@ public partial class CustomSignals : Node
     [Signal]
     public delegate void RememberEEventHandler();
     [Signal]
+    public delegate void OnDialogConfirmedEventHandler();
+    [Signal]
+    public delegate void OnMoveResolvedEventHandler();
+    [Signal]
+    public delegate void OnDialogRequestedEventHandler(string text);
+
+    [Signal]
     public delegate void BattlefinishedEventHandler();
     public string[] voices = DisplayServer.TtsGetVoicesForLanguage("es");
     public string voiceId;

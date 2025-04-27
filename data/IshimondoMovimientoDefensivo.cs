@@ -4,9 +4,11 @@ using System;
 public partial class IshimondoMovimientoDefensivo : Movimiento{
 	
 	
-	public IshimondoMovimientoDefensivo(){
+	public IshimondoMovimientoDefensivo(int l){
 		this.effectObj = Effect_Obj.Self;
 		this.num_objetivos = 1;
+		this.evolucion = 5;
+		assingLevel(l);
 	}
 	
 	public override void efecto(){
@@ -15,22 +17,21 @@ public partial class IshimondoMovimientoDefensivo : Movimiento{
 		def_ptg = 10;
 		recuperacion_MP = (int) this.origen.passData().giveMAXMP()/3;
 		this.origen.passData().restoreMP(recuperacion_MP);
-		this.origen.passData().estadoManager.AplicarEstado(Estado.BuffDEF,2,def_ptg);
-		if(this.casterLevel >= 4)
-			this.origen.passData().estadoManager.AplicarEstado(Estado.Evasion,2,0);
-		this.origen.ActualizarIconosEstado();
+		this.putEffectsOnTargets(100, Estado.BuffDEF, 2, def_ptg);
+		if(this.casterLevel >= this.evolucion)
+			this.putEffectsOnTargets(100, Estado.Evasion, 2, 0);
 		GD.Print("Ishimondo va ha defenderse este turno!");
 	}
 	
 	public override string giveTitulo(){
-		if(this.casterLevel < 4){
+		if(this.casterLevel < this.evolucion){
 			return "Hacerse bolita";
 		}else{
 			return "Reflejps felinos";
 		}
 	}
 	public override string giveDescripcion(){
-		if(this.casterLevel < 4){
+		if(this.casterLevel < this.evolucion){
 			return "Maniobra que aumenta la defensa hasta el proximo turno. Tambien devuelve parte del maná.";
 		}else{
 			return "Maniobra que aumenta la defensa hasta el proximo turno. Tambien devuelve parte del maná y le da el estado evasivo.";
@@ -40,9 +41,6 @@ public partial class IshimondoMovimientoDefensivo : Movimiento{
 		return false;
 	}
 	public override bool moveIsAvailable(){
-		return true;
-	}
-	public override bool enoughMana(){
 		return true;
 	}
 	

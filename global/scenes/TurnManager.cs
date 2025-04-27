@@ -58,7 +58,10 @@ public partial class TurnManager{
                     {
                         Battle.enemieslist[x].animSprite.Visible = false;
                         string Message = Battle.enemieslist[x].Name.ToString() + " ha sido derrotado";
-                        DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
+                        if (CustomSignals.activado)
+                        {
+                            DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+                        }
                         Battle.enemieslist.RemoveAt(x);
                         turnOrder.RemoveAt(i);
                         GD.Print("enemigo muerto");
@@ -81,7 +84,10 @@ public partial class TurnManager{
                     else
                     {
                         string Message = Battle.allylist[x].Name.ToString() + " ha sido derrotado";
-                        DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
+                        if (CustomSignals.activado)
+                        {
+                            DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+                        }
                         Battle.allylist.RemoveAt(x);
                         turnOrder.RemoveAt(i);
                         GD.Print("aliado muerto");

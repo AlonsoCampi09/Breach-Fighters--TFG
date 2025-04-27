@@ -26,7 +26,7 @@ public partial class SlimeInocenteData : EnemyEntity
 		TrueSpeed = new int[] {5,6,7,8,9,10,11,12,13,14};
 		Health = TrueHealth[level-1];
 		
-		atqBasico = new SlimeSubditoMovimientoBasico(0);
+		atqBasico = new SlimeSubditoMovimientoBasico(0, Level);
 	}
 	
 }

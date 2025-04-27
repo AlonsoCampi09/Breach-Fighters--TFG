@@ -24,12 +24,12 @@ public partial class CassandraData : Entity
 		Health = TrueHealth[level-1];
 		Mana = TrueMana[level-1];
 		
-		mov1 = new CassandraMovimiento1();
-		mov2 = new CassandraMovimiento2();
-		mov3 = new CassandraMovimiento3();
-		mov4 = new CassandraMovimiento4();
-		atqBasico = new CassandraMovimientoBasico();
-		defBasico = new CassandraMovimientoDefensivo();
+		mov1 = new CassandraMovimiento1(Level);
+		mov2 = new CassandraMovimiento2(Level);
+		mov3 = new CassandraMovimiento3(Level);
+		mov4 = new CassandraMovimiento4(Level);
+		atqBasico = new CassandraMovimientoBasico(Level);
+		defBasico = new CassandraMovimientoDefensivo(Level);
 		
 	}
 	

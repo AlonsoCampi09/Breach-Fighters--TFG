@@ -4,46 +4,32 @@ using System;
 public partial class VylsMovimiento2 : Movimiento{
 	
 	
-	public VylsMovimiento2(){
+	public VylsMovimiento2(int l){
 		this.effectObj = Effect_Obj.Enemy;
 		this.num_objetivos = 1;
+		this.evolucion = 4;
+		assingLevel(l);
 	}
 	
 	public override void efecto(){
 		//Logica del movimiento;
-		int potencia, coste;
-		if(this.casterLevel < 4){	
-			potencia = 6 + this.casterLevel;
-			coste = 4;
-		}else{
-			potencia = 8 + this.casterLevel;
-			coste = 7;
-		}
 		this.origen.passData().removeMP(coste);
 		GD.Print("Vyls usa Fragmentacion!");
-		//this.hurtTargets(potencia);
-		if(this.casterLevel >= 6){
-			Random rand = new Random();
-			int random_number = rand.Next(1, 4);
-			for(int i = 0; i < objetivos.Count; i++){
-				random_number = rand.Next(1, 4);
-				if(random_number ==  3){
-					this.objetivos[i].passData().estadoManager.AplicarEstado(Estado.Bloqueo,1,0);
-					this.objetivos[i].ActualizarIconosEstado();
-				}
-			}
+		this.hurtTargets(potencia);
+		if(this.casterLevel >= this.evolucion){
+			this.putEffectsOnTargets(30, Estado.Aturdido, 1, 0);
 		}
 	}
 	
 	public override string giveTitulo(){
-		if(this.casterLevel < 6){
+		if(this.casterLevel < this.evolucion){
 			return "Fragmentación";
 		}else{
 			return "Tempestad";
 		}
 	}
 	public override string giveDescripcion(){
-		if(this.casterLevel < 4){
+		if(this.casterLevel < this.evolucion){
 			return "Vyls lanza una granada que al explotar hace daño a todos los enemigos.";
 		}else{
 			return "Vyls lanza una granada que al explotar hace daño a todos los enemigos. Tiene un 30 porciento de probabilidad que Bloque las defensas de los afectados.";
@@ -55,17 +41,13 @@ public partial class VylsMovimiento2 : Movimiento{
 	public override bool moveIsAvailable(){
 		return true;
 	}
-	public override bool enoughMana(){
-		if(this.casterLevel < 4){
-			if(this.origen.passData().giveMP() >= 5){
-				return true;
-			}else
-				return false;
+	public override void assingLevel(int l){
+		this.casterLevel = l;
+		potencia = 5;
+		if(this.casterLevel >= evolucion){
+			coste = 7;
 		}else{
-			if(this.origen.passData().giveMP() >= 7){
-				return true;
-			}else
-				return false;
+			coste = 5;
 		}
 	}
 	

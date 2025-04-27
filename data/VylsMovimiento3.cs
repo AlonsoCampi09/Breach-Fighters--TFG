@@ -4,23 +4,19 @@ using System;
 public partial class VylsMovimiento3 : Movimiento{
 	
 	
-	public VylsMovimiento3(){
+	public VylsMovimiento3(int l) {
 		this.effectObj = Effect_Obj.Both;
 		this.num_objetivos = 1;
+		this.evolucion = 6;
+		assingLevel(l);
 	}
 	
 	public override void efecto(){
 		//Logica del movimiento;
-		int potencia, coste;
-		potencia = 9 + this.casterLevel;
-		if(this.casterLevel < 4)	
-			coste = 4;
-		else
-			coste = 6;
 		this.origen.passData().removeMP(coste);
 		GD.Print("Vyls usa Reinicio!");
 		if(!this.objetivos[0].passData().ControlPlayer)
-			//this.hurtTargets(potencia);
+			this.hurtTargets(potencia);
 		if(this.casterLevel < 6){
 			if(!this.objetivos[0].passData().ControlPlayer){
 				this.objetivos[0].passData().estadoManager.Reinicio_efecto();
@@ -29,17 +25,18 @@ public partial class VylsMovimiento3 : Movimiento{
 			}
 		}else
 			this.objetivos[0].passData().estadoManager.Reinicio_efecto();
+		this.objetivos[0].ActualizarIconosEstado();
 	}
 	
 	public override string giveTitulo(){
-		if(this.casterLevel < 6){
+		if(this.casterLevel < this.evolucion){
 			return "Reinicio";
 		}else{
 			return "Restauración";
 		}
 	}
 	public override string giveDescripcion(){
-		if(this.casterLevel < 4){
+		if(this.casterLevel < this.evolucion){
 			return "Vyls limpia al objetivo de todos los estados que tenga (excepto el estado de envenendado). Si el objetivo es un aliado, este ataque no le hará daño.";
 		}else{
 			return "Vyls limpia al objetivo de todos los estados que tenga (excepto el estado de envenendado). Si el objetivo es un aliado, este ataque no le hará daño y le mantendrá los estados positivos.";
@@ -55,17 +52,13 @@ public partial class VylsMovimiento3 : Movimiento{
 			return true;
 		}
 	}
-	public override bool enoughMana(){
-		if(this.casterLevel < 7){
-			if(this.origen.passData().giveMP() >= 4){
-				return true;
-			}else
-				return false;
+	public override void assingLevel(int l){
+		this.casterLevel = l;
+		potencia = 7;
+		if(this.casterLevel >= evolucion){
+			coste = 7;
 		}else{
-			if(this.origen.passData().giveMP() >= 6){
-				return true;
-			}else
-				return false;
+			coste = 4;
 		}
 	}
 	

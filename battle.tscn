@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://01bxomorvpdc"]
+[gd_scene load_steps=7 format=3 uid="uid://01bxomorvpdc"]
 
 [ext_resource type="PackedScene" uid="uid://mndfxhtvad5s" path="res://global/scenes/enfrentamiento_aleatorio.tscn" id="1_834as"]
 [ext_resource type="Script" path="res://Battle.cs" id="1_r43sx"]
 [ext_resource type="PackedScene" uid="uid://tfj11ryvomcs" path="res://menu_batalla.tscn" id="2_mqco1"]
 [ext_resource type="Texture2D" uid="uid://cfhlxwupxgc1l" path="res://assets/dungeon.png" id="2_vajeu"]
 [ext_resource type="PackedScene" uid="uid://dy50wdufoe0oe" path="res://barras_vida.tscn" id="5_u7qqt"]
+[ext_resource type="PackedScene" uid="uid://k8udnpveppdj" path="res://cuadro_texto.tscn" id="6_8wf1b"]
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_r43sx")
@@ -34,3 +35,11 @@ offset_left = 541.0
 offset_top = 335.0
 offset_right = 541.0
 offset_bottom = 335.0
+
+[node name="Dialogo" parent="." instance=ExtResource("6_8wf1b")]
+offset_left = 575.0
+offset_top = 111.0
+offset_right = 575.0
+offset_bottom = 111.0
+
+[node name="SoundBattle" type="AudioStreamPlayer2D" parent="."]

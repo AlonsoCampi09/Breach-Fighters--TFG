@@ -4,29 +4,24 @@ using System;
 public partial class IshimondoMovimiento3 : Movimiento{
 	
 	
-	public IshimondoMovimiento3(){
+	public IshimondoMovimiento3(int l){
 		this.effectObj = Effect_Obj.Self;
 		this.num_objetivos = 1;
+		this.evolucion = 8;
+		assingLevel(l);
 	}
 	
 	public override void efecto(){
-		//Logica del movimiento;
-		int coste;
-		if(this.casterLevel < 5)
-			coste = 6;
-		else
-			coste = 11;
-		
+		//Logica del movimiento
 		this.origen.passData().removeMP(coste);
 		if(this.casterLevel >= 8){
-			this.origen.passData().estadoManager.AplicarEstado(Estado.BuffDMG,3,50);
-			this.origen.passData().estadoManager.AplicarEstado(Estado.Sellado,3,0);
-			this.origen.passData().estadoManager.AplicarEstado(Estado.Bloqueo,3,0);
+			this.putEffectsOnTargets(100, Estado.BuffDMG, 3, 50);
+			this.putEffectsOnTargets(100, Estado.Sellado, 3, 0);
+			this.putEffectsOnTargets(100, Estado.Bloqueo, 3, 0);
 		}else{
-			this.origen.passData().estadoManager.AplicarEstado(Estado.DeBuffDEF,3,15);
-			this.origen.passData().estadoManager.AplicarEstado(Estado.BuffDMG,3,30);
+			this.putEffectsOnTargets(100, Estado.DeBuffDEF, 3, 15);
+			this.putEffectsOnTargets(100, Estado.BuffDMG, 3, 30);
 		}
-		this.origen.ActualizarIconosEstado();
 		GD.Print("Ishimondo usa Despertar del instinto!");
 	}
 	public override string giveTitulo(){
@@ -53,17 +48,12 @@ public partial class IshimondoMovimiento3 : Movimiento{
 			return true;
 		}
 	}
-	public override bool enoughMana(){
-		if(this.casterLevel < 8){
-			if(this.origen.passData().giveMP() >= 6){
-				return true;
-			}else
-				return false;
+	public override void assingLevel(int l){
+		this.casterLevel = l;
+		if(this.casterLevel >= this.evolucion){
+			coste = 11;
 		}else{
-			if(this.origen.passData().giveMP() >= 15){
-				return true;
-			}else
-				return false;
+			coste = 6;
 		}
 	}
 	

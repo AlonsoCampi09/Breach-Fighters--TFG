@@ -36,6 +36,7 @@ public partial class MenuBatalla : Control
     private bool[] indexes = { false, false, false, false, false, false, false, false };
     Movimiento mov_actual;
     private int target_disposition;
+    private Battle battle_access;
 
     public override void _Ready()
 	{
@@ -85,12 +86,45 @@ public partial class MenuBatalla : Control
     public void prepareTitles(Fighter f)
     {
         Entity dataf = f.passData();
+        dataf.mov1.assignCaster(f);
+        dataf.mov2.assignCaster(f);
+        dataf.mov3.assignCaster(f);
+        dataf.mov4.assignCaster(f);
+        dataf.atqBasico.assignCaster(f);
+        dataf.defBasico.assignCaster(f);
         attack.Text = dataf.atqBasico.giveTitulo();
-        mov1.Text = dataf.mov1.giveTitulo();
-        mov2.Text = dataf.mov2.giveTitulo();
+        if (dataf.mov1.enoughMana())
+        {
+            mov1.Text = dataf.mov1.giveTitulo();
+            mov1.Disabled = false;
+        }
+        else
+        {
+            mov1.Text = "Insuficiente maná";
+            mov1.Disabled = true;
+        }
+        if (dataf.mov2.enoughMana())
+        {
+            mov2.Text = dataf.mov2.giveTitulo();
+            mov2.Disabled = false;
+        }
+        else
+        {
+            mov2.Text = "Insuficiente maná";
+            mov2.Disabled = true;
+        }
         if (dataf.mov3.moveIsAvailable())
         {
-            mov3.Text = dataf.mov3.giveTitulo();
+            if (dataf.mov3.enoughMana())
+            {
+                mov3.Text = dataf.mov3.giveTitulo();
+                mov3.Disabled = false;
+            }
+            else
+            {
+                mov3.Text = "Insuficiente maná";
+                mov3.Disabled = true;
+            }
         }
         else
         {
@@ -99,7 +133,16 @@ public partial class MenuBatalla : Control
         }
         if (dataf.mov4.moveIsAvailable())
         {
-            mov4.Text = dataf.mov4.giveTitulo();
+            if (dataf.mov4.enoughMana())
+            {
+                mov4.Text = dataf.mov4.giveTitulo();
+                mov4.Disabled = false;
+            }
+            else
+            {
+                mov4.Text = "Insuficiente maná";
+                mov4.Disabled = true;
+            }
         }
         else
         {
@@ -112,11 +155,12 @@ public partial class MenuBatalla : Control
         }
         else
         {
-            mov4.Text = "BLOQUEADO";
-            mov4.Disabled = true;
+            guard.Text = "BLOQUEADO";
+            guard.Disabled = true;
         }
         actor = f;
     }
+
     public override void _Process(double delta)
 	{
 		if (Input.IsActionPressed("ui_cancel"))
@@ -164,11 +208,12 @@ public partial class MenuBatalla : Control
 
         if (!DisplayServer.TtsIsSpeaking())
         {
-            if (!actingMenu.Visible && !this.selectingTarget && !specialMenu.Visible)
+
+            if (!actingMenu.Visible && !this.selectingTarget && !specialMenu.Visible && !Battle.esperando)
 			{
                 ChangeMenu(0);
             }
-			if (!this.selectingTarget && !specialMenu.Visible)
+			if (!this.selectingTarget && !specialMenu.Visible && !Battle.esperando)
 			{
                 actingMenu.Visible = true;
             }
@@ -181,36 +226,17 @@ public partial class MenuBatalla : Control
 
     }
 
-    /*private void ChangeMenu(int c)
-	{
-		switch (c)
-		{
-			case 0:
-				actingMenu.Visible = true;
-				specialMenu.Visible = false;
-				flecha.ShowArrow(false);
-				this.selectingTarget = false;
-				attack.GrabFocus();
-				break;
-			case 1:
-				specialMenu.Visible = true;
-				actingMenu.Visible = false;
-				flecha.ShowArrow(false);
-				this.selectingTarget = false;
-				mov1.GrabFocus();
-				break;
-			case 2:
-				actingMenu.Visible = false;
-				specialMenu.Visible = false;
-				this.StartTargetSelection();
-				break;
-		}
-	}*/
-
     private void ChangeMenu(int c)
     {
         switch (c)
         {
+            case -1:
+                actingMenu.Visible = false;
+                specialMenu.Visible = false;
+                selecting.Visible = false;
+                flecha.ShowArrow(false);
+                this.selectingTarget = false;
+                break;
             case 0:
                 actingMenu.Visible = true;
                 specialMenu.Visible = false;
@@ -248,7 +274,7 @@ public partial class MenuBatalla : Control
                 inv.GrabFocus();
                 this.StartTargetSelection();
                 break;
-        }
+        }   
     }
 
     private void OnAttackButtonDown()
@@ -335,7 +361,7 @@ public partial class MenuBatalla : Control
                 mov_actual = actor.passData().defBasico;
                 break;
         }
-        mov_actual.assingCaster(actor);
+        mov_actual.assignCaster(actor);
         if (!mov_actual.enoughMana())
             return false;
         target_disposition = mov_actual.whoAffects();
@@ -389,12 +415,17 @@ public partial class MenuBatalla : Control
         audioPlayer.Play();
     }
 
-    public void receiveLists(List<Fighter> ene, List<Fighter> ally){
+    public void receiveLists(List<Fighter> ene, List<Fighter> ally, Battle battle)
+    {
 		this.allylist = ally;
 		this.enemieslist = ene;
-	}
-	
-	private void StartTargetSelection(){
+        this.battle_access = battle;
+
+    }
+
+    private void StartTargetSelection()
+    {
+
         this.selectingTarget = true;
         // Seleccionar el primer enemigo por defecto
         currentTargetIndex = 0;
@@ -437,46 +468,55 @@ public partial class MenuBatalla : Control
         }
         this.MoveArrowToCurrentTarget();
     }
-	
-	private void ChangeTarget(int direction)
-	{
-		switch(target_disposition){
-			case 0:
-				this.allylist[currentTargetIndex].DetenerParpadeo();
-				break;
-			case 1:
-				this.enemieslist[currentTargetIndex].DetenerParpadeo();
-				break;
-			case 2:
-				if(currentTargetIndex >= this.enemieslist.Count){
-					this.allylist[currentTargetIndex-this.enemieslist.Count].DetenerParpadeo();
-				}else{
-					this.enemieslist[currentTargetIndex].DetenerParpadeo();
-				}
-				break;
-			default:
-				break;
-		}
-		currentTargetIndex = (currentTargetIndex + direction + all_targets_avaible) % all_targets_avaible;
-		while(indexes[currentTargetIndex]){
-			if(direction > 0){
-				currentTargetIndex++;
-			}else{
-				currentTargetIndex--;
-			}
-			if(currentTargetIndex < 0){
-				currentTargetIndex = all_targets_avaible - 1;
-			}else if(currentTargetIndex >= all_targets_avaible){
-				currentTargetIndex = 0;
-			}
-		}
-		MoveArrowToCurrentTarget();
 
+    private void ChangeTarget(int direction)
+    {
+        switch (target_disposition)
+        {
+            case 0:
+                this.allylist[currentTargetIndex].DetenerParpadeo();
+                break;
+            case 1:
+                this.enemieslist[currentTargetIndex].DetenerParpadeo();
+                break;
+            case 2:
+                if (currentTargetIndex >= this.enemieslist.Count)
+                {
+                    this.allylist[currentTargetIndex - this.enemieslist.Count].DetenerParpadeo();
+                }
+                else
+                {
+                    this.enemieslist[currentTargetIndex].DetenerParpadeo();
+                }
+                break;
+            default:
+                break;
+        }
+        currentTargetIndex = (currentTargetIndex + direction + all_targets_avaible) % all_targets_avaible;
+        while (indexes[currentTargetIndex])
+        {
+            if (direction > 0)
+            {
+                currentTargetIndex++;
+            }
+            else
+            {
+                currentTargetIndex--;
+            }
+            if (currentTargetIndex < 0)
+            {
+                currentTargetIndex = all_targets_avaible - 1;
+            }
+            else if (currentTargetIndex >= all_targets_avaible)
+            {
+                currentTargetIndex = 0;
+            }
+        }
+        MoveArrowToCurrentTarget();
     }
 
     private void MoveArrowToCurrentTarget()
-	{
-        string Message;
+    {
         switch (target_disposition)
         {
             case 0:
@@ -486,9 +526,12 @@ public partial class MenuBatalla : Control
                 selectedAlly.Parpadear();
                 flecha.MoveArrow(selectedAlly.GetPosition() + new Vector2(0, 100)); // Ajustar la posición
                 flecha.ShowArrow(true);
-                Message = selectedAlly.Name.ToString();
                 DisplayServer.TtsStop();
-                DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+
+                if (CustomSignals.activado)
+                {
+                    DisplayServer.TtsSpeak(selectedAlly.passData().Name, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+                }
                 break;
             case 1:
                 if (this.enemieslist.Count == 0) return;
@@ -496,9 +539,12 @@ public partial class MenuBatalla : Control
                 selectedEnemy.Parpadear();
                 flecha.MoveArrow(selectedEnemy.GetPosition() + new Vector2(0, 100)); // Ajustar la posición
                 flecha.ShowArrow(true);
-                Message = selectedEnemy.Name.ToString();
                 DisplayServer.TtsStop();
-                DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+
+                if (CustomSignals.activado)
+                {
+                    DisplayServer.TtsSpeak(selectedEnemy.passData().Name, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+                }
                 break;
             case 2:
                 Fighter selectedFighter;
@@ -513,56 +559,35 @@ public partial class MenuBatalla : Control
                 selectedFighter.Parpadear();
                 flecha.MoveArrow(selectedFighter.GetPosition() + new Vector2(0, 100)); // Ajustar la posición
                 flecha.ShowArrow(true);
-                Message = selectedFighter.Name.ToString();
                 DisplayServer.TtsStop();
-                DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+                if (CustomSignals.activado)
+                {
+                    DisplayServer.TtsSpeak(selectedFighter.passData().Name, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+                }
                 break;
             default:
                 break;
         }
-        
     }
 
-	private void ConfirmTarget()
+    private void ConfirmTarget()
 	{
-        /*GD.Print($"¡Enemigo {Battle.enemieslist[currentTargetIndex].Name} seleccionado!");
-        //GD.Print("currentTargetIndex = " + currentTargetIndex);
-
-        selectingTarget = false;
-		flecha.ShowArrow(false);
-		ChangeMenu(0);
-		bool atacado = false;
-
-        for (int j = 0; j < Battle.allylist.Count && !atacado; j++)
-        {
-            if (ID_turno == Battle.allylist[j].data.ID)
-            {
-
-                Battle.allylist[j].attack(currentTargetIndex);
-                string name = Battle.allylist[j].data.Name.ToString();
-                if (name.Contains("Chuvakan") && !atacado)
-                {
-                    GD.Print("senal PassTurn1 emitida");
-                    CustomSignals.Instance.EmitSignal(nameof(CustomSignals.PassTurn1));
-					atacado = true;
-
-                }
-                else if (name.Contains("Cassandra") && !atacado)
-                {
-                    GD.Print("senal PassTurn2 emitida");
-
-                    CustomSignals.Instance.EmitSignal(nameof(CustomSignals.PassTurn2));
-                    atacado = true;
-
-                }
-            }
-        }*/
         bool atacado = false;
-
+       
         Fighter confirmedTarget;
-        if (currentTargetIndex >= this.enemieslist.Count && target_disposition == 2)
+        if (target_disposition == 2)
         {
-            confirmedTarget = this.allylist[currentTargetIndex - this.enemieslist.Count];
+            if (currentTargetIndex >= this.enemieslist.Count)
+            {
+                GD.Print($"{currentTargetIndex} >= {this.allylist.Count}");
+                confirmedTarget = this.allylist[currentTargetIndex - this.enemieslist.Count];
+            }
+            else
+            {
+                GD.Print($"{currentTargetIndex} < {this.allylist.Count}");
+                confirmedTarget = this.enemieslist[currentTargetIndex];
+            }
+            mov_actual.addTarget(confirmedTarget);
         }
         else
         {
@@ -613,19 +638,24 @@ public partial class MenuBatalla : Control
                 f.DetenerParpadeo();
                 GD.Print($"¡Enemigo {f.Name} seleccionado!");
             }
-
-            mov_actual.efecto();
-            mov_actual.erraseTarget();
             selectingTarget = false;
             flecha.ShowArrow(false);
-            ChangeMenu(0);
+            ChangeMenu(-1);
+            battle_access.prepareDialog(actor, mov_actual);
+
+            /*
+			mov_actual.efecto();
+			mov_actual.erraseTarget();
+			selectingTarget = false;
+			flecha.ShowArrow(false);
+			ChangeMenu(0);
+			*/
         }
         else
         {
             indexes[currentTargetIndex] = true;
             this.ChangeTarget(1);
         }
-
         string name = actor.data.Name.ToString();
         if (name.Contains("Chuvakan") && !atacado && num_selec == 0)
         {
@@ -656,8 +686,8 @@ public partial class MenuBatalla : Control
         }
 
     }
-    public void SetID_turno(int ID)
+    /*public void SetID_turno(int ID)
     {
         ID_turno = ID;
-    }
+    }*/
 }

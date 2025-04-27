@@ -1,12 +1,14 @@
-using Godot;
+﻿using Godot;
 using System;
 using System.Collections.Generic;
 
 public partial class Fighter : Node2D
 {
-	public Entity data;
+    public Entity data;
     public AnimatedSprite2D animSprite;
     private Tween parpadeoTween;
+    private PackedScene DamagePopupScene = GD.Load<PackedScene>("res://ui/damage_popUp.tscn");
+
     private void prepareData(int level)
     {
         string name = this.Name.ToString();
@@ -48,34 +50,42 @@ public partial class Fighter : Node2D
         }
     }
 
-    public override void _Ready(){
-		animSprite = GetNode<AnimatedSprite2D>("Sprites");
-		this.prepareFighter(1);
-	}
-	
-	public override void _Process(double delta)
-	{
-		/*if(data.Health > (int) data.TrueHealth[data.Level-1]/4){
-			animSprite.Play("idle");
-		}else{
-			if(data.Health == 0){
-				animSprite.Play("fainted");
-			}else{
-				animSprite.Play("idle_low");
-			}
-		}*/
-	}
+    public override void _Ready()
+    {
+        animSprite = GetNode<AnimatedSprite2D>("Sprites");
+        this.prepareFighter(1);
+    }
+
+    public override void _Process(double delta)
+    {
+        if (data.Health > (int)data.TrueHealth[data.Level - 1] / 4)
+        {
+            animSprite.Play("idle");
+        }
+        else
+        {
+            if (data.Health == 0)
+            {
+                animSprite.Play("fainted");
+            }
+            else
+            {
+                animSprite.Play("idle_low");
+            }
+        }
+    }
 
 
 
     public void prepareFighter(int level)
-	{
-		this.prepareData(level);
-	}
-	
-	public virtual Entity passData(){
-		return this.data;
-	}
+    {
+        this.prepareData(level);
+    }
+
+    public virtual Entity passData()
+    {
+        return this.data;
+    }
 
     public virtual async System.Threading.Tasks.Task myTrun()
     {
@@ -104,7 +114,7 @@ public partial class Fighter : Node2D
     {
         int dano;
         dano = potencia + Math.Max(stat_ataque * (1 + (Buf_Atq - Deb_Atq) / 100) - this.data.TrueDefense[this.data.Level] * (1 + (this.data.DEFBuf - this.data.DEFDeBuf) / 100), 0);
-		this.data.Health = this.data.Health - dano;
+        this.data.Health = this.data.Health - dano;
         return dano;
     }
 
@@ -114,10 +124,10 @@ public partial class Fighter : Node2D
 
     }
 
-	public void changeSprite()
-	{
-		if(data != null)
-		{
+    public void changeSprite()
+    {
+        if (data != null)
+        {
             if (this.data.Health > (int)this.data.TrueHealth[this.data.Level - 1] / 4)
             {
                 animSprite.Play("idle");
@@ -175,6 +185,33 @@ public partial class Fighter : Node2D
                      .SetEase(Tween.EaseType.InOut);
     }
 
+    public void ReceiveDamage(int damage)
+    {
+        // Aplica el dano
+        data.removeHP(damage);
+        // Mostrar el numero de dano
+        ShowDamagePopup(damage);
+    }
+    private void ShowDamagePopup(int damage)
+    {
+        var popup = (DamagePopup)DamagePopupScene.Instantiate();
+        GetTree().CurrentScene.AddChild(popup);
+
+        // Posicionarlo encima del personaje
+        Vector2 globalPosition = GetGlobalPosition();
+        popup.GlobalPosition = globalPosition + new Vector2(0, -50); // un poco arriba del personaje
+        popup.SetDamage(damage);
+    }
+    private void ShowEffectPopup(string text)
+    {
+        var popup = (DamagePopup)DamagePopupScene.Instantiate();
+        GetTree().CurrentScene.AddChild(popup);
+
+        // Posicionarlo encima del personaje
+        Vector2 globalPosition = GetGlobalPosition();
+        popup.GlobalPosition = globalPosition + new Vector2(0, -50); // un poco arriba del personaje
+        popup.SetDamage(text);
+    }
     public void DetenerParpadeo()
     {
         if (parpadeoTween != null && parpadeoTween.IsValid())

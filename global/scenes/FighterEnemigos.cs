@@ -121,7 +121,11 @@ public partial class FighterEnemigos : Fighter
         string Message = this.data.Name.ToString() + "ha atacado a " + Battle.allylist[x].data.Name.ToString() + "y le ha quitado " + porcentaje + "porciento de su vida";
         //        string Message = this.data.Name.ToString() + "ha atacado a " + Battle.allylist[x].data.Name.ToString() + "y le ha quitado " + dano + "puntos de vida";
 
-        DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId);
+       // DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId);
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
         GD.Print("dano de enemigo a aliado = " + dano);
 
         //Battle.allylist[ID_atacado].data.Health = Battle.allylist[ID_atacado].data.Health - dano;

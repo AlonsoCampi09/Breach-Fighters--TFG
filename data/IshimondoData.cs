@@ -24,12 +24,12 @@ public partial class IshimondoData : Entity
 		Health = TrueHealth[level-1];
 		Mana = TrueMana[level-1];
 		
-		mov1 = new IshimondoMovimiento1();
-		mov2 = new IshimondoMovimiento2();
-		mov3 = new IshimondoMovimiento3();
-		mov4 = new IshimondoMovimiento4();
-		atqBasico = new IshimondoMovimientoBasico();
-		defBasico = new IshimondoMovimientoDefensivo();
+		mov1 = new IshimondoMovimiento1(Level);
+		mov2 = new IshimondoMovimiento2(Level);
+		mov3 = new IshimondoMovimiento3(Level);
+		mov4 = new IshimondoMovimiento4(Level);
+		atqBasico = new IshimondoMovimientoBasico(Level);
+		defBasico = new IshimondoMovimientoDefensivo(Level);
 		
 	}
 	
