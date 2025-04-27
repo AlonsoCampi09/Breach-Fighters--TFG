@@ -19,5 +19,12 @@ public partial class TextToSpeachSlider : HSlider
     {
 
         CustomSignals.volumenTextToSpeach = (int)value;
+        double value_aux = (int)value / this.MaxValue * 100;
+        DisplayServer.TtsStop();
+        string mensaje = "Volumen de Text To Speech a " + value_aux;
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
     }
 }

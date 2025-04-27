@@ -21,15 +21,18 @@ public partial class CustomSignals : Node
     public string[] voices = DisplayServer.TtsGetVoicesForLanguage("es");
     public string voiceId;
     public static CustomSignals Instance { get; private set; }
-
+    public static bool activado { get; set; }
     public static int volumenTextToSpeach { get; set; }
+    public static int velocidadTextToSpeach { get; set; }
 
     public override void _Ready()
     {
+        activado = true;
         voiceId = voices[0];
         Instance = this;
         GD.Print("ready CustomSignals");
         volumenTextToSpeach = 50;
+        velocidadTextToSpeach = 1;
     }
 
     public override void _Process(double delta)

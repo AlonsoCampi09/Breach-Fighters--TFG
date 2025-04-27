@@ -7,8 +7,9 @@ public partial class ChuvakanData : Entity
 	
 	public ChuvakanData(int level){
 		Level = level;
-		
-		Name = "Alex";
+        this.ID = ID_generator;
+        ID_generator++;
+        Name = "Alex";
 		this.estadoManager = new EstadoManager(this);
 		
 		ControlPlayer = true;

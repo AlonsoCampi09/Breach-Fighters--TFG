@@ -54,16 +54,26 @@ public abstract partial class Movimiento{
 		ATQOrigen = origen.passData().giveDMG();
 		dañoBufado = (int) (ATQOrigen * porcentajeATQ);
 		f1 = ATQOrigen + dañoBufado;
-		
-		for(int i = 0; i < objetivos.Count; i++){
+		string Message = origen.data.Name.ToString() + " ha atacado a ";
+
+        for (int i = 0; i < objetivos.Count; i++){
 			porcentajeDEF  = 1  + (objetivos[i].passData().giveDEFBuf() - objetivos[i].passData().giveDEFDeBuf()) / 100;
 			DEFOrigen = objetivos[i].passData().giveDEF();
 			defensaBufado = (int) (DEFOrigen * porcentajeDEF);
 			f2 = DEFOrigen + defensaBufado;
 			formula = Math.Max(1,p+f1-f2);
-			objetivos[i].passData().removeHP(formula);
+            double porcentaje = ((double)formula / (double)objetivos[i].passData().TrueHealth[objetivos[i].passData().Level - 1]) * 100;
+            porcentaje = Math.Round(porcentaje, 1);
+            Message += objetivos[i].passData().Name.ToString() + " y le ha quitado " + porcentaje + " porciento de su vida";
+			if(i+1< objetivos.Count)
+			{
+				Message += " y a ";
+            }
+            objetivos[i].passData().removeHP(formula);
 		}
-		return formula;
+        DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
+
+        return formula;
 	}
 	public virtual string giveTitulo(){
 		return "";

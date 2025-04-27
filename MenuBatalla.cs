@@ -164,11 +164,11 @@ public partial class MenuBatalla : Control
 
         if (!DisplayServer.TtsIsSpeaking())
         {
-            if (!actingMenu.Visible && !this.selectingTarget)
+            if (!actingMenu.Visible && !this.selectingTarget && !specialMenu.Visible)
 			{
                 ChangeMenu(0);
             }
-			if (!this.selectingTarget)
+			if (!this.selectingTarget && !specialMenu.Visible)
 			{
                 actingMenu.Visible = true;
             }
@@ -488,7 +488,7 @@ public partial class MenuBatalla : Control
                 flecha.ShowArrow(true);
                 Message = selectedAlly.Name.ToString();
                 DisplayServer.TtsStop();
-                DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
+                DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
                 break;
             case 1:
                 if (this.enemieslist.Count == 0) return;
@@ -498,7 +498,7 @@ public partial class MenuBatalla : Control
                 flecha.ShowArrow(true);
                 Message = selectedEnemy.Name.ToString();
                 DisplayServer.TtsStop();
-                DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
+                DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
                 break;
             case 2:
                 Fighter selectedFighter;
@@ -515,7 +515,7 @@ public partial class MenuBatalla : Control
                 flecha.ShowArrow(true);
                 Message = selectedFighter.Name.ToString();
                 DisplayServer.TtsStop();
-                DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
+                DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
                 break;
             default:
                 break;
@@ -627,27 +627,27 @@ public partial class MenuBatalla : Control
         }
 
         string name = actor.data.Name.ToString();
-        if (name.Contains("Chuvakan") && !atacado)
+        if (name.Contains("Chuvakan") && !atacado && num_selec == 0)
         {
             CustomSignals.Instance.EmitSignal(nameof(CustomSignals.PassTurn1));
             atacado = true;
 
         }
-        else if (name.Contains("Cassandra") && !atacado)
+        else if (name.Contains("Cassandra") && !atacado && num_selec == 0)
         {
 
             CustomSignals.Instance.EmitSignal(nameof(CustomSignals.PassTurn2));
             atacado = true;
 
         }
-        else if (name.Contains("bils") && !atacado)
+        else if (name.Contains("bils") && !atacado && num_selec == 0)
         {
             GD.Print("bils senal");
             CustomSignals.Instance.EmitSignal(nameof(CustomSignals.PassTurn3));
             atacado = true;
 
         }
-        else if (name.Contains("Ishimondo") && !atacado)
+        else if (name.Contains("Ishimondo") && !atacado && num_selec == 0)
         {
 
             CustomSignals.Instance.EmitSignal(nameof(CustomSignals.PassTurn4));

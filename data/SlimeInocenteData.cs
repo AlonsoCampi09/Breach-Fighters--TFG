@@ -8,8 +8,9 @@ public partial class SlimeInocenteData : EnemyEntity
 		Level = level;
 		
 		this.estadoManager = new EstadoManager(this);
-		
-		Name = "Slime Inocente";
+        this.ID = ID_generator;
+        ID_generator++;
+        Name = "Slime Inocente";
 		
 		Mana = 0;
 		

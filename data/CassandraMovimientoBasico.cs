@@ -17,7 +17,7 @@ public partial class CassandraMovimientoBasico : Movimiento{
 			this.origen.passData().restoreMP((int) this.origen.passData().giveMAXMP()/6);
 		}
 		GD.Print("Cassandra va ha hacer su ataque basico!");
-		//this.hurtTargets(potencia);
+		this.hurtTargets(potencia);
 	}
 	
 	public override string giveTitulo(){

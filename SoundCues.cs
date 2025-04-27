@@ -18,5 +18,12 @@ public partial class SoundCues : HSlider
 
 	public void _OnValueChanged(float value) {
 		AudioServer.SetBusVolumeDb(bus_index, Mathf.LinearToDb(value));
-	}
+        double value_aux = value / this.MaxValue * 100;
+        DisplayServer.TtsStop();
+        string mensaje = "Volumen de sound cues a " + (int)value_aux;
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
+        }
+    }
 }

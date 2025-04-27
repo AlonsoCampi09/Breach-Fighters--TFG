@@ -73,9 +73,16 @@ public partial class Battle : Node2D
             for (int i = 0; i < turnManager.turnOrder.Count && enemieslist.Count != 0 && allylist.Count != 0; i++)
             {
                 GD.Print("Turno de = " + turnManager.turnOrder[i].data.Name);
-                DisplayServer.TtsSpeak("Turno de " + turnManager.turnOrder[i].data.Name, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
+                if (CustomSignals.activado)
+                {
+                    DisplayServer.TtsSpeak("Turno de " + turnManager.turnOrder[i].data.Name, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+                }
                 //  menu_de_pelea.SetID_turno(turnManager.turnOrder[i].data.ID);
-                menu_de_pelea.prepareTitles(turnManager.turnOrder[i]);
+                if (turnManager.turnOrder[i] is FighterAliados)
+                {
+                    menu_de_pelea.prepareTitles(turnManager.turnOrder[i]);
+                }
+                GD.Print("vida = " + turnManager.turnOrder[i].data.Health);
                 await turnManager.turnOrder[i].myTrun();
                 barras_Vida.actualizar();
 
@@ -131,8 +138,10 @@ public partial class Battle : Node2D
 
         //Descripcion del escenario
         mensaje = "El grupo entra en la arena del coliseo, en ella, se encuentran a  " + enemieslist.Count + " enemigos .";
-        DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
-        //Obtenemos los personajes que siguen vivos
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }        //Obtenemos los personajes que siguen vivos
         List<Fighter> aux=  allylist.FindAll(IsAlive);
 
         if (aux.Count > 1) mensaje = "Empiezan la batalla "; 
@@ -150,8 +159,10 @@ public partial class Battle : Node2D
    
         }
 
-        DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach); 
-
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
     }
 
     public static void EndMessage(bool winner) {
@@ -159,12 +170,18 @@ public partial class Battle : Node2D
 
         if (winner) {
             String mensaje = "El grupo ha ganado la batalla, de repente, se abre la puerta hacia la siguiente sala. Avanzan hacia ella.";
-            DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
+            if (CustomSignals.activado)
+            {
+                DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+            }
         }
 
         else {
-            String mensaje = "El grupo ha sido derrotado, el lider del coliseo les manda al area de descanso."; 
-            DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
+            String mensaje = "El grupo ha sido derrotado, el lider del coliseo les manda al area de descanso.";
+            if (CustomSignals.activado)
+            {
+                DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+            }
         }
     }
 
@@ -187,8 +204,10 @@ public partial class Battle : Node2D
 			"y tiene " + allylist[i].data.Mana +
             "puntos de mana de un maximo de " + allylist[i].data.TrueMana[allylist[i].data.Level - 1];
         }
-        DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
-
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
     }
     public void RememberE()
     {
@@ -202,6 +221,9 @@ public partial class Battle : Node2D
             mensaje = mensaje + "El enemigo " + enemieslist[i].data.Name + " tiene " +aux +
             " porciento de vida";
         }
-        DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
     }
 }

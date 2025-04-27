@@ -8,8 +8,9 @@ public partial class SlimeVagoData : EnemyEntity
 		Level = level;
 		
 		this.estadoManager = new EstadoManager(this);
-		
-		Name = "Slime Vago";
+        this.ID = ID_generator;
+        ID_generator++;
+        Name = "Slime Vago";
 		
 		Mana = 0;
 		

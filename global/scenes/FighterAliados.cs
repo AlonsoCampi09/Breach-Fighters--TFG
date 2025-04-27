@@ -33,9 +33,13 @@ public partial class FighterAliados : Fighter
 	public Entity passData(){
 		return this.data;
 	}*/
-
+    public async void aux()
+    {
+        GD.Print("hellllllo");
+    }
     public override async System.Threading.Tasks.Task myTrun()
     {
+        aux();
         GD.Print("espera aliados");
 
         if (this.data.Name.Contains("Chuvakan"))
@@ -61,7 +65,7 @@ public partial class FighterAliados : Fighter
     }
 
 
-    public override void attack(int pos)
+    /*public override void attack(int pos)
     {
         int dano;
 
@@ -77,7 +81,7 @@ public partial class FighterAliados : Fighter
 
         //DataE.Health = DataE.Health - dano;
         GD.Print("Vida de atacado = " + Battle.enemieslist[pos].data.Health);
-    }
+    }*/
 
 
 }

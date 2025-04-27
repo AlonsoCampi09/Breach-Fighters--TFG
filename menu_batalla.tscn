@@ -16,6 +16,7 @@ theme = ExtResource("1_imxdl")
 script = ExtResource("1_x0rkq")
 
 [node name="Battle_Action" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(1000, 100)
 layout_mode = 1
 anchors_preset = 10
@@ -61,7 +62,6 @@ layout_mode = 2
 text = "Guard"
 
 [node name="Special_Action" type="Panel" parent="."]
-visible = false
 custom_minimum_size = Vector2(1000, 100)
 layout_mode = 1
 anchors_preset = 10

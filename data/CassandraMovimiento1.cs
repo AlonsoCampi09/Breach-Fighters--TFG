@@ -21,7 +21,7 @@ public partial class CassandraMovimiento1 : Movimiento{
 		}
 		this.origen.passData().removeMP(coste);
 		GD.Print("Cassandra va ha hacer su ataque especial!");
-		//this.hurtTargets(potencia);
+		this.hurtTargets(potencia);
 	}
 	
 	public override string giveTitulo(){

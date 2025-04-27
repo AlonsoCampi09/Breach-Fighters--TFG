@@ -49,6 +49,7 @@ public partial class Game : Node2D
     public async void play()
     {
         var scene = GD.Load<PackedScene>("res://battle.tscn");
+        allies.ZIndex = 1;
         var instance = scene.Instantiate();
         AddChild(instance);
         instance.Call("Play_Batalla");

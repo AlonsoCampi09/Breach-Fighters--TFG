@@ -18,7 +18,7 @@ public partial class IshimondoMovimientoBasico : Movimiento{
 			potencia = 11 + this.casterLevel;
 	
 		GD.Print("Ishimondo va ha hacer su ataque basico!");
-		//this.hurtTargets(potencia);
+		this.hurtTargets(potencia);
 		if(this.casterLevel >= 3){
 			this.objetivos[0].passData().estadoManager.AplicarEstado(Estado.Sangrado,1,0);
 			this.objetivos[0].ActualizarIconosEstado();

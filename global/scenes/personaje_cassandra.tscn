@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://bvfqmqycxdc0t"]
 
-[ext_resource type="Script" path="res://global/scenes/Fighter.cs" id="1_7j8s8"]
+[ext_resource type="Script" path="res://global/scenes/FighterAliados.cs" id="1_85hix"]
 [ext_resource type="Texture2D" uid="uid://bcfyn1nrjhnw0" path="res://assets/sprites/Friends/watona.png" id="1_gtsnh"]
-[ext_resource type="PackedScene" uid="uid://dca551kyld357" path="res://estado_display.tscn" id="3_sea6a"]
+[ext_resource type="PackedScene" uid="uid://dca551kyld357" path="res://global/scenes/estado_display.tscn" id="3_sea6a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n2mwq"]
 atlas = ExtResource("1_gtsnh")
@@ -68,12 +68,12 @@ animations = [{
 }]
 
 [node name="Cassandra" type="Node2D"]
-script = ExtResource("1_7j8s8")
+script = ExtResource("1_85hix")
 
 [node name="Sprites" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_ukhtx")
-animation = &"idle"
+animation = &"idle_low"
 
 [node name="Estado_Display" parent="." instance=ExtResource("3_sea6a")]
 position = Vector2(60, -70)

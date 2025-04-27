@@ -10,6 +10,7 @@ public partial class MainMenuManager : Control
     HSlider SoundCues, Tts, MusicaSlider;
     AudioStreamPlayer2D musica;
     bool musica_bajada = false;
+    CheckBox TTScheck;
     public override void _Ready()
     {
         start = GetNode<Button>("MenuTab/VBoxContainer/Start Game");
@@ -21,7 +22,8 @@ public partial class MainMenuManager : Control
         retu = GetNode<Button>("MenuOpciones/VBoxContainer/ReturnButton");
         musica = GetNode<AudioStreamPlayer2D>("musicaMenu");
         musica.Play();
-
+        TTScheck = GetNode<CheckBox>("MenuOpciones/VBoxContainer/CheckBox");
+        TTScheck.Pressed += TTScheckbutton;
         start.GrabFocus();
 
     }
@@ -59,8 +61,10 @@ public partial class MainMenuManager : Control
         DisplayServer.TtsStop();
 
         string Message = start.Text;
-        DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
-
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
     }
 
     private void CambioOpciones()
@@ -75,48 +79,87 @@ public partial class MainMenuManager : Control
         musica.Play();
 
     }
+
+    private void TTScheckbutton()
+    {
+        GD.Print("TTS cambio");
+
+        if (!CustomSignals.activado)
+        {
+            CustomSignals.activado = true;
+        }
+        else
+        {
+            CustomSignals.activado = false;
+        }
+    }
+
     private void _OnSoundCuesFocusEntered()
     {
         DisplayServer.TtsStop();
-
         string Message = "volumen de Saound Cues";
-        DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
     }
     private void _OnMusicaSliderFocusEntered()
     {
         DisplayServer.TtsStop();
 
         string Message = "volumen de la musica";
-        DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
     }
     private void _OnTtsFocusEntered()
     {
         DisplayServer.TtsStop();
-        string Message = "volumen de Text to Speach";
-        DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
+        string Message = "volumen de Text to Speech";
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
+    }
+    private void _OnTtsVelocidadFocusEntered()
+    {
+        DisplayServer.TtsStop();
+        string Message = "Velocidad de Text to Speech";
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
     }
     private void _OnRetunrButtonFocusEntered()
     {
         DisplayServer.TtsStop();
 
         string Message = retu.Text;
-        DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
     }
     private void _OnOpcionesFocusEntered()
     {
         DisplayServer.TtsStop();
 
         string Message = opciones.Text;
-        DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
-
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
     }
     private void _OnSalirFocusEntered()
     {
         DisplayServer.TtsStop();
 
         string Message = salir.Text;
-        DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
-
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
     }
     public void SwapMenu(int menuIndex, int returnIndex)
     {

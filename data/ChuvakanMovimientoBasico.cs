@@ -24,7 +24,7 @@ public partial class ChuvakanMovimientoBasico : Movimiento{
 			}
 		}
 		GD.Print("Cassandra va ha hacer su ataque basico!");
-		//this.hurtTargets(potencia);
+		this.hurtTargets(potencia);
 	}
 	
 	public override string giveTitulo(){

@@ -78,9 +78,9 @@ public partial class BarrasVida : Control
 
             // healthBar.SetSize(new Vector2(200, 200));
             healthBar.CustomMinimumSize = new Vector2(175, 0);
-            healthBar.Position = Battle.allylist[i].GetPosition() + new Vector2(-175, 250);
+            healthBar.Position = Battle.allylist[i].GetPosition() + new Vector2(-30, 240);
             manaBar.CustomMinimumSize = new Vector2(175, 0);
-            manaBar.Position = Battle.allylist[i].GetPosition() + new Vector2(-175, 285);
+            manaBar.Position = Battle.allylist[i].GetPosition() + new Vector2(-30, 275);
 
             Bars bar_aux = new Bars();
             bar_aux.healtbar = healthBar;
