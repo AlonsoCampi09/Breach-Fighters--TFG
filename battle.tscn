@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://01bxomorvpdc"]
+[gd_scene load_steps=8 format=3 uid="uid://01bxomorvpdc"]
 
 [ext_resource type="PackedScene" uid="uid://mndfxhtvad5s" path="res://global/scenes/enfrentamiento_aleatorio.tscn" id="1_834as"]
 [ext_resource type="Script" path="res://Battle.cs" id="1_r43sx"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cfhlxwupxgc1l" path="res://assets/dungeon.png" id="2_vajeu"]
 [ext_resource type="PackedScene" uid="uid://dy50wdufoe0oe" path="res://barras_vida.tscn" id="5_u7qqt"]
 [ext_resource type="PackedScene" uid="uid://k8udnpveppdj" path="res://cuadro_texto.tscn" id="6_8wf1b"]
+[ext_resource type="AudioStream" uid="uid://b1ls4qwyc0cv3" path="res://assets/Sounds/Alex noises/undertale-sound-effect-attack-hit.mp3" id="7_kdgnm"]
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_r43sx")
@@ -43,3 +44,4 @@ offset_right = 575.0
 offset_bottom = 111.0
 
 [node name="SoundBattle" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_kdgnm")

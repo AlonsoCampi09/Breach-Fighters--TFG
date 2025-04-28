@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using static System.Net.Mime.MediaTypeNames;
 
 
 public partial class CuadroTexto : Control
@@ -73,4 +74,12 @@ public partial class CuadroTexto : Control
 		boton.Visible = false;
 		finishedTyping = false;
 	}
+
+	public void OnbuttonFocus()
+	{
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsSpeak("continuar", CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
+    }
 }

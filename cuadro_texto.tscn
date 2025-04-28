@@ -58,4 +58,5 @@ text = ">"
 [node name="TypeSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_ka1p8")
 
+[connection signal="focus_entered" from="Panel/MarginContainer/Label/Button" to="." method="OnbuttonFocus"]
 [connection signal="pressed" from="Panel/MarginContainer/Label/Button" to="." method="OnButtonPressed"]
