@@ -8,9 +8,9 @@ public partial class SlimeAgresivoData : EnemyEntity
 		Level = level;
 		
 		this.estadoManager = new EstadoManager(this);
-        this.ID = ID_generator;
-        ID_generator++;
-        Name = "Slime Enfadado";
+		this.ID = ID_generator;
+		ID_generator++;
+		Name = "Slime Enfadado";
 		
 		Mana = 0;
 		

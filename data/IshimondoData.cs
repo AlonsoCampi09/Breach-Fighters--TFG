@@ -8,9 +8,9 @@ public partial class IshimondoData : Entity
 	public IshimondoData(int level){
 		Level = level;
 		this.estadoManager = new EstadoManager(this);
-        this.ID = ID_generator;
-        ID_generator++;
-        Name = "Ishimondo";
+		this.ID = ID_generator;
+		ID_generator++;
+		Name = "Ishimondo";
 		
 		ControlPlayer = true;
 		Turn = false;

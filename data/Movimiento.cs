@@ -67,7 +67,7 @@ public abstract partial class Movimiento: Node2D{
 		f1 = ATQOrigen + dañoBufado;
 		string mensaje = "";
 
-        for (int i = 0; i < objetivos.Count; i++){
+		for (int i = 0; i < objetivos.Count; i++){
 			porcentajeDEF  = 1  + (objetivos[i].passData().giveDEFBuf() - objetivos[i].passData().giveDEFDeBuf()) / 100;
 			DEFOrigen = objetivos[i].passData().giveDEF();
 			defensaBufado = (int) (DEFOrigen * porcentajeDEF);
@@ -75,15 +75,15 @@ public abstract partial class Movimiento: Node2D{
 			formula = Math.Max(1,p+f1-f2);
 			objetivos[i].ReceiveDamage(formula);
 			porcentaje = formula / objetivos[i].passData().TrueHealth[objetivos[i].passData().Level] + 100;
-            mensaje += objetivos[i].Name +  " ha recibido " + (int)porcentaje + "porciento de daño ";
+			mensaje += objetivos[i].Name +  " ha recibido " + (int)porcentaje + "porciento de daño ";
 
-        }
-        if (CustomSignals.activado)
-        {
-            DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
-        }
+		}
+		if (CustomSignals.activado)
+		{
+			DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+		}
 
-        return formula;
+		return formula;
 	}
 	public virtual void putEffectsOnTargets(double proba, Estado e, int dur, int ptg){
 		Random rand = new Random();

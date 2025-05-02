@@ -7,9 +7,9 @@ public partial class VylsData : Entity
 	
 	public VylsData(int level){
 		Level = level;
-        this.ID = ID_generator;
-        ID_generator++;
-        Name = "bils";
+		this.ID = ID_generator;
+		ID_generator++;
+		Name = "bils";
 		this.estadoManager = new EstadoManager(this);
 		
 		ControlPlayer = true;
