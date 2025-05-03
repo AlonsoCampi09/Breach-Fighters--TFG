@@ -121,5 +121,14 @@ public abstract partial class Movimiento: Node2D{
 	public virtual void assingLevel(int l){
 		this.casterLevel = l;
 	}
+	public int giveCost(){
+		return coste; 
+	}
+	public int givePotencia(){
+		return potencia; 
+	}
+	public int giveEvolucion(){
+		return evolucion; 
+	}
 	
 }

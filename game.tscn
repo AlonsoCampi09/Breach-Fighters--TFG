@@ -13,3 +13,21 @@ position = Vector2(600, 470)
 [node name="musicaBatalla" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_quhcv")
 bus = &"Musica"
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 474.0
+offset_top = 301.5
+offset_right = 678.0
+offset_bottom = 346.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "Hola"
+horizontal_alignment = 1
+vertical_alignment = 1

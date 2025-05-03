@@ -2,7 +2,6 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Emit;
 using System.Xml.Linq;
 using static Battle;
 public partial class MenuBatalla : Control
@@ -39,8 +38,13 @@ public partial class MenuBatalla : Control
 	private int target_disposition;
 	private Battle battle_access;
 	
-	private Panel panelDescripcion;
-	private RichTextLabel Descripcion;
+	private InfoPanel panelDescripcion;
+	private Label labelInfoTitle;
+	private Label labelInfoDescription;
+	private Label labelInfoCost;
+	private Label labelInfoPotencia;
+	private Label labelInfoLevelNeeded;
+	private Label labelInfoLevelEvolve;
 	
 	public override void _Ready()
 	{
@@ -50,8 +54,13 @@ public partial class MenuBatalla : Control
 		special = GetNode<Button>("Battle_Action/MarginContainer/HBoxContainer/Special");
 		bag = GetNode<Button>("Battle_Action/MarginContainer/HBoxContainer/Bag");
 		guard = GetNode<Button>("Battle_Action/MarginContainer/HBoxContainer/Guard");
-		panelDescripcion = GetNode<Panel>("PanelDescriptivo");
-		Descripcion = GetNode<RichTextLabel>("PanelDescriptivo/PDMarginContainer/Descripcion");
+		panelDescripcion = GetNode<InfoPanel>("PanelDescriptivo");
+		labelInfoTitle = GetNode<Label>("PanelDescriptivo/MarginContainer/VBoxContainer/Titulo");
+		labelInfoDescription = GetNode<Label>("PanelDescriptivo/MarginContainer/VBoxContainer/Descripcion");
+		labelInfoPotencia = GetNode<Label>("PanelDescriptivo/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Potencia");
+		labelInfoCost = GetNode<Label>("PanelDescriptivo/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Coste");
+		labelInfoLevelNeeded = GetNode<Label>("PanelDescriptivo/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/NivelNecesario");
+		labelInfoLevelEvolve = GetNode<Label>("PanelDescriptivo/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/NivelEvolucion");
 		actingMenu = GetNode<Panel>("Battle_Action");
 		specialMenu = GetNode<Panel>("Special_Action");
 		mov1 = GetNode<Button>("Special_Action/MarginContainer/HBoxContainer/Mov1");
@@ -94,6 +103,7 @@ public partial class MenuBatalla : Control
 		attack.GrabFocus();
 		panelDescripcion.Visible = false;
 		selectingTarget = false;
+		selecting.Visible= false;
 	}
 	public void makeMenuVisible(Fighter f)
 	{
@@ -751,28 +761,38 @@ public partial class MenuBatalla : Control
 
 	}
 	public void ShowDesciptionPanel(){
+		if(currentButton == attack){
+			PrepareInfo(actor.passData().atqBasico,false,true);
+		}else if(currentButton == guard){
+			PrepareInfo(actor.passData().defBasico,false,false);
+		}else if(currentButton == mov1){
+			PrepareInfo(actor.passData().mov1,true,true);
+		}else if(currentButton == mov2){
+			PrepareInfo(actor.passData().mov2,true,true);
+		}else if(currentButton == mov3){
+			PrepareInfo(actor.passData().mov3,true,true);
+		}else if(currentButton == mov4){
+			PrepareInfo(actor.passData().mov4,true,true);
+		}
+	}
+	
+	public void PrepareInfo(Movimiento s, bool c, bool p){
 		string titulo = "";
 		string descripcion = "";
-		if(currentButton == attack){
-			titulo = actor.passData().atqBasico.giveTitulo();
-			descripcion = actor.passData().atqBasico.giveDescripcion();
-		}else if(currentButton == guard){
-			titulo = actor.passData().defBasico.giveTitulo();
-			descripcion = actor.passData().defBasico.giveDescripcion();
-		}else if(currentButton == mov1){
-			titulo = actor.passData().mov1.giveTitulo();
-			descripcion = actor.passData().mov1.giveDescripcion();
-		}else if(currentButton == mov2){
-			titulo = actor.passData().mov2.giveTitulo();
-			descripcion = actor.passData().mov2.giveDescripcion();
-		}else if(currentButton == mov3){
-			titulo = actor.passData().mov3.giveTitulo();
-			descripcion = actor.passData().mov3.giveDescripcion();
-		}else if(currentButton == mov4){
-			titulo = actor.passData().mov4.giveTitulo();
-			descripcion = actor.passData().mov4.giveDescripcion();
-		}
-		Descripcion.Text = $"[b]{titulo}[/b]\n{descripcion}.";
+		string cost = "";
+		string potencia = "";
+		string evolve = "";
+		titulo = s.giveTitulo();
+		descripcion = s.giveDescripcion();
+		if(c)	cost = $"Coste: {cost}{s.giveCost()} Maná";
+		if(p)	potencia = $"Potencia: {potencia}{s.givePotencia()} POW";
+		evolve = $"Nivel evolución: {evolve}{s.giveEvolucion()}";
+		panelDescripcion.UpdatePanelSize();
+		labelInfoTitle.Text = $"{titulo}";
+		labelInfoDescription.Text = $"{descripcion}";
+		labelInfoCost.Text = $"{cost}";
+		labelInfoPotencia.Text = $"{potencia}";
+		labelInfoLevelEvolve.Text = $"{evolve}";
 		panelDescripcion.Visible = true;
 	}
 }

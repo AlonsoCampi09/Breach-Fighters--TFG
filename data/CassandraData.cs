@@ -10,9 +10,9 @@ public partial class CassandraData : Entity
 		this.estadoManager = new EstadoManager(this);
 		
 		Name = "Cassandra";
-        this.ID = ID_generator;
-        ID_generator++;
-        ControlPlayer = true;
+		this.ID = ID_generator;
+		ID_generator++;
+		ControlPlayer = true;
 		Turn = false;
 		
 		TrueHealth = new int[] {18,20,22,24,26,28,30,32,34,36};
