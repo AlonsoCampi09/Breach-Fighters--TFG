@@ -16,6 +16,18 @@ position = Vector2(576.5, 323.5)
 scale = Vector2(0.963805, 1.07167)
 texture = ExtResource("2_vajeu")
 
+[node name="Menu_Batalla" parent="." instance=ExtResource("2_mqco1")]
+layout_direction = 2
+anchors_preset = 10
+anchor_bottom = 0.0
+offset_left = 575.0
+offset_top = 10.0
+offset_right = 575.0
+offset_bottom = 10.0
+grow_vertical = 1
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
 [node name="EnfrentamientoAletorio" parent="." instance=ExtResource("1_834as")]
 position = Vector2(575, 263)
 
@@ -33,15 +45,4 @@ offset_bottom = 111.0
 
 [node name="SoundBattle" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_kdgnm")
-
-[node name="Menu_Batalla" parent="." instance=ExtResource("2_mqco1")]
-layout_direction = 2
-anchors_preset = 10
-anchor_bottom = 0.0
-offset_left = 575.0
-offset_top = 10.0
-offset_right = 575.0
-offset_bottom = 10.0
-grow_vertical = 1
-size_flags_horizontal = 4
-size_flags_vertical = 6
+bus = &"SoundCue"

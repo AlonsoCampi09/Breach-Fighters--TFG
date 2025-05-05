@@ -23,8 +23,10 @@ public partial class IshimondoMovimientoBasico : Movimiento{
 	public override int hurtTargets(int p){
 		int formula = 0, dañoBufado,  defensaBufado, ATQOrigen, DEFOrigen, f1, f2, vida_robada = 0;
 		float porcentajeATQ, porcentajeDEF;
-		
-		porcentajeATQ = 1  + (origen.passData().giveDMGBuf() - origen.passData().giveDMGDeBuf()) / 100;
+		double porcentaje;
+        string mensaje = "";
+
+        porcentajeATQ = 1  + (origen.passData().giveDMGBuf() - origen.passData().giveDMGDeBuf()) / 100;
 		ATQOrigen = origen.passData().giveDMG();
 		dañoBufado = (int) (ATQOrigen * porcentajeATQ);
 		f1 = ATQOrigen + dañoBufado;
@@ -38,9 +40,21 @@ public partial class IshimondoMovimientoBasico : Movimiento{
 			if(objetivos[i].passData().estadoManager.TieneEstado(Estado.Marca_del_cazador)){
 				vida_robada += (int) (Math.Max(1,formula/2));
 			}
-			objetivos[i].ReceiveDamage(formula);
-		}
-		origen.passData().restoreHP(vida_robada);
+			objetivos[i].ReceiveDamage(formula); 
+			GD.Print("formula = " + formula + "vida slime = " + objetivos[i].passData().TrueHealth[objetivos[i].passData().Level]);
+            porcentaje = ((double)formula / (double)objetivos[i].passData().TrueHealth[objetivos[i].passData().Level]) * 100;
+          //  porcentaje = Math.Round(porcentaje, 1);
+
+            mensaje += objetivos[i].Name + " ha recibido " + (int)porcentaje + "porciento de daño ";
+
+        }
+        if (CustomSignals.activado)
+        {
+			CustomSignals.Instance.repetir += mensaje;
+
+            DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
+        origen.passData().restoreHP(vida_robada);
 		return formula;
 	}
 	public override string giveTitulo(){

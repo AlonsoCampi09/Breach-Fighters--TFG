@@ -63,6 +63,8 @@ public partial class CuadroTexto : Control
 	{
         if (CustomSignals.activado)
         {
+			CustomSignals.Instance.repetir = text + " continuar ";
+
             DisplayServer.TtsSpeak(text, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
         fullText = text;
@@ -79,6 +81,8 @@ public partial class CuadroTexto : Control
 	{
         if (CustomSignals.activado)
         {
+			//CustomSignals.Instance.repetir = "continuar";
+
             DisplayServer.TtsSpeak("continuar", CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
     }
