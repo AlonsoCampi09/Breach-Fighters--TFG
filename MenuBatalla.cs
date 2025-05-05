@@ -604,6 +604,7 @@ public partial class MenuBatalla : Control
 
 				if (CustomSignals.activado)
 				{
+					CustomSignals.Instance.repetir = selectedAlly.passData().Name;
 					DisplayServer.TtsSpeak(selectedAlly.passData().Name, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
 				}
 				break;
@@ -617,6 +618,7 @@ public partial class MenuBatalla : Control
 
 				if (CustomSignals.activado)
 				{
+					CustomSignals.Instance.repetir = selectedEnemy.passData().Name;
 					DisplayServer.TtsSpeak(selectedEnemy.passData().Name, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
 				}
 				break;
@@ -636,6 +638,7 @@ public partial class MenuBatalla : Control
 				DisplayServer.TtsStop();
 				if (CustomSignals.activado)
 				{
+					CustomSignals.Instance.repetir = selectedFighter.passData().Name;
 					DisplayServer.TtsSpeak(selectedFighter.passData().Name, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
 				}
 				break;
