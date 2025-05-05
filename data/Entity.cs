@@ -146,7 +146,7 @@ public partial class Entity : Resource
     }
     public void removeHP(int h)
     {
-        if (this.Health - h > 0)
+        if (this.Health - h < 0)
         {
             this.Health = 0;
         }

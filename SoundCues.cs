@@ -23,6 +23,8 @@ public partial class SoundCues : HSlider
         string mensaje = "Volumen de sound cues a " + (int)value_aux;
         if (CustomSignals.activado)
         {
+            CustomSignals.Instance.repetir = mensaje;
+
             DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
         }
     }

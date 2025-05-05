@@ -23,7 +23,8 @@ public partial class TextToSpeachSlider : HSlider
         DisplayServer.TtsStop();
         string mensaje = "Volumen de Text To Speech a " + value_aux;
         if (CustomSignals.activado)
-        {
+        {CustomSignals.Instance.repetir = mensaje;
+
             DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
     }

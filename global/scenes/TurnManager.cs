@@ -56,10 +56,12 @@ public partial class TurnManager{
                     }
                     else
                     {
-                        Battle.enemieslist[x].animSprite.Visible = false;
+                        Battle.enemieslist[x].sprites.Visible = false;
                         string Message = Battle.enemieslist[x].Name.ToString() + " ha sido derrotado";
                         if (CustomSignals.activado)
                         {
+                            CustomSignals.Instance.repetir += Message;
+
                             DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
                         }
                         Battle.enemieslist.RemoveAt(x);
@@ -86,6 +88,8 @@ public partial class TurnManager{
                         string Message = Battle.allylist[x].Name.ToString() + " ha sido derrotado";
                         if (CustomSignals.activado)
                         {
+                            CustomSignals.Instance.repetir += Message;
+
                             DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
                         }
                         Battle.allylist.RemoveAt(x);
@@ -95,6 +99,12 @@ public partial class TurnManager{
                     }
                 }
             }
+        }
+        GD.Print("despues de update");
+        foreach (Fighter f in turnOrder)
+        {
+            Entity entity = f.passData();
+            GD.Print($"{entity.Name} - Velocidad: {entity.TrueSpeed[entity.Level - 1]}");
         }
     }
     public void updateTurnOrder()

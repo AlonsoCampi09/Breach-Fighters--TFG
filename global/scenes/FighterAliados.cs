@@ -8,22 +8,29 @@ public partial class FighterAliados : Fighter
 {
 	
 	public override void _Ready(){
-		animSprite = GetNode<AnimatedSprite2D>("Sprites");
+        sprites = GetNode<AnimatedSprite2D>("Sprites");
 		this.prepareFighter(1);
 	}
 	
 	public override void _Process(double delta)
 	{
-		if(data.Health > (int) data.TrueHealth[data.Level-1]/4){
+		/*if(data.Health > (int) data.TrueHealth[data.Level-1]/4){
 			animSprite.Play("idle");
 		}else{
-			if(data.Health == 0){
+			if(data.Health <= 0){
 				animSprite.Play("fainted");
 			}else{
 				animSprite.Play("idle_low");
-			}
-		}
+                if (CustomSignals.activado)
+                {
+                    DisplayServer.TtsSpeak( this.data.Name +" se estremeze de dolor ", CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+                }
+
+            }
+		}*/
 	}
+
+
 
     /*public void prepareFighter(int level)
 	{
@@ -33,13 +40,9 @@ public partial class FighterAliados : Fighter
 	public Entity passData(){
 		return this.data;
 	}*/
-    public async void aux()
-    {
-        GD.Print("hellllllo");
-    }
+
     public override async System.Threading.Tasks.Task myTrun()
     {
-        aux();
         GD.Print("espera aliados");
 
         if (this.data.Name.Contains("Chuvakan"))

@@ -31,7 +31,7 @@ public partial class FighterEnemigos : Fighter
          }
      }*/
     public override void _Ready(){
-		animSprite = GetNode<AnimatedSprite2D>("Sprites");
+        sprites = GetNode<AnimatedSprite2D>("Sprites");
 		this.prepareFighter(1);
 	}
 	
@@ -124,6 +124,8 @@ public partial class FighterEnemigos : Fighter
        // DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId);
         if (CustomSignals.activado)
         {
+            CustomSignals.Instance.repetir = Message;
+
             DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
         GD.Print("dano de enemigo a aliado = " + dano);

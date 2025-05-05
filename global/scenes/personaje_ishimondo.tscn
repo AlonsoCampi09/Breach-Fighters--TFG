@@ -74,7 +74,7 @@ script = ExtResource("1_kob3r")
 position = Vector2(0, 1)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_hn8ng")
-animation = &"idle_low"
+animation = &"idle"
 
 [node name="Estado_Display" parent="." instance=ExtResource("3_gwnp1")]
 position = Vector2(60, -70)

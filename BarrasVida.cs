@@ -10,8 +10,8 @@ public partial class BarrasVida : Control
 {
     struct Bars
     {
-        public ProgressBar healtbar;
-        public ProgressBar manabar;
+        public TextureProgressBar healtbar;
+        public TextureProgressBar manabar;
         public int ID;
     }
     private List<Bars> bars = new List<Bars>();
@@ -30,13 +30,18 @@ public partial class BarrasVida : Control
 
     public void setHealthBars()
     {
+        Texture2D textureUnder = GD.Load<Texture2D>("res://assets/sprites/bar.png"), textureProgress;
         GD.Print("barras de vida set");
         for (int i = 0; i < Battle.enemieslist.Count; i++) // se crean los botones que seran los enemigos
         {
-            ProgressBar healthBar = new ProgressBar();
-            healthBar.ShowPercentage = true;
+            TextureProgressBar healthBar = new TextureProgressBar();
+          //  healthBar.ShowPercentage = true;
             healthBar.MinValue = 0;
-            
+           // textureUnder = GD.Load<Texture2D>("\"res://assets/sprites/bar.png");
+            healthBar.TextureUnder = textureUnder;
+            textureProgress = GD.Load<Texture2D>("res://assets/sprites/bar_health_normal.png");
+            healthBar.TextureProgress = textureProgress;
+            //Texture2D aux =
             //esta cojiendo la data de fighter y no la data de FighterEnemigos por lo que es nula, habira que pasa la data de enemigos que es distinta a la de fighter 
             healthBar.MaxValue = Battle.enemieslist[i].data.TrueHealth[Battle.enemieslist[i].data.Level - 1];
 
@@ -44,7 +49,7 @@ public partial class BarrasVida : Control
             healthBar.Visible = true;
             // healthBar.SetSize(new Vector2(200, 200));
             healthBar.CustomMinimumSize = new Vector2(175, 0);
-            healthBar.Position = Battle.enemieslist[i].GetPosition() + new Vector2(-75, 0);
+            healthBar.Position = Battle.enemieslist[i].GetPosition() + new Vector2(-55, 0);
             Bars bar_aux = new Bars();
             bar_aux.healtbar = healthBar;
             bar_aux.ID = Battle.enemieslist[i].data.ID;
@@ -60,12 +65,20 @@ public partial class BarrasVida : Control
         for (int i = 0; i < Battle.allylist.Count; i++) // se crean los botones que seran los enemigos
         {
 
-            ProgressBar healthBar = new ProgressBar();
-            ProgressBar manaBar = new ProgressBar();
+            TextureProgressBar healthBar = new TextureProgressBar();
+            TextureProgressBar manaBar = new TextureProgressBar();
+       //     textureUnder = GD.Load<Texture2D>("\"res://assets/sprites/bar.png");
+            healthBar.TextureUnder = textureUnder;
+            textureProgress = GD.Load<Texture2D>("res://assets/sprites/bar_health_normal.png");
+            healthBar.TextureProgress = textureProgress;
 
-            healthBar.ShowPercentage = true;
+            manaBar.TextureUnder = textureUnder;
+            textureProgress = GD.Load<Texture2D>("res://assets/sprites/bar_mana.png");
+            manaBar.TextureProgress = textureProgress;
+
+            //   healthBar.ShowPercentage = true;
             healthBar.MinValue = 0;
-            manaBar.ShowPercentage = true;
+           // manaBar.ShowPercentage = true;
             manaBar.MinValue = 0;
             healthBar.MaxValue = Battle.allylist[i].data.TrueHealth[Battle.allylist[i].data.Level-1];
             manaBar.MaxValue = Battle.allylist[i].data.TrueMana[Battle.allylist[i].data.Level - 1];
@@ -78,9 +91,9 @@ public partial class BarrasVida : Control
 
             // healthBar.SetSize(new Vector2(200, 200));
             healthBar.CustomMinimumSize = new Vector2(175, 0);
-            healthBar.Position = Battle.allylist[i].GetPosition() + new Vector2(-30, 240);
+            healthBar.Position = Battle.allylist[i].GetPosition() + new Vector2(-15, 240);
             manaBar.CustomMinimumSize = new Vector2(175, 0);
-            manaBar.Position = Battle.allylist[i].GetPosition() + new Vector2(-30, 275);
+            manaBar.Position = Battle.allylist[i].GetPosition() + new Vector2(-15, 275);
 
             Bars bar_aux = new Bars();
             bar_aux.healtbar = healthBar;
@@ -136,6 +149,8 @@ public partial class BarrasVida : Control
                     if (Battle.allylist[x].data.Health > 0)
                     {
                         bars[i].healtbar.Value = Battle.allylist[x].data.Health;
+                        bars[i].manabar.Value = Battle.allylist[x].data.Mana;
+
                     }
                     else
                     {

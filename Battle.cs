@@ -91,6 +91,7 @@ public partial class Battle : Node2D
                 GD.Print("Turno de = " + turnManager.turnOrder[i].data.Name);
                 if (CustomSignals.activado)
                 {
+                    CustomSignals.Instance.repetir += "Turno de " + turnManager.turnOrder[i].data.Name;
                     DisplayServer.TtsSpeak("Turno de " + turnManager.turnOrder[i].data.Name, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
                 }
                 //  menu_de_pelea.SetID_turno(turnManager.turnOrder[i].data.ID);
@@ -115,7 +116,7 @@ public partial class Battle : Node2D
                 //GD.Print("Turno pasado");
                 for (int x = 0; x < turnManager.turnOrder.Count; x++)
                 {
-                    turnManager.turnOrder[i].changeSprite();
+                    turnManager.turnOrder[x].changeSprite();
                 }
                 turnManager.updateTurns();
 
@@ -300,10 +301,7 @@ public partial class Battle : Node2D
 
         //Descripcion del escenario
         mensaje = "El grupo entra en la arena del coliseo, en ella, se encuentran a  " + enemieslist.Count + " enemigos .";
-        if (CustomSignals.activado)
-        {
-            //DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
-        }        //Obtenemos los personajes que siguen vivos
+        //Obtenemos los personajes que siguen vivos
         List<Fighter> aux = allylist.FindAll(IsAlive);
 
         if (aux.Count > 1) mensaje += "Empiezan la batalla ";
@@ -323,6 +321,7 @@ public partial class Battle : Node2D
 
         if (CustomSignals.activado)
         {
+            CustomSignals.Instance.repetir = mensaje;
             DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
     }
@@ -336,6 +335,7 @@ public partial class Battle : Node2D
             String mensaje = "El grupo ha ganado la batalla, de repente, se abre la puerta hacia la siguiente sala. Avanzan hacia ella.";
             if (CustomSignals.activado)
             {
+                CustomSignals.Instance.repetir = mensaje;
                 DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
             }
         }
@@ -345,6 +345,7 @@ public partial class Battle : Node2D
             String mensaje = "El grupo ha sido derrotado, el lider del coliseo les manda al area de descanso.";
             if (CustomSignals.activado)
             {
+                CustomSignals.Instance.repetir = mensaje;
                 DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
             }
         }
@@ -372,6 +373,7 @@ public partial class Battle : Node2D
         }
         if (CustomSignals.activado)
         {
+            CustomSignals.Instance.repetir = mensaje;
             DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
     }
@@ -389,6 +391,7 @@ public partial class Battle : Node2D
         }
         if (CustomSignals.activado)
         {
+            CustomSignals.Instance.repetir = mensaje;
             DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
     }

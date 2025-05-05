@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public partial class Fighter : Node2D
 {
     public Entity data;
-    public AnimatedSprite2D animSprite;
+    public AnimatedSprite2D sprites;
     private Tween parpadeoTween;
     private PackedScene DamagePopupScene = GD.Load<PackedScene>("res://ui/damage_popUp.tscn");
 
@@ -52,19 +52,19 @@ public partial class Fighter : Node2D
 
     public override void _Ready()
     {
-        animSprite = GetNode<AnimatedSprite2D>("Sprites");
+        sprites = GetNode<AnimatedSprite2D>("Sprites");
         this.prepareFighter(1);
     }
 
     public override void _Process(double delta)
     {
-        if (data.Health > (int)data.TrueHealth[data.Level - 1] / 4)
+       /* if (data.Health > (int)data.TrueHealth[data.Level - 1] / 4)
         {
             animSprite.Play("idle");
         }
         else
         {
-            if (data.Health == 0)
+            if (data.Health <= 0)
             {
                 animSprite.Play("fainted");
             }
@@ -72,7 +72,7 @@ public partial class Fighter : Node2D
             {
                 animSprite.Play("idle_low");
             }
-        }
+        }*/
     }
 
 
@@ -126,21 +126,39 @@ public partial class Fighter : Node2D
 
     public void changeSprite()
     {
+        //GD.Print("sprites.Name = " + sprites.Animation);
+
         if (data != null)
         {
-            if (this.data.Health > (int)this.data.TrueHealth[this.data.Level - 1] / 4)
+            if (this.data.Health > (int)this.data.TrueHealth[this.data.Level - 1] / 3)
             {
-                animSprite.Play("idle");
+                PlayAnimationSafe("idle");
+                GD.Print("animacion idle");
+
             }
             else
             {
                 if (data.Health <= 0)
                 {
-                    animSprite.Play("fainted");
+                    PlayAnimationSafe("fainted");
+                    GD.Print("animacion muerto");
                 }
                 else
                 {
-                    animSprite.Play("idle_low");
+                    if (!sprites.Animation.Equals("idle_low") && this is FighterAliados)
+                    {
+
+                        if (CustomSignals.activado)
+                        {
+                            CustomSignals.Instance.repetir += this.data.Name + "se estremeze de dolor";
+
+                            DisplayServer.TtsSpeak(this.data.Name + "se estremeze de dolor", CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+                        }
+                    }
+                    GD.Print("animacion idle_low");
+
+                    PlayAnimationSafe("idle_low");
+
                 }
             }
         }
@@ -176,13 +194,31 @@ public partial class Fighter : Node2D
         parpadeoTween = GetTree().CreateTween();
         parpadeoTween.SetLoops(-1);
         // Oscurecer
-        parpadeoTween.TweenProperty(animSprite, "modulate", new Color(0.4f, 0.4f, 0.4f), 0.15f)
+        parpadeoTween.TweenProperty(sprites, "modulate", new Color(0.4f, 0.4f, 0.4f), 0.15f)
                      .SetTrans(Tween.TransitionType.Sine)
                      .SetEase(Tween.EaseType.InOut);
         // Volver a normal
-        parpadeoTween.TweenProperty(animSprite, "modulate", new Color(1f, 1f, 1f), 0.15f)
+        parpadeoTween.TweenProperty(sprites, "modulate", new Color(1f, 1f, 1f), 0.15f)
                      .SetTrans(Tween.TransitionType.Sine)
                      .SetEase(Tween.EaseType.InOut);
+    }
+    public void PlayAnimationSafe(string animationName)
+    {
+        if (sprites != null && sprites.SpriteFrames != null)
+        {
+            if (sprites.SpriteFrames.HasAnimation(animationName))
+            {
+
+                sprites.Play(animationName);
+            }
+            else
+            {
+                GD.Print($"[WARNING] Animación '{animationName}' no encontrada para {data?.Name ?? "Fighter"}.");
+                // Si quieres reproducir "idle" por defecto si no existe la animación:
+                if (sprites.SpriteFrames.HasAnimation("idle"))
+                    sprites.Play("idle");
+            }
+        }
     }
 
     public void ReceiveDamage(int damage)
@@ -220,7 +256,7 @@ public partial class Fighter : Node2D
             parpadeoTween = null;
 
             // (opcional) Restaurar color normal
-            animSprite.Modulate = new Color(1f, 1f, 1f);
+            sprites.Modulate = new Color(1f, 1f, 1f);
         }
     }
 }

@@ -23,7 +23,8 @@ public partial class VolumenMusicaSlider : HSlider
         DisplayServer.TtsStop();
         string mensaje = "Volumen de musica a " + (int)value_aux;
         if (CustomSignals.activado)
-        {
+        {CustomSignals.Instance.repetir = mensaje;
+
             DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
     }

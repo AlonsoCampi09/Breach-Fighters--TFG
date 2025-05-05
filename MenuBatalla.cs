@@ -163,29 +163,11 @@ public partial class MenuBatalla : Control
 
     public override void _Process(double delta)
 	{
-		if (Input.IsActionPressed("ui_cancel"))
+		if (Input.IsActionPressed("ui_cancel") && !this.selectingTarget)
 		{
 			ChangeMenu(0);
 		}
-        /*if (this.selectingTarget)
-		{
-			// Cambiar objetivo con izquierda/derecha
-			if (Input.IsActionJustPressed("ui_left"))
-			{
-				GD.Print("Flecha visible moviendose a la izq");
-				this.ChangeTarget(-1);
-			}
-			else if (Input.IsActionJustPressed("ui_right"))
-			{
-				GD.Print("Flecha visible moviendose a la der");
-				this.ChangeTarget(1);
-			}
-			// Confirmar selección con "ui_accept"
-			if (Input.IsActionJustPressed("ui_accept"))
-			{
-				this.ConfirmTarget();
-			}
-		}*/
+
         if (this.selectingTarget && target_disposition != 3)
         {
             // Cambiar objetivo con izquierda/derecha
@@ -530,6 +512,8 @@ public partial class MenuBatalla : Control
 
                 if (CustomSignals.activado)
                 {
+                    CustomSignals.Instance.repetir = selectedAlly.passData().Name;
+
                     DisplayServer.TtsSpeak(selectedAlly.passData().Name, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
                 }
                 break;
@@ -543,6 +527,7 @@ public partial class MenuBatalla : Control
 
                 if (CustomSignals.activado)
                 {
+                    CustomSignals.Instance.repetir = selectedEnemy.passData().Name;
                     DisplayServer.TtsSpeak(selectedEnemy.passData().Name, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
                 }
                 break;
@@ -562,6 +547,7 @@ public partial class MenuBatalla : Control
                 DisplayServer.TtsStop();
                 if (CustomSignals.activado)
                 {
+                    CustomSignals.Instance.repetir = selectedFighter.passData().Name;
                     DisplayServer.TtsSpeak(selectedFighter.passData().Name, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
                 }
                 break;

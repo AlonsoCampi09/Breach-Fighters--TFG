@@ -62,7 +62,8 @@ public partial class MainMenuManager : Control
 
         string Message = start.Text;
         if (CustomSignals.activado)
-        {
+        {CustomSignals.Instance.repetir = Message;
+
             DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
     }
@@ -99,7 +100,8 @@ public partial class MainMenuManager : Control
         DisplayServer.TtsStop();
         string Message = "volumen de Saound Cues";
         if (CustomSignals.activado)
-        {
+        {CustomSignals.Instance.repetir = Message;
+
             DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
     }
@@ -109,7 +111,8 @@ public partial class MainMenuManager : Control
 
         string Message = "volumen de la musica";
         if (CustomSignals.activado)
-        {
+        {CustomSignals.Instance.repetir = Message;
+
             DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
     }
@@ -118,7 +121,8 @@ public partial class MainMenuManager : Control
         DisplayServer.TtsStop();
         string Message = "volumen de Text to Speech";
         if (CustomSignals.activado)
-        {
+        {CustomSignals.Instance.repetir = Message;
+
             DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
     }
@@ -127,7 +131,8 @@ public partial class MainMenuManager : Control
         DisplayServer.TtsStop();
         string Message = "Velocidad de Text to Speech";
         if (CustomSignals.activado)
-        {
+        {CustomSignals.Instance.repetir = Message;
+
             DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
     }
@@ -137,7 +142,8 @@ public partial class MainMenuManager : Control
 
         string Message = retu.Text;
         if (CustomSignals.activado)
-        {
+        {CustomSignals.Instance.repetir = Message;
+
             DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
     }
@@ -147,7 +153,8 @@ public partial class MainMenuManager : Control
 
         string Message = opciones.Text;
         if (CustomSignals.activado)
-        {
+        {CustomSignals.Instance.repetir = Message;
+
             DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
     }
@@ -157,7 +164,8 @@ public partial class MainMenuManager : Control
 
         string Message = salir.Text;
         if (CustomSignals.activado)
-        {
+        {CustomSignals.Instance.repetir = Message;
+
             DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
     }

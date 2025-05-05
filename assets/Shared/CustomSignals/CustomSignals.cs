@@ -27,6 +27,8 @@ public partial class CustomSignals : Node
     public delegate void BattlefinishedEventHandler();
     public string[] voices = DisplayServer.TtsGetVoicesForLanguage("es");
     public string voiceId;
+    public string repetir;
+
     public static CustomSignals Instance { get; private set; }
     public static bool activado { get; set; }
     public static int volumenTextToSpeach { get; set; }
@@ -51,6 +53,19 @@ public partial class CustomSignals : Node
         if (Input.IsActionJustPressed("RememberE")) // "RememberA" es 2
         {
             EmitSignal("RememberE"); // Emit the signal
+        }
+        if (Input.IsActionJustPressed("repetir")) // "RememberA" es 2
+        {
+            repetirmensaje(); // Emit the signal
+        }
+    }
+
+    public void repetirmensaje()
+    {
+        DisplayServer.TtsStop();
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsSpeak(repetir, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
     }
 }
