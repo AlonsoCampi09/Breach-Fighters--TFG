@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://c2axo8ov0mnqm"]
+
+[ext_resource type="Script" path="res://CinematicaInicial.cs" id="1_1lomb"]
+[ext_resource type="Texture2D" uid="uid://bx7o6oyiyg8s4" path="res://assets/sprites/Friends/chuvakan.png" id="1_35h0e"]
+[ext_resource type="Texture2D" uid="uid://bx4h3nldslo8y" path="res://assets/sprites/Friends/doraemon.png" id="2_k1brv"]
+[ext_resource type="Texture2D" uid="uid://dhpwujnx00k5f" path="res://assets/sprites/Friends/halo.png" id="3_ngveq"]
+[ext_resource type="Texture2D" uid="uid://bcfyn1nrjhnw0" path="res://assets/sprites/Friends/watona.png" id="4_kxcb8"]
+[ext_resource type="AudioStream" uid="uid://daia88o7bxu8m" path="res://assets/Sounds/puerta_abriendose.mp3" id="6_74gkp"]
+
+[node name="Cinematica_Inicial" type="Node2D"]
+script = ExtResource("1_1lomb")
+
+[node name="Chuvakan" type="Sprite2D" parent="."]
+position = Vector2(300, 159)
+scale = Vector2(0.823611, 0.78)
+texture = ExtResource("1_35h0e")
+hframes = 5
+
+[node name="Doraemon" type="Sprite2D" parent="."]
+position = Vector2(806, 488)
+scale = Vector2(0.852778, 0.78)
+texture = ExtResource("2_k1brv")
+hframes = 5
+
+[node name="Halo" type="Sprite2D" parent="."]
+position = Vector2(303, 478)
+scale = Vector2(0.847222, 0.805)
+texture = ExtResource("3_ngveq")
+hframes = 5
+
+[node name="Watona" type="Sprite2D" parent="."]
+position = Vector2(805, 167)
+scale = Vector2(0.798611, 0.747188)
+texture = ExtResource("4_kxcb8")
+hframes = 5
+
+[node name="ruido_puerta" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_74gkp")
+volume_db = -18.819
+
+[connection signal="finished" from="ruido_puerta" to="." method="On_ruido_puerta_finished"]

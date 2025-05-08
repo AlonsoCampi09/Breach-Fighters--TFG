@@ -3,60 +3,8 @@
   "WorkspaceRootPath": "C:\\hlocal\\Breach-Fighters--TFG\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|c:\\hlocal\\breach-fighters--tfg\\battle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|solutionrelative:battle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|c:\\hlocal\\breach-fighters--tfg\\data\\cassandramovimiento1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|solutionrelative:data\\cassandramovimiento1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|c:\\hlocal\\breach-fighters--tfg\\data\\chuvakanmovimiento1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|solutionrelative:data\\chuvakanmovimiento1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|c:\\hlocal\\breach-fighters--tfg\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|solutionrelative:game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|c:\\hlocal\\breach-fighters--tfg\\enfrentamiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|solutionrelative:enfrentamiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|c:\\hlocal\\breach-fighters--tfg\\assets\\shared\\customsignals\\customsignals.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|solutionrelative:assets\\shared\\customsignals\\customsignals.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|c:\\hlocal\\breach-fighters--tfg\\mainmenumanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|solutionrelative:mainmenumanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|c:\\hlocal\\breach-fighters--tfg\\global\\scenes\\fighter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|solutionrelative:global\\scenes\\fighter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|c:\\hlocal\\breach-fighters--tfg\\global\\scenes\\fighteraliados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|solutionrelative:global\\scenes\\fighteraliados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|c:\\hlocal\\breach-fighters--tfg\\global\\scenes\\fighterenemigos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|solutionrelative:global\\scenes\\fighterenemigos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|c:\\hlocal\\breach-fighters--tfg\\global\\scenes\\fighterteam.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|solutionrelative:global\\scenes\\fighterteam.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|c:\\hlocal\\breach-fighters--tfg\\data\\cassandradata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|solutionrelative:data\\cassandradata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|c:\\hlocal\\breach-fighters--tfg\\texttospeachslider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|solutionrelative:texttospeachslider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|c:\\hlocal\\breach-fighters--tfg\\menutab.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B999CE1-1DC5-4B65-964B-3FB2114DAE6D}|breach_fighters_v_p.csproj|solutionrelative:menutab.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -73,202 +21,29 @@
               "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ChuvakanMovimiento1.cs",
-              "DocumentMoniker": "C:\\hlocal\\Breach-Fighters--TFG\\data\\ChuvakanMovimiento1.cs",
-              "RelativeDocumentMoniker": "data\\ChuvakanMovimiento1.cs",
-              "ToolTip": "C:\\hlocal\\Breach-Fighters--TFG\\data\\ChuvakanMovimiento1.cs",
-              "RelativeToolTip": "data\\ChuvakanMovimiento1.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAqwBoAAABmAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T11:02:30.356Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CassandraMovimiento1.cs",
-              "DocumentMoniker": "C:\\hlocal\\Breach-Fighters--TFG\\data\\CassandraMovimiento1.cs",
-              "RelativeDocumentMoniker": "data\\CassandraMovimiento1.cs",
-              "ToolTip": "C:\\hlocal\\Breach-Fighters--TFG\\data\\CassandraMovimiento1.cs",
-              "RelativeToolTip": "data\\CassandraMovimiento1.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAAABgAAABAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T11:02:27.239Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Battle.cs",
-              "DocumentMoniker": "C:\\hlocal\\Breach-Fighters--TFG\\Battle.cs",
-              "RelativeDocumentMoniker": "Battle.cs",
-              "ToolTip": "C:\\hlocal\\Breach-Fighters--TFG\\Battle.cs",
-              "RelativeToolTip": "Battle.cs",
-              "ViewState": "AQIAAFMAAAAAAAAAAAAcwGAAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T10:00:47.204Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Fighter.cs",
-              "DocumentMoniker": "C:\\hlocal\\Breach-Fighters--TFG\\global\\scenes\\Fighter.cs",
-              "RelativeDocumentMoniker": "global\\scenes\\Fighter.cs",
-              "ToolTip": "C:\\hlocal\\Breach-Fighters--TFG\\global\\scenes\\Fighter.cs",
-              "RelativeToolTip": "global\\scenes\\Fighter.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADoAAABZAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T09:54:18.611Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Game.cs",
-              "DocumentMoniker": "C:\\hlocal\\Breach-Fighters--TFG\\Game.cs",
-              "RelativeDocumentMoniker": "Game.cs",
-              "ToolTip": "C:\\hlocal\\Breach-Fighters--TFG\\Game.cs",
-              "RelativeToolTip": "Game.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAIwB0AAABfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T09:54:18.617Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CustomSignals.cs",
-              "DocumentMoniker": "C:\\hlocal\\Breach-Fighters--TFG\\assets\\Shared\\CustomSignals\\CustomSignals.cs",
-              "RelativeDocumentMoniker": "assets\\Shared\\CustomSignals\\CustomSignals.cs",
-              "ToolTip": "C:\\hlocal\\Breach-Fighters--TFG\\assets\\Shared\\CustomSignals\\CustomSignals.cs",
-              "RelativeToolTip": "assets\\Shared\\CustomSignals\\CustomSignals.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T09:54:18.641Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "CassandraData.cs",
-              "DocumentMoniker": "C:\\hlocal\\Breach-Fighters--TFG\\data\\CassandraData.cs",
-              "RelativeDocumentMoniker": "data\\CassandraData.cs",
-              "ToolTip": "C:\\hlocal\\Breach-Fighters--TFG\\data\\CassandraData.cs",
-              "RelativeToolTip": "data\\CassandraData.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAIBJwBEAAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T09:54:18.649Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "FighterEnemigos.cs",
-              "DocumentMoniker": "C:\\hlocal\\Breach-Fighters--TFG\\global\\scenes\\FighterEnemigos.cs",
-              "RelativeDocumentMoniker": "global\\scenes\\FighterEnemigos.cs",
-              "ToolTip": "C:\\hlocal\\Breach-Fighters--TFG\\global\\scenes\\FighterEnemigos.cs",
-              "RelativeToolTip": "global\\scenes\\FighterEnemigos.cs",
-              "ViewState": "AQIAAGcAAAAAAAAAAAAcwHQAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T09:54:18.657Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "FighterAliados.cs",
-              "DocumentMoniker": "C:\\hlocal\\Breach-Fighters--TFG\\global\\scenes\\FighterAliados.cs",
-              "RelativeDocumentMoniker": "global\\scenes\\FighterAliados.cs",
-              "ToolTip": "C:\\hlocal\\Breach-Fighters--TFG\\global\\scenes\\FighterAliados.cs",
-              "RelativeToolTip": "global\\scenes\\FighterAliados.cs",
-              "ViewState": "AQIAACYAAAAAAAAAAAAwwDsAAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T09:54:18.664Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Enfrentamiento.cs",
-              "DocumentMoniker": "C:\\hlocal\\Breach-Fighters--TFG\\Enfrentamiento.cs",
-              "RelativeDocumentMoniker": "Enfrentamiento.cs",
-              "ToolTip": "C:\\hlocal\\Breach-Fighters--TFG\\Enfrentamiento.cs",
-              "RelativeToolTip": "Enfrentamiento.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAQwA4AAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T09:54:18.589Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "MainMenuManager.cs",
-              "DocumentMoniker": "C:\\hlocal\\Breach-Fighters--TFG\\MainMenuManager.cs",
-              "RelativeDocumentMoniker": "MainMenuManager.cs",
-              "ToolTip": "C:\\hlocal\\Breach-Fighters--TFG\\MainMenuManager.cs",
-              "RelativeToolTip": "MainMenuManager.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAowCMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T09:54:18.596Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "FighterTeam.cs",
-              "DocumentMoniker": "C:\\hlocal\\Breach-Fighters--TFG\\global\\scenes\\FighterTeam.cs",
-              "RelativeDocumentMoniker": "global\\scenes\\FighterTeam.cs",
-              "ToolTip": "C:\\hlocal\\Breach-Fighters--TFG\\global\\scenes\\FighterTeam.cs",
-              "RelativeToolTip": "global\\scenes\\FighterTeam.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAQwDcAAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T09:54:18.604Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "TextToSpeachSlider.cs",
-              "DocumentMoniker": "C:\\hlocal\\Breach-Fighters--TFG\\TextToSpeachSlider.cs",
-              "RelativeDocumentMoniker": "TextToSpeachSlider.cs",
-              "ToolTip": "C:\\hlocal\\Breach-Fighters--TFG\\TextToSpeachSlider.cs",
-              "RelativeToolTip": "TextToSpeachSlider.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T09:54:18.209Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "MenuTab.cs",
-              "DocumentMoniker": "C:\\hlocal\\Breach-Fighters--TFG\\MenuTab.cs",
-              "RelativeDocumentMoniker": "MenuTab.cs",
-              "ToolTip": "C:\\hlocal\\Breach-Fighters--TFG\\MenuTab.cs",
-              "RelativeToolTip": "MenuTab.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAQwAoAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T09:54:18.671Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
               "$type": "Bookmark",
               "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Game.cs",
+              "DocumentMoniker": "C:\\hlocal\\Breach-Fighters--TFG\\Game.cs",
+              "RelativeDocumentMoniker": "Game.cs",
+              "ToolTip": "C:\\hlocal\\Breach-Fighters--TFG\\Game.cs",
+              "RelativeToolTip": "Game.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAUwCIAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-08T20:53:16.896Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Bookmark",
