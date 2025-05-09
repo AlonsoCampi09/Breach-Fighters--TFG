@@ -84,7 +84,7 @@ public partial class CinematicaInicial : Node2D
 
         //Introduccion de Vyls
         vyls.Visible = true;
-        mensaje = "Tambien se encuentra Vyls, un robot.....";
+        mensaje = "Tambien se encuentra bils, un robot.....";
 
         if (CustomSignals.activado)
         {
@@ -131,8 +131,14 @@ public partial class CinematicaInicial : Node2D
 
 
 	private void On_ruido_puerta_finished() {
-		GD.Print("Entrando a la batalla"); 
-	}
+		GD.Print("Entrando a la batalla");
+        CustomSignals.Instance.EmitSignal(nameof(CustomSignals.cinematica));
+        alex.Visible = false;
+        vyls.Visible = false;
+        ishi.Visible = false;
+        cassandra.Visible = false;
+
+    }
 
 
 }

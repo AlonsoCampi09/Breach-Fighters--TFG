@@ -22,8 +22,9 @@ public partial class CustomSignals : Node
 	public delegate void OnMoveResolvedEventHandler();
 	[Signal]
 	public delegate void OnDialogRequestedEventHandler(string text);
-
-	[Signal]
+    [Signal]
+    public delegate void cinematicaEventHandler();
+    [Signal]
 	public delegate void BattlefinishedEventHandler();
 	public string[] voices = DisplayServer.TtsGetVoicesForLanguage("es");
 	public string voiceId;

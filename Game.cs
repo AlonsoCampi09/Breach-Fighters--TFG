@@ -51,7 +51,15 @@ public partial class Game : Node2D
 	{
 		int floorLevel = 1, floorRoom = 1;
 		var scene = GD.Load<PackedScene>("res://battle.tscn");
-		allies.ZIndex = 1;
+        var cinematica = GD.Load<PackedScene>("res://cinematica_inicial.tscn");
+        var cinematica_instance = cinematica.Instantiate();
+		allies.Visible = false;
+        AddChild(cinematica_instance);
+     //   cinematica_instance.Call("Escena");
+        await ToSignal(CustomSignals.Instance, "cinematica");
+        allies.Visible = true;
+        
+        allies.ZIndex = 1;
 		label.Visible = true;
 		label.Text = $"PISO {floorLevel} - HABITACIÓN {floorRoom}";
 		GD.Print($"{label.Text}");
