@@ -383,6 +383,7 @@ public partial class Battle : Node2D
 
         String mensaje = "";
 
+<<<<<<< Updated upstream
         for (int i = 0; i < enemieslist.Count; i++)
         {
             int aux = (enemieslist[i].data.Health / enemieslist[i].data.TrueHealth[enemieslist[i].data.Level - 1]) * 100;
@@ -396,3 +397,28 @@ public partial class Battle : Node2D
         }
     }
 }
+=======
+		for (int i = 0; i < enemieslist.Count; i++)
+		{
+			int aux = (enemieslist[i].data.Health / enemieslist[i].data.TrueHealth[enemieslist[i].data.Level - 1]) * 100;
+			mensaje = mensaje + "El enemigo " + enemieslist[i].data.Name + " tiene " + aux +
+			" porciento de vida";
+		}
+		if (CustomSignals.activado)
+		{
+			CustomSignals.Instance.repetir = mensaje;
+			DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+		}
+	}
+
+	public void hide()
+	{
+		this.Visible = false;
+	}
+
+	public void show()
+	{
+        this.Visible = true;
+    }
+}
+>>>>>>> Stashed changes

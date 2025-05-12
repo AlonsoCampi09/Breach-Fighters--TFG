@@ -30,6 +30,7 @@ public partial class MenuBatalla : Control
     private bool selectingTarget;
 	private Flecha flecha; // Nodo de la flecha
 	private int currentTargetIndex = 0; // Índice del enemigo seleccionado
+<<<<<<< Updated upstream
     public int ID_turno { get; set; }
     AudioStreamPlayer2D audioPlayer;
     private int all_targets_avaible = 0;
@@ -39,6 +40,26 @@ public partial class MenuBatalla : Control
     private Battle battle_access;
 
     public override void _Ready()
+=======
+	public int ID_turno { get; set; }
+	AudioStreamPlayer2D audioPlayer;
+	private int all_targets_avaible = 0;
+	private bool[] indexes = { false, false, false, false, false, false, false, false };
+	Movimiento mov_actual;
+	private int target_disposition;
+	private Battle battle_access;
+	private bool info;
+	
+	private InfoPanel panelDescripcion;
+	private Label labelInfoTitle;
+	private Label labelInfoDescription;
+	private Label labelInfoCost;
+	private Label labelInfoPotencia;
+	private Label labelInfoLevelNeeded;
+	private Label labelInfoLevelEvolve;
+	
+	public override void _Ready()
+>>>>>>> Stashed changes
 	{
         audioPlayer = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
         audioPlayer.Bus = "SoundCue";
@@ -75,6 +96,17 @@ public partial class MenuBatalla : Control
 		specialMenu.Visible = false;
 		
 		selectingTarget = false;
+<<<<<<< Updated upstream
+=======
+		selecting.Visible= false;
+		info = false;
+    }
+    public void makeMenuVisible(Fighter f)
+	{
+		GD.Print("MakingMenuVisible...");
+		this.prepareTitles(f);
+		this.ChangeMenu(0);
+>>>>>>> Stashed changes
 	}
     public void makeMenuVisible(Fighter f)
     {
@@ -168,6 +200,7 @@ public partial class MenuBatalla : Control
 			ChangeMenu(0);
 		}
 
+<<<<<<< Updated upstream
         if (this.selectingTarget && target_disposition != 3)
         {
             // Cambiar objetivo con izquierda/derecha
@@ -187,12 +220,17 @@ public partial class MenuBatalla : Control
                 this.ChangeTarget(1);
             }
         }
+=======
+		if (!DisplayServer.TtsIsSpeaking() && !CustomSignals.pausado)
+		{
+>>>>>>> Stashed changes
 
         if (!DisplayServer.TtsIsSpeaking())
         {
 
             if (!actingMenu.Visible && !this.selectingTarget && !specialMenu.Visible && !Battle.esperando)
 			{
+<<<<<<< Updated upstream
                 ChangeMenu(0);
             }
 			if (!this.selectingTarget && !specialMenu.Visible && !Battle.esperando)
@@ -204,6 +242,29 @@ public partial class MenuBatalla : Control
         else
         {
             actingMenu.Visible = false;
+=======
+				GD.Print("ChangeMenu(0)");
+				ChangeMenu(0);
+			}
+			if (!this.selectingTarget && !specialMenu.Visible && !Battle.esperando)
+			{
+				actingMenu.Visible = true;
+			}
+            if (info)
+            {
+                info = false;
+            }
+        }
+		else
+		{
+           // actingMenu.Visible = false;
+
+            if (!info)
+			{
+                actingMenu.Visible = false;
+
+            }
+>>>>>>> Stashed changes
         }
 
     }
@@ -381,6 +442,7 @@ public partial class MenuBatalla : Control
         audioPlayer.Play();
     }
 
+<<<<<<< Updated upstream
     private void _OnObjectFocusEntered()
     {
         var correctSound = GD.Load("res://assets/Sounds/inventory_sound.mp3") as AudioStream;
@@ -388,6 +450,85 @@ public partial class MenuBatalla : Control
         audioPlayer.Stream = correctSound;
         audioPlayer.Play();
     }
+=======
+	private void _OnGuardFocusEntered()
+	{
+		var correctSound = GD.Load("res://assets/Sounds/shield_sound.mp3") as AudioStream;
+	   // var audioPlayer = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
+		currentButton = guard;
+		audioPlayer.Stream = correctSound;
+		audioPlayer.Play();
+	}
+	private void _OnMov1FocusEntered()
+	{
+	//	var correctSound = GD.Load("res://assets/Sounds/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav") as AudioStream;
+	   // var audioPlayer = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
+		currentButton = mov1;
+	//	audioPlayer.Stream = correctSound;
+        //audioPlayer.Play();
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsStop();
+
+            DisplayServer.TtsSpeak(mov1.Text, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
+
+    }
+    private void _OnMov2FocusEntered()
+	{
+	//	var correctSound = GD.Load("res://assets/Sounds/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav") as AudioStream;
+	   // var audioPlayer = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
+		currentButton = mov2;
+	//	audioPlayer.Stream = correctSound;
+        //audioPlayer.Play();
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsStop();
+
+            DisplayServer.TtsSpeak(mov2.Text, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
+    }
+	private void _OnMov3FocusEntered()
+	{
+	//	var correctSound = GD.Load("res://assets/Sounds/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav") as AudioStream;
+	   // var audioPlayer = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
+		currentButton = mov3;
+		//audioPlayer.Stream = correctSound;
+        //audioPlayer.Play();
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsStop();
+
+            DisplayServer.TtsSpeak(mov3.Text, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
+    }
+	private void _OnMov4FocusEntered()
+	{
+	//	var correctSound = GD.Load("res://assets/Sounds/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav") as AudioStream;
+	   // var audioPlayer = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
+		currentButton = mov4;
+		//audioPlayer.Stream = correctSound;
+        //audioPlayer.Play();
+
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsStop();
+
+            DisplayServer.TtsSpeak(mov4.Text, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
+    }
+	
+	private void _OnButtonFocusExited(){
+		if (panelDescripcion.Visible)
+		{
+            DisplayServer.TtsStop();
+        }
+
+		panelDescripcion.Visible = false;
+		currentButton = null;
+	}
+	
+>>>>>>> Stashed changes
 
     private void _OnGuardFocusEntered()
     {
@@ -671,9 +812,78 @@ public partial class MenuBatalla : Control
 
         }
 
+<<<<<<< Updated upstream
     }
     /*public void SetID_turno(int ID)
     {
         ID_turno = ID;
     }*/
+=======
+	}
+	public void ShowDesciptionPanel(){
+
+        if (currentButton == attack){
+			PrepareInfo(actor.passData().atqBasico,false,true);
+		}else if(currentButton == guard){
+			PrepareInfo(actor.passData().defBasico,false,false);
+		}else if(currentButton == mov1){
+			PrepareInfo(actor.passData().mov1,true,true);
+		}else if(currentButton == mov2){
+			PrepareInfo(actor.passData().mov2,true,true);
+		}else if(currentButton == mov3){
+			PrepareInfo(actor.passData().mov3,true,true);
+		}else if(currentButton == mov4){
+			PrepareInfo(actor.passData().mov4,true,true);
+		}
+	}
+	
+	public void PrepareInfo(Movimiento s, bool c, bool p){
+		string titulo = "";
+		string descripcion = "";
+		string cost = "";
+		string potencia = "";
+		string evolve = "";
+		string mensaje = "";
+		titulo = s.giveTitulo();
+		mensaje += titulo + " ";
+        descripcion = s.giveDescripcion();
+        mensaje += descripcion + " ";
+
+		if (c) { 
+			cost = $"Coste: {cost}{s.giveCost()} Maná";
+            mensaje += cost + " ";
+        }
+		if (p)
+		{
+			potencia = $"Potencia: {potencia}{s.givePotencia()} POW";
+            mensaje += potencia + " ";
+
+        }
+        evolve = $"Nivel evolución: {evolve}{s.giveEvolucion()}";
+        mensaje += evolve;
+
+        panelDescripcion.UpdatePanelSize();
+		labelInfoTitle.Text = $"{titulo}";
+		labelInfoDescription.Text = $"{descripcion}";
+		labelInfoCost.Text = $"{cost}";
+		labelInfoPotencia.Text = $"{potencia}";
+		labelInfoLevelEvolve.Text = $"{evolve}";
+		panelDescripcion.Visible = true;
+        info = true;
+
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsStop();
+            DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
+
+    }
+
+
+	public void aparece()
+	{
+        attack.GrabFocus();
+
+    }
+>>>>>>> Stashed changes
 }
