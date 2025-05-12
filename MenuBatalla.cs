@@ -37,6 +37,7 @@ public partial class MenuBatalla : Control
 	Movimiento mov_actual;
 	private int target_disposition;
 	private Battle battle_access;
+	private bool info;
 	
 	private InfoPanel panelDescripcion;
 	private Label labelInfoTitle;
@@ -104,8 +105,9 @@ public partial class MenuBatalla : Control
 		panelDescripcion.Visible = false;
 		selectingTarget = false;
 		selecting.Visible= false;
-	}
-	public void makeMenuVisible(Fighter f)
+		info = false;
+    }
+    public void makeMenuVisible(Fighter f)
 	{
 		GD.Print("MakingMenuVisible...");
 		this.prepareTitles(f);
@@ -240,23 +242,33 @@ public partial class MenuBatalla : Control
 			}
 		}
 
-		if (!DisplayServer.TtsIsSpeaking())
+		if (!DisplayServer.TtsIsSpeaking() && !CustomSignals.pausado)
 		{
 
 			if (!actingMenu.Visible && !this.selectingTarget && !specialMenu.Visible && !Battle.esperando)
 			{
+				GD.Print("ChangeMenu(0)");
 				ChangeMenu(0);
 			}
 			if (!this.selectingTarget && !specialMenu.Visible && !Battle.esperando)
 			{
 				actingMenu.Visible = true;
 			}
-
-		}
+            if (info)
+            {
+                info = false;
+            }
+        }
 		else
 		{
-			actingMenu.Visible = false;
-		}
+           // actingMenu.Visible = false;
+
+            if (!info)
+			{
+                actingMenu.Visible = false;
+
+            }
+        }
 
 	}
 
@@ -452,38 +464,69 @@ public partial class MenuBatalla : Control
 	}
 	private void _OnMov1FocusEntered()
 	{
-		var correctSound = GD.Load("res://assets/Sounds/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav") as AudioStream;
+	//	var correctSound = GD.Load("res://assets/Sounds/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav") as AudioStream;
 	   // var audioPlayer = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
 		currentButton = mov1;
-		audioPlayer.Stream = correctSound;
-		audioPlayer.Play();
-	}
-	private void _OnMov2FocusEntered()
+	//	audioPlayer.Stream = correctSound;
+        //audioPlayer.Play();
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsStop();
+
+            DisplayServer.TtsSpeak(mov1.Text, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
+
+    }
+    private void _OnMov2FocusEntered()
 	{
-		var correctSound = GD.Load("res://assets/Sounds/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav") as AudioStream;
+	//	var correctSound = GD.Load("res://assets/Sounds/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav") as AudioStream;
 	   // var audioPlayer = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
 		currentButton = mov2;
-		audioPlayer.Stream = correctSound;
-		audioPlayer.Play();
-	}
+	//	audioPlayer.Stream = correctSound;
+        //audioPlayer.Play();
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsStop();
+
+            DisplayServer.TtsSpeak(mov2.Text, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
+    }
 	private void _OnMov3FocusEntered()
 	{
-		var correctSound = GD.Load("res://assets/Sounds/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav") as AudioStream;
+	//	var correctSound = GD.Load("res://assets/Sounds/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav") as AudioStream;
 	   // var audioPlayer = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
 		currentButton = mov3;
-		audioPlayer.Stream = correctSound;
-		audioPlayer.Play();
-	}
+		//audioPlayer.Stream = correctSound;
+        //audioPlayer.Play();
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsStop();
+
+            DisplayServer.TtsSpeak(mov3.Text, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
+    }
 	private void _OnMov4FocusEntered()
 	{
-		var correctSound = GD.Load("res://assets/Sounds/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav") as AudioStream;
+	//	var correctSound = GD.Load("res://assets/Sounds/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav") as AudioStream;
 	   // var audioPlayer = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
 		currentButton = mov4;
-		audioPlayer.Stream = correctSound;
-		audioPlayer.Play();
-	}
+		//audioPlayer.Stream = correctSound;
+        //audioPlayer.Play();
+
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsStop();
+
+            DisplayServer.TtsSpeak(mov4.Text, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
+    }
 	
 	private void _OnButtonFocusExited(){
+		if (panelDescripcion.Visible)
+		{
+            DisplayServer.TtsStop();
+        }
+
 		panelDescripcion.Visible = false;
 		currentButton = null;
 	}
@@ -764,7 +807,8 @@ public partial class MenuBatalla : Control
 
 	}
 	public void ShowDesciptionPanel(){
-		if(currentButton == attack){
+
+        if (currentButton == attack){
 			PrepareInfo(actor.passData().atqBasico,false,true);
 		}else if(currentButton == guard){
 			PrepareInfo(actor.passData().defBasico,false,false);
@@ -785,17 +829,46 @@ public partial class MenuBatalla : Control
 		string cost = "";
 		string potencia = "";
 		string evolve = "";
+		string mensaje = "";
 		titulo = s.giveTitulo();
-		descripcion = s.giveDescripcion();
-		if(c)	cost = $"Coste: {cost}{s.giveCost()} Maná";
-		if(p)	potencia = $"Potencia: {potencia}{s.givePotencia()} POW";
-		evolve = $"Nivel evolución: {evolve}{s.giveEvolucion()}";
-		panelDescripcion.UpdatePanelSize();
+		mensaje += titulo + " ";
+        descripcion = s.giveDescripcion();
+        mensaje += descripcion + " ";
+
+		if (c) { 
+			cost = $"Coste: {cost}{s.giveCost()} Maná";
+            mensaje += cost + " ";
+        }
+		if (p)
+		{
+			potencia = $"Potencia: {potencia}{s.givePotencia()} POW";
+            mensaje += potencia + " ";
+
+        }
+        evolve = $"Nivel evolución: {evolve}{s.giveEvolucion()}";
+        mensaje += evolve;
+
+        panelDescripcion.UpdatePanelSize();
 		labelInfoTitle.Text = $"{titulo}";
 		labelInfoDescription.Text = $"{descripcion}";
 		labelInfoCost.Text = $"{cost}";
 		labelInfoPotencia.Text = $"{potencia}";
 		labelInfoLevelEvolve.Text = $"{evolve}";
 		panelDescripcion.Visible = true;
-	}
+        info = true;
+
+        if (CustomSignals.activado)
+        {
+            DisplayServer.TtsStop();
+            DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
+        }
+
+    }
+
+
+	public void aparece()
+	{
+        attack.GrabFocus();
+
+    }
 }

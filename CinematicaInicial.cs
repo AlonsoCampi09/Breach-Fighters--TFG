@@ -53,7 +53,7 @@ public partial class CinematicaInicial : Node2D
 
         //Introduccion de Alex
         alex.Visible = true;
-		mensaje = "El primero de ellos es Alex, un joven con gorra y sudadera roja.";
+		mensaje = "El primero de ellos es Chuvakan, un joven con gorra y sudadera roja.";
 
         if (CustomSignals.activado)
         {

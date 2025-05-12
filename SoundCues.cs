@@ -25,7 +25,7 @@ public partial class SoundCues : HSlider
         {
             CustomSignals.Instance.repetir = mensaje;
 
-            DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach);
+            DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
     }
 }

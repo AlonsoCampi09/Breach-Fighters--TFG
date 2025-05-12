@@ -26,18 +26,27 @@ public partial class CustomSignals : Node
     public delegate void cinematicaEventHandler();
     [Signal]
 	public delegate void BattlefinishedEventHandler();
-	public string[] voices = DisplayServer.TtsGetVoicesForLanguage("es");
+    [Signal]
+    public delegate void PausaEventHandler();
+    public string[] voices = DisplayServer.TtsGetVoicesForLanguage("es");
 	public string voiceId;
 	public string repetir;
 
 	public static CustomSignals Instance { get; private set; }
 	public static bool activado { get; set; }
-	public static int volumenTextToSpeach { get; set; }
+    public static bool pausado { get; set; }
+
+    public static bool cinematicaPausa { get; set; }
+
+
+    public static int volumenTextToSpeach { get; set; }
 	public static int velocidadTextToSpeach { get; set; }
 
 	public override void _Ready()
 	{
-		activado = true;
+        pausado = false;
+        cinematicaPausa = true;
+        activado = true;
 		voiceId = voices[0];
 		Instance = this;
 		GD.Print("ready CustomSignals");
@@ -59,7 +68,13 @@ public partial class CustomSignals : Node
 		{
 			repetirmensaje(); // Emit the signal
 		}
-	}
+        if (Input.IsActionJustPressed("pausa") && !cinematicaPausa)
+        {
+			pausado = !pausado;
+
+            EmitSignal("Pausa");
+		}
+    }
 
 	public void repetirmensaje()
 	{

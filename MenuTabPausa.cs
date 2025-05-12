@@ -1,17 +1,18 @@
 using Godot;
 using System;
 
-public partial class MenuTab : PanelContainer
+public partial class MenuTabPausa : PanelContainer
 {
-    private MainMenuManager mainMenu;
+    private PauseMenu mainMenu;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
-	{
-        if(GetParent() is MainMenuManager) {
-            mainMenu = GetParent() as MainMenuManager;
+    {
+        if (GetParent() is PauseMenu)
+        {
+            mainMenu = GetParent() as PauseMenu;
         }
-	}
+    }
 
     public void OnMenuSwapButtonPressed(int swapIndex)
     {
@@ -21,7 +22,7 @@ public partial class MenuTab : PanelContainer
 
     public void OnMeneReturnButtonPressed()
     {
-            mainMenu.SwapMenuToPrevius();
+        mainMenu.SwapMenuToPrevius();
         Visible = false;
 
     }

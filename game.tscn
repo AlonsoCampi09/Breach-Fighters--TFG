@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://uuj5vvb3nne2"]
+[gd_scene load_steps=5 format=3 uid="uid://uuj5vvb3nne2"]
 
 [ext_resource type="Script" path="res://Game.cs" id="1_ah0xl"]
 [ext_resource type="PackedScene" uid="uid://dx8tvrk4mw0rl" path="res://global/scenes/equipo_aliado.tscn" id="2_jc13i"]
 [ext_resource type="AudioStream" uid="uid://i3o464h0g2ao" path="res://assets/Sounds/Free RPG Music Collection/Phat Phrog Studio - Arcane Throne - Heir of Valor.wav" id="3_quhcv"]
+[ext_resource type="PackedScene" uid="uid://bnch87etegvku" path="res://pause_menu.tscn" id="4_8t7n3"]
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_ah0xl")
@@ -31,3 +32,10 @@ theme_override_font_sizes/font_size = 32
 text = "Hola"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PauseMenu" parent="." instance=ExtResource("4_8t7n3")]
+visible = false
+offset_left = 595.0
+offset_top = 333.0
+offset_right = 595.0
+offset_bottom = 333.0

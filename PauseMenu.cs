@@ -3,66 +3,71 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public partial class MainMenuManager : Control
+public partial class PauseMenu : Control
 {
     List<int> goBackList = new();
-    Button start, opciones, salir, retu;
+    Button resume, opciones, salir, retu;
     HSlider SoundCues, Tts, MusicaSlider;
     AudioStreamPlayer2D musica;
     bool musica_bajada = false;
     CheckBox TTScheck;
+    PanelContainer principal, MenuOpciones;
     public override void _Ready()
     {
-        start = GetNode<Button>("MenuTab/VBoxContainer/Start Game");
+        resume = GetNode<Button>("MenuTab/VBoxContainer/Resume");
         opciones = GetNode<Button>("MenuTab/VBoxContainer/OptionsButton");
         salir = GetNode<Button>("MenuTab/VBoxContainer/QuitButton");
         SoundCues = GetNode<HSlider>("MenuOpciones/VBoxContainer/SoundCueSlider");
         Tts = GetNode<HSlider>("MenuOpciones/VBoxContainer/TextToSpeachSlider");
         MusicaSlider = GetNode<HSlider>("MenuOpciones/VBoxContainer/VolumenMusicaSlider");
         retu = GetNode<Button>("MenuOpciones/VBoxContainer/ReturnButton");
-        musica = GetNode<AudioStreamPlayer2D>("musicaMenu");
-        musica.Play();
         TTScheck = GetNode<CheckBox>("MenuOpciones/VBoxContainer/CheckBox");
+        principal = GetNode<PanelContainer>("MenuTab");
+        MenuOpciones = GetNode<PanelContainer>("MenuOpciones");
+
         TTScheck.Pressed += TTScheckbutton;
-        start.GrabFocus();
+        //resume.GrabFocus();
+        resume.Pressed += ResumeButton;
+        CustomSignals.Instance.Connect(nameof(CustomSignals.Instance.Pausa), Callable.From(Pausa), (uint)GodotObject.ConnectFlags.Deferred);
 
     }
 
     public override void _Process(double delta)
     {
 
-        if (DisplayServer.TtsIsSpeaking() && !musica_bajada)
+        if(Visible)
         {
-            musica.VolumeDb = musica.VolumeDb - 20;
-            GD.Print("musica bajada");
-
-            GD.Print(musica.VolumeDb);
-            musica_bajada = true;
+            resume.Disabled = false;
+            opciones.Disabled = false;
+            salir.Disabled = false;
         }
-
-        if(!DisplayServer.TtsIsSpeaking() && musica_bajada)
+        else
         {
-            musica.VolumeDb = musica.VolumeDb + 20;
-            GD.Print("musica subida");
-
-            GD.Print(musica.VolumeDb);
-
-            musica_bajada = false;
+            resume.Disabled = true;
+            opciones.Disabled = true;
+            salir.Disabled = true;
         }
-        if (!musica.Playing)
+        
+
+    }
+
+    public void Pausa()
+    {
+        if (!CustomSignals.pausado)
         {
-            musica.Play();
+            MenuOpciones.Visible = false;
+            principal.Visible = true;
         }
-
     }
     private void _OnStartFocusEntered()
     {
 
         DisplayServer.TtsStop();
 
-        string Message = start.Text;
+        string Message = resume.Text;
         if (CustomSignals.activado)
-        {//CustomSignals.Instance.repetir = Message;
+        {
+            //CustomSignals.Instance.repetir = Message;
 
             DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
@@ -71,13 +76,13 @@ public partial class MainMenuManager : Control
     private void CambioOpciones()
     {
         SoundCues.GrabFocus();
-        musica.Stop();
+       // musica.Stop();
 
     }
     private void CambioPrincipal()
     {
-        start.GrabFocus();
-        musica.Play();
+        resume.GrabFocus();
+        //musica.Play();
 
     }
 
@@ -100,7 +105,8 @@ public partial class MainMenuManager : Control
         DisplayServer.TtsStop();
         string Message = "volumen de Sound Cues";
         if (CustomSignals.activado)
-        {//CustomSignals.Instance.repetir = Message;
+        {
+            //CustomSignals.Instance.repetir = Message;
 
             DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
@@ -111,7 +117,8 @@ public partial class MainMenuManager : Control
 
         string Message = "volumen de la musica";
         if (CustomSignals.activado)
-        {//CustomSignals.Instance.repetir = Message;
+        {
+            //CustomSignals.Instance.repetir = Message;
 
             DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
@@ -121,7 +128,8 @@ public partial class MainMenuManager : Control
         DisplayServer.TtsStop();
         string Message = "volumen de Text to Speech";
         if (CustomSignals.activado)
-        {//CustomSignals.Instance.repetir = Message;
+        {
+          //  CustomSignals.Instance.repetir = Message;
 
             DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
@@ -130,9 +138,9 @@ public partial class MainMenuManager : Control
     {
         DisplayServer.TtsStop();
         string Message = "Velocidad de Text to Speech";
-
         if (CustomSignals.activado)
-        {//CustomSignals.Instance.repetir = Message;
+        {
+           // CustomSignals.Instance.repetir = Message;
 
             DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
@@ -143,7 +151,8 @@ public partial class MainMenuManager : Control
 
         string Message = retu.Text;
         if (CustomSignals.activado)
-        {//CustomSignals.Instance.repetir = Message;
+        {
+           // CustomSignals.Instance.repetir = Message;
 
             DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
@@ -154,7 +163,8 @@ public partial class MainMenuManager : Control
 
         string Message = opciones.Text;
         if (CustomSignals.activado)
-        {//CustomSignals.Instance.repetir = Message;
+        {
+           // CustomSignals.Instance.repetir = Message;
 
             DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
@@ -165,12 +175,12 @@ public partial class MainMenuManager : Control
 
         string Message = salir.Text;
         if (CustomSignals.activado)
-        {//CustomSignals.Instance.repetir = Message;
+        {
+         //   CustomSignals.Instance.repetir = Message;
 
             DisplayServer.TtsSpeak(Message, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
         }
     }
-
     private void _OnCheckBoxEntered()
     {
         DisplayServer.TtsStop();
@@ -183,7 +193,7 @@ public partial class MainMenuManager : Control
     }
     public void SwapMenu(int menuIndex, int returnIndex)
     {
-        if(GetChild(menuIndex) is MenuTab menutab)
+        if (GetChild(menuIndex) is MenuTabPausa menutab)
         {
             menutab.Visible = true;
         }
@@ -207,6 +217,19 @@ public partial class MainMenuManager : Control
 
     private void OnQuitGameButtonPressed()
     {
+        GD.Print("salir");
         GetTree().Quit();
+    }
+
+    private void ResumeButton()
+    {
+        CustomSignals.pausado = !CustomSignals.pausado;
+
+        CustomSignals.Instance.EmitSignal("Pausa");
+    }
+
+    public void aparece()
+    {
+        resume.GrabFocus();
     }
 }

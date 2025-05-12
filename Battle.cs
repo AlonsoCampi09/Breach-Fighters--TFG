@@ -395,4 +395,14 @@ public partial class Battle : Node2D
 			DisplayServer.TtsSpeak(mensaje, CustomSignals.Instance.voiceId, CustomSignals.volumenTextToSpeach, 1, CustomSignals.velocidadTextToSpeach);
 		}
 	}
+
+	public void hide()
+	{
+		this.Visible = false;
+	}
+
+	public void show()
+	{
+        this.Visible = true;
+    }
 }
