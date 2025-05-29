@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7t0oia1tfx58"]
+
+[ext_resource type="Script" path="res://global/scenes/scene_scripts/FighterTeam.cs" id="1_1qigj"]
+
+[node name="Team" type="Node2D"]
+script = ExtResource("1_1qigj")

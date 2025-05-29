@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cnvjoibly8wh"
+path="res://.godot/imported/Phat Phrog Studio - Regal Knight - Kings Legacy.wav-41031c8279e0420e96dc1e53505769af.sample"
+
+[deps]
+
+source_file="res://assets/sonidos/Free RPG Music Collection/Phat Phrog Studio - Regal Knight - Kings Legacy.wav"
+dest_files=["res://.godot/imported/Phat Phrog Studio - Regal Knight - Kings Legacy.wav-41031c8279e0420e96dc1e53505769af.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

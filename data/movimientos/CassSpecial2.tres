@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="CassSpecial2" load_steps=2 format=3 uid="uid://nsint176s10t"]
+
+[ext_resource type="Script" path="res://data/movimientos/CassSpecial2.cs" id="1_4ep7o"]
+
+[resource]
+script = ExtResource("1_4ep7o")
+Level = 1
+Name = "Chakra"
+Name_Evolved = "Decreto interior"
+Description = "Cassandra relaja su mente y se centra en su objetivo lo que aumenta el ataque y la defensa del personaje en un 25% durante 2 turnos."
+Description_Evolved = "Cassandra relaja su mente y se centra en su objetivo lo que aumenta el ataque y la defensa del personaje en un 30% durante 2 turnos."
+BasePower = 0
+BasePower_Evolved = 0
+Cost = 4
+Cost_Evolved = 6
+RequiredLevelToEvolve = 7
+RequiredLevelToUnlock = 0
+effectObj = 3
+TargetsCount = 1
+TargetsAllTeam = false
+Hurts = false
+Limit = 0
+Guaranteed = 0
+Limit_Evolved = 0
+Guaranteed_Evolved = 0
+Percentage = 0
+Percentage_Evolved = 0
+Count = 0
+CooldownTurns = 0
+StatusCanApply = PackedInt32Array(0, 2)
+StatusCanApplyEvolved = PackedInt32Array(0, 2)

@@ -1,0 +1,375 @@
+[gd_scene load_steps=7 format=3 uid="uid://bo2eg75bcwjuq"]
+
+[ext_resource type="Texture2D" uid="uid://c6kbs1sw480ed" path="res://assets/background/Exio.png" id="1_4gfac"]
+[ext_resource type="Script" path="res://global/scenes/scenesUI/MenuMain.cs" id="1_bmbsa"]
+[ext_resource type="Texture2D" uid="uid://cfl1yej4lax08" path="res://assets/background/Title.png" id="2_3kcmv"]
+[ext_resource type="Theme" uid="uid://cgp6bk35e1id3" path="res://assets/ui_related/ui_battle_theme.tres" id="3_dtk44"]
+[ext_resource type="AudioStream" uid="uid://d04rms7ccbinx" path="res://assets/sonidos/Free RPG Music Collection/Phat Phrog Studio - RPG Music Collection 2 - Basilisk's Brew.wav" id="5_m7gil"]
+[ext_resource type="AudioStream" uid="uid://bdubrjb83atyt" path="res://assets/sonidos/518558__se2001__quick-blip.wav" id="6_f16tx"]
+
+[node name="Main_Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bmbsa")
+
+[node name="Exio" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1151, 463)
+texture = ExtResource("1_4gfac")
+
+[node name="Title" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(380, 129)
+texture = ExtResource("2_3kcmv")
+
+[node name="Main" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 252.0
+offset_top = 248.0
+offset_right = 481.0
+offset_bottom = 561.0
+theme = ExtResource("3_dtk44")
+
+[node name="Start" type="Button" parent="Main"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_vertical = 6
+focus_neighbor_top = NodePath("../Exit")
+focus_neighbor_bottom = NodePath("../Options")
+text = "Jugar
+"
+
+[node name="Options" type="Button" parent="Main"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_vertical = 6
+focus_neighbor_top = NodePath("../Start")
+focus_neighbor_bottom = NodePath("../Exit")
+text = "Opciones
+"
+
+[node name="Exit" type="Button" parent="Main"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_vertical = 6
+focus_neighbor_top = NodePath("../Options")
+focus_neighbor_bottom = NodePath("../Start")
+text = "Salir"
+
+[node name="Option_Menu" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 252.0
+offset_right = 643.0
+offset_bottom = 559.0
+theme = ExtResource("3_dtk44")
+
+[node name="MarginContainer" type="MarginContainer" parent="Option_Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Option_Menu/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Option_Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "Opciones"
+
+[node name="HSeparator" type="HSeparator" parent="Option_Menu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Option_Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Volume" type="Button" parent="Option_Menu/MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+focus_neighbor_top = NodePath("../Back")
+focus_neighbor_bottom = NodePath("../Accesibility")
+text = "Volumen
+"
+
+[node name="Accesibility" type="Button" parent="Option_Menu/MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+focus_neighbor_top = NodePath("../Volume")
+focus_neighbor_bottom = NodePath("../Back")
+text = "Accesibilidad
+"
+
+[node name="Back" type="Button" parent="Option_Menu/MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+focus_neighbor_top = NodePath("../Accesibility")
+focus_neighbor_bottom = NodePath("../Volume")
+text = "Volver
+"
+
+[node name="Volume_Menu" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 252.0
+offset_right = 643.0
+offset_bottom = 559.0
+theme = ExtResource("3_dtk44")
+
+[node name="MarginContainer" type="MarginContainer" parent="Volume_Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Volume_Menu/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Volume_Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "Opciones"
+
+[node name="HSeparator" type="HSeparator" parent="Volume_Menu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Volume_Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Volume_Menu/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = 100
+
+[node name="Label" type="Label" parent="Volume_Menu/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Volumen general"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Volume_Menu/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="Volume_Menu/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../BackVolume")
+focus_neighbor_bottom = NodePath("../../../HBoxContainer2/HBoxContainer/HSlider")
+value = 100.0
+
+[node name="Label" type="Label" parent="Volume_Menu/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "%"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Volume_Menu/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = 100
+
+[node name="Label" type="Label" parent="Volume_Menu/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Volumen música
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Volume_Menu/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="Volume_Menu/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../HBoxContainer/HBoxContainer/HSlider")
+focus_neighbor_bottom = NodePath("../../../HBoxContainer3/HBoxContainer/HSlider")
+value = 100.0
+
+[node name="Label" type="Label" parent="Volume_Menu/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+text = "%"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Volume_Menu/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = 100
+
+[node name="Label" type="Label" parent="Volume_Menu/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Volumen sonidos
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Volume_Menu/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="Volume_Menu/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../HBoxContainer2/HBoxContainer/HSlider")
+focus_neighbor_bottom = NodePath("../../../BackVolume")
+value = 100.0
+
+[node name="Label" type="Label" parent="Volume_Menu/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3/HBoxContainer"]
+layout_mode = 2
+text = "%"
+
+[node name="HSeparator" type="HSeparator" parent="Volume_Menu/MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="BackVolume" type="Button" parent="Volume_Menu/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Volver"
+
+[node name="Accesibility_Menu" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 252.0
+offset_right = 643.0
+offset_bottom = 559.0
+theme = ExtResource("3_dtk44")
+
+[node name="MarginContainer" type="MarginContainer" parent="Accesibility_Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Accesibility_Menu/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Accesibility_Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "Opciones"
+
+[node name="HSeparator" type="HSeparator" parent="Accesibility_Menu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Accesibility_Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="Accesibility_Menu/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(285, 0)
+layout_mode = 2
+text = "Texto a voz"
+
+[node name="CheckBox" type="CheckBox" parent="Accesibility_Menu/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../BackAccesibility")
+focus_neighbor_bottom = NodePath("../../HBoxContainer2/HBoxContainer/HSlider")
+button_pressed = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Accesibility_Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Accesibility_Menu/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Velocidad de lectura"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Accesibility_Menu/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="Accesibility_Menu/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../HBoxContainer/CheckBox")
+focus_neighbor_bottom = NodePath("../../../HBoxContainer3/HBoxContainer/HSlider")
+min_value = 0.5
+max_value = 2.0
+step = 0.5
+value = 1.5
+
+[node name="Label" type="Label" parent="Accesibility_Menu/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+text = "%"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Accesibility_Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="Accesibility_Menu/MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Volumen de voz"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Accesibility_Menu/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="Accesibility_Menu/MarginContainer/VBoxContainer/HBoxContainer3/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../HBoxContainer2/HBoxContainer/HSlider")
+focus_neighbor_bottom = NodePath("../../../BackAccesibility")
+min_value = 10.0
+max_value = 50.0
+value = 50.0
+
+[node name="Label" type="Label" parent="Accesibility_Menu/MarginContainer/VBoxContainer/HBoxContainer3/HBoxContainer"]
+layout_mode = 2
+text = "%"
+
+[node name="HSeparator2" type="HSeparator" parent="Accesibility_Menu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+
+[node name="BackAccesibility" type="Button" parent="Accesibility_Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../HBoxContainer3/HBoxContainer/HSlider")
+focus_neighbor_bottom = NodePath("../HBoxContainer/CheckBox")
+text = "Volver"
+
+[node name="Musica" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_m7gil")
+autoplay = true
+bus = &"Music"
+
+[node name="Efectos" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_f16tx")
+volume_db = 15.0
+autoplay = true
+bus = &"SFX"
+
+[connection signal="pressed" from="Accesibility_Menu/MarginContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnCheckBoxPressed"]

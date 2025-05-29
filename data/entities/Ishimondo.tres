@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Entity" load_steps=3 format=3 uid="uid://cfcv8mieop6g1"]
+
+[ext_resource type="Texture2D" uid="uid://dqe8r6e7cr2ai" path="res://assets/sprites/sheets/doraemon.png" id="1_73dm6"]
+[ext_resource type="Script" path="res://data/entities/Entity.cs" id="1_a6h8o"]
+
+[resource]
+script = ExtResource("1_a6h8o")
+beh_type = 0
+entityType = 1
+SpriteSheet = ExtResource("1_73dm6")
+NumFrames = 5
+FrameLength = 200
+FrameWidth = 180
+Name = "Ishimondo"
+Level = 1
+Health = 17
+Mana = 15
+ATQBuf = 0
+ATQDeBuf = 0
+DEFBuf = 0
+DEFDeBuf = 0
+VELBuf = 0
+VELDeBuf = 0
+ControlPlayer = true
+Turn = false
+Passed = false
+TrueHealth = PackedInt32Array(17, 19, 21, 23, 25, 27, 29, 31, 33, 35)
+TrueAttack = PackedInt32Array(8, 10, 12, 14, 16, 18, 20, 22, 24, 26)
+TrueDefense = PackedInt32Array(4, 5, 6, 7, 8, 9, 10, 11, 12, 13)
+TrueMana = PackedInt32Array(15, 17, 19, 21, 23, 25, 27, 29, 31, 33)
+TrueSpeed = PackedInt32Array(7, 9, 11, 13, 15, 17, 19, 21, 23, 25)
+BaseExp = 8
+ExpIncrease = 5
+BaseCoin = 0
+CoinIncrease = 0

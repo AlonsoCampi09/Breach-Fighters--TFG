@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="IshiGuardSkill" load_steps=2 format=3 uid="uid://dbk1wuyf7awx7"]
+
+[ext_resource type="Script" path="res://data/movimientos/IshiGuardSkill.cs" id="1_sx3rw"]
+
+[resource]
+script = ExtResource("1_sx3rw")
+Level = 1
+Name = "Hacerse Bolita"
+Name_Evolved = "Agilidad felina"
+Description = "Maniobra que aumenta la defensa hasta el próximo turno. Tambien devuelve parte del maná."
+Description_Evolved = "Maniobra evasiva que le da el estado de evasión hasta su proximo turno aparte de recuperar parte de su maná"
+BasePower = 0
+BasePower_Evolved = 0
+Cost = 0
+Cost_Evolved = 0
+RequiredLevelToEvolve = 5
+RequiredLevelToUnlock = 0
+effectObj = 3
+TargetsCount = 1
+TargetsAllTeam = false
+Hurts = false
+Limit = 0
+Guaranteed = 0
+Limit_Evolved = 0
+Guaranteed_Evolved = 0
+Percentage = 0
+Percentage_Evolved = 0
+Count = 0
+CooldownTurns = 0
+StatusCanApply = PackedInt32Array()
+StatusCanApplyEvolved = PackedInt32Array()

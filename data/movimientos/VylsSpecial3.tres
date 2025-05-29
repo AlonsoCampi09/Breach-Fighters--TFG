@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="VylsSpecial3" load_steps=2 format=3 uid="uid://dfbjapxgmsitw"]
+
+[ext_resource type="Script" path="res://data/movimientos/VylsSpecial3.cs" id="1_6gpne"]
+
+[resource]
+script = ExtResource("1_6gpne")
+Level = 1
+Name = "Reinicio"
+Name_Evolved = "Restauración"
+Description = "Vyls limpia al objetivo de todos los estados que tenga (excepto el estado de envenendado). Si el objetivo es un aliado, este ataque no le hará daño."
+Description_Evolved = "Vyls limpia al objetivo de todos los estados que tenga (excepto el estado de envenendado). Si el objetivo es un aliado, este ataque no le hará daño y le mantendrá los estados positivos."
+BasePower = 7
+BasePower_Evolved = 7
+Cost = 4
+Cost_Evolved = 7
+RequiredLevelToEvolve = 6
+RequiredLevelToUnlock = 2
+effectObj = 2
+TargetsCount = 1
+TargetsAllTeam = false
+DoitAgain = false

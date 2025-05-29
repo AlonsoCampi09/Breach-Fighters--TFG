@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="IshiSpecial3" load_steps=2 format=3 uid="uid://crvikhe7ci1di"]
+
+[ext_resource type="Script" path="res://data/movimientos/IshiSpecial3.cs" id="1_ryqlo"]
+
+[resource]
+script = ExtResource("1_ryqlo")
+Level = 1
+Name = "Despertar del instinto"
+Name_Evolved = "Despertar de la bestia"
+Description = "El olor de su presa hace que su instinto de caza se active, lo que hace que el ataque de Ishimondo se potencie un 30% pero su defensa se reduzca un 15%."
+Description_Evolved = "Ishimondo pierde el control de sus acciones lo que le impulsa a solo atacar. Ishi gana un potenciador del ataque de 50% durante 3 turnos ademas de los estados de bloqueo y sellado."
+BasePower = 0
+BasePower_Evolved = 0
+Cost = 6
+Cost_Evolved = 11
+RequiredLevelToEvolve = 8
+RequiredLevelToUnlock = 2
+effectObj = 3
+TargetsCount = 1
+TargetsAllTeam = false
+Hurts = false
+Limit = 0
+Guaranteed = 0
+Limit_Evolved = 0
+Guaranteed_Evolved = 0
+Percentage = 0
+Percentage_Evolved = 0
+Count = 0
+CooldownTurns = 0
+StatusCanApply = PackedInt32Array(0, 3)
+StatusCanApplyEvolved = PackedInt32Array(0, 7, 8)

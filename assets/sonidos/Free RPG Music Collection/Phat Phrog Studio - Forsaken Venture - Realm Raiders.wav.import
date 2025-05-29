@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c812gnts8ymnp"
+path="res://.godot/imported/Phat Phrog Studio - Forsaken Venture - Realm Raiders.wav-d470e9ecef3cb540fcc3ed853bb0b18c.sample"
+
+[deps]
+
+source_file="res://assets/sonidos/Free RPG Music Collection/Phat Phrog Studio - Forsaken Venture - Realm Raiders.wav"
+dest_files=["res://.godot/imported/Phat Phrog Studio - Forsaken Venture - Realm Raiders.wav-d470e9ecef3cb540fcc3ed853bb0b18c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

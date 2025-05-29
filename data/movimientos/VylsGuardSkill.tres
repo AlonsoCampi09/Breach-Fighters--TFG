@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="VylsGuardSkill" load_steps=2 format=3 uid="uid://c63roa8o2ueiv"]
+
+[ext_resource type="Script" path="res://data/movimientos/VylsGuardSkill.cs" id="1_ghjn4"]
+
+[resource]
+script = ExtResource("1_ghjn4")
+Level = 1
+Name = "Cuartel"
+Name_Evolved = "Holograma tangible"
+Description = "Vyls refuerza su armadura y pausa para recapitular, lo que aumenta su defensa y gana maná de vuelta."
+Description_Evolved = "Vyls refuerza su armadura y pausa para recapitular, lo que aumenta su defensa y gana maná de vuelta."
+BasePower = 0
+BasePower_Evolved = 0
+Cost = 0
+Cost_Evolved = 0
+RequiredLevelToEvolve = 5
+RequiredLevelToUnlock = 0
+effectObj = 3
+TargetsCount = 1
+TargetsAllTeam = false
+DoitAgain = false

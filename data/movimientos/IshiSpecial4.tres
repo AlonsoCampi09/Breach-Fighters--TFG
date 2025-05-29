@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="IshiSpecial4" load_steps=2 format=3 uid="uid://ri5u4mxxqvoy"]
+
+[ext_resource type="Script" path="res://data/movimientos/IshiSpecial4.cs" id="1_hrdop"]
+
+[resource]
+script = ExtResource("1_hrdop")
+Level = 1
+Name = "Carantoña salvaje"
+Name_Evolved = "Golpe furri"
+Description = "Ishimondo usa sus garras con fiereza lo que le deja sangrando durante 2 turnos."
+Description_Evolved = "Ishimondo usa sus garras con toda sus ganas lo que le deja sangrando durante 2 turnos.."
+BasePower = 9
+BasePower_Evolved = 11
+Cost = 8
+Cost_Evolved = 9
+RequiredLevelToEvolve = 7
+RequiredLevelToUnlock = 3
+effectObj = 1
+TargetsCount = 1
+TargetsAllTeam = false
+Hurts = true
+Limit = 0
+Guaranteed = 0
+Limit_Evolved = 0
+Guaranteed_Evolved = 0
+Percentage = 0
+Percentage_Evolved = 0
+Count = 0
+CooldownTurns = 0
+StatusCanApply = PackedInt32Array(9)
+StatusCanApplyEvolved = PackedInt32Array(9)

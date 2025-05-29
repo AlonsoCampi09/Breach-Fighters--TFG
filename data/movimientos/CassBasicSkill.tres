@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CassBasicSkill" load_steps=2 format=3 uid="uid://44c8ma3wpios"]
+
+[ext_resource type="Script" path="res://data/movimientos/CassBasicSkill.cs" id="1_57ejq"]
+
+[resource]
+script = ExtResource("1_57ejq")
+Level = 1
+Name = "Pulso magico"
+Name_Evolved = "Impulso arcanium"
+Description = "Cassandra dispara un proyectil mágico que hace daño al enemigo."
+Description_Evolved = "Cassandra dispara un proyectil mágico que hace daño al enemigo. Tambien le regenera parte de su maná."
+BasePower = 8
+BasePower_Evolved = 8
+Cost = 0
+Cost_Evolved = 0
+RequiredLevelToEvolve = 5
+RequiredLevelToUnlock = 0
+effectObj = 1
+TargetsCount = 1
+TargetsAllTeam = false
+Hurts = true
+DoitAgain = false

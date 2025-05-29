@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cgkoprvbu8eam"
+path="res://.godot/imported/Phat Phrog Studio - Winter Spirits - Whispering Trees.wav-dc344b44b363ee88ef1d3ea1b2c39aa9.sample"
+
+[deps]
+
+source_file="res://assets/sonidos/Free RPG Music Collection/Phat Phrog Studio - Winter Spirits - Whispering Trees.wav"
+dest_files=["res://.godot/imported/Phat Phrog Studio - Winter Spirits - Whispering Trees.wav-dc344b44b363ee88ef1d3ea1b2c39aa9.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

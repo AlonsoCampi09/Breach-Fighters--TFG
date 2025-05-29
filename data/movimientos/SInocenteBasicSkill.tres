@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="SlimeBasicSkill" load_steps=2 format=3 uid="uid://d4ba7jpscjb7q"]
+
+[ext_resource type="Script" path="res://data/movimientos/SlimeBasicSkill.cs" id="1_bx7a7"]
+
+[resource]
+script = ExtResource("1_bx7a7")
+slime = 0
+Level = 1
+Name = "Babeo"
+Name_Evolved = "Consumo"
+Description = "Un golpeo basico que cualquier slime puede hacer a un enemigo."
+Description_Evolved = "Un golpeo basico que cualquier slime puede hacer a un enemigo. Puede aplicar un estado dependiendo del tipo."
+BasePower = 6
+BasePower_Evolved = 7
+Cost = 0
+Cost_Evolved = 0
+RequiredLevelToEvolve = 5
+RequiredLevelToUnlock = 0
+effectObj = 1
+TargetsCount = 1
+TargetsAllTeam = false
+Hurts = true
+DoitAgain = false

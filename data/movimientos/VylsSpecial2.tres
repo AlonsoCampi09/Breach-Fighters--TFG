@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="VylsSpecial2" load_steps=2 format=3 uid="uid://djikkwp3ngkc5"]
+
+[ext_resource type="Script" path="res://data/movimientos/VylsSpecial2.cs" id="1_fogja"]
+
+[resource]
+script = ExtResource("1_fogja")
+Level = 1
+Name = "Fragmentación"
+Name_Evolved = "Tempestad"
+Description = "Vyls lanza una granada que al explotar hace daño a todos los enemigos."
+Description_Evolved = "Vyls lanza una granada que al explotar hace daño a todos los enemigos. Tiene un 30 porciento de probabilidad que Bloque las defensas de los afectados."
+BasePower = 5
+BasePower_Evolved = 6
+Cost = 6
+Cost_Evolved = 7
+RequiredLevelToEvolve = 4
+RequiredLevelToUnlock = 0
+effectObj = 1
+TargetsCount = 1
+TargetsAllTeam = true
+Hurts = true
+Limit = 0
+Guaranteed = 0
+Limit_Evolved = 0
+Guaranteed_Evolved = 0
+Percentage = 0
+Percentage_Evolved = 0
+Count = 0
+CooldownTurns = 0
+StatusCanApply = PackedInt32Array()
+StatusCanApplyEvolved = PackedInt32Array(7)

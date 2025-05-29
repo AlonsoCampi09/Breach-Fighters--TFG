@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="AlexBasicSkill" load_steps=2 format=3 uid="uid://ctoxw2nbwi3fh"]
+
+[ext_resource type="Script" path="res://data/movimientos/AlexBasicSkill.cs" id="1_xf6pr"]
+
+[resource]
+script = ExtResource("1_xf6pr")
+Level = 1
+Name = "Golpe Improvisado"
+Name_Evolved = "Golpe de enfoque"
+Description = "Alex se acerca lo suficiente para pegar un puñetazo."
+Description_Evolved = "Alex se acerca lo suficiente para pegar un puñetazo. Puede tener un efecto secundario aleatorio"
+BasePower = 6
+BasePower_Evolved = 7
+Cost = 0
+Cost_Evolved = 0
+RequiredLevelToEvolve = 7
+RequiredLevelToUnlock = 0
+effectObj = 1
+TargetsCount = 1
+TargetsAllTeam = false
+DoitAgain = false

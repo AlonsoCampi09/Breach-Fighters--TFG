@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="AlexSpecial2" load_steps=2 format=3 uid="uid://q3t6kfgdki4y"]
+
+[ext_resource type="Script" path="res://data/movimientos/AlexSpecial2.cs" id="1_12lhs"]
+
+[resource]
+script = ExtResource("1_12lhs")
+Level = 1
+Name = "Lanzamiento de gorra"
+Name_Evolved = "Cuadernos fuera"
+Description = "Alex lanza su gorra a un enemigo lo que hace que la defensa del enemigo en un 10 porciento durante sus proximos 2 turnos ademas de hacerle un poco de daño."
+Description_Evolved = "Alex lanza su cuaderno a los enemigos lo que hace que la defensa de todos los afectados en un 10 porciento durante sus proximos 2 ademas de hacerle un poco de daño."
+BasePower = 3
+BasePower_Evolved = 4
+Cost = 5
+Cost_Evolved = 7
+RequiredLevelToEvolve = 3
+RequiredLevelToUnlock = 0
+effectObj = 1
+TargetsCount = 2
+TargetsAllTeam = false
+Hurts = true
+Limit = 0
+Guaranteed = 0
+Limit_Evolved = 0
+Guaranteed_Evolved = 0
+Percentage = 0
+Percentage_Evolved = 0
+Count = 0
+CooldownTurns = 1
+StatusCanApply = PackedInt32Array(3)
+StatusCanApplyEvolved = PackedInt32Array(3)

@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="AlexSpecial4" load_steps=2 format=3 uid="uid://b8iq57f3g7tcu"]
+
+[ext_resource type="Script" path="res://data/movimientos/AlexSpecial4.cs" id="1_xr04a"]
+
+[resource]
+script = ExtResource("1_xr04a")
+Level = 1
+Name = "Lluvia de ideas"
+Name_Evolved = "Dibujo compartido"
+Description = "Alex usa su cuaderno para otorgar una bendicion a sus compañeros. Esta bendición aumenta el ataque de todos sus aliados en un 10 porciento además de otorgarles Creación en sus proximos turnos."
+Description_Evolved = "Alex usa su cuaderno para otorgar una bendicion a sus compañeros. Esta bendición aumenta el ataque de todos sus aliados en un 10 porciento además de otorgarles Creación en sus proximos turnos."
+BasePower = 6
+BasePower_Evolved = 6
+Cost = 9
+Cost_Evolved = 13
+RequiredLevelToEvolve = 9
+RequiredLevelToUnlock = 3
+effectObj = 0
+TargetsCount = 1
+TargetsAllTeam = true
+Hurts = true
+Limit = 0
+Guaranteed = 0
+Limit_Evolved = 0
+Guaranteed_Evolved = 0
+Percentage = 0
+Percentage_Evolved = 0
+Count = 0
+CooldownTurns = 0
+StatusCanApply = PackedInt32Array(0, 14)
+StatusCanApplyEvolved = PackedInt32Array(0, 14)

@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="IshiSpecial1" load_steps=2 format=3 uid="uid://cvjpmp02pjc1s"]
+
+[ext_resource type="Script" path="res://data/movimientos/IshiSpecial1.cs" id="1_0eb26"]
+
+[resource]
+script = ExtResource("1_0eb26")
+Level = 1
+Name = "Golpes voraces"
+Name_Evolved = "Ráfaga voraz"
+Description = "Ishimondo ataca repetidas veces al enemigo haciendole daño. El número de ataques puede variar, pero está garantizado que llegará a 2 golpes minimo"
+Description_Evolved = "Ishimondo ataca repetidas veces al enemigo haciendole daño. El número de ataques puede variar, pero está garantizado que llegará a 3 golpes minimo."
+BasePower = 1
+BasePower_Evolved = 2
+Cost = 4
+Cost_Evolved = 7
+RequiredLevelToEvolve = 4
+RequiredLevelToUnlock = 0
+effectObj = 1
+TargetsCount = 1
+TargetsAllTeam = false
+Hurts = true
+Limit = 5
+Guaranteed = 2
+Limit_Evolved = 7
+Guaranteed_Evolved = 3
+Percentage = 50
+Percentage_Evolved = 40
+Count = 0
+CooldownTurns = 0
+StatusCanApply = PackedInt32Array()
+StatusCanApplyEvolved = PackedInt32Array()

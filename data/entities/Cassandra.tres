@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Entity" load_steps=3 format=3 uid="uid://bugnthowl1map"]
+
+[ext_resource type="Script" path="res://data/entities/Entity.cs" id="1_70u6r"]
+[ext_resource type="Texture2D" uid="uid://vh1hgymeh1mc" path="res://assets/sprites/sheets/watona.png" id="1_m3lru"]
+
+[resource]
+script = ExtResource("1_70u6r")
+beh_type = 0
+entityType = 1
+SpriteSheet = ExtResource("1_m3lru")
+NumFrames = 5
+FrameLength = 200
+FrameWidth = 180
+Name = "Cassandra"
+Level = 1
+Health = 18
+Mana = 18
+ATQBuf = 0
+ATQDeBuf = 0
+DEFBuf = 0
+DEFDeBuf = 0
+VELBuf = 0
+VELDeBuf = 0
+ControlPlayer = true
+Turn = false
+Passed = false
+TrueHealth = PackedInt32Array(18, 20, 22, 24, 26, 28, 30, 32, 34, 36)
+TrueAttack = PackedInt32Array(7, 9, 11, 13, 15, 17, 19, 21, 23, 25)
+TrueDefense = PackedInt32Array(4, 5, 6, 7, 8, 9, 10, 11, 12, 13)
+TrueMana = PackedInt32Array(18, 21, 24, 27, 30, 33, 36, 39, 42, 45)
+TrueSpeed = PackedInt32Array(5, 6, 7, 8, 9, 10, 11, 12, 13, 14)
+BaseExp = 11
+ExpIncrease = 6
+BaseCoin = 0
+CoinIncrease = 0

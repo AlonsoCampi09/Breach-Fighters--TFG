@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CassGuardSkill" load_steps=2 format=3 uid="uid://crgs2wgpw8xx3"]
+
+[ext_resource type="Script" path="res://data/movimientos/CassGuardSkill.cs" id="1_iyfon"]
+
+[resource]
+script = ExtResource("1_iyfon")
+Level = 1
+Name = "Pantalla"
+Name_Evolved = "Reflejo Espejo"
+Description = "Cassandra proyecta un escudo que aumenta la defensa hasta el proximo turno. Tambien devuelve parte del maná"
+Description_Evolved = "Cassandra proyecta un escudo que aumenta la defensa hasta el proximo turno. Tambien devuelve parte del maná"
+BasePower = 0
+BasePower_Evolved = 0
+Cost = 0
+Cost_Evolved = 0
+RequiredLevelToEvolve = 5
+RequiredLevelToUnlock = 0
+effectObj = 3
+TargetsCount = 1
+TargetsAllTeam = false
+DoitAgain = false

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="IshiBasicSkill" load_steps=2 format=3 uid="uid://cx3q4x7pmlk2n"]
+
+[ext_resource type="Script" path="res://data/movimientos/IshiBasicSkill.cs" id="1_pk6yg"]
+
+[resource]
+script = ExtResource("1_pk6yg")
+Level = 1
+Name = "Arañazo"
+Name_Evolved = "Mordisco"
+Description = "Ishimondo se acerca al enemigo para arañarle haciendole daño."
+Description_Evolved = "Ishimondo salta al punto débil del objetivo haciendole daño. Si el objetivo estaba afectado por Marca del Cazador, Ishimondo se cura la mitad del daño hecho."
+BasePower = 7
+BasePower_Evolved = 9
+Cost = 0
+Cost_Evolved = 0
+RequiredLevelToEvolve = 5
+RequiredLevelToUnlock = 0
+effectObj = 1
+TargetsCount = 1
+TargetsAllTeam = false
+Hurts = true
+DoitAgain = false

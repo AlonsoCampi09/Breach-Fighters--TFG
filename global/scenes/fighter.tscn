@@ -1,0 +1,41 @@
+[gd_scene load_steps=9 format=3 uid="uid://nspptyj8fr63"]
+
+[ext_resource type="Script" path="res://global/scenes/scene_scripts/Fighter.cs" id="1_j5sur"]
+[ext_resource type="PackedScene" path="res://global/scenes/scenesUI/status_display.tscn" id="2_ahb84"]
+[ext_resource type="Script" path="res://global/controllers/StatusEffectController.cs" id="3_vsw3n"]
+[ext_resource type="Texture2D" uid="uid://hlfy65ex2wit" path="res://assets/ui_related/bar.png" id="4_nauyh"]
+[ext_resource type="Script" path="res://global/manager/AICombatManager.cs" id="4_ykwu6"]
+[ext_resource type="Texture2D" uid="uid://doxdc8hw3vhr6" path="res://assets/ui_related/bar_mana.png" id="6_fysnt"]
+[ext_resource type="Script" path="res://global/scenes/scenesUI/HealthBar.cs" id="6_i2uq5"]
+[ext_resource type="Script" path="res://global/scenes/scenesUI/ManaBar.cs" id="6_p411c"]
+
+[node name="Fighter" type="Node2D"]
+script = ExtResource("1_j5sur")
+
+[node name="Sprites" type="AnimatedSprite2D" parent="."]
+
+[node name="StatusDisplay" parent="." instance=ExtResource("2_ahb84")]
+position = Vector2(0, -80)
+
+[node name="StatusEffectController" type="Node" parent="."]
+script = ExtResource("3_vsw3n")
+
+[node name="AI" type="Node" parent="."]
+script = ExtResource("4_ykwu6")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+offset_left = -75.0
+offset_top = 105.0
+offset_right = 75.0
+offset_bottom = 121.0
+texture_under = ExtResource("4_nauyh")
+script = ExtResource("6_i2uq5")
+
+[node name="ManaBar" type="TextureProgressBar" parent="."]
+offset_left = -75.0
+offset_top = 125.0
+offset_right = 75.0
+offset_bottom = 141.0
+texture_under = ExtResource("4_nauyh")
+texture_progress = ExtResource("6_fysnt")
+script = ExtResource("6_p411c")

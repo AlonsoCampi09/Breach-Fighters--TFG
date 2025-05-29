@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="AlexSpecial3" load_steps=2 format=3 uid="uid://oqiopd0vl03w"]
+
+[ext_resource type="Script" path="res://data/movimientos/AlexSpecial3.cs" id="1_tx5lv"]
+
+[resource]
+script = ExtResource("1_tx5lv")
+Level = 1
+Name = "Mazo personal"
+Name_Evolved = "Mola Mazo"
+Description = "Alex dibuja su arma favorita y la hace realidad para hacer gran daño a un enemigo."
+Description_Evolved = "Alex dibuja su arma favorita y la hace realidad para hacer gran daño a un enemigo. Este ataque puede aturdir al objetivo."
+BasePower = 8
+BasePower_Evolved = 9
+Cost = 8
+Cost_Evolved = 9
+RequiredLevelToEvolve = 8
+RequiredLevelToUnlock = 2
+effectObj = 1
+TargetsCount = 1
+TargetsAllTeam = false
+Hurts = true
+Limit = 0
+Guaranteed = 0
+Limit_Evolved = 0
+Guaranteed_Evolved = 0
+Percentage = 0
+Percentage_Evolved = 0
+Count = 0
+CooldownTurns = 0
+StatusCanApply = PackedInt32Array(7)
+StatusCanApplyEvolved = PackedInt32Array(6)

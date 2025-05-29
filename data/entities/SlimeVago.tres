@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Entity" load_steps=3 format=3 uid="uid://d3crqcsu6mivb"]
+
+[ext_resource type="Script" path="res://data/entities/Entity.cs" id="1_aqnf7"]
+[ext_resource type="Texture2D" uid="uid://cn8bqs3y0cqvn" path="res://assets/sprites/lazyone.png" id="1_g72w6"]
+
+[resource]
+script = ExtResource("1_aqnf7")
+beh_type = 1
+entityType = 0
+SpriteSheet = ExtResource("1_g72w6")
+NumFrames = 1
+FrameLength = 100
+FrameWidth = 150
+Name = "Slime Vago"
+Level = 1
+Health = 15
+Mana = 0
+ATQBuf = 0
+ATQDeBuf = 0
+DEFBuf = 0
+DEFDeBuf = 0
+VELBuf = 0
+VELDeBuf = 0
+ControlPlayer = false
+Turn = false
+Passed = false
+TrueHealth = PackedInt32Array(15, 17, 19, 21, 23, 25, 27, 29, 31, 33)
+TrueAttack = PackedInt32Array(4, 5, 6, 7, 8, 9, 10, 11, 12, 13)
+TrueDefense = PackedInt32Array(5, 6, 7, 8, 9, 10, 11, 12, 13, 14)
+TrueMana = PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+TrueSpeed = PackedInt32Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+BaseExp = 2
+ExpIncrease = 2
+BaseCoin = 5
+CoinIncrease = 1

@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="IshiSpecial2" load_steps=2 format=3 uid="uid://c4le4fx1onnb5"]
+
+[ext_resource type="Script" path="res://data/movimientos/IshiSpecial2.cs" id="1_kvvmb"]
+
+[resource]
+script = ExtResource("1_kvvmb")
+Level = 1
+Name = "Rugido de batalla"
+Name_Evolved = "Marca del cazador"
+Description = "Ishimondo ruge haciendo que su voz retumbe en la mente de su objetivo, lo que hace que su defensa se vea reducida un 35 porciento."
+Description_Evolved = "Ishimondo marca a un enemigo como su presa, lo que hace que su defensa se vea reducida un 35 porciento y le pone la Marca del cazador."
+BasePower = 0
+BasePower_Evolved = 0
+Cost = 5
+Cost_Evolved = 8
+RequiredLevelToEvolve = 5
+RequiredLevelToUnlock = 0
+effectObj = 1
+TargetsCount = 1
+TargetsAllTeam = false
+Hurts = false
+Limit = 0
+Guaranteed = 0
+Limit_Evolved = 0
+Guaranteed_Evolved = 0
+Percentage = 0
+Percentage_Evolved = 0
+Count = 0
+CooldownTurns = 0
+StatusCanApply = PackedInt32Array(2)
+StatusCanApplyEvolved = PackedInt32Array(2, 13)

@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="CassSpecial3" load_steps=2 format=3 uid="uid://dpfjwgiko8pp"]
+
+[ext_resource type="Script" path="res://data/movimientos/CassSpecial3.cs" id="1_pyxlq"]
+
+[resource]
+script = ExtResource("1_pyxlq")
+Level = 1
+Name = "Sello rúnico"
+Name_Evolved = "Pacto sombrío"
+Description = "Cassandra aplica un hechizo neutralizador a un objetivo haciendole un poco de daño y quitandole parte del maná al objetivo."
+Description_Evolved = "Cassandra aplica un hechizo oscuro a un objetivo haciendole un poco de daño y aplicandole el efecto de Sellado durante el siguiente turno del objetivo."
+BasePower = 5
+BasePower_Evolved = 7
+Cost = 4
+Cost_Evolved = 6
+RequiredLevelToEvolve = 6
+RequiredLevelToUnlock = 2
+effectObj = 1
+TargetsCount = 1
+TargetsAllTeam = false
+Hurts = true
+Limit = 0
+Guaranteed = 0
+Limit_Evolved = 0
+Guaranteed_Evolved = 0
+Percentage = 0
+Percentage_Evolved = 0
+Count = 0
+CooldownTurns = 2
+StatusCanApply = PackedInt32Array(7)
+StatusCanApplyEvolved = PackedInt32Array(7)

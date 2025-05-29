@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="CassSpecial4" load_steps=2 format=3 uid="uid://cyllco56hhyyq"]
+
+[ext_resource type="Script" path="res://data/movimientos/CassSpecial4.cs" id="1_gknu0"]
+
+[resource]
+script = ExtResource("1_gknu0")
+Level = 1
+Name = "Juicio paria"
+Name_Evolved = "Exilio"
+Description = "assandra canaliza un rayo mágico sobre el objetivo, haciendo gran daño y pudiendo causar una reduccion de daño del 30% en su siguiente turno."
+Description_Evolved = "assandra canaliza un rayo mágico sobre el objetivo, haciendo gran daño y les causa una reduccion de daño del 30% en su siguiente turno."
+BasePower = 10
+BasePower_Evolved = 13
+Cost = 10
+Cost_Evolved = 12
+RequiredLevelToEvolve = 7
+RequiredLevelToUnlock = 3
+effectObj = 1
+TargetsCount = 1
+TargetsAllTeam = false
+Hurts = true
+Limit = 0
+Guaranteed = 0
+Limit_Evolved = 0
+Guaranteed_Evolved = 0
+Percentage = 0
+Percentage_Evolved = 0
+Count = 0
+CooldownTurns = 1
+StatusCanApply = PackedInt32Array(1)
+StatusCanApplyEvolved = PackedInt32Array(1)

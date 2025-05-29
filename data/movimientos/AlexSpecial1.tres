@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="AlexSpecial1" load_steps=2 format=3 uid="uid://dm545lo3hxtyy"]
+
+[ext_resource type="Script" path="res://data/movimientos/AlexSpecial1.cs" id="1_t1tta"]
+
+[resource]
+script = ExtResource("1_t1tta")
+Level = 1
+Name = "Motivación"
+Name_Evolved = "Inspiración"
+Description = "Alex motiva a uno de sus compañeros lo que aumenta el ataque y la defensa en un 20%."
+Description_Evolved = "Alex motiva a uno de sus compañeros con confianza lo que aumenta el ataque y la defensa en un 20% tanto al aliado como a él"
+BasePower = 0
+BasePower_Evolved = 0
+Cost = 5
+Cost_Evolved = 7
+RequiredLevelToEvolve = 4
+RequiredLevelToUnlock = 0
+effectObj = 0
+TargetsCount = 1
+TargetsAllTeam = false
+Hurts = false
+Limit = 0
+Guaranteed = 0
+Limit_Evolved = 0
+Guaranteed_Evolved = 0
+Percentage = 0
+Percentage_Evolved = 0
+Count = 0
+CooldownTurns = 0
+StatusCanApply = PackedInt32Array(0, 2)
+StatusCanApplyEvolved = PackedInt32Array(0, 2)

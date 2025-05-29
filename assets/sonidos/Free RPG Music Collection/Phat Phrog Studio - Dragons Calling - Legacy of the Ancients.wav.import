@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://fl4ffccpf7lb"
+path="res://.godot/imported/Phat Phrog Studio - Dragons Calling - Legacy of the Ancients.wav-3d487ed1bbd26820c90c658ff30acb96.sample"
+
+[deps]
+
+source_file="res://assets/sonidos/Free RPG Music Collection/Phat Phrog Studio - Dragons Calling - Legacy of the Ancients.wav"
+dest_files=["res://.godot/imported/Phat Phrog Studio - Dragons Calling - Legacy of the Ancients.wav-3d487ed1bbd26820c90c658ff30acb96.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

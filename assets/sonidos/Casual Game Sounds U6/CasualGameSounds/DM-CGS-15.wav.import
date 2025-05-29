@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://6m0yb6s5x137"
+path="res://.godot/imported/DM-CGS-15.wav-ab9f796dd96036c9822c9c2f460f4691.sample"
+
+[deps]
+
+source_file="res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-15.wav"
+dest_files=["res://.godot/imported/DM-CGS-15.wav-ab9f796dd96036c9822c9c2f460f4691.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CassSpecial1" load_steps=2 format=3 uid="uid://d03ulng6140yd"]
+
+[ext_resource type="Script" path="res://data/movimientos/CassSpecial1.cs" id="1_jjwpl"]
+
+[resource]
+script = ExtResource("1_jjwpl")
+Level = 1
+Name = "Brecha umbría"
+Name_Evolved = "Ruptura"
+Description = "Cassandra hace un orbe con sus manos y lo lanza al aire. El orbe explota dividiendose en dos partes que dañan a dos enemigos."
+Description_Evolved = "Cassandra hace un orbe con sus manos y lo lanza al aire. El orbe explota dividiendose en varias partes que dañan a todos los enemigos."
+BasePower = 6
+BasePower_Evolved = 6
+Cost = 4
+Cost_Evolved = 7
+RequiredLevelToEvolve = 4
+RequiredLevelToUnlock = 0
+effectObj = 1
+TargetsCount = 2
+TargetsAllTeam = false
+DoitAgain = false

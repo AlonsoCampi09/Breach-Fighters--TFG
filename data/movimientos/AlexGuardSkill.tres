@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="AlexGuardSkill" load_steps=2 format=3 uid="uid://dea4xd2l3gboh"]
+
+[ext_resource type="Script" path="res://data/movimientos/AlexGuardSkill.cs" id="1_kyab0"]
+
+[resource]
+script = ExtResource("1_kyab0")
+Level = 1
+Name = "Escudo dibujado"
+Name_Evolved = "Escudo detallado"
+Description = "Alex dibuja un escudo y lo vuelve realidad, lo que potencia su defensa y restaura su maná."
+Description_Evolved = "Alex dibuja un escudo y lo vuelve realidad, lo que potencia su defensa y restaura su maná."
+BasePower = 0
+BasePower_Evolved = 0
+Cost = 0
+Cost_Evolved = 0
+RequiredLevelToEvolve = 5
+RequiredLevelToUnlock = 0
+effectObj = 3
+TargetsCount = 1
+TargetsAllTeam = false
+DoitAgain = false

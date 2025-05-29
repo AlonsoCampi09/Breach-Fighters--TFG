@@ -1,0 +1,221 @@
+[gd_scene load_steps=8 format=3 uid="uid://tfj11ryvomcs"]
+
+[ext_resource type="Theme" uid="uid://cgp6bk35e1id3" path="res://assets/ui_related/ui_battle_theme.tres" id="1_imxdl"]
+[ext_resource type="Script" path="res://global/scenes/scene_scripts/MenuBatalla.cs" id="1_x0rkq"]
+[ext_resource type="Script" path="res://global/scenes/scenesUI/InfoPanel.cs" id="3_bbyds"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oe5fb"]
+line_spacing = 2.0
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_vdpri"]
+line_spacing = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_txxvw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_m6vhy"]
+
+[node name="Menu_Batalla" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_imxdl")
+script = ExtResource("1_x0rkq")
+
+[node name="Battle_Action" type="Panel" parent="."]
+custom_minimum_size = Vector2(1000, 100)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Battle_Action"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -142.0
+offset_right = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Battle_Action/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_constants/separation = 100
+
+[node name="Attack" type="Button" parent="Battle_Action/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Atacar"
+
+[node name="Special" type="Button" parent="Battle_Action/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Especial"
+
+[node name="Bag" type="Button" parent="Battle_Action/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+disabled = true
+text = "Bolsa"
+
+[node name="Guard" type="Button" parent="Battle_Action/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Guardia"
+
+[node name="Special_Action" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(1000, 100)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Special_Action"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -142.0
+offset_right = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Special_Action/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_constants/separation = 100
+
+[node name="Mov1" type="Button" parent="Special_Action/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Mov1
+"
+
+[node name="Mov2" type="Button" parent="Special_Action/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Mov2
+"
+
+[node name="Mov3" type="Button" parent="Special_Action/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Mov3
+"
+
+[node name="Mov4" type="Button" parent="Special_Action/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Mov4"
+
+[node name="Selection" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(1000, 100)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Selection"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -142.0
+offset_right = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Selection/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_constants/separation = 100
+
+[node name="Inv" type="Button" parent="Selection/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Si lees esto, eres tonto :P
+"
+
+[node name="Info_Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+offset_right = 350.0
+offset_bottom = 40.0
+script = ExtResource("3_bbyds")
+
+[node name="MarginContainer" type="MarginContainer" parent="Info_Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Info_Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Title" type="Label" parent="Info_Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(490, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+label_settings = SubResource("LabelSettings_oe5fb")
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="Info_Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(485, 0)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_vdpri")
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Info_Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Info_Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Power" type="Label" parent="Info_Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_txxvw")
+autowrap_mode = 2
+
+[node name="Cost" type="Label" parent="Info_Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_txxvw")
+autowrap_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Info_Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Level_Needed" type="Label" parent="Info_Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_m6vhy")
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="Level_Evolve" type="Label" parent="Info_Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+horizontal_alignment = 2
+autowrap_mode = 2

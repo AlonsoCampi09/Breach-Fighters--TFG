@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="VylsBasicSkill" load_steps=2 format=3 uid="uid://yis3885norhv"]
+
+[ext_resource type="Script" path="res://data/movimientos/VylsBasicSkill.cs" id="1_54jjs"]
+
+[resource]
+script = ExtResource("1_54jjs")
+Level = 1
+Name = "Disparo de cañon"
+Name_Evolved = "FLAQUEZA DETECTADA"
+Description = "Un disparo del arma de Vyls que hace daño a un enemigo."
+Description_Evolved = "Un disparo del arma de Vyls que hace daño a un enemigo. Este ataque ignora la defensa del objetivo."
+BasePower = 6
+BasePower_Evolved = 6
+Cost = 0
+Cost_Evolved = 0
+RequiredLevelToEvolve = 4
+RequiredLevelToUnlock = 0
+effectObj = 1
+TargetsCount = 1
+TargetsAllTeam = false
+Hurts = true
+DoitAgain = false
