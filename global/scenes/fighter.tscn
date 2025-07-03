@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://nspptyj8fr63"]
 
 [ext_resource type="Script" path="res://global/scenes/scene_scripts/Fighter.cs" id="1_j5sur"]
-[ext_resource type="PackedScene" path="res://global/scenes/scenesUI/status_display.tscn" id="2_ahb84"]
+[ext_resource type="PackedScene" uid="uid://b3ld2fafl41ar" path="res://global/scenes/scenesUI/status_display.tscn" id="2_ahb84"]
 [ext_resource type="Script" path="res://global/controllers/StatusEffectController.cs" id="3_vsw3n"]
 [ext_resource type="Texture2D" uid="uid://hlfy65ex2wit" path="res://assets/ui_related/bar.png" id="4_nauyh"]
 [ext_resource type="Script" path="res://global/manager/AICombatManager.cs" id="4_ykwu6"]

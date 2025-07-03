@@ -30,6 +30,7 @@ BattleManager="*res://global/manager/BattleManager.cs"
 DialogsManager="*res://global/manager/DialogsManager.cs"
 TransitionScreen="*res://global/scenes/transition_screen.tscn"
 Tts="*res://global/manager/TTS.cs"
+ConfigData="*res://global/manager/ConfigData.cs"
 
 [dotnet]
 
@@ -87,5 +88,10 @@ custom_ui_fighter_info={
 custom_ui_turner_info={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194333,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+custom_tts_repeat={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194334,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }

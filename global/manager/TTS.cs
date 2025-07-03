@@ -19,7 +19,7 @@ public partial class TTS : Node{
 		voices = DisplayServer.TtsGetVoicesForLanguage("es");
 		if (voices.Length > 0){
 			voiceId = voices[0];
-			ttsEnabled = true;
+			ttsEnabled = ConfigData.ttsValue;
 			SetProcess(true);
 		}
 		else{
@@ -29,6 +29,9 @@ public partial class TTS : Node{
 	}
 	
 	public override void _Process(double delta){
+		if (Input.IsActionJustPressed("custom_tts_repeat") && !isSpeaking){
+			SayThis(lastMessage);
+		}
 		if (ttsEnabled && !isSpeaking && messageQueue.Count > 0){
 			string siguiente = messageQueue.Dequeue();
 			lastMessage = siguiente;
@@ -60,9 +63,7 @@ public partial class TTS : Node{
 	
 	public static void RepeatLast(){
 		if (!string.IsNullOrEmpty(lastMessage)){
-			DisplayServer.TtsStop(); // Por si acaso está hablando
 			messageQueue.Enqueue(lastMessage);
-			isSpeaking = false; // Forzamos a reproducir en el próximo _Process()
 		}
 	}
 	

@@ -1,12 +1,7 @@
 using Godot;
 using System;
 
-public partial class MenuMain : Control{
-	
-	private VBoxContainer main;
-	private Button start;
-	private Button options;
-	private Button exit;
+public partial class MenuOpcionesGlobal : CanvasLayer{
 	
 	private Panel optionMenu;
 	private Button volumenButton;
@@ -31,6 +26,7 @@ public partial class MenuMain : Control{
 	private HSlider ttsVolume;
 	private Label labelTTSVolume;
 	private Button back3;
+	private bool tts = true;
 	
 	private Panel keyMenu;
 	private Button key1;
@@ -60,22 +56,11 @@ public partial class MenuMain : Control{
 	
 	private Button back4;
 	
-	AudioStreamPlayer2D musica;
 	AudioStreamPlayer2D sfx;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready(){
-		musica = GetNode<AudioStreamPlayer2D>("Musica");
 		sfx = GetNode<AudioStreamPlayer2D>("Efectos");
-		main = GetNode<VBoxContainer>("Main");
-		start = GetNode<Button>("Main/Start");
-		options = GetNode<Button>("Main/Options");
-		exit = GetNode<Button>("Main/Exit");
-		
-		start.Pressed += OnStartGame;
-		options.Pressed += OpenOptionMenu; 
-		exit.Pressed += OnExitGame;
-		
 		optionMenu = GetNode<Panel>("Option_Menu");
 		volumenButton = GetNode<Button>("Option_Menu/MarginContainer/VBoxContainer/VBoxContainer/Volume");
 		accesibilityButton = GetNode<Button>("Option_Menu/MarginContainer/VBoxContainer/VBoxContainer/Accesibility");
@@ -85,7 +70,7 @@ public partial class MenuMain : Control{
 		volumenButton.Pressed += OpenVolumeMenu;
 		accesibilityButton.Pressed += OpenAccesibiltyMenu;
 		keyButton.Pressed += OpenKeyMenu;
-		back1.Pressed += OpenMainMenu;
+		back1.Pressed += CloseGlobalOptionMenu;
 		
 		volumeMenu = GetNode<Panel>("Volume_Menu");
 		volumeMaster = GetNode<HSlider>("Volume_Menu/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer/HSlider");
@@ -101,9 +86,9 @@ public partial class MenuMain : Control{
 		volumeSound.ValueChanged += OnSFXVolumeChanged;
 		back2.Pressed += OpenOptionMenu;
 		
-		volumeMaster.Value = ConfigData.masterVolumeValue; // Master
-		volumeMusic.Value = ConfigData.musicVolumeValue;  // Music
-		volumeSound.Value = ConfigData.sfxVolumeValue;  // SFX
+		volumeMaster.Value = 100; // Master
+		volumeMusic.Value = 100;  // Music
+		volumeSound.Value = 100;  // SFX
 		AudioServer.SetBusVolumeDb(0, PercentToDb((float)volumeMaster.Value));
 		labelSound.Text = $"{volumeMaster.Value}%";
 		AudioServer.SetBusVolumeDb(1, PercentToDb((float)volumeMusic.Value));
@@ -152,18 +137,14 @@ public partial class MenuMain : Control{
 		back4 = GetNode<Button>("Controls_Menu/MarginContainer/VBoxContainer/BackControls");
 		back4.Pressed += OpenOptionMenu;
 		
-		ttsSwitch.ButtonPressed = ConfigData.ttsValue;
-		ttsVolume.Value = ConfigData.ttsVolumeValue;
-		ttsVelocity.Value = ConfigData.ttsVelocityValue;
+		ttsVolume.Value = 50;
+		ttsVelocity.Value = 1.5;
 		
 		TTS.SetVolume((float)ttsVolume.Value);
 		labelTTSVolume.Text = $"{ttsVolume.Value}%";
 		TTS.SetSpeed((float)ttsVelocity.Value);
 		labelVelocity.Text = $"{ttsVelocity.Value}";
 		
-		start.FocusEntered += OnFocusEnteredStart;
-		options.FocusEntered += OnFocusEnteredOptions;
-		exit.FocusEntered += OnFocusEnteredExit;
 		volumenButton.FocusEntered += OnFocusEnteredVolume;
 		accesibilityButton.FocusEntered += OnFocusEnteredAccesibility;
 		keyButton.FocusEntered += OnFocusEnteredControls;
@@ -190,36 +171,15 @@ public partial class MenuMain : Control{
 		optionMenu.Visible = false;
 		accesibilityMenu.Visible = false;
 		keyMenu.Visible = false;
-		main.Visible = true;
 		
-		start.GrabFocus();
-		TTS.PutThisInQueue("En el menú principal aparece el logo y el título del juego a la izquierda. A la derecha de la pantalla, una figura elegante misteriosa con una sonrisa y mirada oculta por su sombrero de copa se encuentra sentada en un trono blanco.");
 	}
 	
-	private void OnStartGame(){
-		GD.Print("Iniciando el juego...");
-		TTS.StopTTS();
-		GetTree().ChangeSceneToFile("res://global/scenes/game.tscn");
-	}
-	private void OnExitGame(){
-		GD.Print("Saliendo del juego...");
-		GetTree().Quit();
-	}
 	
-	private void OpenMainMenu(){
-		volumeMenu.Visible = false;
-		optionMenu.Visible = false;
-		accesibilityMenu.Visible = false;
-		keyMenu.Visible = false;
-		main.Visible = true;
-		start.GrabFocus();
-	}
 	private void OpenOptionMenu(){
 		volumeMenu.Visible = false;
 		optionMenu.Visible = true;
 		accesibilityMenu.Visible = false;
 		keyMenu.Visible = false;
-		main.Visible = false;
 		volumenButton.GrabFocus();
 	}
 	private void OpenVolumeMenu(){
@@ -227,7 +187,6 @@ public partial class MenuMain : Control{
 		optionMenu.Visible = false;
 		accesibilityMenu.Visible = false;
 		keyMenu.Visible = false;
-		main.Visible = false;
 		volumeMaster.GrabFocus();
 	}
 	private void OpenAccesibiltyMenu(){
@@ -235,7 +194,6 @@ public partial class MenuMain : Control{
 		optionMenu.Visible = false;
 		accesibilityMenu.Visible = true;
 		keyMenu.Visible = false;
-		main.Visible = false;
 		ttsSwitch.GrabFocus();
 	}
 	private void OpenKeyMenu(){
@@ -243,19 +201,15 @@ public partial class MenuMain : Control{
 		optionMenu.Visible = false;
 		accesibilityMenu.Visible = false;
 		keyMenu.Visible = true;
-		main.Visible = false;
 		key1.GrabFocus();
 	}
+	private void CloseGlobalOptionMenu(){
+		volumeMenu.Visible = false;
+		optionMenu.Visible = false;
+		accesibilityMenu.Visible = false;
+		keyMenu.Visible = false;
+	}
 	
-	private void OnFocusEnteredStart(){
-		TTS.SayThis(start.Text);
-	}
-	private void OnFocusEnteredOptions(){
-		TTS.SayThis(options.Text);
-	}
-	private void OnFocusEnteredExit(){
-		TTS.SayThis(exit.Text);
-	}
 	private void OnFocusEnteredVolume(){
 		TTS.SayThis(volumenButton.Text);
 	}
@@ -342,27 +296,25 @@ public partial class MenuMain : Control{
 	}
 	
 	private void OnCheckBoxPressed(){
-		if(ConfigData.ttsValue){
-			ConfigData.ttsValue = false;
-			TTS.EnableDisableTTS(ConfigData.ttsValue);
+		if(tts){
+			tts = false;
+			TTS.EnableDisableTTS(false);
 		}
 		else{
-			ConfigData.ttsValue = true;
-			TTS.EnableDisableTTS(ConfigData.ttsValue);
+			tts = true;
+			TTS.EnableDisableTTS(true);
 		}
 	}
 	
 	private void OnTTSVolumeChanged(double value){
 		TTS.SetVolume((float)value);
 		TTS.StopTTS();
-		ConfigData.ttsVolumeValue = (float)value;
 		TTS.SayThis("Hola? Hola? Probando. No se escucha muy alto, ¿verdad?");
 		labelTTSVolume.Text = $"{value}%";
 	}
 	private void OnTTSSpeedChanged(double value){
 		TTS.SetSpeed((float)value);
 		TTS.StopTTS();
-		ConfigData.ttsVelocityValue = (float)value;
 		TTS.SayThis("Probando. Probando.");
 		labelVelocity.Text = $"{value}";
 	}

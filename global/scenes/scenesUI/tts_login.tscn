@@ -1,0 +1,220 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6nua272ivoqh"]
+
+[ext_resource type="Script" path="res://TTSQuestion.cs" id="1_fxybh"]
+[ext_resource type="Theme" uid="uid://cgp6bk35e1id3" path="res://assets/ui_related/ui_battle_theme.tres" id="2_nn4jw"]
+
+[node name="TTS_Login" type="CanvasLayer"]
+script = ExtResource("1_fxybh")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TTSQuestion" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -151.0
+offset_top = -105.0
+offset_right = 151.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="TTSQuestion"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 25
+text = "El TTS está activado de base."
+
+[node name="Label2" type="Label" parent="TTSQuestion"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 25
+text = "¿Te gustaría mantenerlo activado?"
+
+[node name="HSeparator" type="HSeparator" parent="TTSQuestion"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TTSQuestion"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TTSQuestion/HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 25
+text = "MantenerTTS (Espacio)"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="TTSQuestion/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label2" type="Label" parent="TTSQuestion/HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 25
+text = "Desactivarlo (X)"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -248.5
+offset_top = -100.0
+offset_right = 248.5
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "Configuración TTS"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Velocidad de lectura"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../../../HBoxContainer3/HBoxContainer/HSlider")
+min_value = 0.5
+max_value = 2.0
+step = 0.5
+value = 1.5
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+text = "%"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Volumen de voz"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer3/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../HBoxContainer2/HBoxContainer/HSlider")
+focus_neighbor_bottom = NodePath("../../../Ready")
+min_value = 10.0
+max_value = 50.0
+value = 50.0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3/HBoxContainer"]
+layout_mode = 2
+text = "%"
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+
+[node name="Ready" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../HBoxContainer3/HBoxContainer/HSlider")
+text = "Listo"
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 15
+text = "Luego podrás cambiarlo en el menú de accesibilidad de las opciones."
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -221.0
+offset_top = -76.5
+offset_right = 221.0
+offset_bottom = 76.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_nn4jw")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "
+¿Todo listo?"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "Confirmar(Espacio)"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "Atrás (X)"
+horizontal_alignment = 1

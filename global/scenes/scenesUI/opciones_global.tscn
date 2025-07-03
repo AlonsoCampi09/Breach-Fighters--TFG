@@ -1,74 +1,31 @@
-[gd_scene load_steps=8 format=3 uid="uid://bo2eg75bcwjuq"]
+[gd_scene load_steps=5 format=3 uid="uid://bjmedgw3nqtr6"]
 
-[ext_resource type="Texture2D" uid="uid://c6kbs1sw480ed" path="res://assets/background/Exio.png" id="1_4gfac"]
-[ext_resource type="Script" path="res://global/scenes/scenesUI/MenuMain.cs" id="1_bmbsa"]
-[ext_resource type="Texture2D" uid="uid://cfl1yej4lax08" path="res://assets/background/Title.png" id="2_3kcmv"]
-[ext_resource type="Theme" uid="uid://cgp6bk35e1id3" path="res://assets/ui_related/ui_battle_theme.tres" id="3_dtk44"]
-[ext_resource type="Theme" uid="uid://bl6yrjv4x8o2" path="res://assets/ui_related/controles.tres" id="5_e6umj"]
-[ext_resource type="AudioStream" uid="uid://d04rms7ccbinx" path="res://assets/sonidos/Free RPG Music Collection/Phat Phrog Studio - RPG Music Collection 2 - Basilisk's Brew.wav" id="5_m7gil"]
-[ext_resource type="AudioStream" uid="uid://bdubrjb83atyt" path="res://assets/sonidos/518558__se2001__quick-blip.wav" id="6_f16tx"]
+[ext_resource type="Script" path="res://global/scenes/scene_scripts/MenuOpcionesGlobal.cs" id="1_dtvhi"]
+[ext_resource type="Theme" uid="uid://cgp6bk35e1id3" path="res://assets/ui_related/ui_battle_theme.tres" id="2_tjm5l"]
+[ext_resource type="Theme" uid="uid://bl6yrjv4x8o2" path="res://assets/ui_related/controles.tres" id="3_h0y4v"]
+[ext_resource type="AudioStream" uid="uid://bdubrjb83atyt" path="res://assets/sonidos/518558__se2001__quick-blip.wav" id="4_ji5t6"]
 
-[node name="Main_Menu" type="Control"]
+[node name="CanvasLayer" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_bmbsa")
-
-[node name="Exio" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(1151, 463)
-texture = ExtResource("1_4gfac")
-
-[node name="Title" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(380, 129)
-texture = ExtResource("2_3kcmv")
-
-[node name="Main" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 252.0
-offset_top = 248.0
-offset_right = 481.0
-offset_bottom = 561.0
-theme = ExtResource("3_dtk44")
-
-[node name="Start" type="Button" parent="Main"]
-custom_minimum_size = Vector2(100, 50)
-layout_mode = 2
-size_flags_vertical = 6
-focus_neighbor_top = NodePath("../Exit")
-focus_neighbor_bottom = NodePath("../Options")
-text = "Jugar
-"
-
-[node name="Options" type="Button" parent="Main"]
-custom_minimum_size = Vector2(100, 50)
-layout_mode = 2
-size_flags_vertical = 6
-focus_neighbor_top = NodePath("../Start")
-focus_neighbor_bottom = NodePath("../Exit")
-text = "Opciones
-"
-
-[node name="Exit" type="Button" parent="Main"]
-custom_minimum_size = Vector2(100, 50)
-layout_mode = 2
-size_flags_vertical = 6
-focus_neighbor_top = NodePath("../Options")
-focus_neighbor_bottom = NodePath("../Start")
-text = "Salir"
+anchors_preset = 0
+script = ExtResource("1_dtvhi")
 
 [node name="Option_Menu" type="Panel" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 98.0
-offset_top = 252.0
-offset_right = 643.0
-offset_bottom = 559.0
-theme = ExtResource("3_dtk44")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.5
+offset_top = -153.5
+offset_right = 272.5
+offset_bottom = 153.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_tjm5l")
 
 [node name="MarginContainer" type="MarginContainer" parent="Option_Menu"]
 layout_mode = 1
@@ -136,17 +93,24 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 focus_neighbor_top = NodePath("../Controls")
 focus_neighbor_bottom = NodePath("../Volume")
-text = "Volver
+text = "Cerrar
 "
 
 [node name="Volume_Menu" type="Panel" parent="."]
 visible = false
-layout_mode = 0
-offset_left = 98.0
-offset_top = 252.0
-offset_right = 643.0
-offset_bottom = 559.0
-theme = ExtResource("3_dtk44")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.5
+offset_top = -153.5
+offset_right = 272.5
+offset_bottom = 153.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_tjm5l")
 
 [node name="MarginContainer" type="MarginContainer" parent="Volume_Menu"]
 layout_mode = 1
@@ -262,12 +226,20 @@ size_flags_horizontal = 4
 text = "Volver"
 
 [node name="Accesibility_Menu" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 98.0
-offset_top = 252.0
-offset_right = 643.0
-offset_bottom = 559.0
-theme = ExtResource("3_dtk44")
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.5
+offset_top = -153.5
+offset_right = 272.5
+offset_bottom = 153.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_tjm5l")
 
 [node name="MarginContainer" type="MarginContainer" parent="Accesibility_Menu"]
 layout_mode = 1
@@ -376,12 +348,19 @@ text = "Volver"
 
 [node name="Controls_Menu" type="Panel" parent="."]
 visible = false
-layout_mode = 0
-offset_left = 98.0
-offset_top = 252.0
-offset_right = 643.0
-offset_bottom = 559.0
-theme = ExtResource("3_dtk44")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.5
+offset_top = -153.5
+offset_right = 272.5
+offset_bottom = 153.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_tjm5l")
 
 [node name="MarginContainer" type="MarginContainer" parent="Controls_Menu"]
 layout_mode = 1
@@ -413,7 +392,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_vertical = 4
-theme = ExtResource("5_e6umj")
+theme = ExtResource("3_h0y4v")
 follow_focus = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer"]
@@ -692,14 +671,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Volver"
 
-[node name="Musica" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_m7gil")
-autoplay = true
-bus = &"Music"
-
 [node name="Efectos" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_f16tx")
+stream = ExtResource("4_ji5t6")
 volume_db = 15.0
 bus = &"SFX"
-
-[connection signal="pressed" from="Accesibility_Menu/MarginContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnCheckBoxPressed"]
