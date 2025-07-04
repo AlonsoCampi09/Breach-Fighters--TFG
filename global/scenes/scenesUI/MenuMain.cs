@@ -199,7 +199,7 @@ public partial class MenuMain : Control{
 	private void OnStartGame(){
 		GD.Print("Iniciando el juego...");
 		TTS.StopTTS();
-		GetTree().ChangeSceneToFile("res://global/scenes/game.tscn");
+		GetTree().ChangeSceneToFile("res://global/scenes/intro_cutscene.tscn");
 	}
 	private void OnExitGame(){
 		GD.Print("Saliendo del juego...");

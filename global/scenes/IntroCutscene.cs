@@ -1,0 +1,77 @@
+using Godot;
+using System;
+
+public partial class IntroCutscene : CanvasLayer{
+	
+	private int etapa = 0;
+	private IntroTexts texts = new IntroTexts();
+	public AnimationPlayer anim;
+	
+	private CustomSignals customSignals;
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready(){
+		customSignals = GetNode<CustomSignals>("/root/CustomSignals");
+		anim = GetNode<AnimationPlayer>("Anim");
+		customSignals.OnDialogIsOver += ContinueCutscene;
+		customSignals.EmitSignal(nameof(CustomSignals.OnShowDialog), texts.TextChunks[etapa]);
+	}
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	private void ContinueCutscene(){
+		etapa++;
+		switch(etapa){
+			case 1:
+				anim.Play("intro0");
+				TTS.SayThis("Aparece una imagen en la cual salen unos orbes con lo que parece ser un ojo rodeando a uno más grande. El texto continua diciendo, Pulse F3 si no se continua hablando desde aquí.");
+				break;
+			case 6:
+				anim.Play("intro1");
+				TTS.SayThis("La imagen cambia a una similar solo que los orbes que rodeaban al grande destruidos. El texto continua diciendo, Pulse F3 si no se continua hablando desde aquí.");
+				break;
+			case 8:
+				anim.Play("intro2");
+				TTS.SayThis("La imagen cambia a una en la que el orbe del centro adquiere un rostro con un sonrisa inquietante. El texto continua diciendo, Pulse F3 si no se continua hablando desde aquí.");
+				break;
+			case 10:
+				anim.Play("intro3");
+				TTS.SayThis("Aparece otra imagen de una mano sosteniendo un orbe que refleja a dos figuras. El texto continua diciendo, Pulse F3 si no se continua hablando desde aquí.");
+				break;
+			case 13:
+				anim.Play("intro4");
+				TTS.SayThis("La imagen cambia con la mano estrujando el orbe con el rostro de EXITIO de fondo. El texto continua diciendo, Pulse F3 si no se continua hablando desde aquí.");
+				break;
+			case 14:
+				anim.Play("intro5");
+				TTS.SayThis("Aparece otra imagen con cuadros vacíos. El texto continua diciendo, Pulse F3 si no se continua hablando desde aquí.");
+				break;
+			case 15:
+				anim.Play("intro6");
+				TTS.SayThis("Aparecen las siluetas de 4 combatientes en cada cuadro. El texto continua diciendo, Pulse F3 si no se continua hablando desde aquí.");
+				break;
+			case 17:
+				anim.Play("intro7");
+				TTS.SayThis("La silueta de arriba a la izquierda se revela, dejando ver a un monigote blanco vestido con una sudadera y una gorra roja echada para atrás dejando escapar su pelo hacia arriba por el agujero de la gorra. Sostiene flotando un papel con un dibujo de un martillo. El texto continua presentadole. Pulse F3 si no se continua hablando desde aquí.");
+				break;
+			case 18:
+				anim.Play("intro8");
+				TTS.SayThis("La silueta de arriba a la derecha se revela, dejando ver a una chica seria y algo gótica de ojos marrones con un brillo amarillo en ellos. Tiene un pelo negro corto y va vestida con un traje negro con una capa enlazada con una joya morada. Parece estar canalizando magia con su mano. El texto continua presentadola. Pulse F3 si no se continua hablando desde aquí.");
+				break;
+			case 19:
+				anim.Play("intro9");
+				TTS.SayThis("La silueta de abajo a la izquierda se revela, dejando ver a alguien en un traje de combate futurista de color negro con un visor naranja. Tiene unos tubos conectados a su torso con energía azul dentro. Está apuntando un rifle de energía. El texto continua presentadole. Pulse F3 si no se continua hablando desde aquí.");
+				break;
+			case 20:
+				anim.Play("intro10");
+				TTS.SayThis("La silueta de abajo a la derecha se revela, dejando ver a un gato antropomórfico de pelaje azul con una máscara que deja ver sus ojos negros con pupilas blancas. Está mostrando sus garras y parece determinado. El texto continua presentadole. Pulse F3 si no se continua hablando desde aquí.");
+				break;
+			case 21:
+				anim.Play("intro11");
+				TTS.SayThis("Las imagenes desaparecen, dejando la escena en negro. El texto continua diciendo, Pulse F3 si no se continua hablando desde aquí.");
+				break;
+			case 25:
+				GetTree().ChangeSceneToFile("res://global/scenes/game.tscn");
+				return;
+		}
+		customSignals.EmitSignal(nameof(CustomSignals.OnShowDialog), texts.TextChunks[etapa]);
+	}
+}

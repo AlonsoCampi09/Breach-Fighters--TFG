@@ -17,6 +17,8 @@ public partial class TTS : Node{
 	
 	public override void _Ready(){
 		voices = DisplayServer.TtsGetVoicesForLanguage("es");
+		volumenTTS = ConfigData.ttsVolumeValue; // de 0.0 a 1.0
+		velocidadTTS = ConfigData.ttsVelocityValue;
 		if (voices.Length > 0){
 			voiceId = voices[0];
 			ttsEnabled = ConfigData.ttsValue;
