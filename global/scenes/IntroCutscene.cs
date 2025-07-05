@@ -5,14 +5,20 @@ public partial class IntroCutscene : CanvasLayer{
 	
 	private int etapa = 0;
 	private IntroTexts texts = new IntroTexts();
-	public AnimationPlayer anim;
+	private AnimationPlayer anim;
+	private AudioStreamPlayer2D mus;
+	private AudioStreamPlayer2D puerta;
 	
 	private CustomSignals customSignals;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready(){
 		customSignals = GetNode<CustomSignals>("/root/CustomSignals");
 		anim = GetNode<AnimationPlayer>("Anim");
+		mus = GetNode<AudioStreamPlayer2D>("Music");
+		puerta = GetNode<AudioStreamPlayer2D>("Puerta");
+		
 		customSignals.OnDialogIsOver += ContinueCutscene;
+		puerta.Finished += OnSoundFinished;
 		customSignals.EmitSignal(nameof(CustomSignals.OnShowDialog), texts.TextChunks[etapa]);
 	}
 
@@ -66,12 +72,18 @@ public partial class IntroCutscene : CanvasLayer{
 				break;
 			case 21:
 				anim.Play("intro11");
-				TTS.SayThis("Las imagenes desaparecen, dejando la escena en negro. El texto continua diciendo, Pulse F3 si no se continua hablando desde aquí.");
+				TTS.SayThis("Las imágenes desaparecen, dejando la escena en negro. El texto continua diciendo, Pulse F3 si no se continua hablando desde aquí.");
 				break;
 			case 25:
-				GetTree().ChangeSceneToFile("res://global/scenes/game.tscn");
+				TTS.StopTTS();
+				puerta.Play();
 				return;
 		}
 		customSignals.EmitSignal(nameof(CustomSignals.OnShowDialog), texts.TextChunks[etapa]);
+	}
+	
+	private void OnSoundFinished(){
+		GD.Print("Sonido terminado. Cambiando de escena...");
+		GetTree().ChangeSceneToFile("res://global/scenes/game.tscn");
 	}
 }
