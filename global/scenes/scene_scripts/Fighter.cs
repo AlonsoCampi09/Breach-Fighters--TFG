@@ -66,10 +66,10 @@ public partial class Fighter : Node2D{
 		}
 	}
 	public void StartBlink(){
-		sManager.StartBlinking(this);
+		sManager.StartBlinking(this.sprites);
 	}
 	public void StopBlink(){
-		sManager.StopBlinking(this);
+		sManager.StopBlinking(this.sprites);
 	}
 	public void Faints(){
 		statusController.RemoveAllEffects();
