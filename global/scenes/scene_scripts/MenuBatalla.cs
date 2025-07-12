@@ -276,6 +276,7 @@ public partial class MenuBatalla : Control{
 			}
 			ChangeMenu(0);
 		}
+
 		if (Input.IsActionJustPressed("custom_ui_info") && canShowInfo){
 			GD.Print("Hola");
 			ShowMoveInfo();

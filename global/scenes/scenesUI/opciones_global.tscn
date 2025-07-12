@@ -675,3 +675,5 @@ text = "Volver"
 stream = ExtResource("4_ji5t6")
 volume_db = 15.0
 bus = &"SFX"
+
+[connection signal="visibility_changed" from="Option_Menu/MarginContainer/VBoxContainer" to="." method="OnVisibilityChanged"]

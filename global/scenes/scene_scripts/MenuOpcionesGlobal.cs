@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class MenuOpcionesGlobal : CanvasLayer{
+public partial class MenuOpcionesGlobal : Control{
 	
 	private Panel optionMenu;
 	private Button volumenButton;
@@ -27,7 +27,7 @@ public partial class MenuOpcionesGlobal : CanvasLayer{
 	private Label labelTTSVolume;
 	private Button back3;
 	private bool tts = true;
-	
+	private bool abierto = false; 
 	private Panel keyMenu;
 	private Button key1;
 	private Button key2;
@@ -173,9 +173,8 @@ public partial class MenuOpcionesGlobal : CanvasLayer{
 		keyMenu.Visible = false;
 		
 	}
-	
-	
-	private void OpenOptionMenu(){
+
+    private void OpenOptionMenu(){
 		volumeMenu.Visible = false;
 		optionMenu.Visible = true;
 		accesibilityMenu.Visible = false;
@@ -283,6 +282,19 @@ public partial class MenuOpcionesGlobal : CanvasLayer{
 		sfx.Play();
 	}
 	
+
+	private void OnVisibilityChanged()
+	{
+		if (!abierto)
+		{
+			GD.Print("Abriendo menu...");
+			OpenOptionMenu();
+		}
+		else {
+            GD.Print("Cerrando menu...");
+			//CloseGlobalOptionMenu(); 
+        } 
+	}
 	private float PercentToDb(float percent){
 		if (percent <= 0f)
 			return -80f; // Silencio total

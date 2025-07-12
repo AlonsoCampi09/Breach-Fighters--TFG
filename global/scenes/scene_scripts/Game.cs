@@ -10,8 +10,7 @@ public partial class Game : Node2D{
 	private CustomSignals customSignals;
 	private TransitionScreen transitionScreen;
 	private BattleManager battleManager;
-	
-	
+	private MenuOpcionesGlobal optionsMenu; 
 	
 	private PackedScene fighterTeamScene;
 	
@@ -25,8 +24,10 @@ public partial class Game : Node2D{
 		customSignals = GetNode<CustomSignals>("/root/CustomSignals");
 		transitionScreen = GetNode<TransitionScreen>("/root/TransitionScreen");
 		battleManager = GetNode<BattleManager>("/root/BattleManager");
+		optionsMenu = GetNode<MenuOpcionesGlobal>("UI/Menu_Opciones"); 
 		uiMessages.GiveLabel(GetNode<Label>("UI/RoomLabel"));
-		
+
+		optionsMenu.Hide(); 
 		customSignals.OnPrepareRoom += GenerateRoom;
 		customSignals.OnGenerateEnemyTeamForRoom += GenerateBattleOponents;
 		customSignals.OnStartTeamBattle += PrepareBattle;
@@ -36,8 +37,35 @@ public partial class Game : Node2D{
 		uiMessages.ShowRoomInfo(gameState);
 		// Generar el contenido de la sala (combate o descanso)
 	}
-	
-	public void GeneratePlayerTeam(){
+
+
+    public override void _Process(double delta)
+    {
+		if (Input.IsActionJustPressed("pause_menu"))
+		{
+			OpenPauseMenu(); 
+		} 
+
+    }
+
+
+	public void OpenPauseMenu()
+	{
+
+		if (optionsMenu.Visible) {
+            optionsMenu.Hide();
+            GetTree().Paused = false;
+        }
+
+		else
+		{
+			GetTree().Paused = true;
+            optionsMenu.Show();
+        }
+
+    }
+
+    public void GeneratePlayerTeam(){
 		Entity[] fighterDatas = new Entity[] {
 			ResourceLoader.Load<Entity>("res://data/entities/Alex.tres"),
 			ResourceLoader.Load<Entity>("res://data/entities/Cassandra.tres"),

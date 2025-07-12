@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyj8prd8gmnd2"]
+[gd_scene load_steps=8 format=3 uid="uid://cyj8prd8gmnd2"]
 
 [ext_resource type="Script" path="res://global/scenes/scene_scripts/Game.cs" id="1_1uvvf"]
 [ext_resource type="PackedScene" uid="uid://b7t0oia1tfx58" path="res://global/scenes/team.tscn" id="2_el25g"]
@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://cgp6bk35e1id3" path="res://assets/ui_related/ui_battle_theme.tres" id="4_52gwn"]
 [ext_resource type="Script" path="res://global/scenes/scene_scripts/CuadroTexto.cs" id="4_tune3"]
 [ext_resource type="AudioStream" uid="uid://bdubrjb83atyt" path="res://assets/sonidos/518558__se2001__quick-blip.wav" id="6_52wq2"]
+[ext_resource type="PackedScene" uid="uid://bjmedgw3nqtr6" path="res://global/scenes/scenesUI/opciones_global.tscn" id="7_ljook"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_1uvvf")
@@ -14,6 +15,14 @@ script = ExtResource("1_1uvvf")
 position = Vector2(575, 500)
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Menu_Opciones" parent="UI" instance=ExtResource("7_ljook")]
+process_mode = 2
+z_index = 7
+offset_left = 559.0
+offset_top = 363.0
+offset_right = 559.0
+offset_bottom = 363.0
 
 [node name="RoomLabel" type="Label" parent="UI"]
 custom_minimum_size = Vector2(600, 100)
@@ -35,6 +44,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Menu_Batalla" parent="UI" instance=ExtResource("3_5g4pf")]
+offset_top = -18.0
+offset_bottom = -18.0
 
 [node name="Cuadro_Texto" type="Control" parent="UI"]
 layout_mode = 3
@@ -49,9 +60,10 @@ custom_minimum_size = Vector2(1000, 100)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 24.0
-offset_right = -25.0
-offset_bottom = 100.0
+offset_left = 16.0
+offset_top = -7.0
+offset_right = -33.0
+offset_bottom = 93.0
 grow_horizontal = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/Cuadro_Texto/Panel"]
