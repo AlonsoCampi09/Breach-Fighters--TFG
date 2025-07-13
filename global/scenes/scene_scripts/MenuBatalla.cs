@@ -654,4 +654,9 @@ public partial class MenuBatalla : Control{
 		panelInfo.Visible = true;
 	}
 	
+	public void vovler_pausa()
+	{
+		attack.GrabFocus();
+	}
+
 }

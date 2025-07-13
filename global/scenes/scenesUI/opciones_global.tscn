@@ -97,7 +97,6 @@ text = "Cerrar
 "
 
 [node name="Volume_Menu" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -676,4 +675,4 @@ stream = ExtResource("4_ji5t6")
 volume_db = 15.0
 bus = &"SFX"
 
-[connection signal="visibility_changed" from="Option_Menu/MarginContainer/VBoxContainer" to="." method="OnVisibilityChanged"]
+[connection signal="pressed" from="Option_Menu/MarginContainer/VBoxContainer/VBoxContainer/Volume" to="." method="OpenVolumeMenu"]

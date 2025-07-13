@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bjmedgw3nqtr6" path="res://global/scenes/scenesUI/opciones_global.tscn" id="7_ljook"]
 
 [node name="Game" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_1uvvf")
 
 [node name="TeamPlayer" parent="." instance=ExtResource("2_el25g")]
@@ -17,7 +18,7 @@ position = Vector2(575, 500)
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Menu_Opciones" parent="UI" instance=ExtResource("7_ljook")]
-process_mode = 2
+process_mode = 3
 z_index = 7
 offset_left = 559.0
 offset_top = 363.0

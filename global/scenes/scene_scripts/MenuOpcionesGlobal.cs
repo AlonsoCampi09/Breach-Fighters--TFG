@@ -174,7 +174,7 @@ public partial class MenuOpcionesGlobal : Control{
 		
 	}
 
-    private void OpenOptionMenu(){
+    public void OpenOptionMenu(){
 		volumeMenu.Visible = false;
 		optionMenu.Visible = true;
 		accesibilityMenu.Visible = false;
@@ -202,7 +202,8 @@ public partial class MenuOpcionesGlobal : Control{
 		keyMenu.Visible = true;
 		key1.GrabFocus();
 	}
-	private void CloseGlobalOptionMenu(){
+	public void CloseGlobalOptionMenu(){
+		Hide();
 		volumeMenu.Visible = false;
 		optionMenu.Visible = false;
 		accesibilityMenu.Visible = false;

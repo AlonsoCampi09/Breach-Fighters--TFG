@@ -10,9 +10,10 @@ public partial class Game : Node2D{
 	private CustomSignals customSignals;
 	private TransitionScreen transitionScreen;
 	private BattleManager battleManager;
-	private MenuOpcionesGlobal optionsMenu; 
-	
-	private PackedScene fighterTeamScene;
+	private MenuOpcionesGlobal optionsMenu;
+    private MenuBatalla Menu_Batalla;
+
+    private PackedScene fighterTeamScene;
 	
 	
 	// Called when the node enters the scene tree for the first time.
@@ -24,7 +25,8 @@ public partial class Game : Node2D{
 		customSignals = GetNode<CustomSignals>("/root/CustomSignals");
 		transitionScreen = GetNode<TransitionScreen>("/root/TransitionScreen");
 		battleManager = GetNode<BattleManager>("/root/BattleManager");
-		optionsMenu = GetNode<MenuOpcionesGlobal>("UI/Menu_Opciones"); 
+		optionsMenu = GetNode<MenuOpcionesGlobal>("UI/Menu_Opciones");
+		Menu_Batalla = GetNode<MenuBatalla>("UI/Menu_Batalla");
 		uiMessages.GiveLabel(GetNode<Label>("UI/RoomLabel"));
 
 		optionsMenu.Hide(); 
@@ -53,14 +55,21 @@ public partial class Game : Node2D{
 	{
 
 		if (optionsMenu.Visible) {
-            optionsMenu.Hide();
+           // optionsMenu.Hide();
             GetTree().Paused = false;
+            optionsMenu.CloseGlobalOptionMenu();
+			if(Menu_Batalla.Visible)
+			{
+				Menu_Batalla.vovler_pausa();
+
+            }
         }
 
-		else
+        else
 		{
 			GetTree().Paused = true;
             optionsMenu.Show();
+            optionsMenu.OpenOptionMenu();
         }
 
     }
