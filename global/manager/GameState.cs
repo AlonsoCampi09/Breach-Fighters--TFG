@@ -22,6 +22,13 @@ public partial class GameState : Node{
 		}
 	}
 	
+	public void UsedExp(int exp){
+		teamExperienceBank -= exp;
+	}
+	public void UsedMoney(int mon){
+		teamMoneyBank -= mon;
+	}
+	
 	public void LoadTeamData(FighterTeam team){
 		team.LoadFromEntities(playerTeamData, true);
 	}
@@ -37,7 +44,7 @@ public partial class GameState : Node{
 		floorRoom++;
 		if(floorRoom > 10){
 			floorLevel++;
-			floorRoom = 1;
+			floorRoom = 0;
 		}
 		GD.Print($"coins: {teamMoneyBank} | Experiencia: {teamExperienceBank}");
 	}

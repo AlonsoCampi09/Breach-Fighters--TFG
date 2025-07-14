@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b6nua272ivoqh"]
 
-[ext_resource type="Script" path="res://TTSQuestion.cs" id="1_fxybh"]
+[ext_resource type="Script" path="res://global/scenes/scene_scripts/TTSQuestion.cs" id="1_fxybh"]
 [ext_resource type="Theme" uid="uid://cgp6bk35e1id3" path="res://assets/ui_related/ui_battle_theme.tres" id="2_nn4jw"]
 
 [node name="TTS_Login" type="CanvasLayer"]
@@ -160,7 +160,6 @@ theme_override_font_sizes/font_size = 15
 text = "Luego podrás cambiarlo en el menú de accesibilidad de las opciones."
 
 [node name="Panel" type="Panel" parent="."]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

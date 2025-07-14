@@ -10,11 +10,13 @@ public partial class Game : Node2D{
 	private CustomSignals customSignals;
 	private TransitionScreen transitionScreen;
 	private BattleManager battleManager;
-	
-	
+	private RocksRest restRocks;
 	
 	private PackedScene fighterTeamScene;
+	private AudioStreamPlayer2D music;
 	
+	private bool combatTime = false;
+	private bool restGeneratedRandom = false;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready(){
@@ -26,15 +28,26 @@ public partial class Game : Node2D{
 		transitionScreen = GetNode<TransitionScreen>("/root/TransitionScreen");
 		battleManager = GetNode<BattleManager>("/root/BattleManager");
 		uiMessages.GiveLabel(GetNode<Label>("UI/RoomLabel"));
+		music = GetNode<AudioStreamPlayer2D>("Music");
+		restRocks = GetNode<RocksRest>("Rest");
 		
-		customSignals.OnPrepareRoom += GenerateRoom;
+		customSignals.OnPrepareRoom += FightOrRest;
 		customSignals.OnGenerateEnemyTeamForRoom += GenerateBattleOponents;
 		customSignals.OnStartTeamBattle += PrepareBattle;
 		customSignals.OnNextRoom += GoNextLevel;
+		customSignals.OnRestFinished += GoingNextLevel;
+		music.Finished += PlayMusicAgain;
+		
+		restRocks.Visible = false;
 		
 		GeneratePlayerTeam();
+		GenerateTypeRoom();
 		uiMessages.ShowRoomInfo(gameState);
 		// Generar el contenido de la sala (combate o descanso)
+	}
+	
+	public void PlayMusicAgain(){
+		music.Play();
 	}
 	
 	public void GeneratePlayerTeam(){
@@ -46,33 +59,55 @@ public partial class Game : Node2D{
 		};
 		teamJugador.CreateTeam(fighterDatas,true);
 	}
-
-	public void GenerateRoom(){
-		/*
-		if(gameState.floorRoom == 1 || gameState.floorRoom == 9){
-			//StartRest();
+	
+	public void GenerateTypeRoom(){
+		if(gameState.floorRoom == 0){
+			combatTime = false;
+			restGeneratedRandom = false;
+			restRocks.Visible = true;
+			teamJugador.Visible = false;
+		}else if(gameState.floorRoom == 9){
+			combatTime = false;
+			restRocks.Visible = false;
+			restRocks.Visible = true;
+			teamJugador.Visible = false;
 		}
 		else{
-			if (GD.Randf() < 1.0f) { //80% probabilidad de combate
-				GenerateBattleOponents();
+			if (GD.Randf() < 0.85f) { //80% probabilidad de combate
+				combatTime = true;
+				restRocks.Visible = false;
+				teamJugador.Visible = true;
 			}
 			else{
-				//StartRest();
+				restGeneratedRandom = true;
+				combatTime = false;
+				restRocks.Visible = true;
+				teamJugador.Visible = false;
 			}
 		}
-		*/
-		if (GD.Randf() < 1.0f) { //80% probabilidad de combate
+	}
+	public void FightOrRest(){
+		if(combatTime){
 			uiMessages.ShowDangerAlert();
-		}
-		else{
-			//StartRest();
+		}else{
+			teamJugador.Rest();
+			customSignals.EmitSignal(nameof(CustomSignals.OnRestRecharge), gameState, teamJugador, restRocks);
+			uiMessages.RestingMessage();
 		}
 	}
 	
 	public async void GoNextLevel(int teamExp, int teamCoins){
+		teamJugador.Revive();
 		gameState.AdavanceNextRoom(teamExp,teamCoins);
-		GD.Print("HOLA1");
 		await transitionScreen.fade_to_black();
+		GenerateTypeRoom();
+		await transitionScreen.fade_to_normal();
+		uiMessages.ShowRoomInfo(gameState);
+	}
+	public async void GoingNextLevel(){
+		gameState.AdavanceNextRoom(0,0);
+		await transitionScreen.fade_to_black();
+		GenerateTypeRoom();
 		await transitionScreen.fade_to_normal();
 		uiMessages.ShowRoomInfo(gameState);
 	}

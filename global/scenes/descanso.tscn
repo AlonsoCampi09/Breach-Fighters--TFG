@@ -1,6 +1,6 @@
 [gd_scene load_steps=113 format=3 uid="uid://dxltynj4ge7pf"]
 
-[ext_resource type="Script" path="res://RocksRest.cs" id="1_k50lb"]
+[ext_resource type="Script" path="res://global/scenes/scene_scripts/RocksRest.cs" id="1_k50lb"]
 [ext_resource type="Texture2D" uid="uid://bhuth2qq0iiq4" path="res://assets/sprites/sheets/cass_cape_sprite.png" id="2_md5yk"]
 [ext_resource type="Texture2D" uid="uid://b1j4glm5la2qu" path="res://assets/background/resting_rocks.png" id="3_26edu"]
 [ext_resource type="Texture2D" uid="uid://b4es3mihhqasf" path="res://assets/sprites/sheets/alex_resting_sprites.png" id="4_hc78c"]
@@ -1022,12 +1022,14 @@ wait_time = 10.0
 one_shot = true
 
 [node name="a_label" type="Label" parent="."]
+visible = false
 offset_left = -292.0
 offset_top = -32.0
 offset_right = -252.0
 offset_bottom = -9.0
 
 [node name="c_label" type="Label" parent="."]
+visible = false
 offset_left = -87.0
 offset_top = -100.0
 offset_right = -47.0

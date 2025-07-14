@@ -44,6 +44,7 @@ public partial class Entity : Resource{
 	[Export] public int[] TrueDefense;
 	[Export] public int[] TrueMana;
 	[Export] public int[] TrueSpeed;
+	[Export] public int[] ExperienceNeeded = {10, 22, 24, 36, 48, 50, 62, 74, 86, 999999};
 	
 	[Export] public int BaseExp;
 	[Export] public int ExpIncrease;
@@ -119,7 +120,35 @@ public partial class Entity : Resource{
 	public EntityType giveType(){
 		return entityType;
 	}
+	public int giveEXPsigLevel(){
+		return ExperienceNeeded[Level-1];
+	}
 	
+	public int giveDMGUP(){
+		return TrueAttack[Level];
+	}
+	public int giveDEFUP(){
+		return TrueDefense[Level];
+	}
+	public int giveMAXHPUP(){
+		return TrueHealth[Level];
+	}
+	public int giveMAXMPUP(){
+		return TrueMana[Level];
+	}
+	public int giveSPUP(){
+		return TrueSpeed[Level];
+	}
+	public int giveEXPsigLevelUP(){
+		return ExperienceNeeded[Level];
+	}
+	
+	public void fullMP(){
+		this.Mana = TrueMana[Level-1];
+	}
+	public void fullHP(){
+		this.Health = TrueHealth[Level-1];
+	}
 	public void restoreMP(int m){
 		if(this.Mana + m > TrueMana[Level-1]){
 			this.Mana = TrueMana[Level-1];

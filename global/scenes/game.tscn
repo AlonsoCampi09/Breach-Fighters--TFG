@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cyj8prd8gmnd2"]
+[gd_scene load_steps=11 format=3 uid="uid://cyj8prd8gmnd2"]
 
 [ext_resource type="Script" path="res://global/scenes/scene_scripts/Game.cs" id="1_1uvvf"]
 [ext_resource type="Texture2D" uid="uid://b86rjgxngowme" path="res://assets/background/background2.png" id="2_6x26u"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://global/scenes/scene_scripts/CuadroTexto.cs" id="4_tune3"]
 [ext_resource type="AudioStream" uid="uid://bdubrjb83atyt" path="res://assets/sonidos/518558__se2001__quick-blip.wav" id="6_52wq2"]
 [ext_resource type="AudioStream" uid="uid://i3o464h0g2ao" path="res://assets/sonidos/Free RPG Music Collection/Phat Phrog Studio - Arcane Throne - Heir of Valor.wav" id="8_dr6gg"]
+[ext_resource type="PackedScene" uid="uid://3myv7wdjbd2e" path="res://global/scenes/scenesUI/RestUi.tscn" id="8_mwrqn"]
 [ext_resource type="PackedScene" uid="uid://dxltynj4ge7pf" path="res://global/scenes/descanso.tscn" id="9_psokh"]
 
 [node name="Game" type="Node2D"]
@@ -89,12 +90,16 @@ stream = ExtResource("6_52wq2")
 volume_db = 5.0
 bus = &"SFX"
 
-[node name="Musica" type="AudioStreamPlayer2D" parent="."]
+[node name="RestUi" parent="UI" instance=ExtResource("8_mwrqn")]
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_dr6gg")
 volume_db = -5.0
 autoplay = true
 bus = &"Music"
 
-[node name="Descanso" parent="." instance=ExtResource("9_psokh")]
-visible = false
-position = Vector2(580, 343)
+[node name="Rest" parent="." instance=ExtResource("9_psokh")]
+position = Vector2(590, 414)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(575, 325)

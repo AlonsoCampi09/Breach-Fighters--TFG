@@ -43,4 +43,11 @@ public partial class CustomSignals : Node
 	
 	[Signal]
 	public delegate void OnTransitionFinishedEventHandler();
+	
+	[Signal]
+	public delegate void OnRestRechargeEventHandler(GameState gs, FighterTeam allies, RocksRest rest);
+	[Signal]
+	public delegate void OnShowRestHUDEventHandler();
+	[Signal]
+	public delegate void OnRestFinishedEventHandler();
 }

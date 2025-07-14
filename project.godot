@@ -36,6 +36,11 @@ ConfigData="*res://global/manager/ConfigData.cs"
 
 project/assembly_name="OPTIM_Breach_Fighters"
 
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
+theme/default_font_generate_mipmaps=true
+
 [input]
 
 ui_cancel={

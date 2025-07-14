@@ -138,7 +138,7 @@ public partial class RocksRest : Node2D{
 	private void OnITimerTimeout(){
 		Random rand = new Random();
 		int n = rand.Next(0, 10);
-		if(n < 7){
+		if(n < 8){
 			ishi.Play("blinks");
 		}
 		else{

@@ -10,10 +10,13 @@
 
 [node name="Main_Menu" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
-grow_horizontal = 2
+offset_left = -576.0
+offset_right = 576.0
+grow_horizontal = 0
 grow_vertical = 2
 script = ExtResource("1_bmbsa")
 
@@ -28,11 +31,15 @@ position = Vector2(380, 129)
 texture = ExtResource("2_3kcmv")
 
 [node name="Main" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 252.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.318
+anchor_right = 0.318
+anchor_bottom = 1.0
+offset_left = -114.336
 offset_top = 248.0
-offset_right = 481.0
-offset_bottom = 561.0
+offset_right = 114.664
+offset_bottom = -87.0
 theme = ExtResource("3_dtk44")
 
 [node name="Start" type="Button" parent="Main"]
@@ -62,12 +69,16 @@ focus_neighbor_bottom = NodePath("../Start")
 text = "Salir"
 
 [node name="Option_Menu" type="Panel" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 98.0
-offset_top = 252.0
-offset_right = 643.0
-offset_bottom = 559.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.085
+anchor_top = 0.389
+anchor_right = 0.558
+anchor_bottom = 0.863
+offset_left = 0.0800018
+offset_top = -0.0720215
+offset_right = 0.18396
+offset_bottom = -0.223999
 theme = ExtResource("3_dtk44")
 
 [node name="MarginContainer" type="MarginContainer" parent="Option_Menu"]
@@ -140,12 +151,16 @@ text = "Volver
 "
 
 [node name="Volume_Menu" type="Panel" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 98.0
-offset_top = 252.0
-offset_right = 643.0
-offset_bottom = 559.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.085
+anchor_top = 0.389
+anchor_right = 0.558
+anchor_bottom = 0.863
+offset_left = 0.0800018
+offset_top = -0.0720215
+offset_right = 0.18396
+offset_bottom = -0.223999
 theme = ExtResource("3_dtk44")
 
 [node name="MarginContainer" type="MarginContainer" parent="Volume_Menu"]
@@ -262,12 +277,16 @@ size_flags_horizontal = 4
 text = "Volver"
 
 [node name="Accesibility_Menu" type="Panel" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 98.0
-offset_top = 252.0
-offset_right = 643.0
-offset_bottom = 559.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.085
+anchor_top = 0.389
+anchor_right = 0.558
+anchor_bottom = 0.863
+offset_left = 0.0800018
+offset_top = -0.0720215
+offset_right = 0.18396
+offset_bottom = -0.223999
 theme = ExtResource("3_dtk44")
 
 [node name="MarginContainer" type="MarginContainer" parent="Accesibility_Menu"]
@@ -376,12 +395,16 @@ focus_neighbor_bottom = NodePath("../HBoxContainer/CheckBox")
 text = "Volver"
 
 [node name="Controls_Menu" type="Panel" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 98.0
-offset_top = 252.0
-offset_right = 643.0
-offset_bottom = 559.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.085
+anchor_top = 0.389
+anchor_right = 0.558
+anchor_bottom = 0.863
+offset_left = 0.0800018
+offset_top = -0.0720215
+offset_right = 0.18396
+offset_bottom = -0.223999
 theme = ExtResource("3_dtk44")
 
 [node name="MarginContainer" type="MarginContainer" parent="Controls_Menu"]

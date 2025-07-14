@@ -32,7 +32,7 @@ public partial class UiMessages : Node{
 	public async void VictoryMessage(int exp, int coins){
 		// Mostrar el texto
 		label.Text = $"Victoria! Exp: +{exp} | Coins: +{coins}";
-		TTS.PutThisInQueue($"Victoria! el equipo gana {exp} de experiencia y {coins} monedas.");
+		TTS.SayThis($"Victoria! el equipo gana {exp} de experiencia y {coins} monedas.");
 		label.Visible = true;
 		// Esperar 2 segundos
 		await ToSignal(GetTree().CreateTimer(2), "timeout");
@@ -57,6 +57,8 @@ public partial class UiMessages : Node{
 		
 		customSignals.EmitSignal(nameof(CustomSignals.OnGenerateEnemyTeamForRoom));
 	}
+	
+	
 	
 	public async void ReadyForTheBattle(){
 		// Mostrar el texto
@@ -90,5 +92,18 @@ public partial class UiMessages : Node{
 		if(!actor.IsCritical())
 			actor.PlayAnimationSafe("idle");
 		customSignals.EmitSignal(nameof(CustomSignals.OnShowBattleMenu));
+	}
+	
+	public async void RestingMessage(){
+		// Mostrar el texto
+		label.Text = $"Punto de descanso";
+		TTS.PutThisInQueue($"Punto de descanso");
+		//TTS.PutThisInQueue($"");
+		label.Visible = true;
+		// Esperar 2 segundos
+		await ToSignal(GetTree().CreateTimer(2), "timeout");
+		// Ocultar el texto
+		label.Visible = false;
+		customSignals.EmitSignal(nameof(CustomSignals.OnShowRestHUD));
 	}
 }

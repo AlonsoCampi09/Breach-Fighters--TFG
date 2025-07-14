@@ -151,6 +151,22 @@ public partial class Fighter : Node2D{
 		return data_Info.criticalHealth();
 	}
 	
+	public void Revive(){
+		data_Info.restoreHP(1);
+		UpdateBars();
+		PlayAnimationSafe("idle_low");
+	}
+	public void FullMana(){
+		data_Info.fullMP();
+		UpdateBars();
+		//Deberia esperar a una animacion
+	}
+	public void FullHealth(){
+		data_Info.fullHP();
+		UpdateBars();
+		PlayAnimationSafe("idle");
+		//Deberia esperar a una animacion
+	}
 	public async void Heal(int n){
 		GD.Print($"+{n} HP");
 		data_Info.restoreHP(n);
@@ -345,6 +361,14 @@ public partial class Fighter : Node2D{
 		if(statusController.ThereIsActiveStatus()) res = $"{res} {statusController.CurrentStatusesToString()}.";
 		else res = $"{res} Sin efectos de estado.";
 		return res;
+	}
+	
+	public Texture2D GiveTexture(){
+		// Nombre de la animación que se está reproduciendo
+		string anim = sprites.Animation;
+		int frame = sprites.Frame;
+		// Devuelve la textura del frame actual
+		return sprites.SpriteFrames.GetFrameTexture(anim, frame);
 	}
 	
 }

@@ -81,6 +81,25 @@ public partial class FighterTeam : Node2D
 		return allDead;
 	}
 	
+	public void Revive(){
+		bool revived = false;
+		for(int i = 0; i < fighterList.Count; i++){
+			if(fighterList[i].IsDead()){
+				fighterList[i].Revive();
+				revived = true;
+			}
+		}
+		if(revived)
+			TTS.SayThis("Miembros abatidos reanimados.");
+	}
+	public void Rest(){
+		for(int i = 0; i < fighterList.Count; i++){
+			fighterList[i].FullMana();
+			fighterList[i].FullHealth();
+		}
+		TTS.SayThis("Vida y maná restaurada");
+	}
+	
 	public List<Fighter> GetFighters(){
 		return fighterList;
 	}
