@@ -348,7 +348,7 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../HBoxContainer/CheckBox")
 focus_neighbor_bottom = NodePath("../../../HBoxContainer3/HBoxContainer/HSlider")
-min_value = 0.5
+min_value = 1.0
 max_value = 2.0
 step = 0.5
 value = 1.5
@@ -395,6 +395,7 @@ focus_neighbor_bottom = NodePath("../HBoxContainer/CheckBox")
 text = "Volver"
 
 [node name="Controls_Menu" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.085

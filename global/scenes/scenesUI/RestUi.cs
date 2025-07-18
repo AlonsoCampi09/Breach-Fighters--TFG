@@ -215,7 +215,6 @@ public partial class RestUi : Control{
 				break;
 			case 0:
 				estado = 0;
-				acceptingInputs = false;
 				restOptions.Visible = true;
 				moneyExp.Visible = true;
 				characterInfo.Visible = false;
@@ -334,6 +333,7 @@ public partial class RestUi : Control{
 			TTS.SayThis($"{actor_name.Text}, {actor_level.Text}, {actor_health.Text}, {actor_attack.Text}, {actor_defense.Text}, {actor_mana.Text}, {actor_speed.Text}");
 		}
 		if(Input.IsActionJustPressed("custom_ui_fighter_info") && acceptingInputs){
+			GD.Print("HOLA");
 			TTS.SayThis($"En la sala aparece el equipo descansando. Alex está sentado grabateando en su cuaderno. Cassandra está meditando. Vyls está sentado cerca de Cassandra. Ishimondo acostado en el suelo combatiendo las ganas de dormirse.");
 		}
 		if (this.selectingTarget){
