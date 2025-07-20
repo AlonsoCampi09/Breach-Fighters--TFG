@@ -11,6 +11,7 @@ public partial class Game : Node2D{
 	private TransitionScreen transitionScreen;
 	private BattleManager battleManager;
 	private RocksRest restRocks;
+	private CuadroTexto cuadro;
 	
 	private PackedScene fighterTeamScene;
 	private AudioStreamPlayer2D music;
@@ -28,6 +29,7 @@ public partial class Game : Node2D{
 		transitionScreen = GetNode<TransitionScreen>("/root/TransitionScreen");
 		battleManager = GetNode<BattleManager>("/root/BattleManager");
 		uiMessages.GiveLabel(GetNode<Label>("UI/RoomLabel"));
+		cuadro = GetNode<CuadroTexto>("UI/Cuadro_Texto");
 		music = GetNode<AudioStreamPlayer2D>("Music");
 		restRocks = GetNode<RocksRest>("Rest");
 		

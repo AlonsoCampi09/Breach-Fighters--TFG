@@ -85,4 +85,8 @@ public partial class CuadroTexto : Control{
 		TTS.PutThisInQueue(text);
 		boton.GrabFocus();
 	}
+	
+	public override void _ExitTree(){
+		customSignals.OnShowDialog -= QueueDialog; // o ShowDialog si es el que usas
+	}
 }

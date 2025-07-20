@@ -86,4 +86,7 @@ public partial class IntroCutscene : CanvasLayer{
 		GD.Print("Sonido terminado. Cambiando de escena...");
 		GetTree().ChangeSceneToFile("res://global/scenes/game.tscn");
 	}
+	public override void _ExitTree(){
+		customSignals.OnDialogIsOver -= ContinueCutscene; // o ShowDialog si es el que usas
+	}
 }

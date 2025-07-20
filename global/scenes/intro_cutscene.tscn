@@ -848,7 +848,7 @@ position = Vector2(575, 325)
 scale = Vector2(1.85143, 1.85143)
 texture = ExtResource("11_3v02y")
 
-[node name="Cuadro_Texto" type="Control" parent="."]
+[node name="Scene_Text" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
@@ -862,7 +862,7 @@ size_flags_vertical = 4
 theme = ExtResource("12_rcacl")
 script = ExtResource("13_ytkfu")
 
-[node name="Panel" type="Panel" parent="Cuadro_Texto"]
+[node name="Panel" type="Panel" parent="Scene_Text"]
 custom_minimum_size = Vector2(500, 100)
 layout_mode = 1
 anchors_preset = 7
@@ -877,7 +877,7 @@ offset_bottom = -34.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="Cuadro_Texto/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Scene_Text/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -889,7 +889,7 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Label" type="Label" parent="Cuadro_Texto/Panel/MarginContainer"]
+[node name="Label" type="Label" parent="Scene_Text/Panel/MarginContainer"]
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 theme_override_font_sizes/font_size = 15
@@ -897,14 +897,14 @@ text = "texto"
 autowrap_mode = 3
 text_overrun_behavior = 2
 
-[node name="Button" type="Button" parent="Cuadro_Texto/Panel"]
+[node name="Button" type="Button" parent="Scene_Text/Panel"]
 layout_mode = 0
 offset_left = 964.0
 offset_top = 11.0
 offset_right = 984.0
 offset_bottom = 25.0
 
-[node name="TypeSound" type="AudioStreamPlayer2D" parent="Cuadro_Texto"]
+[node name="TypeSound" type="AudioStreamPlayer2D" parent="Scene_Text"]
 stream = ExtResource("15_vqa4y")
 volume_db = 5.0
 bus = &"SFX"
