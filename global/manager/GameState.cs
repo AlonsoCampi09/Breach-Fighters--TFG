@@ -13,7 +13,7 @@ public partial class GameState : Node{
 	
 	
 	public int floorLevel = 1;
-	public int  floorRoom = 1;
+	public int  floorRoom = 0;
 	
 	public void SaveTeamData(FighterTeam team){
 		playerTeamData.Clear();

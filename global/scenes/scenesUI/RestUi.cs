@@ -208,6 +208,7 @@ public partial class RestUi : Control{
 				selecting.Visible = false;
 				levelUpPanel.Visible = false;
 				panelPopUp.Visible = false;
+				acceptingInputs = false;
 				this.selectingTarget = false;
 				for(int i = 0; i < allyList.Count; i++){
 					alliesRest.StopBlink(i);

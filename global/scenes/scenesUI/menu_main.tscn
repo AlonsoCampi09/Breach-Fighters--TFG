@@ -395,7 +395,6 @@ focus_neighbor_bottom = NodePath("../HBoxContainer/CheckBox")
 text = "Volver"
 
 [node name="Controls_Menu" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.085
