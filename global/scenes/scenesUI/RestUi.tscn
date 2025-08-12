@@ -60,7 +60,6 @@ focus_neighbor_bottom = NodePath("../Team")
 text = "Pasar a la siguiente habitación"
 
 [node name="CharacterInfo" type="Panel" parent="."]
-visible = false
 custom_minimum_size = Vector2(400, 400)
 layout_mode = 1
 anchors_preset = 4

@@ -408,14 +408,14 @@ public partial class RestUi : Control{
 		actor_defense.Text = $"Defensa: {actor.GetEntityData().giveDEF()}";
 		actor_mana.Text = $"Maná: {actor.GetEntityData().giveMAXMP()}";
 		actor_speed.Text = $"Velocidad: {actor.GetEntityData().giveSP()}";
-		actor_experience.Text = $"Experiencia: {actor.GetEntityData().giveEXPsigLevel()}";
+		actor_experience.Text = $"Exp.Necesaria: {actor.GetEntityData().giveEXPsigLevel()}";
 		actor_level_up.Text = $"Nivel: {actor.GetEntityData().Level+1}";
 		actor_health_up.Text = $"Vida: {actor.GetEntityData().giveMAXHPUP()}";
 		actor_attack_up.Text = $"Ataque: {actor.GetEntityData().giveDMGUP()}";
 		actor_defense_up.Text = $"Defensa: {actor.GetEntityData().giveDEFUP()}";
 		actor_mana_up.Text = $"Maná: {actor.GetEntityData().giveMAXMPUP()}";
 		actor_speed_up.Text = $"Velocidad: {actor.GetEntityData().giveSPUP()}";
-		actor_experience_up.Text = $"Experiencia: {actor.GetEntityData().giveEXPsigLevelUP()}";
+		actor_experience_up.Text = $"Exp.Necesaria: {actor.GetEntityData().giveEXPsigLevelUP()}";
 		if(gameStatus.teamExperienceBank < actor.GetEntityData().giveEXPsigLevel()){
 			levelUp.Disabled = true;
 		}
