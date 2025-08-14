@@ -11,20 +11,17 @@ public partial class CuadroTexto : Control{
 	private Label label;
 	private Panel panel;
 	private Button boton;
-	private AudioStreamPlayer2D typeSound;
 	private int currentCharIndex = 0;
 	private float timeAccumulator = 0f;
 
 	private bool finishedTyping = false;
 	private bool isWriting = false;
 
-	// NUEVO: Cola de mensajes
 	private Queue<string> messageQueue = new Queue<string>();
 
 	public override void _Ready(){
 		customSignals = GetNode<CustomSignals>("/root/CustomSignals");
 		customSignals.OnShowDialog += QueueDialog; // CAMBIO: ahora cola
-		typeSound = GetNode<AudioStreamPlayer2D>("TypeSound");
 		panel = GetNode<Panel>("Panel");
 		label = GetNode<Label>("Panel/MarginContainer/Label");
 		boton = GetNode<Button>("Panel/Button");
@@ -41,8 +38,6 @@ public partial class CuadroTexto : Control{
 				timeAccumulator = 0f;
 				currentCharIndex++;
 				label.Text = fullText.Substring(0, currentCharIndex);
-				if (!finishedTyping)
-					typeSound.Play();
 				if (currentCharIndex == fullText.Length){
 					finishedTyping = true;
 				}
@@ -89,5 +84,9 @@ public partial class CuadroTexto : Control{
 		finishedTyping = false;
 		TTS.PutThisInQueue(text);
 		boton.GrabFocus();
+	}
+	
+	public override void _ExitTree(){
+		customSignals.OnShowDialog -= QueueDialog; // o ShowDialog si es el que usas
 	}
 }

@@ -5,7 +5,7 @@ using System.Linq;
 
 public partial class SpritesManager : Node
 {
-	private Dictionary<Fighter, Tween> blinkingTweens = new Dictionary<Fighter, Tween>();
+	private Dictionary<CanvasItem, Tween> blinkingTweens = new Dictionary<CanvasItem, Tween>();
 
 	public SpriteFrames GenerateSpriteFrames(Entity data_Info, Texture2D spriteSheet){
 		SpriteFrames frames = new SpriteFrames();
@@ -48,30 +48,28 @@ public partial class SpritesManager : Node
 		return frames;
 	}
 	
-	public void StartBlinking(Fighter target, float duration = 0.25f){
+	public void StartBlinking(CanvasItem target, Color? blinkColor = null, float duration = 0.25f){
 		if (blinkingTweens.ContainsKey(target))
-			return; // Ya está parpadeando
-
+			return;
+		
+		Color finalColor = blinkColor ?? new Color(0.4f, 0.4f, 0.4f); // color por defecto
 		Tween tween = target.GetTree().CreateTween();
 		tween.SetLoops(-1);
-		tween.TweenProperty(target, "modulate", new Color(0.4f, 0.4f, 0.4f), duration)
-			 .SetTrans(Tween.TransitionType.Sine)
-			 .SetEase(Tween.EaseType.InOut);
+		tween.TweenProperty(target, "modulate", finalColor, duration)
+			  .SetTrans(Tween.TransitionType.Sine)
+			  .SetEase(Tween.EaseType.InOut);
 		tween.TweenProperty(target, "modulate", new Color(1f, 1f, 1f), duration)
-			 .SetTrans(Tween.TransitionType.Sine)
-			 .SetEase(Tween.EaseType.InOut);
-
+			  .SetTrans(Tween.TransitionType.Sine)
+			  .SetEase(Tween.EaseType.InOut);
 		blinkingTweens[target] = tween;
 	}
 
-	public void StopBlinking(Fighter target){
+	public void StopBlinking(CanvasItem target){
 		if (blinkingTweens.TryGetValue(target, out Tween tween)){
-			tween.Kill(); // Detiene y elimina el Tween
+			tween.Kill();
 			blinkingTweens.Remove(target);
 		}
-
-		if (target is CanvasItem canvasItem)
-			canvasItem.Modulate = new Color(1f, 1f, 1f); // Restaurar visual
+		target.Modulate = new Color(1f, 1f, 1f);
 	}
 	
 	public async void PlayDeathTween(Fighter target){

@@ -60,6 +60,7 @@ layout_mode = 2
 text = "Especial"
 
 [node name="Bag" type="Button" parent="Battle_Action/MarginContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 disabled = true
@@ -219,3 +220,6 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 horizontal_alignment = 2
 autowrap_mode = 2
+
+[node name="Sonidos" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"

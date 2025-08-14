@@ -5,7 +5,7 @@ using System.Linq;
 
 public partial class GameState : Node{
 	public List<Entity> playerTeamData = new List<Entity>();
-	public int teamExperienceBank = 0;
+	public int teamExperienceBank = 5;
 	public int teamMoneyBank = 0;
 	public int playerLevel = 1;
 	public int[] playerLevelExp = new int[] {12, 20, 30, 42, 54, 9999};
@@ -13,13 +13,20 @@ public partial class GameState : Node{
 	
 	
 	public int floorLevel = 1;
-	public int  floorRoom = 1;
+	public int  floorRoom = 0;
 	
 	public void SaveTeamData(FighterTeam team){
 		playerTeamData.Clear();
 		foreach(Fighter f in team.GetFighters()){
 			playerTeamData.Add(f.GetEntityData());
 		}
+	}
+	
+	public void UsedExp(int exp){
+		teamExperienceBank -= exp;
+	}
+	public void UsedMoney(int mon){
+		teamMoneyBank -= mon;
 	}
 	
 	public void LoadTeamData(FighterTeam team){
@@ -37,7 +44,7 @@ public partial class GameState : Node{
 		floorRoom++;
 		if(floorRoom > 10){
 			floorLevel++;
-			floorRoom = 1;
+			floorRoom = 0;
 		}
 		GD.Print($"coins: {teamMoneyBank} | Experiencia: {teamExperienceBank}");
 	}

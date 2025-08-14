@@ -52,6 +52,8 @@ public partial class MenuBatalla : Control{
 	private bool acceptingInputs = false;
 	private bool canShowInfo = false;
 	
+	private AudioStreamPlayer2D audioPlayer;
+	
 	public override void _Ready(){
 		actingMenu = GetNode<Panel>("Battle_Action");
 		specialMenu = GetNode<Panel>("Special_Action");
@@ -69,6 +71,7 @@ public partial class MenuBatalla : Control{
 		mov4 = GetNode<Button>("Special_Action/MarginContainer/HBoxContainer/Mov4");
 		
 		inv = GetNode<Button>("Selection/MarginContainer/HBoxContainer/Inv");
+		audioPlayer = GetNode<AudioStreamPlayer2D>("Sonidos");
 		
 		labelInfoTitle = GetNode<Label>("Info_Panel/MarginContainer/VBoxContainer/Title");
 		labelInfoDescription = GetNode<Label>("Info_Panel/MarginContainer/VBoxContainer/Description");
@@ -361,43 +364,55 @@ public partial class MenuBatalla : Control{
 	
 	private void OnAttackFocusEntered(){
 		currentButtonFocus = attack;
-		//audioPlayer.Stream = correctSound;
-		//audioPlayer.Play();
+		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/attack_sound.mp3");
+		audioPlayer.Stream = stream;
+		audioPlayer.Play();
 	}
 	private void OnSpecialFocusEntered(){
 		currentButtonFocus = special;
-		//audioPlayer.Stream = correctSound;
-		//audioPlayer.Play();
+		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/magic_sound.mp3");
+		audioPlayer.Stream = stream;
+		audioPlayer.Play();
 	}
 	private void OnBagFocusEntered(){
 		currentButtonFocus = bag;
-		//audioPlayer.Stream = correctSound;
-		//audioPlayer.Play();
+		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/inventory_sound.mp3");
+		audioPlayer.Stream = stream;
+		audioPlayer.Play();
 	}
 	private void OnGuardFocusEntered(){
 		currentButtonFocus = guard;
-		//audioPlayer.Stream = correctSound;
-		//audioPlayer.Play();
+		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/shield_sound.mp3");
+		audioPlayer.Stream = stream;
+		audioPlayer.Play();
 	}
 	private void OnMov1FocusEntered(){
 		currentButtonFocus = mov1;
-		//audioPlayer.Stream = correctSound;
-		//audioPlayer.Play();
+		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
+		audioPlayer.Stream = stream;
+		audioPlayer.Play();
+		TTS.SayThis($"{sp1.GiveTitulo()}");
 	}
 	private void OnMov2FocusEntered(){
 		currentButtonFocus = mov2;
-		//audioPlayer.Stream = correctSound;
-		//audioPlayer.Play();
+		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
+		audioPlayer.Stream = stream;
+		audioPlayer.Play();
+		TTS.SayThis($"{sp2.GiveTitulo()}");
 	}
 	private void OnMov3FocusEntered(){
 		currentButtonFocus = mov3;
-		//audioPlayer.Stream = correctSound;
-		//audioPlayer.Play();
+		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
+		audioPlayer.Stream = stream;
+		audioPlayer.Play();
+		TTS.SayThis($"{sp3.GiveTitulo()}");
 	}
 	private void OnMov4FocusEntered(){
 		currentButtonFocus = mov4;
-		//audioPlayer.Stream = correctSound;
-		//audioPlayer.Play();
+		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
+		audioPlayer.Stream = stream;
+		audioPlayer.Play();
+		TTS.SayThis($"{sp4.GiveTitulo()}");
 	}
 	
 	private void OnButtonFocusExited(){

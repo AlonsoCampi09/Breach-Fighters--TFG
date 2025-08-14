@@ -1,0 +1,679 @@
+[gd_scene load_steps=18 format=3 uid="uid://3myv7wdjbd2e"]
+
+[ext_resource type="Theme" uid="uid://cgp6bk35e1id3" path="res://assets/ui_related/ui_battle_theme.tres" id="1_07jr3"]
+[ext_resource type="Script" path="res://global/scenes/scenesUI/RestUi.cs" id="2_1q3nf"]
+[ext_resource type="Texture2D" uid="uid://be5m85k550yib" path="res://assets/sprites/angyone.png" id="2_8qpi0"]
+[ext_resource type="Texture2D" uid="uid://b0o6lqt7g1urd" path="res://assets/sprites/stats_level.png" id="3_oe03v"]
+[ext_resource type="Texture2D" uid="uid://dl7ukj667r2u2" path="res://assets/sprites/stats_health.png" id="4_fstsu"]
+[ext_resource type="Texture2D" uid="uid://cdpbiwpcsmmde" path="res://assets/sprites/stats_attack.png" id="5_etl0b"]
+[ext_resource type="Texture2D" uid="uid://chfkm6v8vn8tt" path="res://assets/sprites/stats_defense.png" id="6_0isvk"]
+[ext_resource type="Texture2D" uid="uid://bvwwc8iqiid55" path="res://assets/sprites/stats_mana.png" id="7_0k0sr"]
+[ext_resource type="Texture2D" uid="uid://i11aij47ueq1" path="res://assets/sprites/stats_speed.png" id="8_a68m5"]
+[ext_resource type="Texture2D" uid="uid://cajp718nk5iys" path="res://assets/sprites/money_gathered.png" id="9_h6dhy"]
+[ext_resource type="Texture2D" uid="uid://dgwtdlk2iu6dx" path="res://assets/sprites/stats_exp.png" id="10_gd07x"]
+[ext_resource type="Texture2D" uid="uid://b2drv2q8aot30" path="res://assets/sprites/Exp.png" id="10_mbqih"]
+[ext_resource type="Script" path="res://global/scenes/scenesUI/InfoPanel.cs" id="11_1bu3g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tbp5c"]
+line_spacing = 2.0
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_8u7lr"]
+line_spacing = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_cmvk4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ntnhy"]
+
+[node name="RestUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_07jr3")
+script = ExtResource("2_1q3nf")
+
+[node name="RestOptions" type="VBoxContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(256, 78)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 266.0
+offset_bottom = 88.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+alignment = 1
+
+[node name="Team" type="Button" parent="RestOptions"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Exit")
+focus_neighbor_bottom = NodePath("../Exit")
+text = "Miembros del equipo"
+
+[node name="Exit" type="Button" parent="RestOptions"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Team")
+focus_neighbor_bottom = NodePath("../Team")
+text = "Pasar a la siguiente habitación"
+
+[node name="CharacterInfo" type="Panel" parent="."]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -315.0
+offset_right = 410.0
+offset_bottom = 315.0
+grow_vertical = 2
+size_flags_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="CharacterInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CharacterInfo/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Name" type="Label" parent="CharacterInfo/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Nombre"
+horizontal_alignment = 1
+
+[node name="Sprite" type="TextureRect" parent="CharacterInfo/MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_8qpi0")
+
+[node name="StatsInfo" type="VBoxContainer" parent="CharacterInfo/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Level" type="HBoxContainer" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo/Level"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_oe03v")
+
+[node name="Label" type="Label" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo/Level"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Nivel:"
+
+[node name="Label3" type="Label" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo/Level"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Nivel:"
+
+[node name="Health" type="HBoxContainer" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo/Health"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_fstsu")
+
+[node name="Label" type="Label" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo/Health"]
+layout_mode = 2
+text = "Vida:"
+
+[node name="Label3" type="Label" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo/Health"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Nivel:"
+
+[node name="Attack" type="HBoxContainer" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo/Attack"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_etl0b")
+
+[node name="Label" type="Label" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo/Attack"]
+layout_mode = 2
+text = "Ataque:"
+
+[node name="Label3" type="Label" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo/Attack"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Nivel:"
+
+[node name="Defense" type="HBoxContainer" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo/Defense"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_0isvk")
+
+[node name="Label" type="Label" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo/Defense"]
+layout_mode = 2
+text = "Defensa:"
+
+[node name="Label3" type="Label" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo/Defense"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Nivel:"
+
+[node name="Mana" type="HBoxContainer" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo/Mana"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("7_0k0sr")
+
+[node name="Label" type="Label" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo/Mana"]
+layout_mode = 2
+text = "Maná:"
+
+[node name="Label3" type="Label" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo/Mana"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Nivel:"
+
+[node name="Speed" type="HBoxContainer" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo/Speed"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_a68m5")
+
+[node name="Label" type="Label" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo/Speed"]
+layout_mode = 2
+text = "Velocidad: "
+
+[node name="Label3" type="Label" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo/Speed"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Nivel:"
+
+[node name="Experience" type="HBoxContainer" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo"]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo/Experience"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("10_gd07x")
+
+[node name="Label" type="Label" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo/Experience"]
+layout_mode = 2
+text = "Experiencia Necesaria: "
+
+[node name="Label3" type="Label" parent="CharacterInfo/MarginContainer/VBoxContainer/StatsInfo/Experience"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Nivel:"
+
+[node name="MoneyExp" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -312.0
+offset_top = 10.0
+offset_right = -12.0
+offset_bottom = 50.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MoneyExp"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Container" type="HBoxContainer" parent="MoneyExp/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="Money" type="HBoxContainer" parent="MoneyExp/MarginContainer/Container"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MoneyExp/MarginContainer/Container/Money"]
+texture_filter = 1
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+texture = ExtResource("9_h6dhy")
+
+[node name="Label" type="Label" parent="MoneyExp/MarginContainer/Container/Money"]
+layout_mode = 2
+text = "Mon"
+
+[node name="Experience" type="HBoxContainer" parent="MoneyExp/MarginContainer/Container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MoneyExp/MarginContainer/Container/Experience"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("10_mbqih")
+
+[node name="Label" type="Label" parent="MoneyExp/MarginContainer/Container/Experience"]
+layout_mode = 2
+text = "Exp"
+
+[node name="CharacterOptions" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.424
+anchor_top = 0.014
+anchor_right = 0.424
+anchor_bottom = 0.218
+offset_left = -78.448
+offset_top = -0.0720005
+offset_right = 78.552
+offset_bottom = -0.264008
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CharacterOptions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CharacterOptions/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="LevelUp" type="Button" parent="CharacterOptions/MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Back")
+focus_neighbor_bottom = NodePath("../Skills")
+text = "Subir de nivel"
+
+[node name="Skills" type="Button" parent="CharacterOptions/MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../LevelUp")
+focus_neighbor_bottom = NodePath("../Back")
+text = "Habilidades"
+
+[node name="Back" type="Button" parent="CharacterOptions/MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Skills")
+focus_neighbor_bottom = NodePath("../LevelUp")
+text = "Volver"
+
+[node name="CharacterSkills" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.466
+anchor_top = 0.014
+anchor_right = 0.466
+anchor_bottom = 0.4
+offset_left = -126.832
+offset_top = 0.927999
+offset_right = 123.168
+offset_bottom = 0.799988
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CharacterSkills"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_right = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CharacterSkills/MarginContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+follow_focus = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CharacterSkills/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="Back" type="Button" parent="CharacterSkills/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Volver
+"
+
+[node name="Skill1" type="Button" parent="CharacterSkills/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Ataque básico"
+
+[node name="Skill2" type="Button" parent="CharacterSkills/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Guardia"
+
+[node name="Skill3" type="Button" parent="CharacterSkills/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Skill1"
+
+[node name="Skill4" type="Button" parent="CharacterSkills/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Skill2"
+
+[node name="Skill5" type="Button" parent="CharacterSkills/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Skill3"
+
+[node name="Skill6" type="Button" parent="CharacterSkills/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Skill4"
+
+[node name="Info_Panel" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.356
+anchor_top = 0.403
+anchor_right = 0.703
+anchor_bottom = 0.465
+offset_left = -0.112
+offset_top = -0.144012
+offset_right = 0.143982
+offset_bottom = -0.320007
+script = ExtResource("11_1bu3g")
+
+[node name="MarginContainer" type="MarginContainer" parent="Info_Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Info_Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Title" type="Label" parent="Info_Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(490, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+label_settings = SubResource("LabelSettings_tbp5c")
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="Info_Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(485, 0)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_8u7lr")
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Info_Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Info_Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Power" type="Label" parent="Info_Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_cmvk4")
+autowrap_mode = 2
+
+[node name="Cost" type="Label" parent="Info_Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_cmvk4")
+autowrap_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Info_Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Level_Needed" type="Label" parent="Info_Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_ntnhy")
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="Level_Evolve" type="Label" parent="Info_Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="LevelUpPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.632
+anchor_right = 0.632
+offset_left = -160.064
+offset_top = 9.0
+offset_right = 160.936
+offset_bottom = 141.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_07jr3")
+
+[node name="MarginContainer" type="MarginContainer" parent="LevelUpPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelUpPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LevelUpPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "
+¿Subir de nivel?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelUpPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Label" type="Label" parent="LevelUpPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "Sí (Espacio)"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="LevelUpPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "No (X)"
+horizontal_alignment = 1
+
+[node name="PanelPopUp" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -100.0
+offset_right = 250.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_07jr3")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelPopUp"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelPopUp/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Label" type="Label" parent="PanelPopUp/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "
+¿Quieres pasar a la siguiente sala?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelPopUp/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelPopUp/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "Confirmar(Espacio)"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="PanelPopUp/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "Atrás (X)"
+horizontal_alignment = 1
+
+[node name="Selection" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(1000, 100)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Selection"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -142.0
+offset_right = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Selection/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_constants/separation = 100
+
+[node name="Inv" type="Button" parent="Selection/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Si lees esto, eres tonto :P
+"
