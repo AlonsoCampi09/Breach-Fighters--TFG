@@ -5,10 +5,10 @@
 [resource]
 script = ExtResource("1_gknu0")
 Level = 1
-Name = "Juicio paria"
+Name = "Juicio"
 Name_Evolved = "Exilio"
-Description = "assandra canaliza un rayo mágico sobre el objetivo, haciendo gran daño y pudiendo causar una reduccion de daño del 30% en su siguiente turno."
-Description_Evolved = "assandra canaliza un rayo mágico sobre el objetivo, haciendo gran daño y les causa una reduccion de daño del 30% en su siguiente turno."
+Description = "Cassandra canaliza un rayo mágico sobre el objetivo, provocándole un gran daño y pudiendo causar una reducción de daño del 30% en su siguiente turno. "
+Description_Evolved = "Cassandra canaliza un rayo mágico sobre el objetivo, provocándole un gran daño y causandole una reducción de daño del 30% en su siguiente turno. "
 BasePower = 10
 BasePower_Evolved = 13
 Cost = 10

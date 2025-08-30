@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c6mhs7axqkyjj"
+path="res://.godot/imported/digitalField.mp3-61ca26b95f255ea4883202b40692dc7f.mp3str"
+
+[deps]
+
+source_file="res://assets/sonidos/Alex noises/digitalField.mp3"
+dest_files=["res://.godot/imported/digitalField.mp3-61ca26b95f255ea4883202b40692dc7f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

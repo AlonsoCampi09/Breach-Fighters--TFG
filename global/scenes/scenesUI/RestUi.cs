@@ -79,11 +79,14 @@ public partial class RestUi : Control{
 	
 	private Button currentButtonFocus;
 	
+	private AudioStreamPlayer2D sfx;
+	
 	bool acceptingInputs = false;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready(){
 		customSignals = GetNode<CustomSignals>("/root/CustomSignals");
+		sfx = GetNode<AudioStreamPlayer2D>("sfx");
 		
 		restOptions = GetNode<VBoxContainer>("RestOptions");
 		teamSelect = GetNode<Button>("RestOptions/Team");
@@ -499,9 +502,15 @@ public partial class RestUi : Control{
 	
 	private void OnTeamButtonFocused(){
 		TTS.SayThis($"Equipo. Una vez selecciones al miembro que quieres ver puedes pulsar F2 para oir sus estadísticas.");
+		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
+		sfx.Stream = stream;
+		sfx.Play();
 	}
 	private void OnExitButtonFocused(){
 		TTS.SayThis($"Salir del descanso");
+		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
+		sfx.Stream = stream;
+		sfx.Play();
 	}
 	private void OnLevelButtonFocused(){
 		if(levelUp.Disabled == true){
@@ -509,46 +518,76 @@ public partial class RestUi : Control{
 		}else{
 			TTS.SayThis($"Subir de nivel. Disponible");
 		}
+		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
+		sfx.Stream = stream;
+		sfx.Play();
 	}
 	private void OnSkillButtonFocused(){
 		TTS.SayThis($"Ver habilidades");
+		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
+		sfx.Stream = stream;
+		sfx.Play();
 	}
 	private void OnBack2FocusEntered(){
 		TTS.SayThis($"Atrás");
 		panelInfo.Visible = false;
+		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
+		sfx.Stream = stream;
+		sfx.Play();
 	}
 	private void OnAttackFocusEntered(){
 		currentButtonFocus = atq;
 		panelInfo.Visible = true;
 		ShowMoveInfo();
+		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
+		sfx.Stream = stream;
+		sfx.Play();
 	}
 	private void OnGuardFocusEntered(){
 		currentButtonFocus = guard;
 		panelInfo.Visible = true;
 		ShowMoveInfo();
+		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
+		sfx.Stream = stream;
+		sfx.Play();
 	}
 	private void OnMov1FocusEntered(){
 		currentButtonFocus = mov1;
 		panelInfo.Visible = true;
 		ShowMoveInfo();
+		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
+		sfx.Stream = stream;
+		sfx.Play();
 	}
 	private void OnMov2FocusEntered(){
 		currentButtonFocus = mov2;
 		panelInfo.Visible = true;
 		ShowMoveInfo();
+		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
+		sfx.Stream = stream;
+		sfx.Play();
 	}
 	private void OnMov3FocusEntered(){
 		currentButtonFocus = mov3;
 		panelInfo.Visible = true;
 		ShowMoveInfo();
+		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
+		sfx.Stream = stream;
+		sfx.Play();
 	}
 	private void OnMov4FocusEntered(){
 		currentButtonFocus = mov4;
 		panelInfo.Visible = true;
 		ShowMoveInfo();
+		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
+		sfx.Stream = stream;
+		sfx.Play();
 	}
 	private void OnBackButtonFocused(){
 		TTS.SayThis("Atrás");
+		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
+		sfx.Stream = stream;
+		sfx.Play();
 	}
 	
 	public void ShowMoveInfo(){

@@ -11,14 +11,9 @@ public partial class VylsSpecial2 : Skill{
 		return true;
 	}
 	public override bool Execute2(Fighter caster, Fighter target, BattleManager battle){
-		if(ProducesEffect(50)){
-			GD.Print("Positivo");
-			StatusEffect status = new StatusEffect(StatusEffectType.Aturdido, 1, 0, false);
-			target.ApplyStatus(status);
-			return true;
-		}else{
-			return false;
-		}
+		StatusEffect status = new StatusEffect(StatusEffectType.Bloqueo, 1, 0, false);
+		target.ApplyStatus(status);
+		return true;
 	}
 	public override bool HasSecondaryEffect(){
 		if(Level >= RequiredLevelToEvolve){

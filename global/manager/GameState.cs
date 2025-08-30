@@ -5,7 +5,7 @@ using System.Linq;
 
 public partial class GameState : Node{
 	public List<Entity> playerTeamData = new List<Entity>();
-	public int teamExperienceBank = 5;
+	public int teamExperienceBank = 0;
 	public int teamMoneyBank = 0;
 	public int playerLevel = 1;
 	public int[] playerLevelExp = new int[] {12, 20, 30, 42, 54, 9999};

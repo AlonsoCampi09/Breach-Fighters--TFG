@@ -249,66 +249,87 @@ public partial class MenuMain : Control{
 	
 	private void OnFocusEnteredStart(){
 		TTS.SayThis(start.Text);
+		sfx.Play();
 	}
 	private void OnFocusEnteredOptions(){
 		TTS.SayThis(options.Text);
+		sfx.Play();
 	}
 	private void OnFocusEnteredExit(){
 		TTS.SayThis(exit.Text);
+		sfx.Play();
 	}
 	private void OnFocusEnteredVolume(){
 		TTS.SayThis(volumenButton.Text);
+		sfx.Play();
 	}
 	private void OnFocusEnteredAccesibility(){
 		TTS.SayThis(accesibilityButton.Text);
+		sfx.Play();
 	}
 	private void OnFocusEnteredControls(){
 		TTS.SayThis(keyButton.Text);
+		sfx.Play();
 	}
 	private void OnFocusEnteredBack(){
 		TTS.SayThis("Volver");
+		sfx.Play();
 	}
 	private void OnFocusEnteredMainSlider(){
 		TTS.SayThis($"Volumen general. {labelMaster.Text}");
+		sfx.Play();
 	}
 	private void OnFocusEnteredMusicSlider(){
 		TTS.SayThis($"Volumen música. {labelMusic.Text}");
+		sfx.Play();
 	}
 	private void OnFocusEnteredSFXSlider(){
 		TTS.SayThis($"Volumen sonidos. {labelSound.Text}");
+		sfx.Play();
 	}
 	private void OnFocusEnteredCheckBox(){
 		TTS.SayThis(labelTTS.Text);
+		sfx.Play();
 	}
 	private void OnFocusEnteredTTSVelSlider(){
 		TTS.SayThis($"Velocidad texto a voz. Nivel {labelVelocity.Text}");
+		sfx.Play();
 	}
 	private void OnFocusEnteredTTSVolumeSlider(){
 		TTS.SayThis($"Volumen de texto a voz. {labelTTSVolume.Text}");
+		sfx.Play();
 	}
 	private void OnFocusEnteredKey1(){
 		TTS.SayThis($"{fun1.Text}. Tecla {tecla1.Text}");
+		sfx.Play();
 	}
 	private void OnFocusEnteredKey2(){
 		TTS.SayThis($"{fun2.Text}. Tecla {tecla2.Text}");
+		sfx.Play();
 	}
 	private void OnFocusEnteredKey3(){
 		TTS.SayThis($"{fun3.Text}. Tecla {tecla3.Text}");
+		sfx.Play();
 	}
 	private void OnFocusEnteredKey4(){
 		TTS.SayThis($"{fun4.Text}. Tecla {tecla4.Text}");
+		sfx.Play();
 	}
 	private void OnFocusEnteredKey5(){
 		TTS.SayThis($"{fun5.Text}. Tecla {tecla5.Text}");
+		sfx.Play();
 	}
 	private void OnFocusEnteredKey6(){
 		TTS.SayThis($"{fun6.Text}. Tecla {tecla6.Text}");
+		sfx.Play();
 	}
 	private void OnFocusEnteredKey7(){
 		TTS.SayThis($"{fun7.Text}. Tecla {tecla7.Text}");
+		sfx.Play();
 	}
 	private void OnFocusEnteredKey8(){
 		TTS.SayThis($"{fun8.Text}. Tecla {tecla8.Text}");
+		sfx.Play();
 	}
 	
 	

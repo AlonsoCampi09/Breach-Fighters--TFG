@@ -13,6 +13,8 @@ public partial class CuadroTexto : Control{
 	private Button boton;
 	private int currentCharIndex = 0;
 	private float timeAccumulator = 0f;
+	
+	private AudioStreamPlayer2D typeSound;
 
 	private bool finishedTyping = false;
 	private bool isWriting = false;
@@ -25,6 +27,7 @@ public partial class CuadroTexto : Control{
 		panel = GetNode<Panel>("Panel");
 		label = GetNode<Label>("Panel/MarginContainer/Label");
 		boton = GetNode<Button>("Panel/Button");
+		typeSound = GetNode<AudioStreamPlayer2D>("TypeSound");
 		label.Text = "";
 		this.Visible = false;
 		boton.Modulate = new Color(1, 1, 1, 0); // Hacerlo invisible
@@ -33,6 +36,7 @@ public partial class CuadroTexto : Control{
 
 	public override void _Process(double delta){
 		if (isWriting && currentCharIndex < fullText.Length){
+			typeSound.Play();
 			timeAccumulator += (float)delta;
 			if (timeAccumulator >= characterDelay){
 				timeAccumulator = 0f;

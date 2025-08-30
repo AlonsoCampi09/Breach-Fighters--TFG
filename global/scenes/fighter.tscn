@@ -39,3 +39,6 @@ offset_bottom = 141.0
 texture_under = ExtResource("4_nauyh")
 texture_progress = ExtResource("6_fysnt")
 script = ExtResource("6_p411c")
+
+[node name="PlaySounds" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"

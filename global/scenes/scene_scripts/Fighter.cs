@@ -9,6 +9,7 @@ public partial class Fighter : Node2D{
 	//[Export]private Entity data_Info;
 	private Entity data_Info;
 	private AnimatedSprite2D sprites;
+	private AudioStreamPlayer2D playSounds;
 	private SpritesManager sManager;
 	private StatusEffectController statusController;
 	private AICombatManager aiManager;
@@ -26,6 +27,7 @@ public partial class Fighter : Node2D{
 		PopUpTextScene = ResourceLoader.Load<PackedScene>("res://global/scenes/scenesUI/pop_up_text.tscn");
 		statusController = GetNode<StatusEffectController>("StatusEffectController");
 		aiManager = GetNode<AICombatManager>("AI");
+		playSounds = GetNode<AudioStreamPlayer2D>("PlaySounds");
 		aiManager.GiveFighterSkills(skills);
 		healthBar = GetNode<HealthBar>("HealthBar");
 		manaBar = GetNode<ManaBar>("ManaBar");
@@ -172,6 +174,9 @@ public partial class Fighter : Node2D{
 		data_Info.restoreHP(n);
 		UpdateBars();
 		GD.Print($"{data_Info.Name} is healing.");
+		AudioStream sound = GD.Load<AudioStream>("res://assets/sonidos/Alex noises/sound1.mp3");
+		playSounds.Stream = sound;
+		playSounds.Play();
 		await ShowDamagePopup(n);
 		customSignals.EmitSignal(nameof(CustomSignals.OnEffectIsDone));
 		//Deberia esperar a una animacion
@@ -181,6 +186,9 @@ public partial class Fighter : Node2D{
 		data_Info.restoreMP(n);
 		UpdateBars();
 		GD.Print($"{data_Info.Name} regaining mana.");
+		AudioStream sound = GD.Load<AudioStream>("res://assets/sonidos/Alex noises/sound1.mp3");
+		playSounds.Stream = sound;
+		playSounds.Play();
 		await ShowDamagePopup(n);
 		customSignals.EmitSignal(nameof(CustomSignals.OnEffectIsDone));
 		//Deberia esperar a una animacion
@@ -189,6 +197,9 @@ public partial class Fighter : Node2D{
 		GD.Print($"-{n} HP");
 		data_Info.removeHP(n);
 		UpdateBars();
+		AudioStream sound = GD.Load<AudioStream>("res://assets/sonidos/Alex noises/undertale-sound-effect-attack-hit.mp3");
+		playSounds.Stream = sound;
+		playSounds.Play();
 		await ShowDamagePopup(n);
 		aiManager.GotHitByFighter(hitman);
 		TTS.PutThisInQueue($"{data_Info.Name} sufre {n} de daño.");
@@ -199,6 +210,9 @@ public partial class Fighter : Node2D{
 		GD.Print($"-{n} HP");
 		data_Info.removeHP(n);
 		UpdateBars();
+		AudioStream sound = GD.Load<AudioStream>("res://assets/sonidos/Alex noises/undertale-sound-effect-attack-hit.mp3");
+		playSounds.Stream = sound;
+		playSounds.Play();
 		await ShowDamagePopup(n);
 		TTS.PutThisInQueue($"{data_Info.Name} sufre {n} de daño.");
 		customSignals.EmitSignal(nameof(CustomSignals.OnEffectIsDone));
@@ -211,12 +225,18 @@ public partial class Fighter : Node2D{
 				GD.Print($"-{n} HP");
 				data_Info.removeHP(n);
 				UpdateBars();
+				AudioStream sound = GD.Load<AudioStream>("res://assets/sonidos/Alex noises/undertale-sound-effect-attack-hit.mp3");
+				playSounds.Stream = sound;
+				playSounds.Play();
 				await ShowDamagePopup(n);
 			}else{
 				if(Skill.ProducesEffect(ptg+(count-guaranteed)*10)){
 					GD.Print($"-{n} HP");
 					data_Info.removeHP(n);
 					UpdateBars();
+					AudioStream sound = GD.Load<AudioStream>("res://assets/sonidos/Alex noises/undertale-sound-effect-attack-hit.mp3");
+					playSounds.Stream = sound;
+					playSounds.Play();
 					await ShowDamagePopup(n);
 					TTS.PutThisInQueue($"{data_Info.Name} sufre {n} de daño.");
 				}
@@ -239,6 +259,9 @@ public partial class Fighter : Node2D{
 	}
 	public async void ApplyStatus(StatusEffect effect){
 		statusController.AddEffect(effect);
+		AudioStream sound = GD.Load<AudioStream>("res://assets/sonidos/Alex noises/statusSound.mp3");
+		playSounds.Stream = sound;
+		playSounds.Play();
 		await ShowEffectPopup(effect.StatusName);
 		UpdateStatusIcons();
 		customSignals.OnDialogIsOver += EffectIsDone;
@@ -248,6 +271,9 @@ public partial class Fighter : Node2D{
 		for(int i = 0; i < effects.Length; i++){
 			statusController.AddEffect(effects[i]);
 		}
+		AudioStream sound = GD.Load<AudioStream>("res://assets/sonidos/Alex noises/statusSound.mp3");
+		playSounds.Stream = sound;
+		playSounds.Play();
 		await ShowEffectPopup("Multiples estados");
 		UpdateStatusIcons();
 		UpdateBars();

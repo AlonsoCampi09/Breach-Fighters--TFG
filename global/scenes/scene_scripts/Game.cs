@@ -75,16 +75,16 @@ public partial class Game : Node2D{
 			teamJugador.Visible = false;
 		}
 		else{
-			if (GD.Randf() < 0.85f && !restGeneratedRandom) { //85% probabilidad de combate
-				combatTime = true;
-				restRocks.Visible = false;
-				teamJugador.Visible = true;
-			}
-			else{
+			if (GD.Randf() < 0.15f && !restGeneratedRandom) { //85% probabilidad de combate
 				restGeneratedRandom = true;
 				combatTime = false;
 				restRocks.Visible = true;
 				teamJugador.Visible = false;
+			}
+			else{
+				combatTime = true;
+				restRocks.Visible = false;
+				teamJugador.Visible = true;
 			}
 		}
 	}
