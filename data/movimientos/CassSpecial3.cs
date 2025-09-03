@@ -7,9 +7,13 @@ public partial class CassSpecial3 : Skill{
 		int finalPower = GivePower();
 		int dañoTotal = CalculateDamage(finalPower, caster, target);
 		//Target Receives Damage;
+		if(target.IsProtecting()){
+			target.TakeDamage(0, caster);
+			protection = true;
+			return true;
+		}
 		target.TakeDamage(dañoTotal, caster);
 		return true;
-		
 	}
 	public override bool Execute2(Fighter caster, Fighter target, BattleManager battle){
 		if(Level >= RequiredLevelToEvolve){
@@ -26,7 +30,12 @@ public partial class CassSpecial3 : Skill{
 		return true;
 	}
 	public override bool HasSecondaryEffect(){
-		return true;
+		if(protection){
+			protection = false;
+			return false;
+		}
+		else
+			return true;
 	}
 	public override bool DeBuffs() => true;
 }

@@ -7,6 +7,11 @@ public partial class CassSpecial4 : Skill{
 		int finalPower = GivePower();
 		int dañoTotal = CalculateDamage(finalPower, caster, target);
 		//Target Receives Damage;
+		if(target.IsProtecting()){
+			target.TakeDamage(0, caster);
+			protection = true;
+			return true;
+		}
 		target.TakeDamage(dañoTotal, caster);
 		return true;
 	}
@@ -29,6 +34,11 @@ public partial class CassSpecial4 : Skill{
 		}
 	}
 	public override bool HasSecondaryEffect(){
-		return true;
+		if(protection){
+			protection = false;
+			return false;
+		}
+		else
+			return true;
 	}
 }

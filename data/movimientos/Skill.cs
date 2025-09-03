@@ -47,6 +47,8 @@ public abstract partial class Skill : Resource, ISkillDisplayData{
 	private bool IsEvolved => Level >= RequiredLevelToEvolve;
 	public int Cooldown => CooldownTurns;
 	
+	protected bool weaved = false;
+	protected bool protection = false;
 	
 	public abstract bool Execute1(Fighter caster, Fighter target, BattleManager battle);
 	public abstract bool Execute2(Fighter caster, Fighter target, BattleManager battle);

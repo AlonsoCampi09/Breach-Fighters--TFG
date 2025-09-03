@@ -9,6 +9,21 @@ public partial class IshiBasicSkill : Skill{
 		int finalPower = GivePower();
 		dañoRealizadoAnteriormente = 0;
 		dañoRealizadoAnteriormente = CalculateDamage(finalPower, caster, target);
+		if(target.IsWeaving()){
+			if(Skill.ProducesEffect(50)){
+				target.TakeDamage(dañoRealizadoAnteriormente, caster);
+				return true;
+			}else{
+				target.DodgedAttack();
+				weaved = true;
+				return true;
+			}
+		}
+		if(target.IsProtecting()){
+			target.TakeDamage(0, caster);
+			protection = true;
+			return true;
+		}
 		target.TakeDamage(dañoRealizadoAnteriormente, caster);
 		return true;
 	}
@@ -22,8 +37,15 @@ public partial class IshiBasicSkill : Skill{
 		}
 	}
 	public override bool HasSecondaryEffect(){
-		if(Level >= RequiredLevelToEvolve)
-			return true;
+		if(Level >= RequiredLevelToEvolve){
+			if(protection || weaved){
+				protection = false;
+				weaved = false;
+				return false;
+			}
+			else
+				return true;
+		}
 		else
 			return false;
 	}

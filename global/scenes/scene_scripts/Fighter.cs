@@ -152,6 +152,12 @@ public partial class Fighter : Node2D{
 	public bool IsCritical(){
 		return data_Info.criticalHealth();
 	}
+	public bool IsWeaving(){
+		return statusController.HasEffect(StatusEffectType.Evasion);
+	}
+	public bool IsProtecting(){
+		return statusController.HasEffect(StatusEffectType.Vanguardia);
+	}
 	
 	public void Revive(){
 		data_Info.restoreHP(1);
@@ -299,6 +305,14 @@ public partial class Fighter : Node2D{
 		customSignals.OnDialogIsOver += EffectIsDone;
 		customSignals.EmitSignal(nameof(CustomSignals.OnShowDialog), $"Todos los estados negativos de {data_Info.Name} han desaparecido.");
 		//Deberia esperar a una animacion
+	}
+	public async void DodgedAttack(){
+		AudioStream sound = GD.Load<AudioStream>("res://assets/sonidos/Alex noises/weave.mp3");
+		playSounds.Stream = sound;
+		playSounds.Play();
+		await ShowEffectPopup("Nope!");
+		customSignals.OnDialogIsOver += EffectIsDone;
+		customSignals.EmitSignal(nameof(CustomSignals.OnShowDialog), $"{data_Info.Name} ha esquivado el ataque.");
 	}
 	public void EffectIsDone(){
 		customSignals.OnDialogIsOver -= EffectIsDone;

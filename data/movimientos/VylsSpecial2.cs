@@ -7,6 +7,21 @@ public partial class VylsSpecial2 : Skill{
 		int finalPower = GivePower();
 		int dañoTotal = CalculateDamage(finalPower, caster, target);
 		//Target Receives Damage;
+		if(target.IsWeaving()){
+			if(Skill.ProducesEffect(50)){
+				target.TakeDamage(dañoTotal, caster);
+				return true;
+			}else{
+				target.DodgedAttack();
+				weaved = true;
+				return true;
+			}
+		}
+		if(target.IsProtecting()){
+			target.TakeDamage(0, caster);
+			protection = true;
+			return true;
+		}
 		target.TakeDamage(dañoTotal, caster);
 		return true;
 	}
@@ -17,11 +32,16 @@ public partial class VylsSpecial2 : Skill{
 	}
 	public override bool HasSecondaryEffect(){
 		if(Level >= RequiredLevelToEvolve){
-			return true;
+			if(protection || weaved){
+				protection = false;
+				weaved = false;
+				return false;
+			}
+			else
+				return true;
 		}
-		else{
+		else
 			return false;
-		}
 	}
 	public override bool DeBuffs() => Level >= RequiredLevelToEvolve;
 }

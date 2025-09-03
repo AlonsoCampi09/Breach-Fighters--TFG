@@ -7,6 +7,21 @@ public partial class CassSpecial1 : Skill{
 		int finalPower = GivePower();
 		int dañoTotal = CalculateDamage(finalPower, caster, target);
 		//Target Receives Damage;
+		if(target.IsWeaving()){
+			if(Skill.ProducesEffect(50)){
+				target.TakeDamage(dañoTotal, caster);
+				return true;
+			}else{
+				target.DodgedAttack();
+				weaved = true;
+				return true;
+			}
+		}
+		if(target.IsProtecting()){
+			target.TakeDamage(0, caster);
+			protection = true;
+			return true;
+		}
 		target.TakeDamage(dañoTotal, caster);
 		return true;
 	}

@@ -9,6 +9,21 @@ public partial class EliteSlimeBasicSkill : Skill{
 	public override bool Execute1(Fighter caster, Fighter target, BattleManager battle){
 		int finalPower = GivePower();
 		int dañoTotal = CalculateDamage(finalPower, caster, target);
+		if(target.IsWeaving()){
+			if(Skill.ProducesEffect(50)){
+				target.TakeDamage(dañoTotal, caster);
+				return true;
+			}else{
+				target.DodgedAttack();
+				weaved = true;
+				return true;
+			}
+		}
+		if(target.IsProtecting()){
+			target.TakeDamage(0, caster);
+			protection = true;
+			return true;
+		}
 		target.TakeDamage(dañoTotal, caster);
 		return true;
 	}
@@ -30,8 +45,15 @@ public partial class EliteSlimeBasicSkill : Skill{
 		return false;
 	}
 	public override bool HasSecondaryEffect(){
-		if(Level >= RequiredLevelToEvolve)
-			return true;
+		if(Level >= RequiredLevelToEvolve){
+			if(protection || weaved){
+				protection = false;
+				weaved = false;
+				return false;
+			}
+			else
+				return true;
+		}
 		else
 			return false;
 	}

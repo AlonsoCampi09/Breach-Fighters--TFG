@@ -4,7 +4,6 @@ using System;
 [GlobalClass]
 public partial class CassSpecial2 : Skill{
 	public override bool Execute1(Fighter caster, Fighter target, BattleManager battle){
-		//Caster receives a buff in ATQ and DEF for 3 turn;
 		StatusEffect[] status= new StatusEffect[2];
 		if(Level >= RequiredLevelToEvolve){
 			status[0] = new StatusEffect(StatusEffectType.BuffDMG, 3, 30, true);
