@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_y1app")
-beh_type = 0
+beh_type = 1
 entityType = 0
 SpriteSheet = ExtResource("1_6wtpo")
 NumFrames = 1
@@ -29,6 +29,7 @@ TrueAttack = PackedInt32Array(4, 5, 6, 7, 8, 9, 10, 12, 13, 14)
 TrueDefense = PackedInt32Array(5, 6, 7, 8, 9, 10, 11, 12, 13, 14)
 TrueMana = PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 TrueSpeed = PackedInt32Array(4, 7, 8, 9, 10, 11, 12, 13, 14, 15)
+ExperienceNeeded = PackedInt32Array(10, 22, 24, 36, 48, 50, 62, 74, 86, 999999)
 BaseExp = 4
 ExpIncrease = 2
 BaseCoin = 3

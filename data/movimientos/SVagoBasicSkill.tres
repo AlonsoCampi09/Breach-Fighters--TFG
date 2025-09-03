@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_eicni")
-slime = 0
+slime = 1
 Level = 1
 Name = "Babeo"
 Name_Evolved = "Consumo"
@@ -27,3 +27,6 @@ Guaranteed_Evolved = 0
 Percentage = 0
 Percentage_Evolved = 0
 Count = 0
+CooldownTurns = 0
+StatusCanApply = PackedInt32Array()
+StatusCanApplyEvolved = PackedInt32Array()

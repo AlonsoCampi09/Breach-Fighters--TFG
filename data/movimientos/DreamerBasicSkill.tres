@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="EliteSlimeBasicSkill" load_steps=2 format=3 uid="uid://6wo48d27grbh"]
+
+[ext_resource type="Script" path="res://data/movimientos/EliteSlimeBasicSkill.cs" id="1_juqos"]
+
+[resource]
+script = ExtResource("1_juqos")
+slime = 0
+Level = 1
+Name = "Cometa baboso"
+Name_Evolved = "Meteorito baboso"
+Description = "Un ataque que hace un ataque moderado."
+Description_Evolved = "Un ataque que hace un ataque moderado. Puede dejar al obetivo aturdido."
+BasePower = 6
+BasePower_Evolved = 7
+Cost = 0
+Cost_Evolved = 0
+RequiredLevelToEvolve = 7
+RequiredLevelToUnlock = 0
+effectObj = 1
+TargetsCount = 1
+TargetsAllTeam = false
+Hurts = true
+Limit = 0
+Guaranteed = 0
+Limit_Evolved = 0
+Guaranteed_Evolved = 0
+Percentage = 0
+Percentage_Evolved = 0
+Count = 0
+CooldownTurns = 0
+StatusCanApply = PackedInt32Array()
+StatusCanApplyEvolved = PackedInt32Array(6)

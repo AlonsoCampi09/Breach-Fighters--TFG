@@ -29,6 +29,7 @@ TrueAttack = PackedInt32Array(4, 5, 6, 7, 8, 9, 10, 11, 12, 13)
 TrueDefense = PackedInt32Array(5, 6, 7, 8, 9, 10, 11, 12, 13, 14)
 TrueMana = PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 TrueSpeed = PackedInt32Array(4, 5, 6, 7, 8, 9, 10, 11, 12, 13)
+ExperienceNeeded = PackedInt32Array(10, 22, 24, 36, 48, 50, 62, 74, 86, 999999)
 BaseExp = 4
 ExpIncrease = 2
 BaseCoin = 1

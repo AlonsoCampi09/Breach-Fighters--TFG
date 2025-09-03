@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="Entity" load_steps=3 format=3 uid="uid://dt5r6ekrtmtkf"]
+
+[ext_resource type="Script" path="res://data/entities/Entity.cs" id="1_i3q7l"]
+[ext_resource type="Texture2D" uid="uid://btlcw3c8h5345" path="res://assets/sprites/dreamy.png" id="1_qfkm1"]
+
+[resource]
+script = ExtResource("1_i3q7l")
+beh_type = 2
+entityType = 0
+SpriteSheet = ExtResource("1_qfkm1")
+NumFrames = 1
+FrameLength = 375
+FrameWidth = 300
+Name = "Slime Soñador"
+Level = 1
+Health = 20
+Mana = 0
+ATQBuf = 0
+ATQDeBuf = 0
+DEFBuf = 0
+DEFDeBuf = 0
+VELBuf = 0
+VELDeBuf = 0
+ControlPlayer = false
+Turn = false
+Passed = false
+TrueHealth = PackedInt32Array(20, 23, 26, 29, 32, 35, 38, 41, 44, 47)
+TrueAttack = PackedInt32Array(4, 5, 6, 7, 8, 9, 10, 11, 12, 13)
+TrueDefense = PackedInt32Array(7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
+TrueMana = PackedInt32Array(7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
+TrueSpeed = PackedInt32Array(5, 6, 7, 8, 9, 10, 11, 12, 13, 14)
+ExperienceNeeded = PackedInt32Array(10, 22, 24, 36, 48, 50, 62, 74, 86, 999999)
+BaseExp = 4
+ExpIncrease = 3
+BaseCoin = 3
+CoinIncrease = 2

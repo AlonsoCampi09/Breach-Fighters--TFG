@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 [GlobalClass]
-public partial class SlimeBasicSkill : Skill{
+public partial class EliteSlimeBasicSkill : Skill{
 	
 	[Export] public int slime = 0;
 	
@@ -14,22 +14,14 @@ public partial class SlimeBasicSkill : Skill{
 	}
 	public override bool Execute2(Fighter caster, Fighter target, BattleManager battle){
 		StatusEffect status;
-		if(ProducesEffect(20)){
+		if(ProducesEffect(30) && slime != 1 && slime != 2){
 			switch(slime){
 				case 0:
-					status = new StatusEffect(StatusEffectType.DeBuffVEL, 1, 20, false);
-					target.ApplyStatus(status);
-					break;
-				case 1:
-					status = new StatusEffect(StatusEffectType.DeBuffDMG, 1, 20, false);
-					target.ApplyStatus(status);
-					break;
-				case 2:
-					status = new StatusEffect(StatusEffectType.DeBuffDEF, 1, 20, false);
+					status = new StatusEffect(StatusEffectType.Aturdido, 1, 20, false);
 					target.ApplyStatus(status);
 					break;
 				case 3:
-					status = new StatusEffect(StatusEffectType.Bloqueo, 1, 0, false);
+					status = new StatusEffect(StatusEffectType.Sellado, 1, 0, false);
 					target.ApplyStatus(status);
 					break;
 			}
@@ -39,6 +31,12 @@ public partial class SlimeBasicSkill : Skill{
 	}
 	public override bool HasSecondaryEffect(){
 		if(Level >= RequiredLevelToEvolve)
+			return true;
+		else
+			return false;
+	}
+	public override bool AffectsAllTeam(){
+		if(Level >= RequiredLevelToEvolve && slime == 1)
 			return true;
 		else
 			return false;

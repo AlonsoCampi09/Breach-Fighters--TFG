@@ -15,13 +15,13 @@ public partial class CassSpecial4 : Skill{
 		if(Level >= RequiredLevelToEvolve){
 			//Targets receive a DMGdebuff 20% en su proximo turno 1
 			status = new StatusEffect(StatusEffectType.DeBuffDMG, 2, 25, false);
-			caster.ApplyStatus(status);
+			target.ApplyStatus(status);
 			return true;
 		}
 		else{
 			if(ProducesEffect(25)){
 				status = new StatusEffect(StatusEffectType.DeBuffDMG, 2, 25, false);
-				caster.ApplyStatus(status);
+				target.ApplyStatus(status);
 				return true;
 			}else{
 				return true;
