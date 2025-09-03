@@ -465,8 +465,13 @@ public partial class MenuBatalla : Control{
 				break;
 			case 3:
 				GD.Print("target_disposition = SELF");
-				while(this.allFightersList[currentTargetIndex] != actor)
+				all_targets_avaible = this.allyList.Count + this.enemyList.Count;
+				indexTargetStart = this.enemyList.Count;
+				indexTargetEnd = this.allFightersList.Count;
+				currentTargetIndex = indexTargetStart;
+				while(this.allFightersList[currentTargetIndex] != actor){
 					currentTargetIndex++;
+				}
 				GD.Print($"{this.allFightersList[currentTargetIndex].GetEntityData().Name} SELF");
 				break;
 		}
@@ -495,6 +500,8 @@ public partial class MenuBatalla : Control{
 			allFightersList[currentTargetIndex].StartBlink();
 	}
 	private void ChangeTarget(int direction){
+		GD.Print($"currentTargetIndex = {currentTargetIndex}");
+		GD.Print($"indexTargetEnd = {indexTargetEnd}");
 		allFightersList[currentTargetIndex].StopBlink();
 		currentTargetIndex = currentTargetIndex + direction;
 		if(currentTargetIndex <= -1){
