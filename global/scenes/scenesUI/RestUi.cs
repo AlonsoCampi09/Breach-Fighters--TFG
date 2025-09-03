@@ -80,6 +80,7 @@ public partial class RestUi : Control{
 	private Button currentButtonFocus;
 	
 	private AudioStreamPlayer2D sfx;
+	private AudioStreamPlayer2D sfx2;
 	
 	bool acceptingInputs = false;
 	
@@ -87,6 +88,7 @@ public partial class RestUi : Control{
 	public override void _Ready(){
 		customSignals = GetNode<CustomSignals>("/root/CustomSignals");
 		sfx = GetNode<AudioStreamPlayer2D>("sfx");
+		sfx2 = GetNode<AudioStreamPlayer2D>("sfx2");
 		
 		restOptions = GetNode<VBoxContainer>("RestOptions");
 		teamSelect = GetNode<Button>("RestOptions/Team");
@@ -377,6 +379,9 @@ public partial class RestUi : Control{
 				gameStatus.UsedExp(actor.GetEntityData().giveEXPsigLevel());
 				actor.LevelUp();
 				PrepareCharacterInfoPanelAndSkills();
+				AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Alex noises/level-up-289723.mp3");
+				sfx2.Stream = stream;
+				sfx2.Play();
 				ChangeMenu(2);
 				ShowMoneyExp();
 				break;

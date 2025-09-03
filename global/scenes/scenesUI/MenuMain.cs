@@ -141,14 +141,14 @@ public partial class MenuMain : Control{
 		fun6 = GetNode<Label>("Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button5/HBoxContainer5/Label");
 		fun7 = GetNode<Label>("Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button6/HBoxContainer6/Label");
 		fun8 = GetNode<Label>("Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button7/HBoxContainer7/Label");
-		tecla1 = GetNode<Label>("Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button/HBoxContainer/HBoxContainer/Label");
-		tecla2 = GetNode<Label>("Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button2/HBoxContainer2/HBoxContainer/Label");
-		tecla3 = GetNode<Label>("Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button3/HBoxContainer3/HBoxContainer/Label");
-		tecla4 = GetNode<Label>("Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button4/HBoxContainer4/HBoxContainer/Label");
-		tecla5 = GetNode<Label>("Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button8/HBoxContainer4/HBoxContainer/Label");
-		tecla6 = GetNode<Label>("Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button5/HBoxContainer5/HBoxContainer/Label");
-		tecla7 = GetNode<Label>("Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button6/HBoxContainer6/HBoxContainer/Label");
-		tecla8 = GetNode<Label>("Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button7/HBoxContainer7/HBoxContainer/Label");
+		tecla1 = GetNode<Label>("Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button/HBoxContainer/HBoxContainer/HBoxContainer/Label");
+		tecla2 = GetNode<Label>("Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button2/HBoxContainer2/HBoxContainer/HBoxContainer/Label");
+		tecla3 = GetNode<Label>("Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button3/HBoxContainer3/HBoxContainer/HBoxContainer/Label");
+		tecla4 = GetNode<Label>("Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button4/HBoxContainer4/HBoxContainer/HBoxContainer/Label");
+		tecla5 = GetNode<Label>("Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button8/HBoxContainer4/HBoxContainer/HBoxContainer/Label");
+		tecla6 = GetNode<Label>("Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button5/HBoxContainer5/HBoxContainer/HBoxContainer/Label");
+		tecla7 = GetNode<Label>("Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button6/HBoxContainer6/HBoxContainer/HBoxContainer/Label");
+		tecla8 = GetNode<Label>("Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button7/HBoxContainer7/HBoxContainer/HBoxContainer/Label");
 		back4 = GetNode<Button>("Controls_Menu/MarginContainer/VBoxContainer/BackControls");
 		back4.Pressed += OpenOptionMenu;
 		
@@ -300,35 +300,35 @@ public partial class MenuMain : Control{
 		sfx.Play();
 	}
 	private void OnFocusEnteredKey1(){
-		TTS.SayThis($"{fun1.Text}. Tecla {tecla1.Text}");
+		TTS.SayThis($"{fun1.Text}. Tecla {tecla1.Text}. Palanca derecha o la cruzeta");
 		sfx.Play();
 	}
 	private void OnFocusEnteredKey2(){
-		TTS.SayThis($"{fun2.Text}. Tecla {tecla2.Text}");
+		TTS.SayThis($"{fun2.Text}. Tecla {tecla2.Text}. Botón derecho");
 		sfx.Play();
 	}
 	private void OnFocusEnteredKey3(){
-		TTS.SayThis($"{fun3.Text}. Tecla {tecla3.Text}");
+		TTS.SayThis($"{fun3.Text}. Tecla {tecla3.Text}. Botón de arriba");
 		sfx.Play();
 	}
 	private void OnFocusEnteredKey4(){
-		TTS.SayThis($"{fun4.Text}. Tecla {tecla4.Text}");
+		TTS.SayThis($"{fun4.Text}. Tecla {tecla4.Text}. Botón de start");
 		sfx.Play();
 	}
 	private void OnFocusEnteredKey5(){
-		TTS.SayThis($"{fun5.Text}. Tecla {tecla5.Text}");
+		TTS.SayThis($"{fun5.Text}. Tecla {tecla5.Text}. Botón de abajo");
 		sfx.Play();
 	}
 	private void OnFocusEnteredKey6(){
-		TTS.SayThis($"{fun6.Text}. Tecla {tecla6.Text}");
+		TTS.SayThis($"{fun6.Text}. Tecla {tecla6.Text}. Gatillo L1");
 		sfx.Play();
 	}
 	private void OnFocusEnteredKey7(){
-		TTS.SayThis($"{fun7.Text}. Tecla {tecla7.Text}");
+		TTS.SayThis($"{fun7.Text}. Tecla {tecla7.Text}. Gatillo R1");
 		sfx.Play();
 	}
 	private void OnFocusEnteredKey8(){
-		TTS.SayThis($"{fun8.Text}. Tecla {tecla8.Text}");
+		TTS.SayThis($"{fun8.Text}. Tecla {tecla8.Text}. Botón palanca derecha");
 		sfx.Play();
 	}
 	

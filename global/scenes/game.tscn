@@ -92,8 +92,6 @@ bus = &"SFX"
 
 [node name="RestUi" parent="UI" instance=ExtResource("8_mwrqn")]
 
-[node name="sfx" type="AudioStreamPlayer2D" parent="UI/RestUi"]
-
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_dr6gg")
 volume_db = -5.0
