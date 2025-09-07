@@ -6,13 +6,13 @@ using System.Linq;
 public partial class GameState : Node{
 	public List<Entity> playerTeamData = new List<Entity>();
 	public int teamExperienceBank = 5;
-	public int teamMoneyBank = 0;
+	public int teamMoneyBank = 100;
 	public int playerLevel = 1;
 	public int[] playerLevelExp = new int[] {12, 20, 30, 42, 54, 9999};
 	public int actualPlayerExp = 0;
 	
 	
-	public int floorLevel = 1;
+	public int floorLevel = 0;
 	public int  floorRoom = 0;
 	
 	public void SaveTeamData(FighterTeam team){

@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 
 public partial class RestUi : Control{
 	
@@ -10,7 +11,9 @@ public partial class RestUi : Control{
 	private VBoxContainer restOptions;
 	private Button teamSelect;
 	private Button restExit;
-	
+
+	private Button shopButton; 
+
 	private Panel characterInfo;
 	private Label actor_name;
 	private TextureRect actor_sprite;
@@ -60,7 +63,11 @@ public partial class RestUi : Control{
 	
 	private Panel selecting;
 	private Button inv;
-	
+
+	/****SHOP PANEL****/
+	private Panel shopPanel;
+	private ObjectFactory shopFactory; 
+
 	private bool selectingTarget;
 	private int indexTargetStart = 0;
 	private int indexTargetEnd = 0;
@@ -88,9 +95,11 @@ public partial class RestUi : Control{
 		restOptions = GetNode<VBoxContainer>("RestOptions");
 		teamSelect = GetNode<Button>("RestOptions/Team");
 		restExit = GetNode<Button>("RestOptions/Exit");
-		
+		shopButton = GetNode<Button>("RestOptions/Shop"); 
+
 		teamSelect.Pressed += OnTeamButtonPressed;
 		restExit.Pressed += OnExitButtonPressed;
+		shopButton.Pressed += OnShopButtonPressed; 
 		teamSelect.FocusEntered += OnTeamButtonFocused;
 		restExit.FocusEntered += OnExitButtonFocused;
 		
@@ -161,7 +170,10 @@ public partial class RestUi : Control{
 		levelUpPanel = GetNode<Panel>("LevelUpPanel");
 		
 		panelPopUp = GetNode<Panel>("PanelPopUp");
-		
+
+
+		shopPanel = GetNode<Panel>("ShopPanel");
+	
 		customSignals.OnRestRecharge += RechargingGameTeamState;
 		customSignals.OnShowRestHUD += MakeMenuVisible;
 		
@@ -174,7 +186,8 @@ public partial class RestUi : Control{
 		selecting.Visible = false;
 		levelUpPanel.Visible = false;
 		panelPopUp.Visible = false;
-	}
+        shopPanel.Visible = false;
+    }
 	
 	public void RechargingGameTeamState(GameState gs, FighterTeam allies, RocksRest rest){
 		gameStatus = gs;
@@ -304,6 +317,15 @@ public partial class RestUi : Control{
 				TTS.SayThis($"Quieres salir del descanso? Para confirmar pulsa espacio. Para cancelar pulse X.");
 				inv.GrabFocus();
 				break;
+
+			case 6:
+				estado = 6;
+				shopPanel.Visible = true;
+				moneyExp.Visible = true;
+				LoadObjectsInSell(); 
+                GD.Print("Pulsado boton comprar");
+
+                break; 
 		}
 	}
 	
@@ -317,6 +339,26 @@ public partial class RestUi : Control{
 		actor_experience_up.Visible = a;
 	}
 	
+
+	/*
+	 * 
+	 * List of the objects 
+	 * 
+	 */
+
+
+	private void LoadObjectsInSell()
+	{
+        shopFactory= GetNode<ObjectFactory>("/root/ObjectFactory");
+
+		List<Object> objectsInSell = shopFactory.GetShopItems();
+
+		foreach (Object o in objectsInSell) {
+			GD.Print(o.GetName()); 
+		}
+
+    }
+
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta){
@@ -363,6 +405,12 @@ public partial class RestUi : Control{
 	private void OnExitButtonPressed(){
 		ChangeMenu(5);
 	}
+
+	private void OnShopButtonPressed()
+	{
+		ChangeMenu(6); 
+	}
+
 	private void OnInvButtonPressed(){
 		switch(estado){
 			case 1:
