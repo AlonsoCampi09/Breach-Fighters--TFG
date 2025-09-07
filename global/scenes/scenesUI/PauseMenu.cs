@@ -234,12 +234,14 @@ public partial class PauseMenu : Control{
 		
 	}
 	public void exitGame(){
-		GetTree().Paused = false;
-		volumeMenu.Visible = false;
-		optionMenu.Visible = false;
-		accesibilityMenu.Visible = false;
-		keyMenu.Visible = false;
-		pausePanel.Visible = false;
+		//GetTree().Paused = false;
+		//volumeMenu.Visible = false;
+		//optionMenu.Visible = false;
+		//accesibilityMenu.Visible = false;
+		//keyMenu.Visible = false;
+		//pausePanel.Visible = false;
+		GD.Print("Saliendo del juego...");
+		GetTree().Quit();
 	}
 	
 	private void OpenOptionMenu(){
