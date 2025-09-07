@@ -1,7 +1,15 @@
 using Godot;
 using System;
 
-public partial class MenuOpcionesGlobal : Control{
+public partial class PauseMenu : Control{
+	
+	bool gamePaused = false;
+	
+	private PanelContainer pausePanel;
+	private Button resumeButton;
+	private Button skipButton;
+	private Button optionButton;
+	private Button exitButton;
 	
 	private Panel optionMenu;
 	private Button volumenButton;
@@ -58,8 +66,25 @@ public partial class MenuOpcionesGlobal : Control{
 	
 	AudioStreamPlayer2D sfx;
 	
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready(){
+		
+		pausePanel = GetNode<PanelContainer>("PanelContainer");
+		
+		resumeButton = GetNode<Button>("PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/Resume");
+		skipButton = GetNode<Button>("PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/Skip");
+		optionButton = GetNode<Button>("PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/Options");
+		exitButton = GetNode<Button>("PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/Exit");
+		
+		resumeButton.Pressed += resume;
+		//skipButton.Pressed += skip;
+		optionButton.Pressed += OpenOptionMenu;
+		exitButton.Pressed += exitGame;
+		
+		resumeButton.FocusEntered += OnFocusEnteredResume;
+		//accesibilityButton.FocusEntered += OnFocusEnteredSkip;
+		optionButton.FocusEntered += OnFocusEnteredOptions;
+		exitButton.FocusEntered += OnFocusEnteredExit;
+		
 		sfx = GetNode<AudioStreamPlayer2D>("Efectos");
 		optionMenu = GetNode<Panel>("Option_Menu");
 		volumenButton = GetNode<Button>("Option_Menu/MarginContainer/VBoxContainer/VBoxContainer/Volume");
@@ -70,7 +95,7 @@ public partial class MenuOpcionesGlobal : Control{
 		volumenButton.Pressed += OpenVolumeMenu;
 		accesibilityButton.Pressed += OpenAccesibiltyMenu;
 		keyButton.Pressed += OpenKeyMenu;
-		back1.Pressed += CloseGlobalOptionMenu;
+		back1.Pressed += pause;
 		
 		volumeMenu = GetNode<Panel>("Volume_Menu");
 		volumeMaster = GetNode<HSlider>("Volume_Menu/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer/HSlider");
@@ -167,15 +192,58 @@ public partial class MenuOpcionesGlobal : Control{
 		key8.FocusEntered += OnFocusEnteredKey8;
 		back4.FocusEntered += OnFocusEnteredBack; 
 		
+		pausePanel.Visible = false;
 		volumeMenu.Visible = false;
-		optionMenu.Visible = true;
+		optionMenu.Visible = false;
 		accesibilityMenu.Visible = false;
 		keyMenu.Visible = false;
-		
 	}
 	
+	public override void _Process(double delta){
+		if (Input.IsActionJustPressed("pause")){
+			GD.Print("Pause");
+			if(!gamePaused){
+				gamePaused = true;
+				pause();
+			}
+			else{
+				gamePaused = false;
+				resume();
+			}
+		}
+	}
+	
+	public void pause(){
+		GetTree().Paused = true;
+		volumeMenu.Visible = false;
+		optionMenu.Visible = false;
+		accesibilityMenu.Visible = false;
+		keyMenu.Visible = false;
+		pausePanel.Visible = true;
+		resumeButton.GrabFocus();
+	}
+	public void resume(){
+		GetTree().Paused = false;
+		CustomSignals customSignals = GetNode<CustomSignals>("/root/CustomSignals");
+		customSignals.EmitSignal(nameof(CustomSignals.OnUnpaused));	
+		volumeMenu.Visible = false;
+		optionMenu.Visible = false;
+		accesibilityMenu.Visible = false;
+		keyMenu.Visible = false;
+		pausePanel.Visible = false;
+		
+	}
+	public void exitGame(){
+		GetTree().Paused = false;
+		volumeMenu.Visible = false;
+		optionMenu.Visible = false;
+		accesibilityMenu.Visible = false;
+		keyMenu.Visible = false;
+		pausePanel.Visible = false;
+	}
 	
 	private void OpenOptionMenu(){
+		pausePanel.Visible = false;
 		volumeMenu.Visible = false;
 		optionMenu.Visible = true;
 		accesibilityMenu.Visible = false;
@@ -183,6 +251,7 @@ public partial class MenuOpcionesGlobal : Control{
 		volumenButton.GrabFocus();
 	}
 	private void OpenVolumeMenu(){
+		pausePanel.Visible = false;
 		volumeMenu.Visible = true;
 		optionMenu.Visible = false;
 		accesibilityMenu.Visible = false;
@@ -190,6 +259,7 @@ public partial class MenuOpcionesGlobal : Control{
 		volumeMaster.GrabFocus();
 	}
 	private void OpenAccesibiltyMenu(){
+		pausePanel.Visible = false;
 		volumeMenu.Visible = false;
 		optionMenu.Visible = false;
 		accesibilityMenu.Visible = true;
@@ -197,72 +267,101 @@ public partial class MenuOpcionesGlobal : Control{
 		ttsSwitch.GrabFocus();
 	}
 	private void OpenKeyMenu(){
+		pausePanel.Visible = false;
 		volumeMenu.Visible = false;
 		optionMenu.Visible = false;
 		accesibilityMenu.Visible = false;
 		keyMenu.Visible = true;
 		key1.GrabFocus();
 	}
-	private void CloseGlobalOptionMenu(){
-		volumeMenu.Visible = false;
-		optionMenu.Visible = false;
-		accesibilityMenu.Visible = false;
-		keyMenu.Visible = false;
-	}
 	
+	private void OnFocusEnteredResume(){
+		TTS.SayThis(resumeButton.Text);
+		sfx.Play();
+	}
+	private void OnFocusEnteredSkip(){
+		TTS.SayThis(skipButton.Text);
+		sfx.Play();
+	}
+	private void OnFocusEnteredOptions(){
+		TTS.SayThis(optionButton.Text);
+		sfx.Play();
+	}
+	private void OnFocusEnteredExit(){
+		TTS.SayThis(exitButton.Text);
+		sfx.Play();
+	}
 	private void OnFocusEnteredVolume(){
 		TTS.SayThis(volumenButton.Text);
+		sfx.Play();
 	}
 	private void OnFocusEnteredAccesibility(){
 		TTS.SayThis(accesibilityButton.Text);
+		sfx.Play();
 	}
 	private void OnFocusEnteredControls(){
 		TTS.SayThis(keyButton.Text);
+		sfx.Play();
 	}
 	private void OnFocusEnteredBack(){
 		TTS.SayThis("Volver");
+		sfx.Play();
 	}
 	private void OnFocusEnteredMainSlider(){
 		TTS.SayThis($"Volumen general. {labelMaster.Text}");
+		sfx.Play();
 	}
 	private void OnFocusEnteredMusicSlider(){
 		TTS.SayThis($"Volumen música. {labelMusic.Text}");
+		sfx.Play();
 	}
 	private void OnFocusEnteredSFXSlider(){
 		TTS.SayThis($"Volumen sonidos. {labelSound.Text}");
+		sfx.Play();
 	}
 	private void OnFocusEnteredCheckBox(){
 		TTS.SayThis(labelTTS.Text);
+		sfx.Play();
 	}
 	private void OnFocusEnteredTTSVelSlider(){
 		TTS.SayThis($"Velocidad texto a voz. Nivel {labelVelocity.Text}");
+		sfx.Play();
 	}
 	private void OnFocusEnteredTTSVolumeSlider(){
 		TTS.SayThis($"Volumen de texto a voz. {labelTTSVolume.Text}");
+		sfx.Play();
 	}
 	private void OnFocusEnteredKey1(){
 		TTS.SayThis($"{fun1.Text}. Tecla {tecla1.Text}");
+		sfx.Play();
 	}
 	private void OnFocusEnteredKey2(){
 		TTS.SayThis($"{fun2.Text}. Tecla {tecla2.Text}");
+		sfx.Play();
 	}
 	private void OnFocusEnteredKey3(){
 		TTS.SayThis($"{fun3.Text}. Tecla {tecla3.Text}");
+		sfx.Play();
 	}
 	private void OnFocusEnteredKey4(){
 		TTS.SayThis($"{fun4.Text}. Tecla {tecla4.Text}");
+		sfx.Play();
 	}
 	private void OnFocusEnteredKey5(){
 		TTS.SayThis($"{fun5.Text}. Tecla {tecla5.Text}");
+		sfx.Play();
 	}
 	private void OnFocusEnteredKey6(){
 		TTS.SayThis($"{fun6.Text}. Tecla {tecla6.Text}");
+		sfx.Play();
 	}
 	private void OnFocusEnteredKey7(){
 		TTS.SayThis($"{fun7.Text}. Tecla {tecla7.Text}");
+		sfx.Play();
 	}
 	private void OnFocusEnteredKey8(){
 		TTS.SayThis($"{fun8.Text}. Tecla {tecla8.Text}");
+		sfx.Play();
 	}
 	
 	

@@ -50,4 +50,7 @@ public partial class CustomSignals : Node
 	public delegate void OnShowRestHUDEventHandler();
 	[Signal]
 	public delegate void OnRestFinishedEventHandler();
+	
+	[Signal]
+	public delegate void OnUnpausedEventHandler();
 }

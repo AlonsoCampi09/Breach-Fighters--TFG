@@ -19,6 +19,7 @@ public partial class TTS : Node{
 		voices = DisplayServer.TtsGetVoicesForLanguage("es");
 		volumenTTS = ConfigData.ttsVolumeValue; // de 0.0 a 1.0
 		velocidadTTS = ConfigData.ttsVelocityValue;
+		ProcessMode = Node.ProcessModeEnum.Always;
 		if (voices.Length > 0){
 			voiceId = voices[0];
 			ttsEnabled = ConfigData.ttsValue;

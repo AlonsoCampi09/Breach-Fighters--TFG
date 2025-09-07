@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cyj8prd8gmnd2"]
+[gd_scene load_steps=12 format=3 uid="uid://cyj8prd8gmnd2"]
 
 [ext_resource type="Script" path="res://global/scenes/scene_scripts/Game.cs" id="1_1uvvf"]
 [ext_resource type="Texture2D" uid="uid://b86rjgxngowme" path="res://assets/background/background2.png" id="2_6x26u"]
@@ -9,9 +9,11 @@
 [ext_resource type="AudioStream" uid="uid://bdubrjb83atyt" path="res://assets/sonidos/518558__se2001__quick-blip.wav" id="6_52wq2"]
 [ext_resource type="AudioStream" uid="uid://i3o464h0g2ao" path="res://assets/sonidos/Free RPG Music Collection/Phat Phrog Studio - Arcane Throne - Heir of Valor.wav" id="8_dr6gg"]
 [ext_resource type="PackedScene" uid="uid://3myv7wdjbd2e" path="res://global/scenes/scenesUI/RestUi.tscn" id="8_mwrqn"]
+[ext_resource type="PackedScene" uid="uid://b3nbpcpavxr83" path="res://global/scenes/scenesUI/pause.tscn" id="9_2ir2n"]
 [ext_resource type="PackedScene" uid="uid://dxltynj4ge7pf" path="res://global/scenes/descanso.tscn" id="9_psokh"]
 
 [node name="Game" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_1uvvf")
 
 [node name="Background" type="Sprite2D" parent="."]
@@ -77,13 +79,6 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="UI/Cuadro_Texto/Panel/MarginContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="UI/Cuadro_Texto/Panel"]
-layout_mode = 0
-offset_left = 1079.0
-offset_top = 4.0
-offset_right = 1099.0
-offset_bottom = 18.0
-
 [node name="TypeSound" type="AudioStreamPlayer2D" parent="UI/Cuadro_Texto"]
 visible = false
 stream = ExtResource("6_52wq2")
@@ -91,6 +86,8 @@ volume_db = 5.0
 bus = &"SFX"
 
 [node name="RestUi" parent="UI" instance=ExtResource("8_mwrqn")]
+
+[node name="Pause" parent="UI" instance=ExtResource("9_2ir2n")]
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_dr6gg")

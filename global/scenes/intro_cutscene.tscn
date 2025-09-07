@@ -772,6 +772,7 @@ _data = {
 }
 
 [node name="CanvasLayer" type="CanvasLayer"]
+process_mode = 1
 script = ExtResource("1_ap4fx")
 
 [node name="ColorRect" type="ColorRect" parent="."]

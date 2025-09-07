@@ -83,6 +83,7 @@ public partial class MenuBatalla : Control{
 		customSignals = GetNode<CustomSignals>("/root/CustomSignals");
 		customSignals.OnPrepareBattleMenuForFighter += PrepareMenuForFighter;
 		customSignals.OnShowBattleMenu += MakeMenuVisible;
+		customSignals.OnUnpaused += RestoreFocus;
 		
 		attack.Pressed += OnAttackButtonPressed;
 		special.Pressed += OnSpecialButtonPressed;
@@ -113,6 +114,7 @@ public partial class MenuBatalla : Control{
 		mov4.FocusExited += OnButtonFocusExited;
 		
 		inv.Pressed += OnInvButtonPressed;
+		inv.FocusEntered += OnInvFocusEntered;
 		
 		actingMenu.Visible = false;
 		specialMenu.Visible = false;
@@ -224,6 +226,7 @@ public partial class MenuBatalla : Control{
 		switch (c)
 		{
 			case -1:
+				currentButtonFocus = null;
 				canShowInfo = false;
 				acceptingInputs = false;
 				actingMenu.Visible = false;
@@ -413,9 +416,11 @@ public partial class MenuBatalla : Control{
 		audioPlayer.Play();
 		TTS.SayThis($"{sp4.GiveTitulo()}");
 	}
+	private void OnInvFocusEntered(){
+		currentButtonFocus = inv;
+	}
 	
 	private void OnButtonFocusExited(){
-		currentButtonFocus = null;
 		panelInfo.Visible = false;
 		TTS.StopTTS();
 	}
@@ -674,5 +679,8 @@ public partial class MenuBatalla : Control{
 		panelInfo.UpdatePanelSize();
 		panelInfo.Visible = true;
 	}
-	
+	public void RestoreFocus(){
+		if(currentButtonFocus != null)
+			currentButtonFocus.GrabFocus();
+	}
 }

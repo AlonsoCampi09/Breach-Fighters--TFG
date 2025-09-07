@@ -1,16 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjmedgw3nqtr6"]
+[gd_scene load_steps=17 format=3 uid="uid://bjmedgw3nqtr6"]
 
 [ext_resource type="Script" path="res://global/scenes/scene_scripts/MenuOpcionesGlobal.cs" id="1_dtvhi"]
 [ext_resource type="Theme" uid="uid://cgp6bk35e1id3" path="res://assets/ui_related/ui_battle_theme.tres" id="2_tjm5l"]
 [ext_resource type="Theme" uid="uid://bl6yrjv4x8o2" path="res://assets/ui_related/controles.tres" id="3_h0y4v"]
+[ext_resource type="Texture2D" uid="uid://b8j2odflmwpbi" path="res://assets/ui_related/controller_buttons_Animation 1_04.png" id="4_anysv"]
 [ext_resource type="AudioStream" uid="uid://bdubrjb83atyt" path="res://assets/sonidos/518558__se2001__quick-blip.wav" id="4_ji5t6"]
+[ext_resource type="Texture2D" uid="uid://catdbvxpn6srx" path="res://assets/ui_related/controller_buttons_Animation 1_05.png" id="5_jbkoe"]
+[ext_resource type="Texture2D" uid="uid://da52mu0o8i4a4" path="res://assets/ui_related/controller_buttons_Animation 1_06.png" id="6_l1tyb"]
+[ext_resource type="Texture2D" uid="uid://cwcr06d2smsbx" path="res://assets/ui_related/controller_buttons_Animation 1_07.png" id="7_5jwwq"]
+[ext_resource type="Texture2D" uid="uid://c313he22dwfcx" path="res://assets/ui_related/controller_buttons_Animation 1_08.png" id="8_t3qtd"]
+[ext_resource type="Texture2D" uid="uid://dtqedbm1ifxp1" path="res://assets/ui_related/controller_buttons_Animation 1_01.png" id="9_fsxdm"]
+[ext_resource type="Texture2D" uid="uid://delnx0qke6ami" path="res://assets/ui_related/controller_buttons_Animation 1_00.png" id="10_155dp"]
+[ext_resource type="Texture2D" uid="uid://bwsim8h3h6t8i" path="res://assets/ui_related/controller_buttons_Animation 1_19.png" id="11_ow0a1"]
+[ext_resource type="Texture2D" uid="uid://bmglbhn07dint" path="res://assets/ui_related/controller_buttons_Animation 1_02.png" id="12_0msp0"]
+[ext_resource type="Texture2D" uid="uid://bbcbn8masiy4s" path="res://assets/ui_related/controller_buttons_Animation 1_14.png" id="13_4cfsg"]
+[ext_resource type="Texture2D" uid="uid://0r2qdy4yar8y" path="res://assets/ui_related/controller_buttons_Animation 1_12.png" id="14_yjfwc"]
+[ext_resource type="Texture2D" uid="uid://dosd53tx2r25s" path="res://assets/ui_related/controller_buttons_Animation 1_09.png" id="15_82ght"]
 
-[node name="CanvasLayer" type="Control"]
+[node name="Options" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_tjm5l")
 script = ExtResource("1_dtvhi")
 
 [node name="Option_Menu" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -346,17 +366,22 @@ focus_neighbor_top = NodePath("../HBoxContainer3/HBoxContainer/HSlider")
 focus_neighbor_bottom = NodePath("../HBoxContainer/CheckBox")
 text = "Volver"
 
+[node name="Efectos" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ji5t6")
+volume_db = 15.0
+bus = &"SFX"
+
 [node name="Controls_Menu" type="Panel" parent="."]
-visible = false
+custom_minimum_size = Vector2(545, 307)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -272.5
+offset_left = -250.0
 offset_top = -153.5
-offset_right = 272.5
+offset_right = 250.0
 offset_bottom = 153.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -429,9 +454,42 @@ text = "Mover foco:"
 [node name="HBoxContainer" type="HBoxContainer" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button/HBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button/HBoxContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button/HBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Flechas"
+
+[node name="VSeparator" type="VSeparator" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button/HBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button/HBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_anysv")
+expand_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button/HBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_jbkoe")
+expand_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button/HBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_l1tyb")
+expand_mode = 2
+
+[node name="TextureRect4" type="TextureRect" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button/HBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_5jwwq")
+expand_mode = 2
+
+[node name="TextureRect5" type="TextureRect" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button/HBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("8_t3qtd")
+expand_mode = 2
 
 [node name="Button2" type="Button" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
@@ -444,14 +502,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -179.5
+offset_left = -250.0
 offset_top = -11.5
-offset_right = 179.5
+offset_right = 250.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_stretch_ratio = 0.0
 theme_override_constants/separation = 100
+alignment = 1
 
 [node name="Label" type="Label" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button2/HBoxContainer2"]
 custom_minimum_size = Vector2(200, 0)
@@ -462,24 +521,38 @@ text = "Seleccionar/Continuar:"
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button2/HBoxContainer2/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button2/HBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button2/HBoxContainer2/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Espacio"
+
+[node name="VSeparator" type="VSeparator" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button2/HBoxContainer2/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button2/HBoxContainer2/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("9_fsxdm")
+expand_mode = 2
 
 [node name="Button3" type="Button" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button3"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -179.5
+offset_left = -249.5
 offset_top = -11.5
-offset_right = 187.5
+offset_right = 254.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -494,15 +567,29 @@ text = "Enseñar información:"
 [node name="HBoxContainer" type="HBoxContainer" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button3/HBoxContainer3"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button3/HBoxContainer3/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button3/HBoxContainer3/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button3/HBoxContainer3/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "I"
+
+[node name="VSeparator" type="VSeparator" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button3/HBoxContainer3/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button3/HBoxContainer3/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("10_155dp")
+expand_mode = 2
 
 [node name="Button4" type="Button" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button4"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -526,15 +613,29 @@ text = "Menu de pausa:"
 [node name="HBoxContainer" type="HBoxContainer" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button4/HBoxContainer4"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button4/HBoxContainer4/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button4/HBoxContainer4/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button4/HBoxContainer4/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Escape"
+
+[node name="VSeparator" type="VSeparator" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button4/HBoxContainer4/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button4/HBoxContainer4/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("11_ow0a1")
+expand_mode = 2
 
 [node name="Button8" type="Button" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button8"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -558,9 +659,22 @@ text = "Volver/Cancelar:"
 [node name="HBoxContainer" type="HBoxContainer" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button8/HBoxContainer4"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button8/HBoxContainer4/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button8/HBoxContainer4/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button8/HBoxContainer4/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "X"
+
+[node name="VSeparator" type="VSeparator" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button8/HBoxContainer4/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button8/HBoxContainer4/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("12_0msp0")
+expand_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
@@ -571,6 +685,7 @@ custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button5"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -594,24 +709,38 @@ text = "Info Enemigo fijado (TTS):"
 [node name="HBoxContainer" type="HBoxContainer" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button5/HBoxContainer5"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button5/HBoxContainer5/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button5/HBoxContainer5/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button5/HBoxContainer5/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "F1"
+
+[node name="VSeparator" type="VSeparator" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button5/HBoxContainer5/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button5/HBoxContainer5/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("13_4cfsg")
+expand_mode = 2
 
 [node name="Button6" type="Button" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button6"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -178.5
+offset_left = -257.5
 offset_top = -11.5
-offset_right = 178.5
+offset_right = 242.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -626,15 +755,29 @@ text = "Info Aliado en turno (TTS):"
 [node name="HBoxContainer" type="HBoxContainer" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button6/HBoxContainer6"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button6/HBoxContainer6/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button6/HBoxContainer6/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button6/HBoxContainer6/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "F2"
+
+[node name="VSeparator" type="VSeparator" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button6/HBoxContainer6/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button6/HBoxContainer6/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("14_yjfwc")
+expand_mode = 2
 
 [node name="Button7" type="Button" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
 [node name="HBoxContainer7" type="HBoxContainer" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button7"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -658,9 +801,22 @@ text = "Repetir último (TTS):"
 [node name="HBoxContainer" type="HBoxContainer" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button7/HBoxContainer7"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button7/HBoxContainer7/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button7/HBoxContainer7/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button7/HBoxContainer7/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "F3"
+
+[node name="VSeparator" type="VSeparator" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button7/HBoxContainer7/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button7/HBoxContainer7/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("15_82ght")
+expand_mode = 2
 
 [node name="HSeparator2" type="HSeparator" parent="Controls_Menu/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
@@ -670,8 +826,3 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Volver"
-
-[node name="Efectos" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_ji5t6")
-volume_db = 15.0
-bus = &"SFX"

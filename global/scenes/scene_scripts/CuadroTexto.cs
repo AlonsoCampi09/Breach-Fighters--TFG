@@ -10,7 +10,6 @@ public partial class CuadroTexto : Control{
 	private string fullText = "";
 	private Label label;
 	private Panel panel;
-	private Button boton;
 	private int currentCharIndex = 0;
 	private float timeAccumulator = 0f;
 	
@@ -18,6 +17,8 @@ public partial class CuadroTexto : Control{
 
 	private bool finishedTyping = false;
 	private bool isWriting = false;
+	
+	private bool inUse = false;
 
 	private Queue<string> messageQueue = new Queue<string>();
 
@@ -26,12 +27,9 @@ public partial class CuadroTexto : Control{
 		customSignals.OnShowDialog += QueueDialog; // CAMBIO: ahora cola
 		panel = GetNode<Panel>("Panel");
 		label = GetNode<Label>("Panel/MarginContainer/Label");
-		boton = GetNode<Button>("Panel/Button");
 		typeSound = GetNode<AudioStreamPlayer2D>("TypeSound");
 		label.Text = "";
 		this.Visible = false;
-		boton.Modulate = new Color(1, 1, 1, 0); // Hacerlo invisible
-		boton.Pressed += OnButtonPressed;
 	}
 
 	public override void _Process(double delta){
@@ -47,9 +45,11 @@ public partial class CuadroTexto : Control{
 				}
 			}
 		}
+		if(Input.IsActionJustPressed("accept") && inUse)
+			NextStep();
 	}
 
-	private void OnButtonPressed(){
+	private void NextStep(){
 		if (!finishedTyping){
 			// Si aún se está escribiendo, salta al final
 			currentCharIndex = fullText.Length;
@@ -57,14 +57,13 @@ public partial class CuadroTexto : Control{
 			finishedTyping = true;
 			return;
 		}
-
 		// Si ya acabó el texto actual, mostrar siguiente
 		if (messageQueue.Count > 0){
 			ShowDialog(messageQueue.Dequeue());
 		} else {
 			this.Visible = false;
 			isWriting = false;
-			boton.ReleaseFocus();
+			inUse = false;
 			customSignals.EmitSignal(nameof(CustomSignals.OnDialogIsOver));
 		}
 	}
@@ -87,7 +86,7 @@ public partial class CuadroTexto : Control{
 		this.Visible = true;
 		finishedTyping = false;
 		TTS.PutThisInQueue(text);
-		boton.GrabFocus();
+		inUse = true;
 	}
 	
 	public override void _ExitTree(){

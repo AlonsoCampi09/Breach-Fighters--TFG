@@ -1,97 +1,127 @@
-[gd_scene load_steps=20 format=3 uid="uid://bo2eg75bcwjuq"]
+[gd_scene load_steps=17 format=3 uid="uid://b3nbpcpavxr83"]
 
-[ext_resource type="Texture2D" uid="uid://c6kbs1sw480ed" path="res://assets/background/Exio.png" id="1_4gfac"]
-[ext_resource type="Script" path="res://global/scenes/scenesUI/MenuMain.cs" id="1_bmbsa"]
-[ext_resource type="Texture2D" uid="uid://cfl1yej4lax08" path="res://assets/background/Title.png" id="2_3kcmv"]
-[ext_resource type="Theme" uid="uid://cgp6bk35e1id3" path="res://assets/ui_related/ui_battle_theme.tres" id="3_dtk44"]
-[ext_resource type="Theme" uid="uid://bl6yrjv4x8o2" path="res://assets/ui_related/controles.tres" id="5_e6umj"]
-[ext_resource type="AudioStream" uid="uid://drqy8ccmlwhe3" path="res://assets/sonidos/music/Breach_lord.mp3" id="6_6ncvo"]
-[ext_resource type="Texture2D" uid="uid://b8j2odflmwpbi" path="res://assets/ui_related/controller_buttons_Animation 1_04.png" id="6_cabvs"]
-[ext_resource type="AudioStream" uid="uid://bdubrjb83atyt" path="res://assets/sonidos/518558__se2001__quick-blip.wav" id="6_f16tx"]
-[ext_resource type="Texture2D" uid="uid://catdbvxpn6srx" path="res://assets/ui_related/controller_buttons_Animation 1_05.png" id="7_pxvq0"]
-[ext_resource type="Texture2D" uid="uid://da52mu0o8i4a4" path="res://assets/ui_related/controller_buttons_Animation 1_06.png" id="8_nducb"]
-[ext_resource type="Texture2D" uid="uid://cwcr06d2smsbx" path="res://assets/ui_related/controller_buttons_Animation 1_07.png" id="9_ek7wc"]
-[ext_resource type="Texture2D" uid="uid://c313he22dwfcx" path="res://assets/ui_related/controller_buttons_Animation 1_08.png" id="10_fdlpc"]
-[ext_resource type="Texture2D" uid="uid://dtqedbm1ifxp1" path="res://assets/ui_related/controller_buttons_Animation 1_01.png" id="11_6fvrt"]
-[ext_resource type="Texture2D" uid="uid://bwsim8h3h6t8i" path="res://assets/ui_related/controller_buttons_Animation 1_19.png" id="12_2nqqi"]
-[ext_resource type="Texture2D" uid="uid://delnx0qke6ami" path="res://assets/ui_related/controller_buttons_Animation 1_00.png" id="12_r7nk4"]
-[ext_resource type="Texture2D" uid="uid://bmglbhn07dint" path="res://assets/ui_related/controller_buttons_Animation 1_02.png" id="13_tmp7s"]
-[ext_resource type="Texture2D" uid="uid://bbcbn8masiy4s" path="res://assets/ui_related/controller_buttons_Animation 1_14.png" id="14_0pbld"]
-[ext_resource type="Texture2D" uid="uid://0r2qdy4yar8y" path="res://assets/ui_related/controller_buttons_Animation 1_12.png" id="15_ujy3e"]
-[ext_resource type="Texture2D" uid="uid://dosd53tx2r25s" path="res://assets/ui_related/controller_buttons_Animation 1_09.png" id="16_cgov7"]
+[ext_resource type="Theme" uid="uid://cgp6bk35e1id3" path="res://assets/ui_related/ui_battle_theme.tres" id="1_pyjt7"]
+[ext_resource type="Script" path="res://global/scenes/scenesUI/PauseMenu.cs" id="1_tfvt4"]
+[ext_resource type="Theme" uid="uid://bl6yrjv4x8o2" path="res://assets/ui_related/controles.tres" id="3_gkqtr"]
+[ext_resource type="Texture2D" uid="uid://b8j2odflmwpbi" path="res://assets/ui_related/controller_buttons_Animation 1_04.png" id="4_5277i"]
+[ext_resource type="Texture2D" uid="uid://catdbvxpn6srx" path="res://assets/ui_related/controller_buttons_Animation 1_05.png" id="5_ckigq"]
+[ext_resource type="Texture2D" uid="uid://da52mu0o8i4a4" path="res://assets/ui_related/controller_buttons_Animation 1_06.png" id="6_kdyfe"]
+[ext_resource type="Texture2D" uid="uid://cwcr06d2smsbx" path="res://assets/ui_related/controller_buttons_Animation 1_07.png" id="7_mb3wb"]
+[ext_resource type="Texture2D" uid="uid://c313he22dwfcx" path="res://assets/ui_related/controller_buttons_Animation 1_08.png" id="8_f2fof"]
+[ext_resource type="Texture2D" uid="uid://dtqedbm1ifxp1" path="res://assets/ui_related/controller_buttons_Animation 1_01.png" id="9_tyh34"]
+[ext_resource type="Texture2D" uid="uid://delnx0qke6ami" path="res://assets/ui_related/controller_buttons_Animation 1_00.png" id="10_limvd"]
+[ext_resource type="Texture2D" uid="uid://bwsim8h3h6t8i" path="res://assets/ui_related/controller_buttons_Animation 1_19.png" id="11_tyutb"]
+[ext_resource type="Texture2D" uid="uid://bmglbhn07dint" path="res://assets/ui_related/controller_buttons_Animation 1_02.png" id="12_5w3fh"]
+[ext_resource type="Texture2D" uid="uid://bbcbn8masiy4s" path="res://assets/ui_related/controller_buttons_Animation 1_14.png" id="13_tgso8"]
+[ext_resource type="Texture2D" uid="uid://0r2qdy4yar8y" path="res://assets/ui_related/controller_buttons_Animation 1_12.png" id="14_moi7n"]
+[ext_resource type="Texture2D" uid="uid://dosd53tx2r25s" path="res://assets/ui_related/controller_buttons_Animation 1_09.png" id="15_f7ps0"]
+[ext_resource type="AudioStream" uid="uid://bdubrjb83atyt" path="res://assets/sonidos/518558__se2001__quick-blip.wav" id="16_wxqk8"]
 
-[node name="Main_Menu" type="Control"]
+[node name="Pause" type="Control"]
+process_mode = 3
 layout_mode = 3
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -576.0
-offset_right = 576.0
-grow_horizontal = 0
+grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_bmbsa")
+script = ExtResource("1_tfvt4")
 
-[node name="Exio" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(1151, 463)
-texture = ExtResource("1_4gfac")
-
-[node name="Title" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(380, 129)
-texture = ExtResource("2_3kcmv")
-
-[node name="Main" type="VBoxContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.318
-anchor_right = 0.318
-anchor_bottom = 1.0
-offset_left = -114.336
-offset_top = 248.0
-offset_right = 114.664
-offset_bottom = -87.0
-theme = ExtResource("3_dtk44")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -142.5
+offset_right = 65.0
+offset_bottom = 142.5
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Start" type="Button" parent="Main"]
-custom_minimum_size = Vector2(100, 50)
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "Pausa"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_pyjt7")
+
+[node name="Resume" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 6
 focus_neighbor_top = NodePath("../Exit")
-focus_neighbor_bottom = NodePath("../Options")
-text = "Jugar
+focus_neighbor_bottom = NodePath("../Skip")
+text = "Renudar
 "
 
-[node name="Options" type="Button" parent="Main"]
-custom_minimum_size = Vector2(100, 50)
+[node name="Skip" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 6
-focus_neighbor_top = NodePath("../Start")
-focus_neighbor_bottom = NodePath("../Exit")
-text = "Opciones
-"
+focus_neighbor_top = NodePath("../Resume")
+focus_neighbor_bottom = NodePath("../Options")
+text = "Saltar"
 
-[node name="Exit" type="Button" parent="Main"]
-custom_minimum_size = Vector2(100, 50)
+[node name="Options" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+focus_neighbor_top = NodePath("../Resume")
+focus_neighbor_bottom = NodePath("../Exit")
+text = "Opciones"
+
+[node name="Exit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 6
 focus_neighbor_top = NodePath("../Options")
-focus_neighbor_bottom = NodePath("../Start")
-text = "Salir"
+focus_neighbor_bottom = NodePath("../Resume")
+text = "Salir
+"
 
 [node name="Option_Menu" type="Panel" parent="."]
+visible = false
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.085
-anchor_top = 0.389
-anchor_right = 0.558
-anchor_bottom = 0.863
-offset_left = 0.0800018
-offset_top = -0.0720215
-offset_right = 0.18396
-offset_bottom = -0.223999
-theme = ExtResource("3_dtk44")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.5
+offset_top = -153.5
+offset_right = 272.5
+offset_bottom = 153.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_pyjt7")
 
 [node name="MarginContainer" type="MarginContainer" parent="Option_Menu"]
 layout_mode = 1
@@ -159,22 +189,24 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 focus_neighbor_top = NodePath("../Controls")
 focus_neighbor_bottom = NodePath("../Volume")
-text = "Volver
+text = "Cerrar
 "
 
 [node name="Volume_Menu" type="Panel" parent="."]
 visible = false
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.085
-anchor_top = 0.389
-anchor_right = 0.558
-anchor_bottom = 0.863
-offset_left = 0.0800018
-offset_top = -0.0720215
-offset_right = 0.18396
-offset_bottom = -0.223999
-theme = ExtResource("3_dtk44")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.5
+offset_top = -153.5
+offset_right = 272.5
+offset_bottom = 153.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_pyjt7")
 
 [node name="MarginContainer" type="MarginContainer" parent="Volume_Menu"]
 layout_mode = 1
@@ -292,16 +324,18 @@ text = "Volver"
 [node name="Accesibility_Menu" type="Panel" parent="."]
 visible = false
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.085
-anchor_top = 0.389
-anchor_right = 0.558
-anchor_bottom = 0.863
-offset_left = 0.0800018
-offset_top = -0.0720215
-offset_right = 0.18396
-offset_bottom = -0.223999
-theme = ExtResource("3_dtk44")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.5
+offset_top = -153.5
+offset_right = 272.5
+offset_bottom = 153.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_pyjt7")
 
 [node name="MarginContainer" type="MarginContainer" parent="Accesibility_Menu"]
 layout_mode = 1
@@ -362,7 +396,7 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../HBoxContainer/CheckBox")
 focus_neighbor_bottom = NodePath("../../../HBoxContainer3/HBoxContainer/HSlider")
-min_value = 1.0
+min_value = 0.5
 max_value = 2.0
 step = 0.5
 value = 1.5
@@ -409,18 +443,21 @@ focus_neighbor_bottom = NodePath("../HBoxContainer/CheckBox")
 text = "Volver"
 
 [node name="Controls_Menu" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(545, 307)
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.085
-anchor_top = 0.389
-anchor_right = 0.558
-anchor_bottom = 0.863
-offset_left = 0.0800018
-offset_top = -0.0720215
-offset_right = 0.18396
-offset_bottom = -0.223999
-theme = ExtResource("3_dtk44")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -153.5
+offset_right = 250.0
+offset_bottom = 153.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_pyjt7")
 
 [node name="MarginContainer" type="MarginContainer" parent="Controls_Menu"]
 layout_mode = 1
@@ -452,7 +489,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_vertical = 4
-theme = ExtResource("5_e6umj")
+theme = ExtResource("3_gkqtr")
 follow_focus = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer"]
@@ -503,27 +540,27 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button/HBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("6_cabvs")
+texture = ExtResource("4_5277i")
 expand_mode = 2
 
 [node name="TextureRect2" type="TextureRect" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button/HBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("7_pxvq0")
+texture = ExtResource("5_ckigq")
 expand_mode = 2
 
 [node name="TextureRect3" type="TextureRect" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button/HBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("8_nducb")
+texture = ExtResource("6_kdyfe")
 expand_mode = 2
 
 [node name="TextureRect4" type="TextureRect" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button/HBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("9_ek7wc")
+texture = ExtResource("7_mb3wb")
 expand_mode = 2
 
 [node name="TextureRect5" type="TextureRect" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button/HBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("10_fdlpc")
+texture = ExtResource("8_f2fof")
 expand_mode = 2
 
 [node name="Button2" type="Button" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
@@ -570,7 +607,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button2/HBoxContainer2/HBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("11_6fvrt")
+texture = ExtResource("9_tyh34")
 expand_mode = 2
 
 [node name="Button3" type="Button" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
@@ -616,7 +653,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button3/HBoxContainer3/HBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("12_r7nk4")
+texture = ExtResource("10_limvd")
 expand_mode = 2
 
 [node name="Button4" type="Button" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
@@ -662,7 +699,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button4/HBoxContainer4/HBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("12_2nqqi")
+texture = ExtResource("11_tyutb")
 expand_mode = 2
 
 [node name="Button8" type="Button" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
@@ -708,7 +745,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button8/HBoxContainer4/HBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("13_tmp7s")
+texture = ExtResource("12_5w3fh")
 expand_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
@@ -758,7 +795,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button5/HBoxContainer5/HBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("14_0pbld")
+texture = ExtResource("13_tgso8")
 expand_mode = 2
 
 [node name="Button6" type="Button" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
@@ -804,7 +841,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button6/HBoxContainer6/HBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("15_ujy3e")
+texture = ExtResource("14_moi7n")
 expand_mode = 2
 
 [node name="Button7" type="Button" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
@@ -850,7 +887,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Controls_Menu/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button7/HBoxContainer7/HBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("16_cgov7")
+texture = ExtResource("15_f7ps0")
 expand_mode = 2
 
 [node name="HSeparator2" type="HSeparator" parent="Controls_Menu/MarginContainer/VBoxContainer"]
@@ -862,15 +899,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Volver"
 
-[node name="Musica" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_6ncvo")
-autoplay = true
-bus = &"Music"
-parameters/looping = true
-
 [node name="Efectos" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_f16tx")
+stream = ExtResource("16_wxqk8")
 volume_db = 15.0
 bus = &"SFX"
-
-[connection signal="pressed" from="Accesibility_Menu/MarginContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnCheckBoxPressed"]

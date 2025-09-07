@@ -61,6 +61,8 @@ public partial class RestUi : Control{
 	private Panel selecting;
 	private Button inv;
 	
+	private Button currentFocusButton;
+	
 	private bool selectingTarget;
 	private int indexTargetStart = 0;
 	private int indexTargetEnd = 0;
@@ -77,8 +79,6 @@ public partial class RestUi : Control{
 	private Skill sp3;
 	private Skill sp4;
 	
-	private Button currentButtonFocus;
-	
 	private AudioStreamPlayer2D sfx;
 	private AudioStreamPlayer2D sfx2;
 	
@@ -89,6 +89,7 @@ public partial class RestUi : Control{
 		customSignals = GetNode<CustomSignals>("/root/CustomSignals");
 		sfx = GetNode<AudioStreamPlayer2D>("sfx");
 		sfx2 = GetNode<AudioStreamPlayer2D>("sfx2");
+		customSignals.OnUnpaused += RestoreFocus;
 		
 		restOptions = GetNode<VBoxContainer>("RestOptions");
 		teamSelect = GetNode<Button>("RestOptions/Team");
@@ -162,6 +163,7 @@ public partial class RestUi : Control{
 		inv = GetNode<Button>("Selection/MarginContainer/HBoxContainer/Inv");
 		
 		inv.Pressed += OnInvButtonPressed;
+		inv.FocusEntered += OnInvFocusEntered;
 		
 		levelUpPanel = GetNode<Panel>("LevelUpPanel");
 		
@@ -218,6 +220,7 @@ public partial class RestUi : Control{
 				for(int i = 0; i < allyList.Count; i++){
 					alliesRest.StopBlink(i);
 				}
+				currentFocusButton = null;
 				break;
 			case 0:
 				estado = 0;
@@ -510,12 +513,14 @@ public partial class RestUi : Control{
 		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
 		sfx.Stream = stream;
 		sfx.Play();
+		currentFocusButton = teamSelect;
 	}
 	private void OnExitButtonFocused(){
 		TTS.SayThis($"Salir del descanso");
 		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
 		sfx.Stream = stream;
 		sfx.Play();
+		currentFocusButton = restExit;
 	}
 	private void OnLevelButtonFocused(){
 		if(levelUp.Disabled == true){
@@ -526,12 +531,14 @@ public partial class RestUi : Control{
 		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
 		sfx.Stream = stream;
 		sfx.Play();
+		currentFocusButton = levelUp;
 	}
 	private void OnSkillButtonFocused(){
 		TTS.SayThis($"Ver habilidades");
 		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
 		sfx.Stream = stream;
 		sfx.Play();
+		currentFocusButton = skills;
 	}
 	private void OnBack2FocusEntered(){
 		TTS.SayThis($"Atrás");
@@ -539,9 +546,10 @@ public partial class RestUi : Control{
 		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
 		sfx.Stream = stream;
 		sfx.Play();
+		currentFocusButton = back;
 	}
 	private void OnAttackFocusEntered(){
-		currentButtonFocus = atq;
+		currentFocusButton = atq;
 		panelInfo.Visible = true;
 		ShowMoveInfo();
 		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
@@ -549,7 +557,7 @@ public partial class RestUi : Control{
 		sfx.Play();
 	}
 	private void OnGuardFocusEntered(){
-		currentButtonFocus = guard;
+		currentFocusButton = guard;
 		panelInfo.Visible = true;
 		ShowMoveInfo();
 		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
@@ -557,7 +565,7 @@ public partial class RestUi : Control{
 		sfx.Play();
 	}
 	private void OnMov1FocusEntered(){
-		currentButtonFocus = mov1;
+		currentFocusButton = mov1;
 		panelInfo.Visible = true;
 		ShowMoveInfo();
 		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
@@ -565,7 +573,7 @@ public partial class RestUi : Control{
 		sfx.Play();
 	}
 	private void OnMov2FocusEntered(){
-		currentButtonFocus = mov2;
+		currentFocusButton = mov2;
 		panelInfo.Visible = true;
 		ShowMoveInfo();
 		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
@@ -573,7 +581,7 @@ public partial class RestUi : Control{
 		sfx.Play();
 	}
 	private void OnMov3FocusEntered(){
-		currentButtonFocus = mov3;
+		currentFocusButton = mov3;
 		panelInfo.Visible = true;
 		ShowMoveInfo();
 		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
@@ -581,7 +589,7 @@ public partial class RestUi : Control{
 		sfx.Play();
 	}
 	private void OnMov4FocusEntered(){
-		currentButtonFocus = mov4;
+		currentFocusButton = mov4;
 		panelInfo.Visible = true;
 		ShowMoveInfo();
 		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
@@ -594,25 +602,28 @@ public partial class RestUi : Control{
 		sfx.Stream = stream;
 		sfx.Play();
 	}
+	private void OnInvFocusEntered(){
+		currentFocusButton = inv;
+	}
 	
 	public void ShowMoveInfo(){
 		Vector2 aux = new Vector2(0,0);
-		if(currentButtonFocus == atq){
+		if(currentFocusButton == atq){
 			TTS.SayThis($"Ataque básico");
 			PrepareInfo(atqbas, false, false, true);
-		}else if(currentButtonFocus == guard){
+		}else if(currentFocusButton == guard){
 			TTS.SayThis($"Guardia");
 			PrepareInfo(guardia, false, false, true);
-		}else if(currentButtonFocus == mov1){
+		}else if(currentFocusButton == mov1){
 			TTS.SayThis("");
 			PrepareInfo(sp1, true, true, true);
-		}else if(currentButtonFocus == mov2){
+		}else if(currentFocusButton == mov2){
 			TTS.SayThis("");
 			PrepareInfo(sp2, true, true, true);
-		}else if(currentButtonFocus == mov3){
+		}else if(currentFocusButton == mov3){
 			TTS.SayThis("");
 			PrepareInfo(sp3, true, true, true);
-		}else if(currentButtonFocus == mov4){
+		}else if(currentFocusButton == mov4){
 			TTS.SayThis("");
 			PrepareInfo(sp4, true, true, true);
 		}
@@ -659,4 +670,9 @@ public partial class RestUi : Control{
 		panelInfo.UpdatePanelSize();
 		panelInfo.Visible = true;
 	}
+	public void RestoreFocus(){
+		if(currentFocusButton != null)
+			currentFocusButton.GrabFocus();
+	}
+	
 }
