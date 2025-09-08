@@ -1,0 +1,102 @@
+[gd_scene load_steps=12 format=3 uid="uid://bgjyt53iinhg4"]
+
+[ext_resource type="Script" path="res://global/scenes/scene_scripts/TestingGameBattle.cs" id="1_84mco"]
+[ext_resource type="Texture2D" uid="uid://b86rjgxngowme" path="res://assets/background/background2.png" id="2_kg7g1"]
+[ext_resource type="PackedScene" uid="uid://b7t0oia1tfx58" path="res://global/scenes/team.tscn" id="3_cd6sy"]
+[ext_resource type="PackedScene" uid="uid://tfj11ryvomcs" path="res://global/scenes/scenesUI/menu_batalla.tscn" id="4_cun7m"]
+[ext_resource type="Theme" uid="uid://cgp6bk35e1id3" path="res://assets/ui_related/ui_battle_theme.tres" id="5_gy6no"]
+[ext_resource type="Script" path="res://global/scenes/scene_scripts/CuadroTexto.cs" id="6_qcu0t"]
+[ext_resource type="AudioStream" uid="uid://bdubrjb83atyt" path="res://assets/sonidos/518558__se2001__quick-blip.wav" id="7_uluet"]
+[ext_resource type="PackedScene" uid="uid://3myv7wdjbd2e" path="res://global/scenes/scenesUI/RestUi.tscn" id="8_q3auo"]
+[ext_resource type="PackedScene" uid="uid://b3nbpcpavxr83" path="res://global/scenes/scenesUI/pause.tscn" id="9_86o5e"]
+[ext_resource type="AudioStream" uid="uid://i3o464h0g2ao" path="res://assets/sonidos/Free RPG Music Collection/Phat Phrog Studio - Arcane Throne - Heir of Valor.wav" id="10_ju0k6"]
+[ext_resource type="PackedScene" uid="uid://dxltynj4ge7pf" path="res://global/scenes/descanso.tscn" id="11_7lek7"]
+
+[node name="Game" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_84mco")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(575, 325)
+scale = Vector2(1.15167, 1.15167)
+texture = ExtResource("2_kg7g1")
+
+[node name="TeamPlayer" parent="." instance=ExtResource("3_cd6sy")]
+position = Vector2(575, 500)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="RoomLabel" type="Label" parent="UI"]
+custom_minimum_size = Vector2(600, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -50.0
+offset_right = 300.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 49
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Menu_Batalla" parent="UI" instance=ExtResource("4_cun7m")]
+
+[node name="Cuadro_Texto" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme = ExtResource("5_gy6no")
+script = ExtResource("6_qcu0t")
+
+[node name="Panel" type="Panel" parent="UI/Cuadro_Texto"]
+custom_minimum_size = Vector2(1000, 100)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 24.0
+offset_right = -25.0
+offset_bottom = 100.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Cuadro_Texto/Panel"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -142.0
+offset_right = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/Cuadro_Texto/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="TypeSound" type="AudioStreamPlayer2D" parent="UI/Cuadro_Texto"]
+visible = false
+stream = ExtResource("7_uluet")
+volume_db = 5.0
+bus = &"SFX"
+
+[node name="RestUi" parent="UI" instance=ExtResource("8_q3auo")]
+
+[node name="Pause" parent="UI" instance=ExtResource("9_86o5e")]
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_ju0k6")
+volume_db = -5.0
+autoplay = true
+bus = &"Music"
+
+[node name="Rest" parent="." instance=ExtResource("11_7lek7")]
+position = Vector2(590, 414)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(575, 325)

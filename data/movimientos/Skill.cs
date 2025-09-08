@@ -30,6 +30,7 @@ public abstract partial class Skill : Resource, ISkillDisplayData{
 	[Export] public int TargetsCount = 1;
 	[Export] public bool TargetsAllTeam = false;
 	[Export] public bool Hurts = false;
+	[Export] public bool Guard = false;
 	
 	[Export] public int Limit = 0;
 	[Export] public int Guaranteed = 0;

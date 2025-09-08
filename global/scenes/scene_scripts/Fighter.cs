@@ -175,6 +175,19 @@ public partial class Fighter : Node2D{
 		PlayAnimationSafe("idle");
 		//Deberia esperar a una animacion
 	}
+	public async void HealAction(int n){
+		GD.Print($"+{n} HP");
+		data_Info.restoreHP(n);
+		UpdateBars();
+		GD.Print($"{data_Info.Name} is healing.");
+		AudioStream sound = GD.Load<AudioStream>("res://assets/sonidos/Alex noises/sound1.mp3");
+		playSounds.Stream = sound;
+		playSounds.Play();
+		await ShowDamagePopup(n);
+		customSignals.OnDialogIsOver += EffectIsDone;
+		customSignals.EmitSignal(nameof(CustomSignals.OnShowDialog), $"{data_Info.Name} ha recuperado vida.");
+		//Deberia esperar a una animacion
+	}
 	public async void Heal(int n){
 		GD.Print($"+{n} HP");
 		data_Info.restoreHP(n);

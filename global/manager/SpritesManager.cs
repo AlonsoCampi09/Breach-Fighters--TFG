@@ -18,7 +18,7 @@ public partial class SpritesManager : Node
 		int rows = spriteSheet.GetHeight() / frameHeight;
 
 		int currentAnimation = 0;
-		int framesPerAnimation = 1; // O los que correspondan, según cómo esté organizada tu spritesheet.
+		int framesPerAnimation = 1;
 		int framesAdded = 0;
 
 		for (int row = 0; row < rows; row++){
@@ -34,12 +34,10 @@ public partial class SpritesManager : Node
 					frames.AddAnimation(animationName);
 				frames.AddFrame(animationName, frameTexture);
 				framesAdded++;
-				// Pasar a la siguiente animación si corresponde
 				if (framesAdded >= framesPerAnimation){
 					framesAdded = 0;
 					currentAnimation++;
 					if (currentAnimation >= animationNames.Length){
-						// Si ya asignamos todas las animaciones, salimos
 						return frames;
 					}
 				}

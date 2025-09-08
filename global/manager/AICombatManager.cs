@@ -82,82 +82,65 @@ public partial class AICombatManager : Node{
 		}
 		confirmChoice(selectedTargets, s);
 	}
-	public void AITacticDecision(FighterTeam hisTeam, FighterTeam vsTeam){
+	public void AITacticDecision(FighterTeam hisTeam, FighterTeam vsTeam) {
+		GD.Print("TACTIC DECISION");
 		int bestScore = int.MinValue;
 		Skill bestSkill = null;
 		Fighter[] bestTargets = null;
 		List<int> availableSkills = GetAvailableSkillsIndexes();
-		foreach (int i in availableSkills){
-			Skill skill = skills[i];
-			List<Fighter> possibleTargets;
-			switch (skill.WhoAffects()){
-				case 0:
-					possibleTargets = hisTeam.GetFighters();
-					break;
-				case 1:
-					possibleTargets = vsTeam.GetFighters();
-					break;
+		foreach (int idx in availableSkills) {
+			Skill skill = skills[idx];
+			List<Fighter> possibleTargets = null;
+			switch (skill.WhoAffects()) {
+				case 0: possibleTargets = hisTeam.GetFighters().Where(f => !f.IsDead()).ToList(); break;
+				case 1: possibleTargets = vsTeam.GetFighters().Where(f => !f.IsDead()).ToList(); break;
 				case 2:
-					possibleTargets = hisTeam.GetFighters(); 
-					possibleTargets.AddRange(vsTeam.GetFighters());
+					possibleTargets = hisTeam.GetFighters().Where(f => !f.IsDead()).ToList();
+					possibleTargets.AddRange(vsTeam.GetFighters().Where(f => !f.IsDead()));
 					break;
 				case 3:
-					if(skill.AffectsAllTeam())
-						possibleTargets = hisTeam.GetFighters();
-					else{
-						possibleTargets = new List<Fighter>();
-						possibleTargets.Add(owner);
-					}
+					possibleTargets = skill.AffectsAllTeam()
+						? hisTeam.GetFighters().Where(f => !f.IsDead()).ToList()
+						: new List<Fighter> { owner };
 					break;
 				default:
-					if(skill.AffectsAllTeam())
-						possibleTargets = hisTeam.GetFighters();
-					else{
-						possibleTargets = new List<Fighter>();
-						possibleTargets.Add(owner);
-					}
+					possibleTargets = hisTeam.GetFighters().Where(f => !f.IsDead()).ToList();
 					break;
 			}
-			int score = 0;
-			Fighter[] selecting = new Fighter[1];
-			if(skill.AffectsAllTeam()){
-				switch (skill.WhoAffects()){
-					case 0:case 1:case 3: default:
-						selecting = possibleTargets.ToArray();
-						score = ScoreSkill(skill, selecting);
-						break;
-					case 2:
-						selecting = hisTeam.GetFighters().ToArray();
-						score = ScoreSkill(skill, selecting);
-						Fighter[] selecting2 = vsTeam.GetFighters().ToArray();
-						int o = ScoreSkill(skill, selecting2);
-						if(o >= score){
-							score = o;
-							selecting = selecting2;
-						}
-						break;
-						
-				}
-			}else{
-				List<Fighter[]> combinations = GenerateTargetCombinations(possibleTargets, skill.TargetsCount);
-				foreach (Fighter[] combo in combinations){
-					int o = ScoreSkill(skill, combo);
-					if(o > score){
-						score = o;
-						selecting = combo;
+			GD.Print($"Posible targets for {skill.GiveTitulo()}: {string.Join(", ", possibleTargets.Select(x=>x.GetEntityData().Name))}");
+			int bestScoreForSkill = int.MinValue;
+			Fighter[] bestComboForSkill = null;
+			if (skill.AffectsAllTeam()) {
+				Fighter[] combo = possibleTargets.ToArray();
+				int sc = ScoreSkill2(skill, combo);
+				bestScoreForSkill = sc;
+				bestComboForSkill = combo;
+			} else {
+				List<Fighter[]> combos = GenerateTargetCombinations(possibleTargets, skill.TargetsCount);
+				if (combos.Count == 0) {
+					foreach (var p in possibleTargets) {
+						int sc = ScoreSkill2(skill, new Fighter[]{ p });
+						if (sc > bestScoreForSkill) { bestScoreForSkill = sc; bestComboForSkill = new Fighter[]{ p }; }
+					}
+				} else {
+					foreach (var combo in combos) {
+						int sc = ScoreSkill2(skill, combo);
+						if (sc > bestScoreForSkill) { bestScoreForSkill = sc; bestComboForSkill = combo; }
 					}
 				}
 			}
-			if (score > bestScore){
-				bestScore = score;
+			GD.Print($"With {skill.GiveTitulo()} best local score = {bestScoreForSkill}");
+			if (bestScoreForSkill > bestScore) {
+				bestScore = bestScoreForSkill;
 				bestSkill = skill;
-				bestTargets = selecting;
+				bestTargets = bestComboForSkill;
 			}
 		}
-		if (bestSkill == null || !bestSkill.EnoughMana(owner)){
-			bestSkill = skills[1]; // skill defensiva
-			bestTargets = new Fighter[] { owner };
+		if (bestSkill == null || !bestSkill.EnoughMana(owner)) {
+			bestSkill = skills.FirstOrDefault(s => s.Name == "Guard") ?? skills[0]; // fallback
+			bestTargets = new Fighter[]{ owner };
 		}
+		GD.Print($"MY BEST SKILL {bestSkill.GiveTitulo()} to { (bestTargets==null? "null": string.Join(",", bestTargets.Select(x=>x.GetEntityData().Name))) }");
 		PrepareCooldowns(bestSkill);
 		confirmChoice(bestTargets, bestSkill);
 	}
@@ -278,38 +261,141 @@ public partial class AICombatManager : Node{
 		return skill;
 	}
 	
-	private int ScoreSkill(Skill skill, Fighter[] potentialTargets){
-		int score = 0;
-		// Bonus si puede matar un objetivo
-		foreach (Fighter f in potentialTargets){
-			if (f.IsDead()) continue;
-			int estimatedDamage = Skill.CalculateDamage(skill.GivePower(), owner, f);
-			if (estimatedDamage >= f.GetEntityData().giveHP()){
-				score += 50;
-			} else {
-				score += estimatedDamage / 10;
-			}
+	private int ScoreSkill2(Skill skill, Fighter[] targets) {
+		if (skill == null || targets == null || targets.Length == 0) {
+			GD.Print("ScoreSkill: skill null o sin targets");
+			return int.MinValue / 2;
 		}
-		// Bonus si cura aliados críticos
-		if (skill.Heals()){
-			foreach (Fighter f in potentialTargets){
-				if (!f.IsDead() && f.GetEntityData().giveHP() < f.GetEntityData().giveMAXHP() / 3){
-					score += 30;
+		if (!skill.EnoughMana(owner)) {
+			GD.Print($"{skill.GiveTitulo()} not enough mana -> low score");
+			return int.MinValue / 2;
+		}
+		GD.Print($"=== Evaluando skill {skill.GiveTitulo()} ===");
+		GD.Print($"Targets: {string.Join(", ", targets.Select(t => t.GetEntityData().Name))}");
+		int score = 0;
+		bool offensive = skill.Hurts;
+		foreach (Fighter t in targets) {
+			if (t.IsDead()) {
+				GD.Print($" - {t.GetEntityData().Name} está muerto, ignorado");
+				continue;
+			}
+			int hp = t.GetEntityData().giveHP();
+			int maxHp = t.GetEntityData().giveMAXHP();
+			int Mp = t.GetEntityData().giveMP();
+			int maxMp = t.GetEntityData().giveMAXMP();
+			GD.Print($" - Target {t.GetEntityData().Name}: HP={hp}/{maxHp}");
+			int dmg = 0;
+			if (offensive) {
+				dmg = EstimateDamage(skill, owner, t);
+				GD.Print($"   Daño estimado: {dmg}");
+				score += dmg * 3; // peso base
+				if (dmg >= hp) {
+					GD.Print($"   Bonus por matar a {t.GetEntityData().Name} (+150)");
+					score += 150;
+				}
+			} else {
+				if(skill.Guard){
+					int missingMp = maxMp - Mp;
+					score += missingMp+5;
+				}
+				if(skill.Heals()){
+					int missingHp = maxHp - hp;
+					GD.Print($"   Vida perdida: {missingHp}");
+					score += missingHp * 2;
+				}
+			}
+			if (skill.Buffs() || skill.DeBuffs()) {
+				foreach(int status in skill.StatusThatCanApply()){
+					if(!t.GetEffectController().HasEffectInt(status)){
+						score += 30;
+						GD.Print("   Bonus por aplicar estado diferente (+30)");
+					}
 				}
 			}
 		}
-		// Bonus si es buff para sí mismo y no tiene ya ese buff
-		if (skill.Buffs() && skill.WhoAffects() == 3){
-			foreach(int p in skill.StatusThatCanApply()){
-				if(!owner.GetEffectController().HasEffectInt(p))
-					score += 20;
+
+		// penalización por coste de maná
+		int mana = owner.GetEntityData().giveMP();
+		int cost = skill.GiveCost();
+		GD.Print($"Coste de maná: {cost}, maná actual: {mana}");
+		score -= cost;
+
+		GD.Print($"TOTAL score para {skill.GiveTitulo()} = {score}");
+		GD.Print("============================================");
+
+		return score;
+	}
+	
+	private int ScoreSkill(Skill skill, Fighter[] targets) {
+		if (skill == null || targets == null || targets.Length == 0) {
+			GD.Print("ScoreSkill: skill null o sin targets");
+			return int.MinValue / 2;
+		}
+		if (!skill.EnoughMana(owner)) {
+			GD.Print($"{skill.GiveTitulo()} not enough mana -> low score");
+			return int.MinValue / 2;
+		}
+		GD.Print($"=== Evaluando skill {skill.GiveTitulo()} ===");
+		GD.Print($"Targets: {string.Join(", ", targets.Select(t => t.GetEntityData().Name))}");
+		int score = 0;
+		bool offensive = skill.Hurts;
+		foreach (Fighter t in targets) {
+			if (t.IsDead()) {
+				GD.Print($" - {t.GetEntityData().Name} está muerto, ignorado");
+				continue;
+			}
+			int hp = t.GetEntityData().giveHP();
+			int maxHp = t.GetEntityData().giveMAXHP();
+			GD.Print($" - Target {t.GetEntityData().Name}: HP={hp}/{maxHp}");
+
+			// estimación de daño (si es ofensivo)
+			int dmg = 0;
+			if (offensive) {
+				dmg = EstimateDamage(skill, owner, t);
+				GD.Print($"   Daño estimado: {dmg}");
+				score += dmg * 3; // peso base
+				if (dmg >= hp) {
+					GD.Print($"   Bonus por matar a {t.GetEntityData().Name} (+150)");
+					score += 150;
+				}
+			} else {
+				// si es healing/buff
+				int missingHp = maxHp - hp;
+				GD.Print($"   Vida perdida: {missingHp}");
+				score += missingHp * 2;
+				if (!t.GetEffectController().HasEffect(StatusEffectType.BuffDEF)) {
+					GD.Print("   Bonus por aplicar buff de DEF (+30)");
+					score += 30;
+				}
+			}
+
+			// ejemplo: bonus si target tiene debuff de DEF
+			if (t.GetEffectController().HasEffect(StatusEffectType.DeBuffDEF)) {
+				GD.Print("   Target vulnerable (DEF debuff) (+20)");
+				score += 20;
 			}
 		}
-		// Penaliza skills poco útiles
-		if (skill.AffectsAllTeam() && potentialTargets.All(f => f.IsDead())){
-			score -= 100;
-		}
+
+		// penalización por coste de maná
+		int mana = owner.GetEntityData().giveMP();
+		int cost = skill.GiveCost();
+		GD.Print($"Coste de maná: {cost}, maná actual: {mana}");
+		score -= cost;
+
+		GD.Print($"TOTAL score para {skill.GiveTitulo()} = {score}");
+		GD.Print("============================================");
+
 		return score;
+	}
+	private int EstimateDamage(Skill skill, Fighter caster, Fighter target) {
+		try {
+			int p = skill.GivePower();
+			return Skill.CalculateDamage(p, caster, target);
+		}
+		catch (Exception e) {
+			GD.Print($"Error en EstimateDamage: {e.Message}");
+			return 0;
+		}
 	}
 	
 	public List<int> GetAvailableSkillsIndexes(){
@@ -322,21 +408,22 @@ public partial class AICombatManager : Node{
 		return availableSkills;
 	}
 	
-	public List<Fighter[]> GenerateTargetCombinations(List<Fighter> allTargets, int selectCount){
+	public List<Fighter[]> GenerateTargetCombinations(List<Fighter> allTargets, int selectCount) {
 		List<Fighter[]> results = new List<Fighter[]>();
-		Fighter[] current = new Fighter[selectCount];
-		Combine(allTargets, 0, 0, current, results);
+		if (selectCount <= 0) return results;
+		Fighter[] cur = new Fighter[selectCount];
+		CombineNoRepeat(allTargets, 0, 0, cur, results);
 		return results;
 	}
 
-	private void Combine(List<Fighter> allTargets, int start, int depth, Fighter[] current, List<Fighter[]> results){
-		if (depth == current.Length){
-			results.Add((Fighter[])current.Clone()); // Copiamos el arreglo actual
+	private void CombineNoRepeat(List<Fighter> allTargets, int start, int depth, Fighter[] cur, List<Fighter[]> results) {
+		if (depth == cur.Length) {
+			results.Add((Fighter[])cur.Clone());
 			return;
 		}
-		for (int i = start; i < allTargets.Count; i++){
-			current[depth] = allTargets[i];
-			Combine(allTargets, i + 1, depth + 1, current, results);
+		for (int i = start; i < allTargets.Count; i++) {
+			cur[depth] = allTargets[i];
+			CombineNoRepeat(allTargets, i + 1, depth + 1, cur, results);
 		}
 	}
 	

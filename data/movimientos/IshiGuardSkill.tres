@@ -19,6 +19,7 @@ effectObj = 3
 TargetsCount = 1
 TargetsAllTeam = false
 Hurts = false
+Guard = true
 Limit = 0
 Guaranteed = 0
 Limit_Evolved = 0

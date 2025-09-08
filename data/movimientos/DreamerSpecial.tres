@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="DreamerSpecial" load_steps=2 format=3 uid="uid://bk0sruaf21x2r"]
+
+[ext_resource type="Script" path="res://data/movimientos/DreamerSpecial.cs" id="1_xc5ua"]
+
+[resource]
+script = ExtResource("1_xc5ua")
+Level = 1
+Name = "Estrella fugaz"
+Name_Evolved = "Deseo"
+Description = "Una estrella pasa por su equipo, dandoles el efecto de regeneración."
+Description_Evolved = "Su deseo de cumple. Todo el equipo recupera vida según la vida del que invoca este movimiento y les de el efecto de energético."
+BasePower = 0
+BasePower_Evolved = 0
+Cost = 5
+Cost_Evolved = 7
+RequiredLevelToEvolve = 5
+RequiredLevelToUnlock = 0
+effectObj = 0
+TargetsCount = 1
+TargetsAllTeam = true
+Hurts = false
+Limit = 0
+Guaranteed = 0
+Limit_Evolved = 0
+Guaranteed_Evolved = 0
+Percentage = 0
+Percentage_Evolved = 0
+Count = 0
+CooldownTurns = 3
+StatusCanApply = PackedInt32Array(11)
+StatusCanApplyEvolved = PackedInt32Array(12)

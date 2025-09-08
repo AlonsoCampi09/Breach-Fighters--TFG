@@ -79,13 +79,11 @@ public partial class BattleManager : Node{
 			return; //No quitar o se rompe!
 		}
 		if (currentFighter.IsPlayerControlled()){
-			// Espera input del jugador (UI, menú de acciones, etc.)
 			customSignals.EmitSignal(nameof(CustomSignals.OnPrepareBattleMenuForFighter),currentFighter,teamPlayer,teamEnemy);
 			customSignals.EmitSignal(nameof(CustomSignals.OnShowFighterInAction),currentFighter);
 		}
 		else{
 			// Turno IA
-			//ExecuteEnemyAction(currentFighter);
 			currentFighter.ExecuteAITurn(teamEnemy,teamPlayer);
 		}
 	}

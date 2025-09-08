@@ -68,6 +68,10 @@ public partial class FighterFactory : Node
 				skills.Add(ResourceLoader.Load<Skill>("res://data/movimientos/STristeBasicSkill.tres"));
 			}else if(name.Contains("Vago")){
 				skills.Add(ResourceLoader.Load<Skill>("res://data/movimientos/SVagoBasicSkill.tres"));
+			}else if(name.Contains("Soñador")){
+				skills.Add(ResourceLoader.Load<Skill>("res://data/movimientos/DreamerBasicSkill.tres"));
+				skills.Add(ResourceLoader.Load<Skill>("res://data/movimientos/DreamerGuardSkill.tres"));
+				skills.Add(ResourceLoader.Load<Skill>("res://data/movimientos/DreamerSpecial.tres"));	
 			}else{
 				GD.Print("MAL MAL. SLIME MAL.");
 			}
@@ -80,9 +84,10 @@ public partial class FighterFactory : Node
 	public Entity[] GenerateRandomEntityDatas(int level){
 		Random rand = new Random();
 		List<Entity> list = new List<Entity>();
-		int num_enemigos = Math.Min(6,rand.Next(2, 5+level)) - 1; //En un equipo enemigo habra de 1 a 5 entities
+		int num_enemigos = Math.Min(6,rand.Next(2, 5+level)) - 1; 
+		int elites_generated = 0;
 		for(int i = 0; i < num_enemigos; i++){
-			int enemigo = rand.Next(0, 4); // De momento solo hay 4 enemigos subditos
+			int enemigo = rand.Next(0, 5); 
 			int l = rand.Next(1, 2+level);
 			switch(enemigo){
 				case 0:
@@ -96,6 +101,11 @@ public partial class FighterFactory : Node
 					break;
 				case 3:
 					list.Add((Entity)ResourceLoader.Load<Entity>("res://data/entities/SlimeTriste.tres").Duplicate());
+					break;
+				case 4:
+					list.Add((Entity)ResourceLoader.Load<Entity>("res://data/entities/SlimeDreamer.tres").Duplicate());
+					elites_generated++;
+					if(elites_generated > 2) i++;
 					break;
 				default:
 					break;
