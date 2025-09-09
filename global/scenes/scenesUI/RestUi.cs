@@ -66,7 +66,9 @@ public partial class RestUi : Control{
 
 	/****SHOP PANEL****/
 	private Panel shopPanel;
-	private ObjectFactory shopFactory; 
+	private ObjectFactory shopFactory;
+	private Button lifePotion;
+	private Button exitShop; 
 
 	private bool selectingTarget;
 	private int indexTargetStart = 0;
@@ -75,6 +77,7 @@ public partial class RestUi : Control{
 	
 	private GameState gameStatus;
 	private List<Fighter> allyList;
+	private FighterTeam team; 
 	private RocksRest alliesRest;
 	private Fighter actor;
 	private Skill atqbas;
@@ -95,9 +98,11 @@ public partial class RestUi : Control{
 		restOptions = GetNode<VBoxContainer>("RestOptions");
 		teamSelect = GetNode<Button>("RestOptions/Team");
 		restExit = GetNode<Button>("RestOptions/Exit");
-		shopButton = GetNode<Button>("RestOptions/Shop"); 
+		shopButton = GetNode<Button>("RestOptions/Shop");
+        lifePotion = GetNode<Button>("ShopPanel/VBoxContainer/LifePotion");
+        exitShop = GetNode<Button>("ShopPanel/VBoxContainer/Back");
 
-		teamSelect.Pressed += OnTeamButtonPressed;
+        teamSelect.Pressed += OnTeamButtonPressed;
 		restExit.Pressed += OnExitButtonPressed;
 		shopButton.Pressed += OnShopButtonPressed; 
 		teamSelect.FocusEntered += OnTeamButtonFocused;
@@ -133,10 +138,16 @@ public partial class RestUi : Control{
 		levelUp.Pressed += OnLevelButtonPressed;
 		skills.Pressed += OnSkillButtonPressed;
 		back.Pressed += OnBack1ButtonPressed;
-		levelUp.FocusEntered += OnLevelButtonFocused;
+        lifePotion.Pressed += OnLifePotionButtonPressed;
+		exitShop.Pressed += OnExitShopButtonPressed; 
+        levelUp.FocusEntered += OnLevelButtonFocused;
 		skills.FocusEntered += OnSkillButtonFocused;
 		back.FocusEntered += OnBackButtonFocused;
-		
+		shopButton.FocusEntered += OnShopButtonFocused; 
+		lifePotion.FocusEntered += OnLifePotionButtonFocused;
+		exitShop.FocusEntered += OnExitShopButtonFocused; 
+
+
 		characterSkills = GetNode<Panel>("CharacterSkills");
 		atq = GetNode<Button>("CharacterSkills/MarginContainer/ScrollContainer/VBoxContainer/Skill1");
 		guard = GetNode<Button>("CharacterSkills/MarginContainer/ScrollContainer/VBoxContainer/Skill2");
@@ -173,6 +184,7 @@ public partial class RestUi : Control{
 
 
 		shopPanel = GetNode<Panel>("ShopPanel");
+		
 	
 		customSignals.OnRestRecharge += RechargingGameTeamState;
 		customSignals.OnShowRestHUD += MakeMenuVisible;
@@ -187,12 +199,14 @@ public partial class RestUi : Control{
 		levelUpPanel.Visible = false;
 		panelPopUp.Visible = false;
         shopPanel.Visible = false;
+
     }
 	
 	public void RechargingGameTeamState(GameState gs, FighterTeam allies, RocksRest rest){
 		gameStatus = gs;
 		allyList = allies.GetFighters();
 		alliesRest = rest;
+		team = allies; 
 		ShowMoneyExp();
 	}
 	
@@ -238,6 +252,7 @@ public partial class RestUi : Control{
 				selecting.Visible = false;
 				levelUpPanel.Visible = false;
 				panelPopUp.Visible = false;
+				shopPanel.Visible = false;  
 				this.selectingTarget = false;
 				for(int i = 0; i < allyList.Count; i++){
 					alliesRest.StopBlink(i);
@@ -322,7 +337,8 @@ public partial class RestUi : Control{
 				estado = 6;
 				shopPanel.Visible = true;
 				moneyExp.Visible = true;
-				LoadObjectsInSell(); 
+				lifePotion.GrabFocus();
+                lifePotion.Disabled = gameStatus.teamMoneyBank >= 10 ? false : true;
                 GD.Print("Pulsado boton comprar");
 
                 break; 
@@ -339,27 +355,6 @@ public partial class RestUi : Control{
 		actor_experience_up.Visible = a;
 	}
 	
-
-	/*
-	 * 
-	 * List of the objects 
-	 * 
-	 */
-
-
-	private void LoadObjectsInSell()
-	{
-        shopFactory= GetNode<ObjectFactory>("/root/ObjectFactory");
-
-		List<Object> objectsInSell = shopFactory.GetShopItems();
-
-		foreach (Object o in objectsInSell) {
-			GD.Print(o.GetName()); 
-		}
-
-    }
-
-
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta){
 		if (Input.IsActionJustPressed("ui_cancel") && acceptingInputs){
@@ -446,7 +441,19 @@ public partial class RestUi : Control{
 	private void OnBack2ButtonPressed(){
 		ChangeMenu(2);
 	}
-	
+
+	private void OnLifePotionButtonPressed() {
+		team.Rest();
+		gameStatus.UsedMoney(10);
+        lifePotion.Disabled = gameStatus.teamMoneyBank >= 10 ? false : true;
+		TTS.PutThisInQueue("Dispones de " + gameStatus.teamMoneyBank + " monedas."); 
+        ShowMoneyExp();
+    }
+
+	private void OnExitShopButtonPressed() {
+		ChangeMenu(0);
+	}
+
 	private void ReloadStats(){
 		actor_name.Text = actor.GetEntityData().Name;
 		actor_sprite.Texture = actor.GiveTexture();
@@ -464,9 +471,13 @@ public partial class RestUi : Control{
 		actor_mana_up.Text = $"Maná: {actor.GetEntityData().giveMAXMPUP()}";
 		actor_speed_up.Text = $"Velocidad: {actor.GetEntityData().giveSPUP()}";
 		actor_experience_up.Text = $"Exp.Necesaria: {actor.GetEntityData().giveEXPsigLevelUP()}";
-		if(gameStatus.teamExperienceBank < actor.GetEntityData().giveEXPsigLevel()){
+		if (gameStatus.teamExperienceBank < actor.GetEntityData().giveEXPsigLevel())
+		{
 			levelUp.Disabled = true;
 		}
+		else {
+            levelUp.Disabled = false;
+        }
 	}
 	
 	private void PrepareCharacterInfoPanelAndSkills(){
@@ -598,9 +609,19 @@ public partial class RestUi : Control{
 	private void OnBackButtonFocused(){
 		TTS.SayThis("Atrás");
 	}
-	
+	private void OnShopButtonFocused() {
+		TTS.SayThis("Comprar objetos. Dispones de " + gameStatus.teamMoneyBank + " monedas."); 
+	}
+	private void OnLifePotionButtonFocused() {
+		string mensaje = "Pocion de vida. Coste de 10 monedas.";
+		mensaje += lifePotion.Disabled ? "No tienes suficientes monedas" : "" ;
+		TTS.SayThis(mensaje);
+	}
+	private void OnExitShopButtonFocused() {
+		TTS.SayThis("Salir de la tienda"); 
+	}
 	public void ShowMoveInfo(){
-		Vector2 aux = new Vector2(0,0);
+		Godot.Vector2 aux = new Godot.Vector2(0,0);
 		if(currentButtonFocus == atq){
 			TTS.SayThis($"Ataque básico");
 			PrepareInfo(atqbas, false, false, true);

@@ -3,32 +3,28 @@
   "WorkspaceRootPath": "C:\\hlocal\\Breach-Fighters--TFG\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F328D8AE-FBBC-4990-BD77-2641BB3463F2}|OPTIM_Breach_Fighters.csproj|c:\\hlocal\\breach-fighters--tfg\\data\\movimientos\\alexspecial1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F328D8AE-FBBC-4990-BD77-2641BB3463F2}|OPTIM_Breach_Fighters.csproj|solutionrelative:data\\movimientos\\alexspecial1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F328D8AE-FBBC-4990-BD77-2641BB3463F2}|OPTIM_Breach_Fighters.csproj|c:\\hlocal\\breach-fighters--tfg\\global\\scenes\\scenesui\\restui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F328D8AE-FBBC-4990-BD77-2641BB3463F2}|OPTIM_Breach_Fighters.csproj|solutionrelative:global\\scenes\\scenesui\\restui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F328D8AE-FBBC-4990-BD77-2641BB3463F2}|OPTIM_Breach_Fighters.csproj|c:\\hlocal\\breach-fighters--tfg\\data\\objects\\lifepotion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F328D8AE-FBBC-4990-BD77-2641BB3463F2}|OPTIM_Breach_Fighters.csproj|solutionrelative:data\\objects\\lifepotion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F328D8AE-FBBC-4990-BD77-2641BB3463F2}|OPTIM_Breach_Fighters.csproj|c:\\hlocal\\breach-fighters--tfg\\global\\scenes\\scene_scripts\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F328D8AE-FBBC-4990-BD77-2641BB3463F2}|OPTIM_Breach_Fighters.csproj|solutionrelative:global\\scenes\\scene_scripts\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F328D8AE-FBBC-4990-BD77-2641BB3463F2}|OPTIM_Breach_Fighters.csproj|c:\\hlocal\\breach-fighters--tfg\\global\\factory\\fighterfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F328D8AE-FBBC-4990-BD77-2641BB3463F2}|OPTIM_Breach_Fighters.csproj|solutionrelative:global\\factory\\fighterfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F328D8AE-FBBC-4990-BD77-2641BB3463F2}|OPTIM_Breach_Fighters.csproj|c:\\hlocal\\breach-fighters--tfg\\data\\movimientos\\skill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F328D8AE-FBBC-4990-BD77-2641BB3463F2}|OPTIM_Breach_Fighters.csproj|solutionrelative:data\\movimientos\\skill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F328D8AE-FBBC-4990-BD77-2641BB3463F2}|OPTIM_Breach_Fighters.csproj|c:\\hlocal\\breach-fighters--tfg\\global\\scenes\\scene_scripts\\fighterteam.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F328D8AE-FBBC-4990-BD77-2641BB3463F2}|OPTIM_Breach_Fighters.csproj|solutionrelative:global\\scenes\\scene_scripts\\fighterteam.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F328D8AE-FBBC-4990-BD77-2641BB3463F2}|OPTIM_Breach_Fighters.csproj|c:\\hlocal\\breach-fighters--tfg\\global\\factory\\objectfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F328D8AE-FBBC-4990-BD77-2641BB3463F2}|OPTIM_Breach_Fighters.csproj|solutionrelative:global\\factory\\objectfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F328D8AE-FBBC-4990-BD77-2641BB3463F2}|OPTIM_Breach_Fighters.csproj|c:\\hlocal\\breach-fighters--tfg\\global\\scenes\\scenesui\\restui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F328D8AE-FBBC-4990-BD77-2641BB3463F2}|OPTIM_Breach_Fighters.csproj|solutionrelative:global\\scenes\\scenesui\\restui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F328D8AE-FBBC-4990-BD77-2641BB3463F2}|OPTIM_Breach_Fighters.csproj|c:\\hlocal\\breach-fighters--tfg\\data\\objects\\object.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F328D8AE-FBBC-4990-BD77-2641BB3463F2}|OPTIM_Breach_Fighters.csproj|solutionrelative:data\\objects\\object.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F328D8AE-FBBC-4990-BD77-2641BB3463F2}|OPTIM_Breach_Fighters.csproj|c:\\hlocal\\breach-fighters--tfg\\data\\movimientos\\skill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F328D8AE-FBBC-4990-BD77-2641BB3463F2}|OPTIM_Breach_Fighters.csproj|solutionrelative:data\\movimientos\\skill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,19 +34,70 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 6,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Game.cs",
+              "DocumentMoniker": "C:\\hlocal\\Breach-Fighters--TFG\\global\\scenes\\scene_scripts\\Game.cs",
+              "RelativeDocumentMoniker": "global\\scenes\\scene_scripts\\Game.cs",
+              "ToolTip": "C:\\hlocal\\Breach-Fighters--TFG\\global\\scenes\\scene_scripts\\Game.cs",
+              "RelativeToolTip": "global\\scenes\\scene_scripts\\Game.cs",
+              "ViewState": "AQIAAEkAAAAAAAAAAAAuwF4AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-09T16:13:48.599Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FighterFactory.cs",
+              "DocumentMoniker": "C:\\hlocal\\Breach-Fighters--TFG\\global\\factory\\FighterFactory.cs",
+              "RelativeDocumentMoniker": "global\\factory\\FighterFactory.cs",
+              "ToolTip": "C:\\hlocal\\Breach-Fighters--TFG\\global\\factory\\FighterFactory.cs",
+              "RelativeToolTip": "global\\factory\\FighterFactory.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAuwBAAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-09T12:50:18.739Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FighterTeam.cs",
+              "DocumentMoniker": "C:\\hlocal\\Breach-Fighters--TFG\\global\\scenes\\scene_scripts\\FighterTeam.cs",
+              "RelativeDocumentMoniker": "global\\scenes\\scene_scripts\\FighterTeam.cs",
+              "ToolTip": "C:\\hlocal\\Breach-Fighters--TFG\\global\\scenes\\scene_scripts\\FighterTeam.cs",
+              "RelativeToolTip": "global\\scenes\\scene_scripts\\FighterTeam.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-08T18:39:51.362Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AlexSpecial1.cs",
-              "DocumentMoniker": "C:\\hlocal\\Breach-Fighters--TFG\\data\\movimientos\\AlexSpecial1.cs",
-              "RelativeDocumentMoniker": "data\\movimientos\\AlexSpecial1.cs",
-              "ToolTip": "C:\\hlocal\\Breach-Fighters--TFG\\data\\movimientos\\AlexSpecial1.cs",
-              "RelativeToolTip": "data\\movimientos\\AlexSpecial1.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAACAAAA",
+              "Title": "RestUi.cs",
+              "DocumentMoniker": "C:\\hlocal\\Breach-Fighters--TFG\\global\\scenes\\scenesUI\\RestUi.cs",
+              "RelativeDocumentMoniker": "global\\scenes\\scenesUI\\RestUi.cs",
+              "ToolTip": "C:\\hlocal\\Breach-Fighters--TFG\\global\\scenes\\scenesUI\\RestUi.cs",
+              "RelativeToolTip": "global\\scenes\\scenesUI\\RestUi.cs",
+              "ViewState": "AQIAALABAAAAAAAAAAAIwMABAABPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T16:49:56.676Z",
+              "WhenOpened": "2025-09-07T16:29:09.992Z",
               "EditorCaption": ""
             },
             {
@@ -61,7 +108,7 @@
               "RelativeDocumentMoniker": "global\\factory\\ObjectFactory.cs",
               "ToolTip": "C:\\hlocal\\Breach-Fighters--TFG\\global\\factory\\ObjectFactory.cs",
               "RelativeToolTip": "global\\factory\\ObjectFactory.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-07T16:39:26.374Z",
               "EditorCaption": ""
@@ -69,79 +116,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "RestUi.cs",
-              "DocumentMoniker": "C:\\hlocal\\Breach-Fighters--TFG\\global\\scenes\\scenesUI\\RestUi.cs",
-              "RelativeDocumentMoniker": "global\\scenes\\scenesUI\\RestUi.cs",
-              "ToolTip": "C:\\hlocal\\Breach-Fighters--TFG\\global\\scenes\\scenesUI\\RestUi.cs",
-              "RelativeToolTip": "global\\scenes\\scenesUI\\RestUi.cs",
-              "ViewState": "AQIAAFUBAAAAAAAAAAAswGUBAAADAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T16:29:09.992Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "Skill.cs",
               "DocumentMoniker": "C:\\hlocal\\Breach-Fighters--TFG\\data\\movimientos\\Skill.cs",
               "RelativeDocumentMoniker": "data\\movimientos\\Skill.cs",
               "ToolTip": "C:\\hlocal\\Breach-Fighters--TFG\\data\\movimientos\\Skill.cs",
               "RelativeToolTip": "data\\movimientos\\Skill.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAjAAAA",
+              "ViewState": "AQIAAGwAAAAAAAAAAAAqwHEAAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-07T16:22:33.654Z",
               "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "FighterFactory.cs",
-              "DocumentMoniker": "C:\\hlocal\\Breach-Fighters--TFG\\global\\factory\\FighterFactory.cs",
-              "RelativeDocumentMoniker": "global\\factory\\FighterFactory.cs",
-              "ToolTip": "C:\\hlocal\\Breach-Fighters--TFG\\global\\factory\\FighterFactory.cs",
-              "RelativeToolTip": "global\\factory\\FighterFactory.cs",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAYwC0AAAA/AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T16:19:13.592Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "LifePotion.cs",
-              "DocumentMoniker": "C:\\hlocal\\Breach-Fighters--TFG\\data\\objects\\LifePotion.cs",
-              "RelativeDocumentMoniker": "data\\objects\\LifePotion.cs",
-              "ToolTip": "C:\\hlocal\\Breach-Fighters--TFG\\data\\objects\\LifePotion.cs",
-              "RelativeToolTip": "data\\objects\\LifePotion.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T15:29:32.504Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Object.cs",
-              "DocumentMoniker": "C:\\HLOCAL\\BREACH-FIGHTERS--TFG\\data\\objects\\Object.cs",
-              "RelativeDocumentMoniker": "data\\objects\\Object.cs",
-              "ToolTip": "C:\\HLOCAL\\BREACH-FIGHTERS--TFG\\data\\objects\\Object.cs",
-              "RelativeToolTip": "data\\objects\\Object.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAsAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T15:14:24.227Z",
-              "EditorCaption": ""
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             }
           ]
         }

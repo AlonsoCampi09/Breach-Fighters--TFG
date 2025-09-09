@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 public partial class ObjectFactory
 {
-
+ 
     public List<Object> GetShopItems ()
     {
         List<Object> items = new List<Object>();

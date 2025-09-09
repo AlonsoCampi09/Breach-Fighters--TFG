@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LifePotion" load_steps=2 format=3 uid="uid://b87uocq7p7wfu"]
+
+[ext_resource type="Script" path="res://data/objects/LifePotion.cs" id="1_y4qev"]
+
+[resource]
+script = ExtResource("1_y4qev")
+entityType = 0
+Name = "Pocion de vida "
+Price = 10
+ShopStock = 2
+InventoryStock = 0
