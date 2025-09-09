@@ -92,7 +92,7 @@ public partial class Game : Node2D{
 		if(combatTime){
 			uiMessages.ShowDangerAlert();
 		}else{
-			teamJugador.Rest();
+			//teamJugador.Rest();
 			customSignals.EmitSignal(nameof(CustomSignals.OnRestRecharge), gameState, teamJugador, restRocks);
 			uiMessages.RestingMessage();
 		}

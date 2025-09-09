@@ -97,6 +97,7 @@ bus = &"Music"
 
 [node name="Rest" parent="." instance=ExtResource("9_psokh")]
 position = Vector2(590, 414)
+scale = Vector2(1, 0.990449)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(575, 325)

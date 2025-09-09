@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://3myv7wdjbd2e"]
+[gd_scene load_steps=19 format=3 uid="uid://3myv7wdjbd2e"]
 
 [ext_resource type="Theme" uid="uid://cgp6bk35e1id3" path="res://assets/ui_related/ui_battle_theme.tres" id="1_07jr3"]
 [ext_resource type="Script" path="res://global/scenes/scenesUI/RestUi.cs" id="2_1q3nf"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dgwtdlk2iu6dx" path="res://assets/sprites/stats_exp.png" id="10_gd07x"]
 [ext_resource type="Texture2D" uid="uid://b2drv2q8aot30" path="res://assets/sprites/Exp.png" id="10_mbqih"]
 [ext_resource type="Script" path="res://global/scenes/scenesUI/InfoPanel.cs" id="11_1bu3g"]
+[ext_resource type="Texture2D" uid="uid://bl0rol1hhqoc8" path="res://assets/sprites/salus_dam.png" id="14_e0nfa"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tbp5c"]
 line_spacing = 2.0
@@ -36,13 +37,12 @@ theme = ExtResource("1_07jr3")
 script = ExtResource("2_1q3nf")
 
 [node name="RestOptions" type="VBoxContainer" parent="."]
-visible = false
 custom_minimum_size = Vector2(256, 78)
 layout_mode = 0
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 266.0
-offset_bottom = 88.0
+offset_bottom = 116.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 alignment = 1
@@ -56,10 +56,17 @@ text = "Miembros del equipo"
 [node name="Exit" type="Button" parent="RestOptions"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Team")
-focus_neighbor_bottom = NodePath("../Team")
+focus_neighbor_bottom = NodePath("../Shop")
 text = "Pasar a la siguiente habitación"
 
+[node name="Shop" type="Button" parent="RestOptions"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Exit")
+focus_neighbor_bottom = NodePath("../Team")
+text = "Comprar objetos"
+
 [node name="CharacterInfo" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(400, 400)
 layout_mode = 1
 anchors_preset = 4
@@ -678,7 +685,45 @@ layout_mode = 2
 text = "Si lees esto, eres tonto :P
 "
 
-[node name="sfx" type="AudioStreamPlayer2D" parent="."]
+[node name="ShopPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 261.0
+offset_top = 182.0
+offset_right = 868.0
+offset_bottom = 493.0
+scale = Vector2(1, 0.9754)
 
-[node name="sfx2" type="AudioStreamPlayer2D" parent="."]
-volume_db = 10.0
+[node name="SalusDam" type="Sprite2D" parent="ShopPanel"]
+position = Vector2(499, 170)
+texture = ExtResource("14_e0nfa")
+
+[node name="Label" type="Label" parent="ShopPanel"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 20.5044
+offset_right = 242.0
+offset_bottom = 52.5044
+text = "¿Qué deseais, luchadores?  "
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopPanel"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 72.7906
+offset_right = 176.0
+offset_bottom = 285.791
+scale = Vector2(1.40472, 1.0285)
+
+[node name="LifePotion" type="Button" parent="ShopPanel/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Back")
+focus_neighbor_bottom = NodePath("../Back")
+text = "Poción de vida  10"
+icon = ExtResource("9_h6dhy")
+icon_alignment = 2
+
+[node name="Back" type="Button" parent="ShopPanel/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../LifePotion")
+focus_neighbor_bottom = NodePath("../LifePotion")
+text = "Volver"
+icon_alignment = 2
