@@ -92,6 +92,11 @@ public partial class FighterTeam : Node2D
 		if(revived)
 			TTS.SayThis("Miembros abatidos reanimados.");
 	}
+	public void ResetStatus(){
+		for(int i = 0; i < fighterList.Count; i++){
+				fighterList[i].Rst();
+		}
+	}
 	public void Rest(){
 		for(int i = 0; i < fighterList.Count; i++){
 			fighterList[i].FullMana();

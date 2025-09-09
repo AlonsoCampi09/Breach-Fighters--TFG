@@ -287,6 +287,12 @@ public partial class Fighter : Node2D{
 		customSignals.OnDialogIsOver += EffectIsDone;
 		customSignals.EmitSignal(nameof(CustomSignals.OnAffectedByMultipleEffects),data_Info.Name,effects);
 	}
+	public async void Rst(){
+		statusController.ClearAllEffects();
+		UpdateStatusIcons();
+		UpdateBars();
+		//Deberia esperar a una animacion
+	}
 	public async void ResetStatus(){
 		statusController.ClearAllEffects();
 		await ShowEffectPopup("Reset");

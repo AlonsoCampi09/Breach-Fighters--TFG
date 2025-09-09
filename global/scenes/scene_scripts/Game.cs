@@ -100,6 +100,7 @@ public partial class Game : Node2D{
 	
 	public async void GoNextLevel(int teamExp, int teamCoins){
 		teamJugador.Revive();
+		teamJugador.ResetStatus();
 		gameState.AdavanceNextRoom(teamExp,teamCoins);
 		await transitionScreen.fade_to_black();
 		GenerateTypeRoom();

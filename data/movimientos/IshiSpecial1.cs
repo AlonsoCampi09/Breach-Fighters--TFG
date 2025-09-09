@@ -22,7 +22,7 @@ public partial class IshiSpecial1 : Skill{
 			protection = true;
 			return true;
 		}
-		target.TakeDamage(dañoTotal, caster);
+		target.TakeMultipleHits(dañoTotal, GivePercentage(), GiveGuaranteed(), GiveLimit(), caster);
 		return true;
 	}
 	public override bool Execute2(Fighter caster, Fighter target, BattleManager battle){

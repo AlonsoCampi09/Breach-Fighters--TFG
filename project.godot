@@ -33,6 +33,10 @@ TransitionScreen="*res://global/scenes/transition_screen.tscn"
 Tts="*res://global/manager/TTS.cs"
 ConfigData="*res://global/manager/ConfigData.cs"
 
+[display]
+
+window/size/resizable=false
+
 [dotnet]
 
 project/assembly_name="OPTIM_Breach_Fighters"

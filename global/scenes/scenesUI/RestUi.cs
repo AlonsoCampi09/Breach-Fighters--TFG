@@ -467,6 +467,8 @@ public partial class RestUi : Control{
 		actor_experience_up.Text = $"Exp.Necesaria: {actor.GetEntityData().giveEXPsigLevelUP()}";
 		if(gameStatus.teamExperienceBank < actor.GetEntityData().giveEXPsigLevel()){
 			levelUp.Disabled = true;
+		}else{
+			levelUp.Disabled = false;
 		}
 	}
 	
