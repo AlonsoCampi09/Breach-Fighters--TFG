@@ -44,7 +44,6 @@ public partial class Fighter : Node2D{
 				aiManager.AIRandomDecision(hisTeam,vsTeam);
 				break;
 			case Behaviour.Agresivo:
-				GD.Print("Agresivo");
 				aiManager.AIAgresiveDecision(hisTeam,vsTeam);
 				break;
 			case Behaviour.Tactico:
@@ -176,10 +175,8 @@ public partial class Fighter : Node2D{
 		//Deberia esperar a una animacion
 	}
 	public async void HealAction(int n){
-		GD.Print($"+{n} HP");
 		data_Info.restoreHP(n);
 		UpdateBars();
-		GD.Print($"{data_Info.Name} is healing.");
 		AudioStream sound = GD.Load<AudioStream>("res://assets/sonidos/Alex noises/sound1.mp3");
 		playSounds.Stream = sound;
 		playSounds.Play();
@@ -189,10 +186,8 @@ public partial class Fighter : Node2D{
 		//Deberia esperar a una animacion
 	}
 	public async void Heal(int n){
-		GD.Print($"+{n} HP");
 		data_Info.restoreHP(n);
 		UpdateBars();
-		GD.Print($"{data_Info.Name} is healing.");
 		AudioStream sound = GD.Load<AudioStream>("res://assets/sonidos/Alex noises/sound1.mp3");
 		playSounds.Stream = sound;
 		playSounds.Play();
@@ -201,10 +196,8 @@ public partial class Fighter : Node2D{
 		//Deberia esperar a una animacion
 	}
 	public async void RestoreMana(int n){
-		GD.Print($"+{n} MP");
 		data_Info.restoreMP(n);
 		UpdateBars();
-		GD.Print($"{data_Info.Name} regaining mana.");
 		AudioStream sound = GD.Load<AudioStream>("res://assets/sonidos/Alex noises/sound1.mp3");
 		playSounds.Stream = sound;
 		playSounds.Play();
@@ -213,7 +206,6 @@ public partial class Fighter : Node2D{
 		//Deberia esperar a una animacion
 	}
 	public async void TakeDamage(int n, Fighter hitman){
-		GD.Print($"-{n} HP");
 		data_Info.removeHP(n);
 		UpdateBars();
 		AudioStream sound = GD.Load<AudioStream>("res://assets/sonidos/Alex noises/undertale-sound-effect-attack-hit.mp3");
@@ -226,7 +218,6 @@ public partial class Fighter : Node2D{
 		//Deberia esperar a una animacion
 	}
 	public async void TakeDamageAnonymous(int n){
-		GD.Print($"-{n} HP");
 		data_Info.removeHP(n);
 		UpdateBars();
 		AudioStream sound = GD.Load<AudioStream>("res://assets/sonidos/Alex noises/undertale-sound-effect-attack-hit.mp3");
@@ -241,7 +232,6 @@ public partial class Fighter : Node2D{
 		int count = 0;
 		while(count < limit && !IsDead()){
 			if(count < guaranteed){
-				GD.Print($"-{n} HP");
 				data_Info.removeHP(n);
 				UpdateBars();
 				AudioStream sound = GD.Load<AudioStream>("res://assets/sonidos/Alex noises/undertale-sound-effect-attack-hit.mp3");
@@ -250,7 +240,6 @@ public partial class Fighter : Node2D{
 				await ShowDamagePopup(n);
 			}else{
 				if(Skill.ProducesEffect(ptg+(count-guaranteed)*10)){
-					GD.Print($"-{n} HP");
 					data_Info.removeHP(n);
 					UpdateBars();
 					AudioStream sound = GD.Load<AudioStream>("res://assets/sonidos/Alex noises/undertale-sound-effect-attack-hit.mp3");
@@ -269,7 +258,6 @@ public partial class Fighter : Node2D{
 		//Deberia esperar a una animacion
 	}
 	public async void LosesMana(int n){
-		GD.Print($"-{n} MP");
 		data_Info.restoreMP(n);
 		UpdateBars();
 		await ShowDamagePopup(n);
@@ -300,7 +288,6 @@ public partial class Fighter : Node2D{
 		customSignals.EmitSignal(nameof(CustomSignals.OnAffectedByMultipleEffects),data_Info.Name,effects);
 	}
 	public async void ResetStatus(){
-		GD.Print($"-All status");
 		statusController.ClearAllEffects();
 		await ShowEffectPopup("Reset");
 		UpdateStatusIcons();
@@ -310,7 +297,6 @@ public partial class Fighter : Node2D{
 		//Deberia esperar a una animacion
 	}
 	public async void RestoreGoodStatus(){
-		GD.Print($"-All Bad status");
 		statusController.ClearNegativeEffects();
 		await ShowEffectPopup("Restauracion");
 		UpdateStatusIcons();

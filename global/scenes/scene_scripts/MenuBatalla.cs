@@ -125,7 +125,6 @@ public partial class MenuBatalla : Control{
 	}
 	
 	public void MakeMenuVisible(){
-		GD.Print("MakingMenuVisible...");
 		acceptingInputs = true;
 		this.ChangeMenu(0);
 	}
@@ -283,7 +282,6 @@ public partial class MenuBatalla : Control{
 			ChangeMenu(0);
 		}
 		if (Input.IsActionJustPressed("custom_ui_info") && canShowInfo){
-			GD.Print("Hola");
 			ShowMoveInfo();
 		}
 		if (Input.IsActionJustPressed("custom_ui_fighter_info") && acceptingInputs && this.selectingTarget){
@@ -299,68 +297,57 @@ public partial class MenuBatalla : Control{
 			// Cambiar objetivo con izquierda/derecha
 			if (Input.IsActionJustPressed("ui_left"))
 			{
-				GD.Print("Flecha visible moviendose a la izq");
 				this.ChangeTarget(-1);
 			}
 			else if (Input.IsActionJustPressed("ui_right"))
 			{
-				GD.Print("Flecha visible moviendose a la der");
 				this.ChangeTarget(1);
 			}
 			else if (Input.IsActionJustPressed("ui_up"))
 			{
-				GD.Print("Flecha visible moviendose a la der");
 				this.ChangeTarget(1);
 			}
 		}
 	}
 	
 	private void OnAttackButtonPressed(){
-		GD.Print("Atacar");
 		mov_actual = atqbas;
 		PrepareVariablesForAttack();
 		ChangeMenu(2);
 		
 	}
 	private void OnSpecialButtonPressed(){
-		GD.Print("Especial");
 		ChangeMenu(1);
 	}
 	private void OnBagButtonPressed(){
 		GD.Print("Bolsa");
 	}
 	private void OnGuardButtonPressed(){
-		GD.Print("Guardia");
 		mov_actual = guardia;
 		PrepareVariablesForAttack();
 		ChangeMenu(2);
 	}
 	private void OnMov1ButtonPressed(){
-		GD.Print("Especial1");
 		mov_actual = sp1;
 		PrepareVariablesForAttack();
 		ChangeMenu(2);
 	}
 	private void OnMov2ButtonPressed(){
-		GD.Print("Especial2");
 		mov_actual = sp2;
 		PrepareVariablesForAttack();
 		ChangeMenu(2);
 	}
 	private void OnMov3ButtonPressed(){
-		GD.Print("Especial3");
 		mov_actual = sp3;
 		PrepareVariablesForAttack();
 		ChangeMenu(2);
 	}
 	private void OnMov4ButtonPressed(){
-		GD.Print("Especial4");
 		mov_actual = sp4;
 		PrepareVariablesForAttack();
 		ChangeMenu(2);
 	}
 	private void OnInvButtonPressed(){
-		GD.Print("Target CONFIRM");
 		this.ConfirmTarget();
 	}
 	
@@ -436,7 +423,6 @@ public partial class MenuBatalla : Control{
 					GD.PrintErr("No hay enemigos disponibles.");
 					return;
 				}
-				GD.Print("target_disposition = ALLY");
 				all_targets_avaible = this.allyList.Count;
 				indexTargetStart = this.enemyList.Count;
 				indexTargetEnd = this.allFightersList.Count;
@@ -447,7 +433,6 @@ public partial class MenuBatalla : Control{
 					GD.PrintErr("No hay enemigos disponibles.");
 					return;
 				}
-				GD.Print("target_disposition = ENEMY");
 				all_targets_avaible = this.enemyList.Count;
 				indexTargetStart = 0;
 				indexTargetEnd = this.enemyList.Count;
@@ -462,14 +447,12 @@ public partial class MenuBatalla : Control{
 					GD.PrintErr("No hay enemigos disponibles.");
 					return;
 				}
-				GD.Print("target_disposition = BOTH");
 				all_targets_avaible = this.allyList.Count + this.enemyList.Count;
 				indexTargetStart = this.enemyList.Count;
 				indexTargetEnd = this.allFightersList.Count;
 				currentTargetIndex = indexTargetStart;
 				break;
 			case 3:
-				GD.Print("target_disposition = SELF");
 				all_targets_avaible = this.allyList.Count + this.enemyList.Count;
 				indexTargetStart = this.enemyList.Count;
 				indexTargetEnd = this.allFightersList.Count;
@@ -505,8 +488,6 @@ public partial class MenuBatalla : Control{
 			allFightersList[currentTargetIndex].StartBlink();
 	}
 	private void ChangeTarget(int direction){
-		GD.Print($"currentTargetIndex = {currentTargetIndex}");
-		GD.Print($"indexTargetEnd = {indexTargetEnd}");
 		allFightersList[currentTargetIndex].StopBlink();
 		currentTargetIndex = currentTargetIndex + direction;
 		if(currentTargetIndex <= -1){

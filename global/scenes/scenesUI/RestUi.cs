@@ -196,7 +196,6 @@ public partial class RestUi : Control{
 	}
 	
 	public void MakeMenuVisible(){
-		GD.Print("MakingMenuVisible...");
 		acceptingInputs = true;
 		this.ChangeMenu(0);
 	}
@@ -342,24 +341,20 @@ public partial class RestUi : Control{
 			TTS.SayThis($"{actor_name.Text}, {actor_level.Text}, {actor_health.Text}, {actor_attack.Text}, {actor_defense.Text}, {actor_mana.Text}, {actor_speed.Text}");
 		}
 		if(Input.IsActionJustPressed("custom_ui_fighter_info") && acceptingInputs){
-			GD.Print("HOLA");
 			TTS.SayThis($"En la sala aparece el equipo descansando. Alex está sentado grabateando en su cuaderno. Cassandra está meditando. Vyls está sentado cerca de Cassandra. Ishimondo acostado en el suelo combatiendo las ganas de dormirse.");
 		}
 		if (this.selectingTarget){
 			// Cambiar objetivo con izquierda/derecha
 			if (Input.IsActionJustPressed("ui_left"))
 			{
-				GD.Print("Flecha visible moviendose a la izq");
 				this.ChangeTarget(-1);
 			}
 			else if (Input.IsActionJustPressed("ui_right"))
 			{
-				GD.Print("Flecha visible moviendose a la der");
 				this.ChangeTarget(1);
 			}
 			else if (Input.IsActionJustPressed("ui_up"))
 			{
-				GD.Print("Flecha visible moviendose a la der");
 				this.ChangeTarget(1);
 			}
 		}
@@ -374,11 +369,9 @@ public partial class RestUi : Control{
 	private void OnInvButtonPressed(){
 		switch(estado){
 			case 1:
-				GD.Print("Target CONFIRM");
 				this.ConfirmTarget();
 				break;
 			case 4:
-				GD.Print("CONFIRM");
 				gameStatus.UsedExp(actor.GetEntityData().giveEXPsigLevel());
 				actor.LevelUp();
 				PrepareCharacterInfoPanelAndSkills();
@@ -389,7 +382,6 @@ public partial class RestUi : Control{
 				ShowMoneyExp();
 				break;
 			case 5:
-				GD.Print("CONFIRM");
 				customSignals.EmitSignal(nameof(CustomSignals.OnRestFinished));
 				ChangeMenu(-1);
 				
@@ -397,7 +389,6 @@ public partial class RestUi : Control{
 		}
 	}
 	private void OnLevelButtonPressed(){
-		GD.Print("Aqui");
 		ChangeMenu(4);
 	}
 	private void OnSkillButtonPressed(){

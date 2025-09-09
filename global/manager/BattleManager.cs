@@ -137,7 +137,6 @@ public partial class BattleManager : Node{
 		}
 		// Tercera parte: efectos de los efectos de estado
 		if(actor.GetEffectController().ThereIsActiveStatus()){
-			GD.Print("Aqui2");
 			await currentFighter.GetEffectController().ProcessEffects(this);
 		}
 		actor.UpdateStatusIcons();
@@ -154,7 +153,6 @@ public partial class BattleManager : Node{
 			}
 		}
 		for(int i = 0; i < teamPlayerList.Count; i++){
-			GD.Print($"{i}");
 			if(teamPlayerList[i].IsDead() && !wasFaintedPlayer[i]){
 				wasFaintedPlayer[i] = true;
 				teamPlayerList[i].Faints();

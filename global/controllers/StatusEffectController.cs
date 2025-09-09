@@ -76,7 +76,6 @@ public partial class StatusEffectController : Node{
 					continue;
 				}
 				if (msg != null){
-					GD.Print($"msg != null : {msg}");
 					customSignals.EmitSignal(nameof(CustomSignals.OnShowDialog), msg);
 					await ToSignal(customSignals, "OnDialogIsOver");
 				}

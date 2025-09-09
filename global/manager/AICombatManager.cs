@@ -24,22 +24,18 @@ public partial class AICombatManager : Node{
 		Fighter[] selectedTargets = {null};
 		switch(s.WhoAffects()){
 			case 0:
-				GD.Print("Affects his team");
 				selectedTargets = PickRandomFighters(s,hisTeam);
 				break;
 			case 1:
-				GD.Print("Affects his enemies");
 				selectedTargets = PickRandomFighters(s,vsTeam);
 				break;
 			case 2:
-				GD.Print("Can affect either both teams");
 				Random rand = new Random();
 				int i = rand.Next(0,2);
 				if(i == 0)	selectedTargets = PickRandomFighters(s,hisTeam);
 				else	selectedTargets = PickRandomFighters(s,vsTeam);
 				break;
 			case 3:
-				GD.Print("Affects his team");
 				if(s.AffectsAllTeam())
 					selectedTargets = PickAllFightersAvaible(hisTeam.AllFightersAvailable(), hisTeam.GetFighters());
 				else{
@@ -56,22 +52,18 @@ public partial class AICombatManager : Node{
 		Fighter[] selectedTargets = {null};
 		switch(s.WhoAffects()){
 			case 0:
-				GD.Print("Affects his team");
 				selectedTargets = PickRandomFighters(s,hisTeam);
 				break;
 			case 1:
-				GD.Print("Affects his enemies");
 				selectedTargets = PickAgresiveFighters(s,vsTeam);
 				break;
 			case 2:
-				GD.Print("Can affect either both teams");
 				Random rand = new Random();
 				int i = rand.Next(0,2);
 				if(i == 0)	selectedTargets = PickRandomFighters(s,hisTeam);
 				else	selectedTargets = PickAgresiveFighters(s,vsTeam);
 				break;
 			case 3:
-				GD.Print("Affects his team");
 				if(s.AffectsAllTeam())
 					selectedTargets = PickAllFightersAvaible(hisTeam.AllFightersAvailable(), hisTeam.GetFighters());
 				else{
@@ -129,7 +121,6 @@ public partial class AICombatManager : Node{
 					}
 				}
 			}
-			GD.Print($"With {skill.GiveTitulo()} best local score = {bestScoreForSkill}");
 			if (bestScoreForSkill > bestScore) {
 				bestScore = bestScoreForSkill;
 				bestSkill = skill;
@@ -276,21 +267,17 @@ public partial class AICombatManager : Node{
 		bool offensive = skill.Hurts;
 		foreach (Fighter t in targets) {
 			if (t.IsDead()) {
-				GD.Print($" - {t.GetEntityData().Name} está muerto, ignorado");
 				continue;
 			}
 			int hp = t.GetEntityData().giveHP();
 			int maxHp = t.GetEntityData().giveMAXHP();
 			int Mp = t.GetEntityData().giveMP();
 			int maxMp = t.GetEntityData().giveMAXMP();
-			GD.Print($" - Target {t.GetEntityData().Name}: HP={hp}/{maxHp}");
 			int dmg = 0;
 			if (offensive) {
 				dmg = EstimateDamage(skill, owner, t);
-				GD.Print($"   Daño estimado: {dmg}");
 				score += dmg * 3; // peso base
 				if (dmg >= hp) {
-					GD.Print($"   Bonus por matar a {t.GetEntityData().Name} (+150)");
 					score += 150;
 				}
 			} else {
@@ -300,7 +287,6 @@ public partial class AICombatManager : Node{
 				}
 				if(skill.Heals()){
 					int missingHp = maxHp - hp;
-					GD.Print($"   Vida perdida: {missingHp}");
 					score += missingHp * 2;
 				}
 			}
@@ -308,85 +294,19 @@ public partial class AICombatManager : Node{
 				foreach(int status in skill.StatusThatCanApply()){
 					if(!t.GetEffectController().HasEffectInt(status)){
 						score += 30;
-						GD.Print("   Bonus por aplicar estado diferente (+30)");
 					}
 				}
 			}
 		}
-
 		// penalización por coste de maná
 		int mana = owner.GetEntityData().giveMP();
 		int cost = skill.GiveCost();
-		GD.Print($"Coste de maná: {cost}, maná actual: {mana}");
 		score -= cost;
-
 		GD.Print($"TOTAL score para {skill.GiveTitulo()} = {score}");
 		GD.Print("============================================");
-
 		return score;
 	}
 	
-	private int ScoreSkill(Skill skill, Fighter[] targets) {
-		if (skill == null || targets == null || targets.Length == 0) {
-			GD.Print("ScoreSkill: skill null o sin targets");
-			return int.MinValue / 2;
-		}
-		if (!skill.EnoughMana(owner)) {
-			GD.Print($"{skill.GiveTitulo()} not enough mana -> low score");
-			return int.MinValue / 2;
-		}
-		GD.Print($"=== Evaluando skill {skill.GiveTitulo()} ===");
-		GD.Print($"Targets: {string.Join(", ", targets.Select(t => t.GetEntityData().Name))}");
-		int score = 0;
-		bool offensive = skill.Hurts;
-		foreach (Fighter t in targets) {
-			if (t.IsDead()) {
-				GD.Print($" - {t.GetEntityData().Name} está muerto, ignorado");
-				continue;
-			}
-			int hp = t.GetEntityData().giveHP();
-			int maxHp = t.GetEntityData().giveMAXHP();
-			GD.Print($" - Target {t.GetEntityData().Name}: HP={hp}/{maxHp}");
-
-			// estimación de daño (si es ofensivo)
-			int dmg = 0;
-			if (offensive) {
-				dmg = EstimateDamage(skill, owner, t);
-				GD.Print($"   Daño estimado: {dmg}");
-				score += dmg * 3; // peso base
-				if (dmg >= hp) {
-					GD.Print($"   Bonus por matar a {t.GetEntityData().Name} (+150)");
-					score += 150;
-				}
-			} else {
-				// si es healing/buff
-				int missingHp = maxHp - hp;
-				GD.Print($"   Vida perdida: {missingHp}");
-				score += missingHp * 2;
-				if (!t.GetEffectController().HasEffect(StatusEffectType.BuffDEF)) {
-					GD.Print("   Bonus por aplicar buff de DEF (+30)");
-					score += 30;
-				}
-			}
-
-			// ejemplo: bonus si target tiene debuff de DEF
-			if (t.GetEffectController().HasEffect(StatusEffectType.DeBuffDEF)) {
-				GD.Print("   Target vulnerable (DEF debuff) (+20)");
-				score += 20;
-			}
-		}
-
-		// penalización por coste de maná
-		int mana = owner.GetEntityData().giveMP();
-		int cost = skill.GiveCost();
-		GD.Print($"Coste de maná: {cost}, maná actual: {mana}");
-		score -= cost;
-
-		GD.Print($"TOTAL score para {skill.GiveTitulo()} = {score}");
-		GD.Print("============================================");
-
-		return score;
-	}
 	private int EstimateDamage(Skill skill, Fighter caster, Fighter target) {
 		try {
 			int p = skill.GivePower();
@@ -426,9 +346,7 @@ public partial class AICombatManager : Node{
 			CombineNoRepeat(allTargets, i + 1, depth + 1, cur, results);
 		}
 	}
-	
 	public void GotHitByFighter(Fighter f){
-		GD.Print($"Got hit by {f.GetEntityData().Name}");
 		if(f.IsPlayerControlled()){
 			fighterLastHitMe.Remove(f);
 			fighterLastHitMe.Insert(0, f); 	
