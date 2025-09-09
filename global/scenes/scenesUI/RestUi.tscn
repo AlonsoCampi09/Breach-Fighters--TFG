@@ -50,20 +50,20 @@ alignment = 1
 [node name="Team" type="Button" parent="RestOptions"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Exit")
-focus_neighbor_bottom = NodePath("../Exit")
-text = "Miembros del equipo"
-
-[node name="Exit" type="Button" parent="RestOptions"]
-layout_mode = 2
-focus_neighbor_top = NodePath("../Team")
 focus_neighbor_bottom = NodePath("../Shop")
-text = "Pasar a la siguiente habitación"
+text = "Miembros del equipo"
 
 [node name="Shop" type="Button" parent="RestOptions"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../Exit")
-focus_neighbor_bottom = NodePath("../Team")
+focus_neighbor_top = NodePath("../Team")
+focus_neighbor_bottom = NodePath("../Exit")
 text = "Comprar objetos"
+
+[node name="Exit" type="Button" parent="RestOptions"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Shop")
+focus_neighbor_bottom = NodePath("../Team")
+text = "Pasar a la siguiente habitación"
 
 [node name="CharacterInfo" type="Panel" parent="."]
 visible = false
@@ -686,6 +686,7 @@ text = "Si lees esto, eres tonto :P
 "
 
 [node name="ShopPanel" type="Panel" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 261.0
 offset_top = 182.0
@@ -727,3 +728,7 @@ focus_neighbor_top = NodePath("../LifePotion")
 focus_neighbor_bottom = NodePath("../LifePotion")
 text = "Volver"
 icon_alignment = 2
+
+[node name="sfx" type="AudioStreamPlayer2D" parent="."]
+
+[node name="sfx2" type="AudioStreamPlayer2D" parent="."]

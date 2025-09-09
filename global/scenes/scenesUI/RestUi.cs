@@ -9,6 +9,7 @@ public partial class RestUi : Control{
 	private CustomSignals customSignals;
 	private VBoxContainer restOptions;
 	private Button teamSelect;
+	private Button shopButton;
 	private Button restExit;
 	
 	private Panel characterInfo;
@@ -70,6 +71,7 @@ public partial class RestUi : Control{
 	
 	private GameState gameStatus;
 	private List<Fighter> allyList;
+	private FighterTeam team;
 	private RocksRest alliesRest;
 	private Fighter actor;
 	private Skill atqbas;
@@ -84,6 +86,11 @@ public partial class RestUi : Control{
 	
 	bool acceptingInputs = false;
 	
+	private Panel shopPanel;
+	//private ObjectFactory shopFactory;
+	private Button lifePotion;
+	private Button exitShop;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready(){
 		customSignals = GetNode<CustomSignals>("/root/CustomSignals");
@@ -93,6 +100,7 @@ public partial class RestUi : Control{
 		
 		restOptions = GetNode<VBoxContainer>("RestOptions");
 		teamSelect = GetNode<Button>("RestOptions/Team");
+		shopButton = GetNode<Button>("RestOptions/Shop");
 		restExit = GetNode<Button>("RestOptions/Exit");
 		
 		teamSelect.Pressed += OnTeamButtonPressed;
@@ -169,6 +177,17 @@ public partial class RestUi : Control{
 		
 		panelPopUp = GetNode<Panel>("PanelPopUp");
 		
+		shopPanel = GetNode<Panel>("ShopPanel");
+		lifePotion = GetNode<Button>("ShopPanel/VBoxContainer/LifePotion");
+		exitShop = GetNode<Button>("ShopPanel/VBoxContainer/Back");
+		
+		shopButton.FocusEntered += OnShopButtonFocused; 
+		lifePotion.FocusEntered += OnLifePotionButtonFocused;
+		exitShop.FocusEntered += OnExitShopButtonFocused;
+		shopButton.Pressed += OnShopButtonPressed;
+		lifePotion.Pressed += OnLifePotionButtonPressed;
+		exitShop.Pressed += OnExitShopButtonPressed;
+		
 		customSignals.OnRestRecharge += RechargingGameTeamState;
 		customSignals.OnShowRestHUD += MakeMenuVisible;
 		
@@ -186,6 +205,7 @@ public partial class RestUi : Control{
 	public void RechargingGameTeamState(GameState gs, FighterTeam allies, RocksRest rest){
 		gameStatus = gs;
 		allyList = allies.GetFighters();
+		team = allies;
 		alliesRest = rest;
 		ShowMoneyExp();
 	}
@@ -232,6 +252,7 @@ public partial class RestUi : Control{
 				selecting.Visible = false;
 				levelUpPanel.Visible = false;
 				panelPopUp.Visible = false;
+				shopPanel.Visible = false;
 				this.selectingTarget = false;
 				for(int i = 0; i < allyList.Count; i++){
 					alliesRest.StopBlink(i);
@@ -311,6 +332,15 @@ public partial class RestUi : Control{
 				TTS.SayThis($"Quieres salir del descanso? Para confirmar pulsa espacio. Para cancelar pulse X.");
 				inv.GrabFocus();
 				break;
+			case 6:
+				estado = 6;
+				restOptions.Visible = false;
+				shopPanel.Visible = true;
+				moneyExp.Visible = true;
+				lifePotion.GrabFocus();
+				lifePotion.Disabled = gameStatus.teamMoneyBank >= 10 ? false : true;
+				GD.Print("Pulsado boton comprar");
+				break; 
 		}
 	}
 	
@@ -399,6 +429,23 @@ public partial class RestUi : Control{
 	}
 	private void OnBack2ButtonPressed(){
 		ChangeMenu(2);
+	}
+	
+	private void OnShopButtonPressed(){
+		ChangeMenu(6); 
+	}
+	private void OnLifePotionButtonPressed() {
+		team.Rest();
+		gameStatus.UsedMoney(10);
+		lifePotion.Disabled = gameStatus.teamMoneyBank >= 10 ? false : true;
+		TTS.PutThisInQueue("Dispones de " + gameStatus.teamMoneyBank + " monedas."); 
+		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Alex noises/level-up-289723.mp3");
+		sfx2.Stream = stream;
+		sfx2.Play();
+		ShowMoneyExp();
+	}
+	private void OnExitShopButtonPressed() {
+		ChangeMenu(0);
 	}
 	
 	private void ReloadStats(){
@@ -595,6 +642,26 @@ public partial class RestUi : Control{
 	}
 	private void OnInvFocusEntered(){
 		currentFocusButton = inv;
+	}
+	private void OnShopButtonFocused() {
+		TTS.SayThis("Comprar objetos. Dispones de " + gameStatus.teamMoneyBank + " monedas."); 
+		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
+		sfx.Stream = stream;
+		sfx.Play();
+	}
+	private void OnLifePotionButtonFocused() {
+		string mensaje = "Pocion de vida. Coste de 10 monedas.";
+		mensaje += lifePotion.Disabled ? "No tienes suficientes monedas" : "" ;
+		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
+		sfx.Stream = stream;
+		sfx.Play();
+		TTS.SayThis(mensaje);
+	}
+	private void OnExitShopButtonFocused() {
+		TTS.SayThis("Salir de la tienda"); 
+		AudioStream stream = GD.Load<AudioStream>("res://assets/sonidos/Casual Game Sounds U6/CasualGameSounds/DM-CGS-03.wav");
+		sfx.Stream = stream;
+		sfx.Play();
 	}
 	
 	public void ShowMoveInfo(){
